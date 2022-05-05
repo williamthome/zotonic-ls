@@ -1,5 +1,5 @@
 {
-  "name": "zotonic",
+  	"name": "zotonic",
 	"displayName": "Zotonic",
 	"description": "Zotonic",
 	"version": "0.0.1",
@@ -7,7 +7,8 @@
 		"vscode": "^1.67.0"
 	},
 	"categories": [
-		"Other"
+		"Other",
+		"Programming Languages"
 	],
 	"activationEvents": [
         "onCommand:zotonic.helloWorld"
@@ -18,6 +19,26 @@
 			{
 				"command": "zotonic.helloWorld",
 				"title": "Hello World"
+			}
+		],
+		"languages": [
+			{
+				"id": "tpl",
+				"aliases": [
+					"Zotonic Template Language",
+					"tpl"
+				],
+				"extensions": [
+					".tpl"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "tpl",
+				"scopeName": "text.html",
+				"path": "./syntaxes/tpl.tmLanguage.json"
 			}
 		]
 	},
