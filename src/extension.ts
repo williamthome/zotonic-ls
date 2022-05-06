@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import axios from 'axios';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -60,12 +61,12 @@ export function activate(context: vscode.ExtensionContext) {
 		async provideDefinition(document, position, token) {
 			const line = document.lineAt(position.line).text;
 			const definitions = [
-				{ext: ".tpl", dir: "templates"},
-				{ext: ".js", dir: "priv/lib"},
-				{ext: ".css", dir: "priv/lib"}
+				{ ext: ".tpl", dir: "templates" },
+				{ ext: ".js", dir: "priv/lib" },
+				{ ext: ".css", dir: "priv/lib" }
 			];
 
-			for (const {ext, dir} of definitions) {
+			for (const { ext, dir } of definitions) {
 				const regex = new RegExp(`".*.\\${ext}"`);
 				const match = line.match(regex);
 				if (!match || !match.length) continue;
@@ -80,18 +81,21 @@ export function activate(context: vscode.ExtensionContext) {
 					uri, new vscode.Position(0, 0)
 				))
 			}
-	   }
+		}
 	});
 
 	context.subscriptions.push(definitionProvider);
 
 	const hoverProvider = vscode.languages.registerHoverProvider('tpl', {
-		provideHover(document, position, token) {
+		async provideHover(document, position, token) {
 			const range = document.getWordRangeAtPosition(position);
 			const word = document.getText(range);
 
-			const markdown = new vscode.MarkdownString(`<h1>This is a hint</h1><p>Current word: ${word}</p>`);
+			const raw = await raw_doc(word);
+			const markdown = new vscode.MarkdownString(raw);
 			markdown.supportHtml = true;
+			markdown.isTrusted = true;
+			markdown.supportThemeIcons = true;
 
 			return new vscode.Hover(markdown);
 		}
@@ -111,11 +115,31 @@ async function filesToSnippetOption(
 	// TODO: Improve algorithm
 	const templatesSet = new Set<string>();
 	const templatesUri = await vscode.workspace.findFiles(pattern);
-	templatesUri.forEach(({path}) => {
+	templatesUri.forEach(({ path }) => {
 		const fileName = path.substring(path.lastIndexOf(lastToken) + lastToken.length)
 		templatesSet.add(fileName)
 	});
 	const templatesArray = Array.from(templatesSet);
 	const templatesSorted = templatesArray.sort();
 	return templatesSorted.join(",");
+}
+
+// Get raw data from Zotonic docs
+async function raw_doc(word: string) {
+	try {
+		// TODO: Change strategy
+		const docs = {
+			block: { group: "tags", ref: "tag" },
+			extends: { group: "tags", ref: "tag" },
+			include: { group: "tags", ref: "tag" },
+			wire: { group: "scomps", ref: "scomp" }
+		};
+		if (!(word in docs)) return "No doc for " + word;
+		const { group, ref } = docs[word as keyof typeof docs];
+		const url = `https://raw.githubusercontent.com/zotonic/zotonic/master/doc/ref/${group}/${ref}_${word}.rst`
+		const { data: raw } = await axios.get(url);
+		return raw
+	} catch (error) {
+		return (error as any).toString()
+	}
 }
