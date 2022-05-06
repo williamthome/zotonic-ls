@@ -55,6 +55,49 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(completionProvider);
+
+	const definitionProvider = vscode.languages.registerDefinitionProvider('tpl', {
+		async provideDefinition(document, position, token) {
+			const line = document.lineAt(position.line).text;
+			const definitions = [
+				{ext: ".tpl", dir: "templates"},
+				{ext: ".js", dir: "priv/lib"},
+				{ext: ".css", dir: "priv/lib"}
+			];
+
+			for (const {ext, dir} of definitions) {
+				const regex = new RegExp(`".*.\\${ext}"`);
+				const match = line.match(regex);
+				if (!match || !match.length) continue;
+
+				const firstMatch = match[0].trim();
+				const unquotedMatch = firstMatch.replace(/\"/g, "");
+				const pattern = `**/${dir}/**/${unquotedMatch}`;
+				const files = await vscode.workspace.findFiles(pattern);
+				if (!files) continue;
+
+				return files.map(uri => new vscode.Location(
+					uri, new vscode.Position(0, 0)
+				))
+			}
+	   }
+	});
+
+	context.subscriptions.push(definitionProvider);
+
+	const hoverProvider = vscode.languages.registerHoverProvider('tpl', {
+		provideHover(document, position, token) {
+			const range = document.getWordRangeAtPosition(position);
+			const word = document.getText(range);
+
+			const markdown = new vscode.MarkdownString(`<h1>This is a hint</h1><p>Current word: ${word}</p>`);
+			markdown.supportHtml = true;
+
+			return new vscode.Hover(markdown);
+		}
+	});
+
+	context.subscriptions.push(hoverProvider);
 }
 
 // this method is called when your extension is deactivated
