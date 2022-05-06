@@ -13,7 +13,7 @@
         "tpl": {
             "patterns": [
                 {
-                    "begin": "(?={[%#{])",
+                    "begin": "\\{%",
                     "beginCaptures": {
                         "0": {
                             "patterns": [
@@ -23,7 +23,69 @@
                             ]
                         }
                     },
-                    "end": "(?:[%#}]})",
+                    "end": "\\%}",
+                    "endCaptures": {
+                        "0": {
+                            "patterns": [
+                                {
+                                    "include": "source.tpl"
+                                }
+                            ]
+                        },
+                        "1": {
+                            "name": "source.tpl"
+                        }
+                    },
+                    "name": "source.tpl",
+                    "patterns": [
+                        {
+                            "include": "source.tpl"
+                        }
+                    ]
+                },
+                {
+                    "begin": "\\{{",
+                    "beginCaptures": {
+                        "0": {
+                            "patterns": [
+                                {
+                                    "include": "source.tpl"
+                                }
+                            ]
+                        }
+                    },
+                    "end": "\\}}",
+                    "endCaptures": {
+                        "0": {
+                            "patterns": [
+                                {
+                                    "include": "source.tpl"
+                                }
+                            ]
+                        },
+                        "1": {
+                            "name": "source.tpl"
+                        }
+                    },
+                    "name": "source.tpl",
+                    "patterns": [
+                        {
+                            "include": "source.tpl"
+                        }
+                    ]
+                },
+                {
+                    "begin": "\\{#",
+                    "beginCaptures": {
+                        "0": {
+                            "patterns": [
+                                {
+                                    "include": "source.tpl"
+                                }
+                            ]
+                        }
+                    },
+                    "end": "\\#}",
                     "endCaptures": {
                         "0": {
                             "patterns": [
