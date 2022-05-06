@@ -5,22 +5,74 @@ import * as vscode from 'vscode';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	
+
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "zotonic" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('zotonic.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Zotonic!');
+	// BUG: This hiddens snippets/tpl.code-snippets
+	// Completion provider
+	// @see https://github.com/microsoft/vscode-extension-samples/blob/main/completions-sample/src/extension.ts
+	const completionProvider = vscode.languages.registerCompletionItemProvider('tpl', {
+		async provideCompletionItems(
+			document: vscode.TextDocument,
+			position: vscode.Position,
+			token: vscode.CancellationToken,
+			context: vscode.CompletionContext
+		) {
+			// Include snippet
+			const includeOptions = await filesToSnippetOption(
+				'**/priv/templates/**/*.tpl'
+			);
+			const includeSnippet = new vscode.CompletionItem('include');
+			includeSnippet.insertText = new vscode.SnippetString(
+				'{% include "${1|' + includeOptions + '|}" %}'
+			);
+			const includeDocs: any = new vscode.MarkdownString(
+				"Inserts a snippet that lets you select a template."
+			);
+			includeSnippet.documentation = includeDocs;
+
+			// Lib snippet
+			const libOptions = await filesToSnippetOption(
+				'**/priv/lib/**/*.{js,css}', 'lib/'
+			);
+			const libSnippet = new vscode.CompletionItem('lib');
+			libSnippet.insertText = new vscode.SnippetString(
+				'{% lib "${1|' + libOptions + '|}" %}'
+			);
+			const libDocs: any = new vscode.MarkdownString(
+				"Inserts a snippet that lets you select a lib."
+			);
+			libSnippet.documentation = libDocs;
+
+			// Return
+			return [
+				includeSnippet,
+				libSnippet
+			];
+		}
 	});
 
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(completionProvider);
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
+
+// Output: 'foo.ext,bar.ext,baz.ext'
+async function filesToSnippetOption(
+	pattern: string,
+	lastToken: string = '/'
+): Promise<string> {
+	// TODO: Improve algorithm
+	const templatesSet = new Set<string>();
+	const templatesUri = await vscode.workspace.findFiles(pattern);
+	templatesUri.forEach(({path}) => {
+		const fileName = path.substring(path.lastIndexOf(lastToken) + lastToken.length)
+		templatesSet.add(fileName)
+	});
+	const templatesArray = Array.from(templatesSet);
+	const templatesSorted = templatesArray.sort();
+	return templatesSorted.join(",");
+}
