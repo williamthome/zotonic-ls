@@ -1,15 +1,9 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Zotonic Template Language",
-	"injectionSelector": [
-		"R:text.html"
-	],
 	"patterns": [
 		{
 			"include": "#brackets"
-		},
-		{
-			"include": "text.html.derivative"
 		}
 	],
 	"repository": {
@@ -155,7 +149,7 @@
 		"brackets": {
 			"patterns": [
 				{
-					"begin": "(\\{\\%)(.*?)(\\w+)",
+					"begin": "(?<={%)(.*?)(\\w+)",
 					"beginCaptures": {
 						"0": {
 							"name": "punctuation.block.start.tpl"
@@ -168,7 +162,7 @@
 							]
 						}
 					},
-					"end": "\\%\\}",
+					"end": "(?=%})",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.block.end.tpl"
@@ -251,5 +245,5 @@
 			]
 		}
 	},
-	"scopeName": "text.html.tpl"
+	"scopeName": "source.tpl"
 }

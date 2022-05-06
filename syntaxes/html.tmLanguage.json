@@ -1,0 +1,50 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Zotonic Template Language",
+    "patterns": [
+        {
+            "include": "#tpl"
+        },
+        {
+            "include": "text.html.derivative"
+        }
+    ],
+    "repository": {
+        "tpl": {
+            "patterns": [
+                {
+                    "begin": "(?={[%#{])",
+                    "beginCaptures": {
+                        "0": {
+                            "patterns": [
+                                {
+                                    "include": "source.tpl"
+                                }
+                            ]
+                        }
+                    },
+                    "end": "(?:[%#}]})",
+                    "endCaptures": {
+                        "0": {
+                            "patterns": [
+                                {
+                                    "include": "source.tpl"
+                                }
+                            ]
+                        },
+                        "1": {
+                            "name": "source.tpl"
+                        }
+                    },
+                    "name": "source.tpl",
+                    "patterns": [
+                        {
+                            "include": "source.tpl"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "scopeName": "text.html.tpl"
+}
