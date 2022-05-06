@@ -1,20 +1,69 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Zotonic Template Language",
+	"injectionSelector": [
+		"R:text.html"
+	],
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#brackets"
 		},
 		{
-			"include": "#strings"
+			"include": "text.html.derivative"
 		}
 	],
 	"repository": {
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.tpl",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+			"patterns": [
+				{
+					"name": "keyword.block.tpl",
+					"match": "\\b(for|empty|endfor|in|include|catinclude|block|endblock|extends|overrules|inherit|autoescape|endautoescape|if|else|elif|elseif|endif|not|or|and|xor|comment|endcomment|cycle|firstof|ifchanged|ifequal|endifequal|ifnotequal|endifnotequal|now|regroup|rsc|spaceless|endspaceless|ssi|templatetag|load|call|url|print|image|image_url|media|_|with|endwith|all|lib|cache|endcache|filter|endfilter|javascript|endjavascript|as|optional)\\b"
+				},
+				{
+					"name": "keyword.block.begin.tpl",
+					"match": "\\b(for|empty|block|autoescape|if|else|elif|elseif|comment|ifchanged|ifequal|ifnotequal|spaceless|with|cache|filter|javascript)\\b"
+				},
+				{
+					"name": "keyword.block.end.tpl",
+					"match": "\\b(empty|endfor|endblock|endautoescape|else|elif|elseif|endif|endcomment|endifequal|endifnotequal|endspaceless|endwith|endcache|endfilter|endjavascript)\\b"
+				},
+				{
+					"name": "keyword.tag.tpl",
+					"match": "\\b(worker|admin_translation_statistics|button|chart_pie|chart_pie3d|debug|draggable|droppable|geomap_static|google_chart|inplace_textbox|lazy|loremipsum|mailinglist_subscribe|menu|pager|poll|script|sortable|sorter|spinner|stream|survey_example|tabs|validate|wire|wire_args)\\b"
+				},
+				{
+					"name": "keyword.property.tpl",
+					"match": "\\b(action|postback|delegate|class|text|name|src|args)\\b"
+				},
+				{
+					"name": "keyword.filter.tpl",
+					"match": "\\b(add_day|add_month|add_week|add_year|after|append|as_atom|before|brlinebreaks|capfirst|center|chunk|date|date_range|datediff|element|eq_day|escape|escape_ical|escape_link|escapejs|escapejson|escapexml|filesizeformat|first|fix_ampersands|force_escape|format_integer|format_number|format_price|gravatar_code|group_by|group_firstchar|group_title_firstchar|if|in_future|in_past|index_of|inject_recipientdetails|insert|is_a|is_defined|is_even|is_list|is_not_a|is_rtl|is_undefined|is_visible|join|language|last|length|linebreaksbr|ljust|lower|make_list|match|max|member|menu_flat|menu_subtree|menu_trail|min|minmax|ne_day|nthtail|pprint|rand|random|randomize|range|replace|replace_args|reversed|rjust|sha1|show_media|slice|slugify|split|split_in|stringify|striptags|sub_day|sub_month|sub_week|sub_year|summary|survey_answer_split|survey_is_submit|survey_prepare_matching|survey_prepare_narrative|survey_prepare_thurstone|tail|timesince|to_binary|to_integer|to_json|truncate|twitter|unescape|upper|urlencode|urlize|utc|vsplit_in|without_embedded_media|yesno)\\b"
+				}
+			]
+		},
+		"operators": {
+			"patterns": [
+				{
+					"match": "==|!=",
+					"name": "keyword.operator.comparison.tpl"
+				},
+				{
+					"match": "=|:",
+					"name": "keyword.operator.assignment.tpl"
+				},
+				{
+					"match": "<=|>=|<|>",
+					"name": "keyword.operator.comparison.tpl"
+				},
+				{
+					"match": "\\-|\\+|\\*|/",
+					"name": "keyword.operator.arithmetic.tpl"
+				},
+				{
+					"match": "\\|",
+					"name": "keyword.operator.pipe.tpl"
+				}
+			]
 		},
 		"strings": {
 			"name": "string.quoted.double.tpl",
@@ -24,9 +73,183 @@
 				{
 					"name": "constant.character.escape.tpl",
 					"match": "\\\\."
+				},
+				{
+					"match": ".*\\.tpl",
+					"name": "support.template.tpl"
+				}
+			]
+		},
+		"variables-keys": {
+			"patterns": [
+				{
+					"include": "#keywords"
+				}
+			]
+		},
+		"variables-values": {
+			"patterns": [
+				{
+					"begin": "`",
+					"end": "`",
+					"name": "variable.atom.tpl"
+				},
+				{
+					"match": "#\\w+",
+					"name": "variable.auto.tpl"
+				},
+				{
+					"match": "\\w+",
+					"name": "variable.value.tpl"
+				},
+				{
+					"match": "\\.",
+					"name": "variable.dot.tpl"
+				},
+				{
+					"match": "\\#",
+					"name": "variable.hash.tpl"
+				},
+				{
+					"include": "#operators"
+				},
+				{
+					"include": "#strings"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"match": "(\\s+)(.*?)(=|:)(.*?((?<=\").*?(?:\")|(?<={).*?(?:})|(?<=\\w).*?(?=\\s)))",
+					"captures": {
+						"2": {
+							"name": "variable.key.tpl",
+							"patterns": [
+								{
+									"include": "#variables-keys"
+								}
+							]
+						},
+						"3": {
+							"patterns": [
+								{
+									"include": "#operators"
+								}
+							]
+						},
+						"4": {
+							"patterns": [
+								{
+									"include": "#variables-values"
+								}
+							]
+						}
+					}
+				},
+				{
+					"include": "#strings"
+				}
+			]
+		},
+		"brackets": {
+			"patterns": [
+				{
+					"begin": "(\\{\\%)(.*?)(\\w+)",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.block.start.tpl"
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "#keywords"
+								}
+							]
+						}
+					},
+					"end": "\\%\\}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.block.end.tpl"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#variables"
+						}
+					]
+				},
+				{
+					"begin": "\\{\\{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.variable.start.tpl"
+						}
+					},
+					"end": "\\}\\}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.variable.end.tpl"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#variables-values"
+						}
+					]
+				},
+				{
+					"begin": "\\{\\#",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.comment.start.tpl comment.tpl"
+						}
+					},
+					"end": "\\#\\}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.comment.end.tpl comment.tpl"
+						}
+					},
+					"contentName": "comment.tpl"
+				},
+				{
+					"begin": "\\{\\_",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.translation.start.tpl"
+						}
+					},
+					"end": "\\_\\}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.translation.end.tpl"
+						}
+					},
+					"contentName": "string.translation.tpl"
+				},
+				{
+					"begin": "\\%\\{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.map.start.tpl"
+						}
+					},
+					"end": "\\}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.map.end.tpl"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#variables"
+						}
+					]
 				}
 			]
 		}
 	},
-	"scopeName": "text.html"
+	"scopeName": "text.html.tpl"
 }

@@ -37,8 +37,14 @@
 		"grammars": [
 			{
 				"language": "tpl",
-				"scopeName": "text.html",
-				"path": "./syntaxes/tpl.tmLanguage.json"
+				"scopeName": "text.html.tpl",
+				"path": "./syntaxes/tpl.tmLanguage.json",
+				"embeddedLanguages": {
+					"text.html": "html"
+				},
+				"injectTo": [
+					"text.html"
+				]
 			}
 		]
 	},
