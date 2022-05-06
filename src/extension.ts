@@ -21,18 +21,39 @@ export function activate(context: vscode.ExtensionContext) {
 			token: vscode.CancellationToken,
 			context: vscode.CompletionContext
 		) {
-			// Include snippet
-			const includeOptions = await filesToSnippetOption(
+			const templateOptions = await filesToSnippetOption(
 				'**/priv/templates/**/*.tpl'
 			);
+
+			// Include snippet
 			const includeSnippet = new vscode.CompletionItem('include');
 			includeSnippet.insertText = new vscode.SnippetString(
-				'{% include "${1|' + includeOptions + '|}" %}'
+				'{% include "${1|' + templateOptions + '|}" %}'
 			);
 			const includeDocs: any = new vscode.MarkdownString(
-				"Inserts a snippet that lets you select a template."
+				"Inserts a snippet that lets you select a template to include."
 			);
 			includeSnippet.documentation = includeDocs;
+
+			// All include snippet
+			const allIncludeSnippet = new vscode.CompletionItem('all_include');
+			allIncludeSnippet.insertText = new vscode.SnippetString(
+				'{% all include "${1|' + templateOptions + '|}" %}'
+			);
+			const allIncludeDocs: any = new vscode.MarkdownString(
+				"Inserts a snippet that lets you select a template to include."
+			);
+			allIncludeSnippet.documentation = allIncludeDocs;
+
+			// Extends snippet
+			const extendsSnippet = new vscode.CompletionItem('extends');
+			extendsSnippet.insertText = new vscode.SnippetString(
+				'{% extends "${1|' + templateOptions + '|}" %}'
+			);
+			const extendsDocs: any = new vscode.MarkdownString(
+				"Inserts a snippet that lets you select a template to extends."
+			);
+			extendsSnippet.documentation = extendsDocs;
 
 			// Lib snippet
 			const libOptions = await filesToSnippetOption(
@@ -50,6 +71,8 @@ export function activate(context: vscode.ExtensionContext) {
 			// Return
 			return [
 				includeSnippet,
+				allIncludeSnippet,
+				extendsSnippet,
 				libSnippet
 			];
 		}
