@@ -46,6 +46,12 @@
 					"text.html"
 				]
 			}
+		],
+		"snippets": [
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl.code-snippets"
+			}
 		]
 	},
 	"scripts": {

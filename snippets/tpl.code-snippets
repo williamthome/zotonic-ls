@@ -1,0 +1,97 @@
+{
+    "Block": {
+        "prefix": [
+            "b",
+            "block"
+        ],
+        "body": [
+            "{% block $1 %}",
+            "\t$0",
+            "{% endblock %}"
+        ],
+        "description": "Block"
+    },
+    "Include": {
+        "prefix": [
+            "i",
+            "include"
+        ],
+        "body": "{% include \"$0.tpl\" %}",
+        "description": "Include"
+    },
+    "All include": {
+        "prefix": [
+            "ai",
+            "all_include"
+        ],
+        "body": "{% all include \"$0.tpl\" %}",
+        "description": "All include"
+    },
+    "Extends": {
+        "prefix": [
+            "e",
+            "extends"
+        ],
+        "body": "{% extends \"$0.tpl\" %}",
+        "description": "Extends"
+    },
+    "Lib": {
+        "prefix": [
+            "l",
+            "lib"
+        ],
+        "body": "{% lib \"$0\" %}",
+        "description": "Lib"
+    },
+    "Script": {
+        "prefix": [
+            "s",
+            "script"
+        ],
+        "body": "{% script %}",
+        "description": "Script"
+    },
+    "For": {
+        "prefix": [
+            "for",
+            "loop"
+        ],
+        "body": [
+            "{% for $1 in $2 %}",
+            "\t$0",
+            "{% endfor %}"
+        ],
+        "description": "For"
+    },
+    "If": {
+        "prefix": "if",
+        "body": [
+            "{% if $1 %}",
+            "\t$0",
+            "{% endif %}"
+        ],
+        "description": "If"
+    },
+    "Else": {
+        "prefix": "else",
+        "body": [
+            "{% if $1 %}",
+            "\t$2",
+            "{% else %}",
+            "\t$0",
+            "{% endif %}"
+        ],
+        "description": "Else"
+    },
+    "Elif": {
+        "prefix": "elif",
+        "body": [
+            "{% if $1 %}",
+            "\t$2",
+            "{% elif $3 %}",
+            "\t$0",
+            "{% endif %}"
+        ],
+        "description": "Elif"
+    }
+}
