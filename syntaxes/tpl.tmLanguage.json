@@ -3,7 +3,7 @@
 	"name": "Zotonic Template Language",
 	"patterns": [
 		{
-			"include": "#brackets"
+			"include": "#body"
 		}
 	],
 	"repository": {
@@ -146,47 +146,28 @@
 				}
 			]
 		},
-		"brackets": {
+		"body": {
 			"patterns": [
 				{
-					"begin": "(?<={%)(.*?)(\\w+)",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.block.start.tpl"
-						},
-						"2": {
-							"patterns": [
-								{
-									"include": "#keywords"
-								}
-							]
-						}
-					},
-					"end": "(?=%})",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.block.end.tpl"
-						}
-					},
+					"begin": "(?<=\\{% comment %\\})",
+					"end": "(?=\\{% endcomment %\\})",
+					"contentName": "comment.tpl"
+				},
+				{
+					"begin": "(?<=\\{%)",
+					"end": "(?=%\\})",
 					"patterns": [
 						{
-							"include": "#variables"
+							"include": "#keywords"
+						},
+						{
+							"include": "#strings"
 						}
 					]
 				},
 				{
-					"begin": "\\{\\{",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.variable.start.tpl"
-						}
-					},
-					"end": "\\}\\}",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.variable.end.tpl"
-						}
-					},
+					"begin": "(?<=\\{\\{)",
+					"end": "(?=\\}\\})",
 					"patterns": [
 						{
 							"include": "#variables-values"
@@ -194,53 +175,23 @@
 					]
 				},
 				{
-					"begin": "\\{\\#",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.comment.start.tpl comment.tpl"
-						}
-					},
-					"end": "\\#\\}",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.comment.end.tpl comment.tpl"
-						}
-					},
+					"begin": "(?<=\\{#)",
+					"end": "(?=#\\})",
 					"contentName": "comment.tpl"
 				},
 				{
-					"begin": "\\{\\_",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.translation.start.tpl"
-						}
-					},
-					"end": "\\_\\}",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.translation.end.tpl"
-						}
-					},
-					"contentName": "string.translation.tpl"
-				},
-				{
-					"begin": "\\%\\{",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.map.start.tpl"
-						}
-					},
-					"end": "\\}",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.map.end.tpl"
-						}
-					},
+					"begin": "(?<=%\\{)",
+					"end": "(?=\\})",
 					"patterns": [
 						{
 							"include": "#variables"
 						}
 					]
+				},
+				{
+					"begin": "(?<=\\{_)",
+					"end": "(?=_\\})",
+					"contentName": "string.quoted.other"
 				}
 			]
 		}

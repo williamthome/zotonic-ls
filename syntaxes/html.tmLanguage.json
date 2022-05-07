@@ -13,30 +13,32 @@
         "tpl": {
             "patterns": [
                 {
-                    "begin": "\\{%",
+                    "begin": "\\{% comment %\\}",
                     "beginCaptures": {
                         "0": {
+                            "name": "comment.tpl",
                             "patterns": [
                                 {
-                                    "include": "source.tpl"
+                                    "match": "{%",
+                                    "name": "source.tpl"
                                 }
                             ]
                         }
                     },
-                    "end": "\\%}",
+                    "end": "\\{% endcomment %\\}",
                     "endCaptures": {
                         "0": {
+                            "name": "comment.tpl",
                             "patterns": [
                                 {
-                                    "include": "source.tpl"
+                                    "match": "%}",
+                                    "name": "source.tpl"
                                 }
                             ]
-                        },
-                        "1": {
-                            "name": "source.tpl"
                         }
                     },
-                    "name": "source.tpl",
+                    "mame": "source.tpl",
+                    "contentName": "source.tpl",
                     "patterns": [
                         {
                             "include": "source.tpl"
@@ -44,30 +46,65 @@
                     ]
                 },
                 {
-                    "begin": "\\{{",
+                    "begin": "\\{%",
                     "beginCaptures": {
                         "0": {
+                            "name": "punctuation.block.start.tpl",
                             "patterns": [
                                 {
-                                    "include": "source.tpl"
+                                    "match": "{%",
+                                    "name": "source.tpl"
                                 }
                             ]
                         }
                     },
-                    "end": "\\}}",
+                    "end": "%\\}",
                     "endCaptures": {
                         "0": {
+                            "name": "punctuation.block.end.tpl",
                             "patterns": [
                                 {
-                                    "include": "source.tpl"
+                                    "match": "%}",
+                                    "name": "source.tpl"
                                 }
                             ]
-                        },
-                        "1": {
-                            "name": "source.tpl"
                         }
                     },
-                    "name": "source.tpl",
+                    "mame": "source.tpl",
+                    "contentName": "source.tpl",
+                    "patterns": [
+                        {
+                            "include": "source.tpl"
+                        }
+                    ]
+                },
+                {
+                    "begin": "\\{\\{",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.variable.start.tpl",
+                            "patterns": [
+                                {
+                                    "match": "{{",
+                                    "name": "source.tpl"
+                                }
+                            ]
+                        }
+                    },
+                    "end": "\\}\\}",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.variable.end.tpl",
+                            "patterns": [
+                                {
+                                    "match": "}}",
+                                    "name": "source.tpl"
+                                }
+                            ]
+                        }
+                    },
+                    "mame": "source.tpl",
+                    "contentName": "source.tpl",
                     "patterns": [
                         {
                             "include": "source.tpl"
@@ -78,27 +115,95 @@
                     "begin": "\\{#",
                     "beginCaptures": {
                         "0": {
+                            "name": "punctuation.comment.start.tpl",
                             "patterns": [
                                 {
-                                    "include": "source.tpl"
+                                    "match": "{#",
+                                    "name": "source.tpl"
                                 }
                             ]
                         }
                     },
-                    "end": "\\#}",
+                    "end": "#\\}",
                     "endCaptures": {
                         "0": {
+                            "name": "punctuation.comment.end.tpl",
                             "patterns": [
                                 {
-                                    "include": "source.tpl"
+                                    "match": "#}",
+                                    "name": "source.tpl"
                                 }
                             ]
-                        },
-                        "1": {
-                            "name": "source.tpl"
                         }
                     },
-                    "name": "source.tpl",
+                    "mame": "source.tpl",
+                    "contentName": "source.tpl",
+                    "patterns": [
+                        {
+                            "include": "source.tpl"
+                        }
+                    ]
+                },
+                {
+                    "begin": "%\\{",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.map.start.tpl",
+                            "patterns": [
+                                {
+                                    "match": "%{",
+                                    "name": "source.tpl"
+                                }
+                            ]
+                        }
+                    },
+                    "end": "\\}",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.map.end.tpl",
+                            "patterns": [
+                                {
+                                    "match": "}",
+                                    "name": "source.tpl"
+                                }
+                            ]
+                        }
+                    },
+                    "mame": "source.tpl",
+                    "contentName": "source.tpl",
+                    "patterns": [
+                        {
+                            "include": "source.tpl"
+                        }
+                    ]
+                },
+                {
+                    "begin": "\\{_",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.translation.start.tpl",
+                            "patterns": [
+                                {
+                                    "match": "{_",
+                                    "name": "source.tpl"
+                                }
+                            ]
+                        }
+                    },
+                    "end": "_\\}",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.translation.end.tpl",
+                            "patterns": [
+                                {
+                                    "match": "_}",
+                                    "name": "source.tpl"
+                                }
+                            ]
+                        }
+                    },
+                    "mame": "source.tpl",
+                    "contentName": "source.tpl",
                     "patterns": [
                         {
                             "include": "source.tpl"
