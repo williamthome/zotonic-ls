@@ -149,6 +149,16 @@
 		"body": {
 			"patterns": [
 				{
+					"begin": "(?<=\\{% javascript %\\})",
+					"end": "(?=\\{% endjavascript %\\})",
+					"contentName": "source.js",
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					]
+				},
+				{
 					"begin": "(?<=\\{% comment %\\})",
 					"end": "(?=\\{% endcomment %\\})",
 					"contentName": "comment.tpl"

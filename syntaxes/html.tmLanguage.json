@@ -13,6 +13,35 @@
         "tpl": {
             "patterns": [
                 {
+                    "begin": "\\{% javascript %\\}",
+                    "beginCaptures": {
+                        "0": {
+                            "patterns": [
+                                {
+                                    "include": "source.tpl"
+                                }
+                            ]
+                        }
+                    },
+                    "end": "\\{% endjavascript %\\}",
+                    "endCaptures": {
+                        "0": {
+                            "patterns": [
+                                {
+                                    "include": "source.tpl"
+                                }
+                            ]
+                        }
+                    },
+                    "name": "source.tpl",
+                    "contentName": "source.tpl",
+                    "patterns": [
+                        {
+                            "include": "source.tpl"
+                        }
+                    ]
+                },
+                {
                     "begin": "\\{% comment %\\}",
                     "beginCaptures": {
                         "0": {
@@ -37,7 +66,7 @@
                             ]
                         }
                     },
-                    "mame": "source.tpl",
+                    "name": "source.tpl",
                     "contentName": "source.tpl",
                     "patterns": [
                         {
@@ -70,7 +99,7 @@
                             ]
                         }
                     },
-                    "mame": "source.tpl",
+                    "name": "source.tpl",
                     "contentName": "source.tpl",
                     "patterns": [
                         {
@@ -103,7 +132,7 @@
                             ]
                         }
                     },
-                    "mame": "source.tpl",
+                    "name": "source.tpl",
                     "contentName": "source.tpl",
                     "patterns": [
                         {
@@ -136,7 +165,7 @@
                             ]
                         }
                     },
-                    "mame": "source.tpl",
+                    "name": "source.tpl",
                     "contentName": "source.tpl",
                     "patterns": [
                         {
@@ -169,7 +198,7 @@
                             ]
                         }
                     },
-                    "mame": "source.tpl",
+                    "name": "source.tpl",
                     "contentName": "source.tpl",
                     "patterns": [
                         {
@@ -202,7 +231,7 @@
                             ]
                         }
                     },
-                    "mame": "source.tpl",
+                    "name": "source.tpl",
                     "contentName": "source.tpl",
                     "patterns": [
                         {
