@@ -144,7 +144,7 @@
                     "begin": "\\{#",
                     "beginCaptures": {
                         "0": {
-                            "name": "punctuation.comment.start.tpl",
+                            "name": "punctuation.comment.start.tpl comment.tpl",
                             "patterns": [
                                 {
                                     "match": "{#",
@@ -156,7 +156,7 @@
                     "end": "#\\}",
                     "endCaptures": {
                         "0": {
-                            "name": "punctuation.comment.end.tpl",
+                            "name": "punctuation.comment.end.tpl comment.tpl",
                             "patterns": [
                                 {
                                     "match": "#}",
