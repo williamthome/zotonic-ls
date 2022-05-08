@@ -49,6 +49,7 @@
 				"path": "./syntaxes/html.tmLanguage.json",
 				"embeddedLanguages": {
 					"text.html": "html",
+					"source.css": "css",
 					"source.tpl": "tpl",
 					"source.js": "javascript"
 				}
