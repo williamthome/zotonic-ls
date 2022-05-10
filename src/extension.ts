@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import * as vscodeHtmlLanguageService from 'vscode-html-languageservice';
+import * as vscodeCssLanguageService from 'vscode-css-languageservice';
 import axios from 'axios';
 
 // this method is called when your extension is activated
@@ -27,6 +28,11 @@ export function activate(context: vscode.ExtensionContext) {
 			const htmlDocument = vscodeHtmlLanguageService.getLanguageService().parseHTMLDocument(htmlTextDocument);
 			const htmlCompletionList = htmlLanguageService.doComplete(htmlTextDocument, position, htmlDocument)
 			if (htmlCompletionList.items.length) return htmlCompletionList as vscode.CompletionList;
+
+			const cssLanguageService = vscodeCssLanguageService.getCSSLanguageService();
+			const cssStyleSheet = vscodeCssLanguageService.getCSSLanguageService().parseStylesheet(htmlTextDocument);
+			const cssCompletionList = cssLanguageService.doComplete(htmlTextDocument, position, cssStyleSheet);
+			if (cssCompletionList.items.length) return cssCompletionList as vscode.CompletionList;
 
 			const templateOptions = await filesToSnippetOption(
 				'**/priv/templates/**/*.tpl'
