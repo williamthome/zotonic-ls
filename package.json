@@ -84,6 +84,7 @@
 		"typescript": "^4.6.4"
 	},
 	"dependencies": {
-		"axios": "^0.27.2"
+		"axios": "^0.27.2",
+		"vscode-html-languageservice": "^4.2.5"
 	}
 }

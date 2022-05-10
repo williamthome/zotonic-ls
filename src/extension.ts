@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as vscodeHtmlLanguageService from 'vscode-html-languageservice';
 import axios from 'axios';
 
 // this method is called when your extension is activated
@@ -21,6 +22,12 @@ export function activate(context: vscode.ExtensionContext) {
 			token: vscode.CancellationToken,
 			context: vscode.CompletionContext
 		) {
+			const htmlLanguageService = vscodeHtmlLanguageService.getLanguageService();
+			const htmlTextDocument = vscodeHtmlLanguageService.TextDocument.create(document.uri.path, document.languageId, document.version, document.getText());
+			const htmlDocument = vscodeHtmlLanguageService.getLanguageService().parseHTMLDocument(htmlTextDocument);
+			const htmlCompletionList = htmlLanguageService.doComplete(htmlTextDocument, position, htmlDocument)
+			if (htmlCompletionList.items.length) return htmlCompletionList as vscode.CompletionList;
+
 			const templateOptions = await filesToSnippetOption(
 				'**/priv/templates/**/*.tpl'
 			);
@@ -68,7 +75,6 @@ export function activate(context: vscode.ExtensionContext) {
 			);
 			libSnippet.documentation = libDocs;
 
-			// Return
 			return [
 				includeSnippet,
 				allIncludeSnippet,
