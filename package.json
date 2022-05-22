@@ -7,7 +7,6 @@
 		"vscode": "^1.67.0"
 	},
 	"categories": [
-		"Other",
 		"Programming Languages"
 	],
 	"activationEvents": [
@@ -54,12 +53,6 @@
 					"source.js": "javascript"
 				}
 			}
-		],
-		"snippets": [
-			{
-				"language": "tpl",
-				"path": "./snippets/tpl.code-snippets"
-			}
 		]
 	},
 	"scripts": {
@@ -82,10 +75,5 @@
 		"glob": "^8.0.1",
 		"mocha": "^9.2.2",
 		"typescript": "^4.6.4"
-	},
-	"dependencies": {
-		"axios": "^0.27.2",
-		"vscode-css-languageservice": "^5.4.2",
-		"vscode-html-languageservice": "^4.2.5"
 	}
 }
