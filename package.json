@@ -14,15 +14,6 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"capabilities": {
-			"hoverProvider": "true"
-		},
-		"commands": [
-			{
-				"command": "zotonic.helloWorld",
-				"title": "Hello World"
-			}
-		],
 		"languages": [
 			{
 				"id": "tpl",
@@ -33,24 +24,16 @@
 				"extensions": [
 					".tpl"
 				],
-				"configuration": "./language-configuration.json"
+				"configuration": "./tpl-language-configuration.json"
 			}
 		],
 		"grammars": [
 			{
 				"language": "tpl",
 				"scopeName": "source.tpl",
-				"path": "./syntaxes/tpl.tmLanguage.json"
-			},
-			{
-				"language": "tpl",
-				"scopeName": "text.html.tpl",
-				"path": "./syntaxes/html.tmLanguage.json",
+				"path": "./syntaxes/tpl.tmLanguage.json",
 				"embeddedLanguages": {
-					"text.html": "html",
-					"source.css": "css",
-					"source.tpl": "tpl",
-					"source.js": "javascript"
+					"text.html.derivative": "html"
 				}
 			}
 		]
