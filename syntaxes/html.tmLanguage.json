@@ -32,6 +32,16 @@
             },
             "patterns": [
                 {
+                    "contentName": "#tpl",
+                    "begin": "\\s",
+                    "end": "(?=>)",
+                    "patterns": [
+                        {
+                            "include": "#tpl"
+                        }
+                    ]
+                },
+                {
                     "contentName": "source.css",
                     "begin": "(>)",
                     "beginCaptures": {
@@ -42,7 +52,63 @@
                     "end": "(?=</style>)",
                     "patterns": [
                         {
+                            "include": "#tpl"
+                        },
+                        {
                             "include": "source.css"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "begin": "(<)(script)(?![^/>]*/>\\s*$)",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.html"
+                },
+                "2": {
+                    "name": "entity.name.tag.script.html"
+                }
+            },
+            "end": "(</)(script)(>)",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.html"
+                },
+                "2": {
+                    "name": "entity.name.tag.script.html"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.end.html"
+                }
+            },
+            "patterns": [
+                {
+                    "contentName": "#tpl",
+                    "begin": "\\s",
+                    "end": "(?=>)",
+                    "patterns": [
+                        {
+                            "include": "#tpl"
+                        }
+                    ]
+                },
+                {
+                    "contentName": "source.js",
+                    "begin": "(>)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.tag.end.html"
+                        }
+                    },
+                    "end": "(?=</script>)",
+                    "patterns": [
+                        {
+                            "include": "#tpl"
+                        },
+                        {
+                            "comment": "source.js"
                         }
                     ]
                 }
