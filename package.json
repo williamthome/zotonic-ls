@@ -31,10 +31,11 @@
 			{
 				"language": "tpl",
 				"scopeName": "source.tpl",
-				"path": "./syntaxes/tpl.tmLanguage.json",
-				"embeddedLanguages": {
-					"text.html.derivative": "html"
-				}
+				"path": "./syntaxes/tpl.tmLanguage.json"
+			},
+			{
+				"scopeName": "text.html.tpl",
+				"path": "./syntaxes/html-tpl.tmLanguage.json"
 			}
 		]
 	},

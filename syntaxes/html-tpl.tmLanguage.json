@@ -1,0 +1,12 @@
+{
+	"name": "HTML (Zotonic)",
+	"scopeName": "text.html.tpl",
+	"patterns": [
+		{
+			"include": "text.html.basic"
+		}
+	],
+	"repository": {
+
+	}
+}
