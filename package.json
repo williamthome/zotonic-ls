@@ -31,7 +31,10 @@
 			{
 				"language": "tpl",
 				"scopeName": "source.tpl",
-				"path": "./syntaxes/tpl.tmLanguage.json"
+				"path": "./syntaxes/tpl.tmLanguage.json",
+				"injectTo": [
+					"text.html.tpl"
+				]
 			},
 			{
 				"scopeName": "text.html.tpl",

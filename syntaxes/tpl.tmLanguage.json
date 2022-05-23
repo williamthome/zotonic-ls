@@ -1,12 +1,79 @@
 {
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Zotonic",
 	"scopeName": "source.tpl",
+	"injections": {
+		"L:text.html, L:source": {
+			"patterns": [
+				{
+					"include": "#tpl"
+				}
+			]
+		}
+	},
 	"patterns": [
 		{
 			"include": "text.html.tpl"
+		},
+		{
+			"include": "#tpl"
 		}
 	],
 	"repository": {
-
+		"keywords": {
+			"patterns": [
+				{
+					"match": "\\b(if|elif|else|endif)\\b",
+					"name": "keyword.control.conditional.tpl"
+				},
+				{
+					"match": "debug",
+					"name": "keyword.other.debugger.tpl"
+				}
+			]
+		},
+		"tpl": {
+			"patterns": [
+				{
+					"name": "comment.tpl",
+					"begin": "{#",
+					"end": "#}"
+				},
+				{
+					"name": "variable.tpl",
+					"begin": "{{",
+					"end": "}}"
+				},
+				{
+					"begin": "{% javascript %}",
+					"beginCaptures": {
+						"0": {
+							"name": "expression.tpl"
+						}
+					},
+					"end": "{% endjavascript %}",
+					"endCaptures": {
+						"0": {
+							"name": "expression.tpl"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					]
+				},
+				{
+					"name": "expression.tpl",
+					"begin": "{%",
+					"end": "%}",
+					"patterns": [
+						{
+							"include": "#keywords"
+						}
+					]
+				}
+			]
+		}
 	}
 }
