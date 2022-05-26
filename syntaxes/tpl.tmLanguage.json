@@ -27,8 +27,16 @@
 					"name": "keyword.control.conditional.tpl"
 				},
 				{
+					"match": "\\b(javascript|endjavascript|url)\\b",
+					"name": "keyword.other.tag.tpl"
+				},
+				{
 					"match": "debug",
 					"name": "keyword.other.debugger.tpl"
+				},
+				{
+					"match": "\\w+",
+					"name": "variable.tpl"
 				}
 			]
 		},
@@ -42,16 +50,39 @@
 				{
 					"name": "variable.tpl",
 					"begin": "{{",
-					"end": "}}"
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.variable.begin.tpl"
+						}
+					},
+					"end": "}}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.block.end.tpl"
+						}
+					}
 				},
 				{
-					"begin": "{% javascript %}",
+					"begin": "({%)(\\s*)(javascript)(\\s*)(%})",
 					"beginCaptures": {
 						"0": {
 							"name": "expression.tpl"
+						},
+						"1": {
+							"name": "punctuation.definition.block.begin.tpl"
+						},
+						"3": {
+							"patterns": [
+								{
+									"include": "#keywords"
+								}
+							]
+						},
+						"5": {
+							"name": "punctuation.definition.block.end.tpl"
 						}
 					},
-					"end": "{% endjavascript %}",
+					"end": "({%)(\\s*)(endjavascript)(\\s*)(%})",
 					"endCaptures": {
 						"0": {
 							"name": "expression.tpl"
@@ -66,7 +97,17 @@
 				{
 					"name": "expression.tpl",
 					"begin": "{%",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.block.begin.tpl"
+						}
+					},
 					"end": "%}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.block.end.tpl"
+						}
+					},
 					"patterns": [
 						{
 							"include": "#keywords"
