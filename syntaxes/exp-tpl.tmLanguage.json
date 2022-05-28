@@ -30,27 +30,7 @@
 			]
 		},
 		{
-			"name": "variable.tpl",
-			"begin": "{{",
-			"beginCaptures": {
-				"0": {
-					"name": "punctuation.definition.variable.begin.tpl"
-				}
-			},
-			"end": "}}",
-			"endCaptures": {
-				"0": {
-					"name": "punctuation.definition.block.end.tpl"
-				}
-			},
-			"patterns": [
-				{
-					"include": "#operators"
-				},
-				{
-					"include": "#strings"
-				}
-			]
+			"include": "#variables"
 		}
 	],
 	"repository": {
@@ -102,6 +82,63 @@
 				{
 					"name": "keyword.operator.pipe.tpl",
 					"match": "\\|"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "variable.tpl",
+					"comment": "trans tag uses a different approach to variables",
+					"begin": "(?<!{%\\s*trans\\s.*)({{)",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.variable.begin.tpl"
+						}
+					},
+					"end": "}}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.block.end.tpl"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#operators"
+						},
+						{
+							"include": "#strings"
+						}
+					]
+				},
+				{
+					"begin": "(?<={%\\s*trans\\s.*)(?<=\".*)([^{])({)([^{])",
+					"beginCaptures": {
+						"2": {
+							"name": "punctuation.definition.block.begin.tpl"
+						}
+					},
+					"end": "([^}])(})([^}])",
+					"endCaptures": {
+						"2": {
+							"name": "punctuation.definition.block.end.tpl"
+						}
+					},
+					"name": "variable.value.tpl"
+				},
+				{
+					"begin": "(?<={%\\s*trans\\s.*)(?<=\".*)({)({)",
+					"beginCaptures": {
+						"1": {
+							"name": "markup.deleted"
+						}
+					},
+					"end": "(})(})",
+					"endCaptures": {
+						"2": {
+							"name": "markup.deleted"
+						}
+					}
 				}
 			]
 		}
