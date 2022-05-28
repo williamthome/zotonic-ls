@@ -108,6 +108,9 @@
 						},
 						{
 							"include": "#strings"
+						},
+						{
+							"include": "#filters"
 						}
 					]
 				},
@@ -137,6 +140,22 @@
 					"endCaptures": {
 						"2": {
 							"name": "markup.deleted"
+						}
+					}
+				}
+			]
+		},
+		"filters": {
+			"patterns": [
+				{
+					"match": "(?<=\\|)\\w+",
+					"captures": {
+						"0": {
+							"patterns": [
+								{
+									"include": "#keywords"
+								}
+							]
 						}
 					}
 				}
