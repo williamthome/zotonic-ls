@@ -1,10 +1,10 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Expression (Zotonic)",
-	"scopeName": "source.exp.tpl",
+	"name": "Braces (Zotonic)",
+	"scopeName": "source.braces.tpl",
 	"patterns": [
 		{
-			"name": "expression.tpl",
+			"name": "braces.tpl",
 			"begin": "{%",
 			"beginCaptures": {
 				"0": {

@@ -13,14 +13,14 @@
 		"L:meta.tag, L:source.css, L:string": {
 			"patterns": [
 				{
-					"include": "source.exp.tpl"
+					"include": "source.braces.tpl"
 				}
 			]
 		}
 	},
 	"patterns": [
 		{
-			"include": "source.exp.tpl"
+			"include": "source.braces.tpl"
 		},
 		{
 			"include": "text.html.tpl"
