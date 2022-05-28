@@ -28,6 +28,29 @@
 					"include": "#strings"
 				}
 			]
+		},
+		{
+			"name": "variable.tpl",
+			"begin": "{{",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.variable.begin.tpl"
+				}
+			},
+			"end": "}}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.block.end.tpl"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#operators"
+				},
+				{
+					"include": "#strings"
+				}
+			]
 		}
 	],
 	"repository": {
