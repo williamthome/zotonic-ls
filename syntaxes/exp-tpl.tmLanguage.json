@@ -1,0 +1,49 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Expression (Zotonic)",
+	"scopeName": "source.exp.tpl",
+	"patterns": [
+		{
+			"name": "expression.tpl",
+			"begin": "{%",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.block.begin.tpl"
+				}
+			},
+			"end": "%}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.block.end.tpl"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#keywords"
+				}
+			]
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"match": "\\b(if|elif|else|endif)\\b",
+					"name": "keyword.control.conditional.tpl"
+				},
+				{
+					"match": "\\b(javascript|endjavascript|url)\\b",
+					"name": "keyword.other.tag.tpl"
+				},
+				{
+					"match": "debug",
+					"name": "keyword.other.debugger.tpl"
+				},
+				{
+					"match": "\\w+",
+					"name": "variable.tpl"
+				}
+			]
+		}
+	}
+}

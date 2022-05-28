@@ -9,9 +9,19 @@
 					"include": "#tpl"
 				}
 			]
+		},
+		"L:meta.tag, L:source.css, L:string": {
+			"patterns": [
+				{
+					"include": "source.exp.tpl"
+				}
+			]
 		}
 	},
 	"patterns": [
+		{
+			"include": "source.exp.tpl"
+		},
 		{
 			"include": "text.html.tpl"
 		},
@@ -20,30 +30,10 @@
 		}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [
-				{
-					"match": "\\b(if|elif|else|endif)\\b",
-					"name": "keyword.control.conditional.tpl"
-				},
-				{
-					"match": "\\b(javascript|endjavascript|url)\\b",
-					"name": "keyword.other.tag.tpl"
-				},
-				{
-					"match": "debug",
-					"name": "keyword.other.debugger.tpl"
-				},
-				{
-					"match": "\\w+",
-					"name": "variable.tpl"
-				}
-			]
-		},
 		"tpl": {
 			"patterns": [
 				{
-					"name": "comment.tpl",
+					"name": "comment.line.tpl",
 					"begin": "{#",
 					"end": "#}"
 				},
@@ -63,54 +53,17 @@
 					}
 				},
 				{
-					"begin": "({%)(\\s*)(javascript)(\\s*)(%})",
-					"beginCaptures": {
-						"0": {
-							"name": "expression.tpl"
-						},
-						"1": {
-							"name": "punctuation.definition.block.begin.tpl"
-						},
-						"3": {
-							"patterns": [
-								{
-									"include": "#keywords"
-								}
-							]
-						},
-						"5": {
-							"name": "punctuation.definition.block.end.tpl"
-						}
-					},
-					"end": "({%)(\\s*)(endjavascript)(\\s*)(%})",
-					"endCaptures": {
-						"0": {
-							"name": "expression.tpl"
-						}
-					},
+					"name": "comment.block.tpl",
+					"begin": "(?={%\\s*comment\\s*%})",
+					"end": ".*?(?:{%\\s*endcomment\\s*%})"
+				},
+				{
+					"begin": "(?<={%\\s*javascript\\s*%})",
+					"end": ".*?(?={%\\s*endjavascript\\s*%})",
+					"contentName": "source.js",
 					"patterns": [
 						{
 							"include": "source.js"
-						}
-					]
-				},
-				{
-					"name": "expression.tpl",
-					"begin": "{%",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.block.begin.tpl"
-						}
-					},
-					"end": "%}",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.definition.block.end.tpl"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#keywords"
 						}
 					]
 				}

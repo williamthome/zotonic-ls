@@ -31,14 +31,15 @@
 			{
 				"language": "tpl",
 				"scopeName": "source.tpl",
-				"path": "./syntaxes/tpl.tmLanguage.json",
-				"injectTo": [
-					"text.html.tpl"
-				]
+				"path": "./syntaxes/tpl.tmLanguage.json"
 			},
 			{
 				"scopeName": "text.html.tpl",
 				"path": "./syntaxes/html-tpl.tmLanguage.json"
+			},
+			{
+				"scopeName": "source.exp.tpl",
+				"path": "./syntaxes/exp-tpl.tmLanguage.json"
 			}
 		]
 	},
