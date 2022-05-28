@@ -145,7 +145,7 @@
 							"name": "punctuation.definition.block.end.tpl"
 						}
 					},
-					"name": "variable.value.tpl"
+					"name": "variable.name.tpl"
 				},
 				{
 					"begin": "(?<={%\\s*trans\\s.*)(?<=\".*)({)({)",
