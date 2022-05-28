@@ -80,7 +80,7 @@
 				},
 				{
 					"name": "keyword.operator.assignment.tpl",
-					"match": "=|:"
+					"match": "=|:|\\b(as)\\b"
 				},
 				{
 					"name": "keyword.operator.arithmetic.tpl",
