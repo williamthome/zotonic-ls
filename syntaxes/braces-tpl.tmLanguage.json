@@ -26,6 +26,24 @@
 				},
 				{
 					"include": "#strings"
+				},
+				{
+					"match": "(?<=\\s*wire).*?(?=%})",
+					"captures": {
+						"0": {
+							"patterns": [
+								{
+									"include": "#wire-args"
+								},
+								{
+									"include": "#strings"
+								},
+								{
+									"include": "#keywords"
+								}
+							]
+						}
+					}
 				}
 			]
 		},
@@ -158,6 +176,14 @@
 							]
 						}
 					}
+				}
+			]
+		},
+		"wire-args": {
+			"patterns": [
+				{
+					"name": "keyword.argument.wire.tpl",
+					"match": "\\b(id|type|propagate|target|action|postback|delegate)\\b"
 				}
 			]
 		}
