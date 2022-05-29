@@ -38,8 +38,8 @@
 				"path": "./syntaxes/html-tpl.tmLanguage.json"
 			},
 			{
-				"scopeName": "source.braces.tpl",
-				"path": "./syntaxes/braces-tpl.tmLanguage.json"
+				"scopeName": "source.js.tpl",
+				"path": "./syntaxes/js-tpl.tmLanguage.json"
 			}
 		]
 	},

@@ -1,0 +1,10 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Javascript (Zotonic)",
+	"scopeName": "source.js.tpl",
+	"patterns": [
+		{
+			"include": "source.js"
+		}
+	]
+}
