@@ -85,7 +85,8 @@
 								"0": {
 									"patterns": [
 										{
-											"include": "#wire-args"
+											"name": "keyword.argument.wire.tpl",
+											"match": "\\b(id|type|propagate|target|action|postback|delegate)\\b"
 										},
 										{
 											"include": "#strings"
@@ -177,7 +178,20 @@
 							"include": "#strings"
 						},
 						{
-							"include": "#filters"
+							"patterns": [
+								{
+									"match": "(?<=\\|)\\w+",
+									"captures": {
+										"0": {
+											"patterns": [
+												{
+													"include": "#keywords"
+												}
+											]
+										}
+									}
+								}
+							]
 						}
 					]
 				},
@@ -209,30 +223,6 @@
 							"name": "markup.deleted"
 						}
 					}
-				}
-			]
-		},
-		"filters": {
-			"patterns": [
-				{
-					"match": "(?<=\\|)\\w+",
-					"captures": {
-						"0": {
-							"patterns": [
-								{
-									"include": "#keywords"
-								}
-							]
-						}
-					}
-				}
-			]
-		},
-		"wire-args": {
-			"patterns": [
-				{
-					"name": "keyword.argument.wire.tpl",
-					"match": "\\b(id|type|propagate|target|action|postback|delegate)\\b"
 				}
 			]
 		},
