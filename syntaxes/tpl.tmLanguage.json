@@ -212,8 +212,12 @@
 						{
 							"begin": "\"",
 							"end": "\"",
-							"name": "string.quoted.double.trans.tpl",
+							"include": "string.quoted.double.trans.tpl",
 							"patterns": [
+								{
+									"name": "constant.character.escape.trans.tpl",
+									"match": "\\\\."
+								},
 								{
 									"begin": "({){",
 									"beginCaptures": {
