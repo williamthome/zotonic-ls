@@ -3,10 +3,17 @@
 	"name": "Zotonic",
 	"scopeName": "source.tpl",
 	"injections": {
-		"L:meta.tag, L:source.css, L:source.js, L:meta.block.js, L:string": {
+		"L:meta.tag, L:source.css, L:source.js, L:meta.block.js, L:string - (string.quoted.double.trans.tpl)": {
 			"patterns": [
 				{
 					"include": "#tpl-stuff"
+				}
+			]
+		},
+		"L:tag.body.tpl": {
+			"patterns": [
+				{
+					"include": "#tag-overrides"
 				}
 			]
 		}
@@ -57,9 +64,10 @@
 			"patterns": [
 				{
 					"name": "tags.tpl",
-					"begin": "{%",
+					"contentName": "tag.body.tpl",
+					"begin": "({%)\\s*",
 					"beginCaptures": {
-						"0": {
+						"1": {
 							"name": "punctuation.definition.tag.begin.tpl"
 						}
 					},
@@ -172,8 +180,7 @@
 			"patterns": [
 				{
 					"name": "variable.tpl",
-					"comment": "trans tag uses a different approach to variables",
-					"begin": "(?<!{%\\s*trans\\s.*)({{)",
+					"begin": "{{",
 					"beginCaptures": {
 						"0": {
 							"name": "punctuation.definition.variable.begin.tpl"
@@ -209,35 +216,6 @@
 							]
 						}
 					]
-				},
-				{
-					"begin": "(?<={%\\s*trans\\s.*)(?<=\".*)([^{])({)([^{])",
-					"beginCaptures": {
-						"2": {
-							"name": "punctuation.definition.tag.begin.tpl"
-						}
-					},
-					"end": "([^}])(})([^}])",
-					"endCaptures": {
-						"2": {
-							"name": "punctuation.definition.tag.end.tpl"
-						}
-					},
-					"name": "variable.name.tpl"
-				},
-				{
-					"begin": "(?<={%\\s*trans\\s.*)(?<=\".*)({)({)",
-					"beginCaptures": {
-						"1": {
-							"name": "markup.deleted"
-						}
-					},
-					"end": "(})(})",
-					"endCaptures": {
-						"2": {
-							"name": "markup.deleted"
-						}
-					}
 				}
 			]
 		},
@@ -302,6 +280,57 @@
 				{
 					"name": "constant.character.escape.tpl",
 					"match": "\\\\."
+				}
+			]
+		},
+		"tag-overrides": {
+			"patterns": [
+				{
+					"begin": "\\b(trans)\\b",
+					"beginCaptures": {
+						"0": {
+							"name": "entity.name.built-in.tag.tpl"
+						}
+					},
+					"end": "(?=%})",
+					"patterns": [
+						{
+							"begin": "\"",
+							"end": "\"",
+							"name": "string.quoted.double.trans.tpl",
+							"patterns": [
+								{
+									"begin": "({){",
+									"beginCaptures": {
+										"1": {
+											"name": "markup.deleted"
+										}
+									},
+									"end": "}(})",
+									"endCaptures": {
+										"1": {
+											"name": "markup.deleted"
+										}
+									}
+								},
+								{
+									"begin": "{",
+									"beginCaptures": {
+										"0": {
+											"name": "punctuation.definition.variable.begin.tpl"
+										}
+									},
+									"end": "}",
+									"endCaptures": {
+										"0": {
+											"name": "punctuation.definition.variable.end.tpl"
+										}
+									},
+									"contentName": "variable.name.tpl"
+								}
+							]
+						}
+					]
 				}
 			]
 		}
