@@ -166,7 +166,7 @@
 					"end": "}}",
 					"endCaptures": {
 						"0": {
-							"name": "punctuation.definition.block.end.tpl"
+							"name": "punctuation.definition.variable.end.tpl"
 						}
 					},
 					"patterns": [
