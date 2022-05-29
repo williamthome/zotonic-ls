@@ -89,6 +89,72 @@
 											"match": "\\b(id|type|propagate|target|action|postback|delegate)\\b"
 										},
 										{
+											"match": "(?<=\\s+action=)({)(.*?)(})",
+											"captures": {
+												"1": {
+													"name": "punctuation.definition.action.begin.tpl"
+												},
+												"2": {
+													"patterns": [
+														{
+															"match": "(?=\\s*)(\\w+)(.*)",
+															"captures": {
+																"1": {
+																	"name": "entity.name.action.tag.tpl"
+																},
+																"2": {
+																	"patterns": [
+																		{
+																			"include": "#keywords"
+																		},
+																		{
+																			"include": "#strings"
+																		}
+																	]
+																}
+															}
+														}
+													]
+												},
+												"3": {
+													"name": "punctuation.definition.action.end.tpl"
+												}
+											}
+										},
+										{
+											"match": "(?<=\\s+postback=)({)(.*?)(})",
+											"captures": {
+												"1": {
+													"name": "punctuation.definition.postback.begin.tpl"
+												},
+												"2": {
+													"patterns": [
+														{
+															"match": "(?=\\s*)(\\w+)(.*)",
+															"captures": {
+																"1": {
+																	"name": "entity.name.postback.tag.tpl"
+																},
+																"2": {
+																	"patterns": [
+																		{
+																			"include": "#keywords"
+																		},
+																		{
+																			"include": "#strings"
+																		}
+																	]
+																}
+															}
+														}
+													]
+												},
+												"3": {
+													"name": "punctuation.definition.action.end.tpl"
+												}
+											}
+										},
+										{
 											"include": "#keywords"
 										},
 										{
