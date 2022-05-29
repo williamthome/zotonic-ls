@@ -6,10 +6,7 @@
 		"L:meta.tag, L:source.css, L:source.js, L:meta.block.js, L:string": {
 			"patterns": [
 				{
-					"include": "#comments"
-				},
-				{
-					"include": "#braces"
+					"include": "#tpl-stuff"
 				}
 			]
 		}
@@ -19,13 +16,10 @@
 			"include": "text.html.tpl"
 		},
 		{
-			"include": "#comments"
-		},
-		{
 			"include": "#js"
 		},
 		{
-			"include": "#braces"
+			"include": "#tpl-stuff"
 		}
 	],
 	"repository": {
@@ -59,10 +53,10 @@
 				}
 			]
 		},
-		"braces": {
+		"blocks": {
 			"patterns": [
 				{
-					"name": "braces.tpl",
+					"name": "blocks.tpl",
 					"begin": "{%",
 					"beginCaptures": {
 						"0": {
@@ -104,9 +98,6 @@
 							}
 						}
 					]
-				},
-				{
-					"include": "#variables"
 				}
 			]
 		},
@@ -242,6 +233,19 @@
 				{
 					"name": "keyword.argument.wire.tpl",
 					"match": "\\b(id|type|propagate|target|action|postback|delegate)\\b"
+				}
+			]
+		},
+		"tpl-stuff": {
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#blocks"
+				},
+				{
+					"include": "#variables"
 				}
 			]
 		}
