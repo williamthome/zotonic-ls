@@ -9,13 +9,6 @@
 					"include": "#tpl-stuff"
 				}
 			]
-		},
-		"L:tag.body.tpl": {
-			"patterns": [
-				{
-					"include": "#tag-overrides"
-				}
-			]
 		}
 	},
 	"patterns": [
@@ -78,6 +71,81 @@
 						}
 					},
 					"patterns": [
+						{
+							"begin": "\\b(trans)\\b",
+							"beginCaptures": {
+								"0": {
+									"name": "entity.name.built-in.tag.tpl"
+								}
+							},
+							"end": "(?=%})",
+							"patterns": [
+								{
+									"begin": "\"",
+									"end": "\"",
+									"name": "string.quoted.double.trans.tpl",
+									"patterns": [
+										{
+											"name": "constant.character.escape.trans.tpl",
+											"match": "\\\\."
+										},
+										{
+											"begin": "({){",
+											"beginCaptures": {
+												"1": {
+													"name": "markup.deleted"
+												}
+											},
+											"end": "}(})",
+											"endCaptures": {
+												"1": {
+													"name": "markup.deleted"
+												}
+											}
+										},
+										{
+											"begin": "{",
+											"beginCaptures": {
+												"0": {
+													"name": "punctuation.definition.variable.begin.tpl"
+												}
+											},
+											"end": "}",
+											"endCaptures": {
+												"0": {
+													"name": "punctuation.definition.variable.end.tpl"
+												}
+											},
+											"contentName": "variable.name.tpl"
+										}
+									]
+								}
+							]
+						},
+						{
+							"begin": "\\b(wire)\\b",
+							"beginCaptures": {
+								"0": {
+									"name": "entity.name.built-in.tag.tpl"
+								}
+							},
+							"end": "(?=%})",
+							"patterns": [
+								{
+									"name": "keyword.argument.wire.tpl",
+									"match": "\\b(id|type|propagate|target|action|postback|delegate)\\b"
+								},
+								{
+									"include": "#wire-actions"
+								},
+								{
+									"include": "#keywords"
+								},
+								{
+									"include": "#strings"
+								}
+							]
+						},
 						{
 							"include": "#entities"
 						},
@@ -198,145 +266,209 @@
 				}
 			]
 		},
-		"tag-overrides": {
+		"wire-actions": {
+			"begin": "(?<=\\saction=)({)\\s*",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.action.begin.tpl"
+				}
+			},
+			"end": "(?:})",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.action.end.tpl"
+				}
+			},
 			"patterns": [
 				{
-					"begin": "\\b(trans)\\b",
-					"beginCaptures": {
-						"0": {
-							"name": "entity.name.built-in.tag.tpl"
-						}
-					},
-					"end": "(?=%})",
-					"patterns": [
-						{
-							"begin": "\"",
-							"end": "\"",
-							"include": "string.quoted.double.trans.tpl",
-							"patterns": [
-								{
-									"name": "constant.character.escape.trans.tpl",
-									"match": "\\\\."
-								},
-								{
-									"begin": "({){",
-									"beginCaptures": {
-										"1": {
-											"name": "markup.deleted"
-										}
-									},
-									"end": "}(})",
-									"endCaptures": {
-										"1": {
-											"name": "markup.deleted"
-										}
-									}
-								},
-								{
-									"begin": "{",
-									"beginCaptures": {
-										"0": {
-											"name": "punctuation.definition.variable.begin.tpl"
-										}
-									},
-									"end": "}",
-									"endCaptures": {
-										"0": {
-											"name": "punctuation.definition.variable.end.tpl"
-										}
-									},
-									"contentName": "variable.name.tpl"
-								}
-							]
-						}
-					]
+					"include": "#wire-actions-args"
 				},
 				{
-					"begin": "\\b(wire)\\b",
-					"beginCaptures": {
+					"include": "#wire-postbacks"
+				},
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#strings"
+				}
+			]
+		},
+		"wire-actions-args": {
+			"patterns": [
+				{
+					"match": "\\b(with_args)\\b",
+					"captures": {
 						"0": {
-							"name": "entity.name.built-in.tag.tpl"
+							"name": "entity.name.action.tag.actions.tpl"
 						}
-					},
-					"end": "(?=%})",
-					"patterns": [
-						{
-							"name": "keyword.argument.wire.tpl",
-							"match": "\\b(id|type|propagate|target|action|postback|delegate)\\b"
-						},
-						{
-							"match": "(?<=\\s+action=)({)(.*?)(})",
-							"captures": {
-								"1": {
-									"name": "punctuation.definition.action.begin.tpl"
-								},
-								"2": {
-									"patterns": [
-										{
-											"match": "(?=\\s*)(\\w+)(.*)",
-											"captures": {
-												"1": {
-													"name": "entity.name.action.tag.tpl"
-												},
-												"2": {
-													"patterns": [
-														{
-															"include": "#keywords"
-														},
-														{
-															"include": "#strings"
-														}
-													]
-												}
-											}
-										}
-									]
-								},
-								"3": {
-									"name": "punctuation.definition.action.end.tpl"
-								}
-							}
-						},
-						{
-							"match": "(?<=\\s+postback=)({)(.*?)(})",
-							"captures": {
-								"1": {
-									"name": "punctuation.definition.postback.begin.tpl"
-								},
-								"2": {
-									"patterns": [
-										{
-											"match": "(?=\\s*)(\\w+)(.*)",
-											"captures": {
-												"1": {
-													"name": "entity.name.postback.tag.tpl"
-												},
-												"2": {
-													"patterns": [
-														{
-															"include": "#keywords"
-														},
-														{
-															"include": "#strings"
-														}
-													]
-												}
-											}
-										}
-									]
-								},
-								"3": {
-									"name": "punctuation.definition.action.end.tpl"
-								}
-							}
-						},
-						{
-							"include": "#keywords"
-						},
-						{
-							"include": "#strings"
+					}
+				},
+				{
+					"match": "\\b(admin_tasks|redirect_incat)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.admin.tpl"
 						}
-					]
+					}
+				},
+				{
+					"match": "\\b(module_rescan|module_toggle)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.admin.modules.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(backup_start)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.backup.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(config_delete|config_toggle|dialog_config_delete|dialog_config_edit|dialog_config_new)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.config.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(development_templates_stream)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.development.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(dialog|dialog_open|dialog_close|overlay_open|overlay_close)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.dialog.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(add_class|animate|buttonize|effect|fade_in|fade_out|hide|insert_after|insert_before|insert_bottom|insert_top|jquery_effect|mask|mask_progress|move|remove|remove_class|replace|set_class|show|slide_down|slide_fade_in|slide_fade_out|slide_toggle|slide_up|toggle|toggle_class|unmask|update|update_iframe|Editor|editor_add|editor_remove|zlink|zmedia|zmedia_choose|zmedia_has_chosen)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.dom.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(notify|postback|trigger_event|publish)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.event.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(disable|enable|event|focus|form_reset|reset|set_value|submit|typeselect|validation_error)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.form.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(script)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.js.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(dialog_mail_page|dialog_mailing_page|mailing_page_test|mailinglist_confirm|mailinglist_unsubscribe)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.mail.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(alert|confirm|growl)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.notification.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(redirect|reload)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.page-handling.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(dialog_predicate_new|link|unlink)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.predicate.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(delete_media|delete_rsc|dialog_delete_rsc|dialog_duplicate_rsc|dialog_edit_basics|dialog_media_upload|dialog_new_rsc)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.rsc.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(moreresults)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.search.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(template)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.template.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(auth_disconnect|delete_username|dialog_delete_username|dialog_set_username_password|dialog_user_add|logoff)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.name.action.tag.user.tpl"
+						}
+					}
+				}
+			]
+		},
+		"wire-postbacks": {
+			"begin": "(?<=\\spostback=)({)\\s*",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.postback.begin.tpl"
+				}
+			},
+			"end": "(?:})",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.postback.end.tpl"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#strings"
 				}
 			]
 		}
