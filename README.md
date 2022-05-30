@@ -2,4 +2,8 @@
 
 ## Features
 
-* Syntax highlight
+[WIP] Syntax highlight\
+[ ] Snippets\
+[ ] Template search\
+[ ] Go to template\
+[ ] Docs integration
