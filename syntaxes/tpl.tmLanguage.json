@@ -260,6 +260,26 @@
 					"name": "entity.other.attribute-name.$1.tpl"
 				},
 				{
+					"name": "map.tpl",
+					"begin": "%{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.map.begin.tpl"
+						}
+					},
+					"end": "}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.map.end.tpl"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#variables"
+						}
+					]
+				},
+				{
 					"match": "(?<=={)\\w+",
 					"name": "entity.name.action.tpl"
 				},

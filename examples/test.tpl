@@ -222,3 +222,5 @@
 {% endblock %}
 
 {% if forloop.first %}
+
+{% worker name="auth" src="js/zotonic.auth.worker.js" args=%{  auth: m.authentication.status  } %}
