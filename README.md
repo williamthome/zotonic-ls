@@ -37,6 +37,6 @@ Make sure you have [TSlint](https://marketplace.visualstudio.com/items?itemName=
 ### Debugging the extension
 
 Press <kbd>F5</kbd> to start debugging.
-To reload, if in dev window,  press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F5</kbd> or, if in extension host window, <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.
+To reload, if in dev window,  press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F5</kbd> or, if in extension host window, <kbd>Ctrl</kbd> + <kbd>R</kbd>.
 
 [See this article](https://code.visualstudio.com/api/get-started/your-first-extension) for more information about debugging.
