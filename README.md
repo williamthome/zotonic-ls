@@ -4,6 +4,8 @@
 
 ### [WIP] Syntax highlight
 
+![Syntax highlight](images/zotonic-ls.v0.0.01-alpha.gif)
+
 ## Todo
 
 - Improve semantic highlight

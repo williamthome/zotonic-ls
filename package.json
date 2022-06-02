@@ -83,5 +83,14 @@
 		"glob": "^8.0.1",
 		"mocha": "^9.2.2",
 		"typescript": "^4.6.4"
+	},
+	"__metadata": {
+		"id": "a5dd5826-a49c-4b0f-b445-f198f9998f3b",
+		"publisherDisplayName": "williamthome",
+		"publisherId": "c04747f3-3306-481b-be5b-0fcc99ab1e1e",
+		"isPreReleaseVersion": false,
+		"targetPlatform": "undefined",
+		"updated": false,
+		"preRelease": false
 	}
 }
