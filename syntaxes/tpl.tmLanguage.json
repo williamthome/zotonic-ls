@@ -53,15 +53,58 @@
 				}
 			]
 		},
+		"trans": {
+			"patterns": [
+				{
+					"begin": "{_",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.trans.begin.tpl"
+						}
+					},
+					"end": "_}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.trans.end.tpl"
+						}
+					},
+					"contentName": "string.trans.tpl"
+				}
+			]
+		},
 		"tags": {
 			"patterns": [
 				{
+					"match": "({%)\\s*(empty|endfor|endblock|endautoescape|else|endif|endcomment|endifequal|endifnotequal|endspaceless|endwith|endcache|endfilter|endjavascript)\\b\\s*(%})",
+					"captures": {
+						"0": {
+							"name": "tag.end.tpl"
+						},
+						"1": {
+							"name": "punctuation.definition.tag.begin.tpl"
+						},
+						"2": {
+							"name": "meta.tag.built-in.end.tpl"
+						},
+						"3": {
+							"name": "punctuation.definition.tag.end.tpl"
+						}
+					}
+				},
+				{
+					"begin": "{%\\s*(empty|endfor|endblock|endautoescape|else|endif|endcomment|endifequal|endifnotequal|endspaceless|endwith|endcache|endfilter|endjavascript)\\s*",
+					"end": "%}",
+					"name": "invalid.illegal.tag.end.tpl"
+				},
+				{
 					"name": "tag.tpl",
-					"contentName": "tag.body.tpl",
-					"begin": "({%)\\s*",
+					"begin": "({%)\\s*(trans)\\s*",
 					"beginCaptures": {
 						"1": {
 							"name": "punctuation.definition.tag.begin.tpl"
+						},
+						"2": {
+							"name": "entity.name.tag.tpl meta.tag.built-in.trans.tpl"
 						}
 					},
 					"end": "%}",
@@ -72,17 +115,9 @@
 					},
 					"patterns": [
 						{
-							"begin": "\\b(trans)\\b",
+							"begin": "(\")(.*?)(\")\\s+",
 							"beginCaptures": {
 								"0": {
-									"name": "entity.name.built-in.tag.tpl"
-								}
-							},
-							"end": "(?=%})",
-							"patterns": [
-								{
-									"begin": "\"",
-									"end": "\"",
 									"name": "string.quoted.double.trans.tpl",
 									"patterns": [
 										{
@@ -116,89 +151,150 @@
 													"name": "punctuation.definition.variable.end.tpl"
 												}
 											},
-											"contentName": "variable.name.tpl"
+											"patterns": [
+												{
+													"include": "#variables"
+												}
+											]
 										}
 									]
-								}
-							]
-						},
-						{
-							"begin": "\\b(wire)\\b",
-							"beginCaptures": {
-								"0": {
-									"name": "entity.name.built-in.tag.tpl"
 								}
 							},
 							"end": "(?=%})",
 							"patterns": [
 								{
-									"name": "keyword.argument.wire.tpl",
-									"match": "\\b(id|type|propagate|target|action|postback|delegate)\\b"
-								},
-								{
-									"include": "#wire-actions"
-								},
-								{
-									"include": "#keywords"
-								},
-								{
-									"include": "#strings"
+									"include": "#variables"
 								}
 							]
-						},
-						{
-							"include": "#entities"
-						},
-						{
-							"include": "#keywords"
-						},
-						{
-							"include": "#strings"
 						}
 					]
+				},
+				{
+					"name": "tag.tpl",
+					"begin": "({%)\\s*(all catinclude|all include|\\w+)\\b\\s*",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.tag.begin.tpl"
+						},
+						"2": {
+							"name": "entity.name.tag.tpl",
+							"patterns": [
+								{
+									"name": "meta.tag.built-in.catinclude.all.tpl",
+									"match": "\\b(all catinclude)\\b"
+								},
+								{
+									"name": "meta.tag.built-in.include.all.tpl",
+									"match": "\\b(all include)\\b"
+								},
+								{
+									"name": "meta.tag.built-in.$1.tpl",
+									"match": "\\b(autoescape|block|cache|call|catinclude|comment|cycle|extends|filter|firstof|for|if|ifchanged|ifequal|ifnotequal|image|image_data_url|image_url|include|inherit|javascript|lib|load|media|now|overrules|print|raw|regroup|spaceless|templatetag|translate|trans|url|with)\\b"
+								},
+								{
+									"name": "meta.tag.built-in.$1.continue.tpl",
+									"match": "\\b(elif|elseif)\\b"
+								},
+								{
+									"name": "meta.tag.module.$1.tpl",
+									"match": "\\b(button|chart_pie|chart_pie3d|cotonic_pathname_search|debug|draggable|droppable|google_chart|inplace_textbox|lazy|live|loremipsum|mailinglist_subscribe|menu|pager|poll|script|sortable|sorter|spinner|tabs|validate|wire|wire_args|worker)\\b"
+								},
+								{
+									"name": "meta.tag.custom.$1.tpl",
+									"match": "\\b((?:\\b(all)\\b)?\\s*\\w+)\\b"
+								}
+							]
+						}
+					},
+					"end": "%}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.tag.end.tpl"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#variables"
+						}
+					]
+				}
+			]
+		},
+		"variables-blocks": {
+			"name": "variable.tpl",
+			"begin": "({{)\\s*",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.variable.begin.tpl"
+				}
+			},
+			"end": "\\s*(}})",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.variable.end.tpl"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#variables"
 				}
 			]
 		},
 		"variables": {
 			"patterns": [
 				{
-					"name": "variable.tpl",
-					"begin": "{{",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.variable.begin.tpl"
-						}
-					},
-					"end": "}}",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.definition.variable.end.tpl"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#keywords"
+					"include": "#keywords"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#filters"
+				},
+				{
+					"match": "m\\.\\w+",
+					"name": "entity.name.module.tpl"
+				},
+				{
+					"match": "\\w+(?=\\=)",
+					"name": "entity.other.attribute-name.$1.tpl"
+				},
+				{
+					"match": "(?<=={)\\w+",
+					"name": "entity.name.action.tpl"
+				},
+				{
+					"match": "(`)(\\w+)(`)",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.atom.begin.tpl"
 						},
-						{
-							"include": "#strings"
+						"2": {
+							"name": "constant.other.atom.tpl"
 						},
-						{
-							"patterns": [
-								{
-									"match": "(?<=\\|)\\w+",
-									"captures": {
-										"0": {
-											"patterns": [
-												{
-													"include": "#keywords"
-												}
-											]
-										}
-									}
-								}
-							]
+						"3": {
+							"name": "punctuation.definition.atom.end.tpl"
 						}
-					]
+					}
+				},
+				{
+					"match": "(#)(\\w+)",
+					"captures": {
+						"0": {
+							"name": "constant.other.auto.tpl"
+						},
+						"1": {
+							"name": "punctuation.definition.variable.auto.tpl"
+						}
+					}
+				},
+				{
+					"match": "\\b(as)\\b",
+					"name": "keyword.operator.assignment.tpl"
+				},
+				{
+					"match": "\\w+",
+					"name": "variable.tpl"
 				}
 			]
 		},
@@ -211,35 +307,18 @@
 					"include": "#tags"
 				},
 				{
-					"include": "#variables"
-				}
-			]
-		},
-		"entities": {
-			"patterns": [
-				{
-					"name": "entity.name.built-in.tag.tpl",
-					"match": "\\b(all catinclude|all include|autoescape|block|cache|call|catinclude|comment|cycle|extends|filter|firstof|for|if|ifchanged|ifequal|ifnotequal|image|image_data_url|image_url|include|inherit|javascript|lib|load|media|now|overrules|print|raw|regroup|spaceless|templatetag|translate|trans|url|with)\\b"
+					"include": "#variables-blocks"
 				},
 				{
-					"name": "entity.name.built-in.end.tag.tpl",
-					"match": "\\b(empty|endfor|endblock|endautoescape|else|elif|elseif|endif|endcomment|endifequal|endifnotequal|endspaceless|endwith|endcache|endfilter|endjavascript)\\b"
-				},
-				{
-					"name": "entity.name.module.tag.tpl",
-					"match": "\\b(button|chart_pie|chart_pie3d|cotonic_pathname_search|debug|draggable|droppable|google_chart|inplace_textbox|lazy|live|loremipsum|mailinglist_subscribe|menu|pager|poll|script|sortable|sorter|spinner|tabs|validate|wire|wire_args|worker)\\b"
+					"include": "#trans"
 				}
 			]
 		},
 		"keywords": {
 			"patterns": [
 				{
-					"name": "keyword.base.filter.tpl",
-					"match": "\\b(add_day|make_list|add_hour|make_value|add_month|match|add_week|max|add_year|md5|after|member|append|min|as_atom|minmax|before|ne_day|brlinebreaks|nthtail|capfirst|parse_url|center|pickle|chunk|pprint|content_type_label|rand|content_type_urls|random|datediff|randomize|date|range|date_range|replace_args|element|replace|embedded_media|reversed|eq_day|rjust|escape_check|round|escape|sanitize_html|escape_ical|sanitize_url|escapejs|sha1|escapejson|show_media|escape_link|slice|escapexml|slugify|exclude|sort|filesizeformat|split|filter|split_in|first|stringify|fix_ampersands|striptags|flatten_value|sub_day|force_escape|sub_hour|format_duration|sub_month|format_integer|sub_week|format_number|sub_year|format_price|summary|group_by|tail|group_firstchar|timesince|group_title_firstchar|to_binary|if|toc|if_undefined|to_integer|index_of|to_json|in_future|tokens|in_past|to_name|insert|trans_filled|is_a|trim|is_defined|truncate|is_even|truncate_html|is_list|unescape|is_not_a|upper|is_number|url_abs|is_site_url|urlencode|is_undefined|url|is_visible|urlize|join|utc|last|vsplit_in|length|without_embedded_media|linebreaksbr|without|ljust|yesno|lower)\\b"
-				},
-				{
-					"name": "keyword.operator.comparison.tpl",
-					"match": "==|!=|<=|>=|<|>"
+					"name": "keyword.operator.condition.tpl",
+					"match": "(>=|>|==|!=|<|<=|\\b(and|or|not|in)\\b)"
 				},
 				{
 					"name": "keyword.operator.assignment.tpl",
@@ -252,6 +331,18 @@
 				{
 					"name": "keyword.operator.pipe.tpl",
 					"match": "\\|"
+				},
+				{
+					"match": ":",
+					"name": "keyword.operator.argument.tpl"
+				},
+				{
+					"match": ",",
+					"name": "keyword.operator.argument.separator.tpl"
+				},
+				{
+					"match": "\\.",
+					"name": "keyword.operator.getter.tpl"
 				}
 			]
 		},
@@ -469,6 +560,34 @@
 				},
 				{
 					"include": "#strings"
+				}
+			]
+		},
+		"filters": {
+			"patterns": [
+				{
+					"match": "(\\|)?\\b(add_day|make_list|add_hour|make_value|add_month|match|add_week|max|add_year|md5|after|member|append|min|as_atom|minmax|before|ne_day|brlinebreaks|nthtail|capfirst|parse_url|center|pickle|chunk|pprint|content_type_label|rand|content_type_urls|random|datediff|randomize|date|range|date_range|replace_args|element|replace|embedded_media|reversed|eq_day|rjust|escape_check|round|escape|sanitize_html|escape_ical|sanitize_url|escapejs|sha1|escapejson|show_media|escape_link|slice|escapexml|slugify|exclude|sort|filesizeformat|split|filter|split_in|first|stringify|fix_ampersands|striptags|flatten_value|sub_day|force_escape|sub_hour|format_duration|sub_month|format_integer|sub_week|format_number|sub_year|format_price|summary|group_by|tail|group_firstchar|timesince|group_title_firstchar|to_binary|if|toc|if_undefined|to_integer|index_of|to_json|in_future|tokens|in_past|to_name|insert|trans_filled|is_a|trim|is_defined|truncate|is_even|truncate_html|is_list|unescape|is_not_a|upper|is_number|url_abs|is_site_url|urlencode|is_undefined|url|is_visible|urlize|join|utc|last|vsplit_in|length|without_embedded_media|linebreaksbr|without|ljust|yesno|lower)\\b",
+					"name": "entity.name.function.filter.tpl",
+					"captures": {
+						"1": {
+							"name": "entity.tag.filter-pipe.tpl"
+						},
+						"2": {
+							"name": "keyword.control.filter.$2.tpl"
+						}
+					}
+				},
+				{
+					"match": "(\\|)([a-z][a-zA-Z0-9_]+)\\b",
+					"name": "entity.name.function.filter.tpl",
+					"captures": {
+						"1": {
+							"name": "entity.tag.filter-pipe.tpl"
+						},
+						"2": {
+							"name": "keyword.control.custom.filter.$2.tpl"
+						}
+					}
 				}
 			]
 		}
