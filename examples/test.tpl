@@ -55,6 +55,12 @@
         {# some comment #}
         console.log("foo");
     };
+
+    z_notify("rev-diff", {
+        id: {{ id }},
+        a: "latest",
+        z_delegate: `controller_admin_backup_revision`
+    });
 {% endjavascript %}
 
 {% comment %}

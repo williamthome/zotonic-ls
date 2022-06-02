@@ -3,7 +3,7 @@
 	"name": "Zotonic",
 	"scopeName": "source.tpl",
 	"injections": {
-		"L:meta.tag, L:source.css, L:source.js, L:meta.block.js, L:string - (string.quoted.double.trans.tpl)": {
+		"L:meta.tag, L:source.css, L:source.js, L:meta.block.js, L:meta.objectliteral.js, L:string - (string.quoted.double.trans.tpl)": {
 			"patterns": [
 				{
 					"include": "#tpl-stuff"
