@@ -564,32 +564,21 @@
 			]
 		},
 		"filters": {
-			"patterns": [
-				{
-					"match": "(\\|)?\\b(add_day|make_list|add_hour|make_value|add_month|match|add_week|max|add_year|md5|after|member|append|min|as_atom|minmax|before|ne_day|brlinebreaks|nthtail|capfirst|parse_url|center|pickle|chunk|pprint|content_type_label|rand|content_type_urls|random|datediff|randomize|date|range|date_range|replace_args|element|replace|embedded_media|reversed|eq_day|rjust|escape_check|round|escape|sanitize_html|escape_ical|sanitize_url|escapejs|sha1|escapejson|show_media|escape_link|slice|escapexml|slugify|exclude|sort|filesizeformat|split|filter|split_in|first|stringify|fix_ampersands|striptags|flatten_value|sub_day|force_escape|sub_hour|format_duration|sub_month|format_integer|sub_week|format_number|sub_year|format_price|summary|group_by|tail|group_firstchar|timesince|group_title_firstchar|to_binary|if|toc|if_undefined|to_integer|index_of|to_json|in_future|tokens|in_past|to_name|insert|trans_filled|is_a|trim|is_defined|truncate|is_even|truncate_html|is_list|unescape|is_not_a|upper|is_number|url_abs|is_site_url|urlencode|is_undefined|url|is_visible|urlize|join|utc|last|vsplit_in|length|without_embedded_media|linebreaksbr|without|ljust|yesno|lower)\\b",
-					"name": "entity.name.function.filter.tpl",
-					"captures": {
-						"1": {
-							"name": "entity.tag.filter-pipe.tpl"
+			"match": "(?<=\\|)(\\w+)",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"name": "keyword.control.filter.$1.tpl",
+							"match": "\\b(add_day|make_list|add_hour|make_value|add_month|match|add_week|max|add_year|md5|after|member|append|min|as_atom|minmax|before|ne_day|brlinebreaks|nthtail|capfirst|parse_url|center|pickle|chunk|pprint|content_type_label|rand|content_type_urls|random|datediff|randomize|date|range|date_range|replace_args|element|replace|embedded_media|reversed|eq_day|rjust|escape_check|round|escape|sanitize_html|escape_ical|sanitize_url|escapejs|sha1|escapejson|show_media|escape_link|slice|escapexml|slugify|exclude|sort|filesizeformat|split|filter|split_in|first|stringify|fix_ampersands|striptags|flatten_value|sub_day|force_escape|sub_hour|format_duration|sub_month|format_integer|sub_week|format_number|sub_year|format_price|summary|group_by|tail|group_firstchar|timesince|group_title_firstchar|to_binary|if|toc|if_undefined|to_integer|index_of|to_json|in_future|tokens|in_past|to_name|insert|trans_filled|is_a|trim|is_defined|truncate|is_even|truncate_html|is_list|unescape|is_not_a|upper|is_number|url_abs|is_site_url|urlencode|is_undefined|url|is_visible|urlize|join|utc|last|vsplit_in|length|without_embedded_media|linebreaksbr|without|ljust|yesno|lower)\\b"
 						},
-						"2": {
-							"name": "keyword.control.filter.$2.tpl"
+						{
+							"name": "keyword.control.custom.filter.$1.tpl",
+							"match": "\\b([a-z][a-zA-Z0-9_]+)\\b"
 						}
-					}
-				},
-				{
-					"match": "(\\|)([a-z][a-zA-Z0-9_]+)\\b",
-					"name": "entity.name.function.filter.tpl",
-					"captures": {
-						"1": {
-							"name": "entity.tag.filter-pipe.tpl"
-						},
-						"2": {
-							"name": "keyword.control.custom.filter.$2.tpl"
-						}
-					}
+					]
 				}
-			]
+			}
 		}
 	}
 }
