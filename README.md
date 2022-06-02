@@ -2,16 +2,39 @@
 
 ## Features
 
-[WIP] [Syntax highlight](https://github.com/williamthome/zotonic-ls/tree/feat/syntax_highlight)\
-[ ] Snippets\
-[ ] Template search\
-[ ] Go to template\
-[ ] Docs integration
+### [WIP] Syntax highlight
 
-## Partially working example
+## Todo
 
-![Features](images/zotonic-ls.gif)
+- Improve semantic highlight
+> *refs*:
+> * [Writing a TextMate Grammar: Some Lessons Learned](https://www.apeth.com/nonblog/stories/textmatebundle.html)
+> * [Semantic Highlight Guide](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide)
+- Snippets
+- Template search
+- Go to definition in template
+- Zotonic docs integration
 
-## Known Issues
+## Contributing
 
-Some mismatches in regex.
+### Issues
+
+Feels free to [submit an issue on Github](https://github.com/vscode-django/vscode-django/issues/new).
+
+### Setup
+
+```bash
+git clone https://github.com/williamthome/zotonic-ls
+cd zotonic-ls
+npm install
+code .
+```
+
+Make sure you have [TSlint](https://marketplace.visualstudio.com/items?itemName=eg2.tslint) extension installed.
+
+### Debugging the extension
+
+Press <kbd>F5</kbd> to start debugging.
+To reload, if in dev window,  press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F5</kbd> or, if in extension host window, <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.
+
+[See this article](https://code.visualstudio.com/api/get-started/your-first-extension) for more information about debugging.
