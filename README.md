@@ -32,7 +32,7 @@ npm install
 code .
 ```
 
-Make sure you have [TSlint](https://marketplace.visualstudio.com/items?itemName=eg2.tslint) extension installed.
+Make sure you have [TSlint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) extension installed.
 
 ### Debugging the extension
 
