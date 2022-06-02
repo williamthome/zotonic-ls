@@ -2,7 +2,7 @@
 	"name": "zotonic-ls",
 	"displayName": "Zotonic",
 	"description": "Syntax highlight for Zotonic templates (.tpl).",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "williamthome",
 	"license": "Apache-2.0",
 	"icon": "images/z_logo.png",
