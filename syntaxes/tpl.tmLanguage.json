@@ -92,11 +92,6 @@
 					}
 				},
 				{
-					"begin": "{%\\s*(empty|endfor|endblock|endautoescape|else|endif|endcomment|endifequal|endifnotequal|endspaceless|endwith|endcache|endfilter|endjavascript)\\s*",
-					"end": "%}",
-					"name": "invalid.illegal.tag.end.tpl"
-				},
-				{
 					"name": "tag.tpl",
 					"begin": "({%)\\s*(trans)\\s*",
 					"beginCaptures": {
