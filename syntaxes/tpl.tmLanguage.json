@@ -264,6 +264,22 @@
 					"name": "entity.name.action.tpl"
 				},
 				{
+					"match": "(?<==)(_)(\".*?\")",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.trans.begin.tpl"
+						},
+						"2": {
+							"name": "string.trans.tpl",
+							"patterns": [
+								{
+									"include": "#strings"
+								}
+							]
+						}
+					}
+				},
+				{
 					"match": "(`)(\\w+)(`)",
 					"captures": {
 						"1": {
