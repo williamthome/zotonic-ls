@@ -378,13 +378,22 @@
 			]
 		},
 		"strings": {
-			"name": "string.quoted.double.tpl",
-			"begin": "\"",
-			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape.tpl",
-					"match": "\\\\."
+					"name": "string.quoted.double.tpl",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.tpl",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
+					"name": "string.quoted.single.tpl",
+					"begin": "'",
+					"end": "'"
 				}
 			]
 		},
