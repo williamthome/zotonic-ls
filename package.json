@@ -34,6 +34,9 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configurationDefaults": {
+			"editor.snippetSuggestions": "top"
+		},
 		"languages": [
 			{
 				"id": "tpl",
@@ -60,6 +63,24 @@
 			{
 				"scopeName": "source.js.tpl",
 				"path": "./syntaxes/js-tpl.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-stuff.code-snippets"
+			},
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-tags-builtin.code-snippets"
+			},
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-tags-module.code-snippets"
+			},
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-filters.code-snippets"
 			}
 		]
 	},
