@@ -30,7 +30,10 @@
 <script type="text/javascript" nonce="{{ m.req.csp_nonce }}">
     {# some comment #}
     function myfn({{ some_var }}) {
-        {# some comment #}
+        {% comment %}
+            <h2>My subtitle</h2>
+            <p class="paragraph {% if `true` %}always-true{% endif %}">My words</p>
+        {% endcomment %}
         console.log("foo");
     };
 </script>
@@ -52,7 +55,10 @@
 {% javascript %}
     {# some comment #}
     function myfn({{ some_var }}) {
-        {# some comment #}
+        {% comment %}
+            <h2>My subtitle</h2>
+            <p class="paragraph {% if `true` %}always-true{% endif %}">My words</p>
+        {% endcomment %}
         console.log("foo");
     };
 
