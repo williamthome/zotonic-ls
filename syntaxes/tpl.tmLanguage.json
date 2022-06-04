@@ -9,6 +9,13 @@
 					"include": "#tpl-stuff"
 				}
 			]
+		},
+		"L:source.tpl -comment": {
+			"patterns": [
+				{
+					"include": "#tags"
+				}
+			]
 		}
 	},
 	"patterns": [
@@ -48,8 +55,8 @@
 				},
 				{
 					"name": "comment.block.tpl",
-					"begin": "(?={%\\s*comment\\s*%})",
-					"end": ".*?(?:{%\\s*endcomment\\s*%})"
+					"begin": "{%\\s*comment\\s*%}",
+					"end": "{%\\s*endcomment\\s*%}"
 				}
 			]
 		},
@@ -75,7 +82,7 @@
 		"tags": {
 			"patterns": [
 				{
-					"match": "({%)\\s*(empty|endfor|endblock|endautoescape|else|endif|endcomment|endifequal|endifnotequal|endspaceless|endwith|endcache|endfilter|endjavascript)\\b\\s*(%})",
+					"match": "({%)\\s*(empty|endfor|endblock|endautoescape|else|endif|endifequal|endifnotequal|endspaceless|endwith|endcache|endfilter|endjavascript)\\b\\s*(%})",
 					"captures": {
 						"0": {
 							"name": "tag.end.tpl"
@@ -184,7 +191,7 @@
 								},
 								{
 									"name": "meta.tag.built-in.$1.tpl",
-									"match": "\\b(autoescape|block|cache|call|catinclude|comment|cycle|extends|filter|firstof|for|if|ifchanged|ifequal|ifnotequal|image|image_data_url|image_url|include|inherit|javascript|lib|load|media|now|overrules|print|raw|regroup|spaceless|templatetag|translate|trans|url|with)\\b"
+									"match": "\\b(autoescape|block|cache|call|catinclude|cycle|extends|filter|firstof|for|if|ifchanged|ifequal|ifnotequal|image|image_data_url|image_url|include|inherit|javascript|lib|load|media|now|overrules|print|raw|regroup|spaceless|templatetag|translate|trans|url|with)\\b"
 								},
 								{
 									"name": "meta.tag.built-in.$1.continue.tpl",
@@ -333,9 +340,6 @@
 			"patterns": [
 				{
 					"include": "#comments"
-				},
-				{
-					"include": "#tags"
 				},
 				{
 					"include": "#variables-blocks"
