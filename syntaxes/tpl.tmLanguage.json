@@ -10,6 +10,13 @@
 				}
 			]
 		},
+		"L:source.tpl": {
+			"patterns": [
+				{
+					"include": "#comments"
+				}
+			]
+		},
 		"L:source.tpl -comment": {
 			"patterns": [
 				{
@@ -36,9 +43,6 @@
 					"begin": "(?<={%\\s*javascript\\s*%})",
 					"end": ".*?(?={%\\s*endjavascript\\s*%})",
 					"patterns": [
-						{
-							"include": "#comments"
-						},
 						{
 							"include": "source.js.tpl"
 						}
@@ -338,9 +342,6 @@
 		},
 		"tpl-stuff": {
 			"patterns": [
-				{
-					"include": "#comments"
-				},
 				{
 					"include": "#variables-blocks"
 				},
