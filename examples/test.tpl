@@ -36,6 +36,11 @@
         {% endcomment %}
         console.log("foo");
     };
+
+    {% comment %}
+        <h2>My subtitle</h2>
+        <p class="paragraph {% if `true` %}always-true{% endif %}">My words</p>
+    {% endcomment %}
 </script>
 
 <p>{{ id.date_start|date:"Y-m-d":id.date_is_all_day }}</p>
@@ -61,6 +66,11 @@
         {% endcomment %}
         console.log("foo");
     };
+
+    {% comment %}
+        <h2>My subtitle</h2>
+        <p class="paragraph {% if `true` %}always-true{% endif %}">My words</p>
+    {% endcomment %}
 
     z_notify("rev-diff", {
         id: {{ id }},
