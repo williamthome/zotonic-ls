@@ -34,6 +34,9 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configurationDefaults": {
+			"editor.snippetSuggestions": "top"
+		},
 		"languages": [
 			{
 				"id": "tpl",
@@ -60,6 +63,48 @@
 			{
 				"scopeName": "source.js.tpl",
 				"path": "./syntaxes/js-tpl.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-stuff.code-snippets"
+			},
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-tags-builtin.code-snippets"
+			},
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-tags-module.code-snippets"
+			},
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-filters.code-snippets"
+			},
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-actions.code-snippets"
+			},
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-global-vars.code-snippets"
+			},
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-models.code-snippets"
+			},
+			{
+				"language": "tpl",
+				"path": "./snippets/tpl-validators.code-snippets"
+			},
+			{
+				"language": "erlang",
+				"path": "./snippets/erlang-stuff.code-snippets"
+			},
+			{
+				"language": "erlang",
+				"path": "./snippets/erlang-observers.code-snippets"
 			}
 		]
 	},

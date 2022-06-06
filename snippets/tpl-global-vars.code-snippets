@@ -1,0 +1,68 @@
+{
+    "zotonic_version": {
+        "scope": "tpl",
+        "description": "zotonic_version",
+        "prefix": "zotonic_version",
+        "body": "zotonic_version"
+    },
+    "zotonic_dispatch": {
+        "scope": "tpl",
+        "description": "zotonic_dispatch",
+        "prefix": "zotonic_dispatch",
+        "body": "zotonic_dispatch"
+    },
+    "zotonic_dispatch_path": {
+        "scope": "tpl",
+        "description": "zotonic_dispatch_path",
+        "prefix": "zotonic_dispatch_path",
+        "body": "zotonic_dispatch_path"
+    },
+    "zotonic_dispatch_path_rewrite": {
+        "scope": "tpl",
+        "description": "zotonic_dispatch_path_rewrite",
+        "prefix": "zotonic_dispatch_path_rewrite",
+        "body": "zotonic_dispatch_path_rewrite"
+    },
+    "z_language": {
+        "scope": "tpl",
+        "description": "z_language",
+        "prefix": "z_language",
+        "body": "z_language"
+    },
+    "q": {
+        "scope": "tpl",
+        "description": "q",
+        "prefix": "q",
+        "body": "q"
+    },
+    "now": {
+        "scope": "tpl",
+        "description": "now",
+        "prefix": "now",
+        "body": "now"
+    },
+    "m": {
+        "scope": "tpl",
+        "description": "m",
+        "prefix": "m.",
+        "body": "m.${1|acl,acl_rule,acl_user_group,admin,admin_blocks,admin_config,admin_identity,admin_menu,admin_status,auth2fa,authentication,backup,backup_revision,category,client_local_storage,client_session_storage,comment,config,content_group,custom_redirect,development,edge,editor_tinymce,email_dkim,email_receive_recipient,email_status,facebook,filestore,fileuploader,hierarchy,identity,image_edit,import_csv_data,l10n,linkedin,log,log_email,log_ui,mailinglist,media,microsoft,modules,mqtt_ticket,oauth2,oauth2_consumer,oauth2_service,predicate,ratelimit,req,rsc,rsc_gone,search,seo,seo_sitemap,server_storage,signup,site,site_update,ssl_letsencrypt,survey,sysconfig,template,tkvstore,translation,twitter|}"
+    },
+    "true": {
+        "scope": "tpl",
+        "description": "true",
+        "prefix": "true",
+        "body": "true",
+    },
+    "false": {
+        "scope": "tpl",
+        "description": "false",
+        "prefix": "false",
+        "body": "false",
+    },
+    "undefined": {
+        "scope": "tpl",
+        "description": "undefined",
+        "prefix": "undefined",
+        "body": "undefined",
+    },
+}

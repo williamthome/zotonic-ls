@@ -1,0 +1,306 @@
+{
+    "all catinclude": {
+        "scope": "tpl",
+        "description": "{% all catinclude %}",
+        "prefix": "all catinclude",
+        "body": "{% all catinclude \"$0.tpl\" %}"
+    },
+    "all include": {
+        "scope": "tpl",
+        "description": "{% all include %}",
+        "prefix": "all include",
+        "body": "{% all include \"$0.tpl\" %}"
+    },
+    "autoescape": {
+        "scope": "tpl",
+        "description": "{% autoescape %}",
+        "prefix": "autoescape",
+        "body": "{% autoescape ${1|on,off|} %}$0{% endautoescape %}"
+    },
+    "endautoescape": {
+        "scope": "tpl",
+        "description": "{% endautoescape %}",
+        "prefix": "endautoescape",
+        "body": "{% endautoescape %}"
+    },
+    "block": {
+        "scope": "tpl",
+        "description": "{% block %}",
+        "prefix": "block",
+        "body": "{% block $1 %}$0{% endblock %}"
+    },
+    "endblock": {
+        "scope": "tpl",
+        "description": "{% endblock %}",
+        "prefix": "endblock",
+        "body": "{% endblock %}"
+    },
+    "cache": {
+        "scope": "tpl",
+        "description": "{% cache %}",
+        "prefix": "cache",
+        "body": "{% cache $1 %}$0{% endcache %}"
+    },
+    "endcache": {
+        "scope": "tpl",
+        "description": "{% endcache %}",
+        "prefix": "endcache",
+        "body": "{% endcache %}"
+    },
+    "call": {
+        "scope": "tpl",
+        "description": "{% call %}",
+        "prefix": "call",
+        "body": "{% call $0 %}"
+    },
+    "catinclude": {
+        "scope": "tpl",
+        "description": "{% catinclude %}",
+        "prefix": "catinclude",
+        "body": "{% catinclude \"$0.tpl\" %}"
+    },
+    "comment": {
+        "scope": "tpl",
+        "description": "{# #}",
+        "prefix": "comment",
+        "body": "{# $0 #}",
+    },
+    "comment_block": {
+        "scope": "tpl",
+        "description": "{% comment %}",
+        "prefix": "comment",
+        "body": "{% comment %}$0{% endcomment %}"
+    },
+    "comment_selected": {
+        "scope": "tpl",
+        "description": "{# #}",
+        "prefix": "comment",
+        "body": "{# ${TM_SELECTED_TEXT}$0 #}",
+    },
+    "comment_selected_block": {
+        "scope": "tpl",
+        "description": "{% comment %}",
+        "prefix": "comment",
+        "body": [
+            "{% comment %}",
+            "\t${TM_SELECTED_TEXT}$0",
+            "{% endcomment %}",
+        ],
+    },
+    "cycle": {
+        "scope": "tpl",
+        "description": "{% cycle %}",
+        "prefix": "cycle",
+        "body": "{% cycle $0 %}"
+    },
+    "extends": {
+        "scope": "tpl",
+        "description": "{% extends %}",
+        "prefix": "extends",
+        "body": "{% extends \"$0.tpl\" %}"
+    },
+    "filter": {
+        "scope": "tpl",
+        "description": "{% filter %}",
+        "prefix": "filter",
+        "body": "{% filter %}$0{% endfilter %}"
+    },
+    "endfilter": {
+        "scope": "tpl",
+        "description": "{% endfilter %}",
+        "prefix": "endfilter",
+        "body": "{% endfilter %}"
+    },
+    "for": {
+        "scope": "tpl",
+        "description": "{% for %}",
+        "prefix": "for",
+        "body": "{% for $1 in $2 %}$0{% endfor %}"
+    },
+    "endfor": {
+        "scope": "tpl",
+        "description": "{% endfor %}",
+        "prefix": "endfor",
+        "body": "{% endfor %}"
+    },
+    "if": {
+        "scope": "tpl",
+        "description": "{% if %}",
+        "prefix": "if",
+        "body": "{% if %}$0{% endif %}"
+    },
+    "elif": {
+        "scope": "tpl",
+        "description": "{% elif %}",
+        "prefix": "elif",
+        "body": "{% elif %}"
+    },
+    "elseif": {
+        "scope": "tpl",
+        "description": "{% elseif %}",
+        "prefix": "elseif",
+        "body": "{% elseif %}"
+    },
+    "endif": {
+        "scope": "tpl",
+        "description": "{% endif %}",
+        "prefix": "endif",
+        "body": "{% endif %}"
+    },
+    "ifequal": {
+        "scope": "tpl",
+        "description": "{% ifequal %}",
+        "prefix": "ifequal",
+        "body": "{% ifequal %}$0{% endifequal %}"
+    },
+    "endifequal": {
+        "scope": "tpl",
+        "description": "{% endifequal %}",
+        "prefix": "endifequal",
+        "body": "{% endifequal %}"
+    },
+    "ifnotequal": {
+        "scope": "tpl",
+        "description": "{% ifnotequal %}",
+        "prefix": "ifnotequal",
+        "body": "{% ifnotequal %}$0{% endifnotequal %}"
+    },
+    "endifnotequal": {
+        "scope": "tpl",
+        "description": "{% endifnotequal %}",
+        "prefix": "endifnotequal",
+        "body": "{% endifnotequal %}"
+    },
+    "image": {
+        "scope": "tpl",
+        "description": "{% image %}",
+        "prefix": "image",
+        "body": "{% image $0 %}"
+    },
+    "image_data_url": {
+        "scope": "tpl",
+        "description": "{% image_data_url %}",
+        "prefix": "image_data_url",
+        "body": "{% image_data_url $0 %}"
+    },
+    "image_url": {
+        "scope": "tpl",
+        "description": "{% image_url %}",
+        "prefix": "image_url",
+        "body": "{% image_url $0 %}"
+    },
+    "include": {
+        "scope": "tpl",
+        "description": "{% include %}",
+        "prefix": "include",
+        "body": "{% include \"$0.tpl\" %}"
+    },
+    "inherit": {
+        "scope": "tpl",
+        "description": "{% inherit %}",
+        "prefix": "inherit",
+        "body": "{% inherit %}"
+    },
+    "javascript": {
+        "scope": "tpl",
+        "description": "{% javascript %}",
+        "prefix": "javascript",
+        "body": "{% javascript %}$0{% endjavascript %}"
+    },
+    "endjavascript": {
+        "scope": "tpl",
+        "description": "{% endjavascript %}",
+        "prefix": "endjavascript",
+        "body": "{% endjavascript %}"
+    },
+    "lib": {
+        "scope": "tpl",
+        "description": "{% lib %}",
+        "prefix": "lib",
+        "body": "{% lib \"$0\" %}"
+    },
+    "load": {
+        "scope": "tpl",
+        "description": "{% load %}",
+        "prefix": "load",
+        "body": "{% load $0 %}"
+    },
+    "media": {
+        "scope": "tpl",
+        "description": "{% media %}",
+        "prefix": "media",
+        "body": "{% media $0 %}"
+    },
+    "now": {
+        "scope": "tpl",
+        "description": "{% now %}",
+        "prefix": "now",
+        "body": "{% now %}"
+    },
+    "overrules": {
+        "scope": "tpl",
+        "description": "{% overrules %}",
+        "prefix": "overrules",
+        "body": "{% overrules %}"
+    },
+    "print": {
+        "scope": "tpl",
+        "description": "{% print %}",
+        "prefix": "print",
+        "body": "{% print $0 %}"
+    },
+    "print_req": {
+        "scope": "tpl",
+        "description": "{% print %}",
+        "prefix": "print_req",
+        "body": "{% print m.req|make_list %}"
+    },
+    "raw": {
+        "scope": "tpl",
+        "description": "{% raw %}",
+        "prefix": "raw",
+        "body": "{% raw %}$0{% endraw %}"
+    },
+    "endraw": {
+        "scope": "tpl",
+        "description": "{% endraw %}",
+        "prefix": "endraw",
+        "body": "{% endraw %}"
+    },
+    "spaceless": {
+        "scope": "tpl",
+        "description": "{% spaceless %}",
+        "prefix": "spaceless",
+        "body": "{% spaceless %}$0{% endspaceless %}"
+    },
+    "endspaceless": {
+        "scope": "tpl",
+        "description": "{% endspaceless %}",
+        "prefix": "endspaceless",
+        "body": "{% endspaceless %}"
+    },
+    "trans": {
+        "scope": "tpl",
+        "description": "{% trans %}",
+        "prefix": "trans",
+        "body": "{% trans \"$0\" %}"
+    },
+    "url": {
+        "scope": "tpl",
+        "description": "{% url %}",
+        "prefix": "url",
+        "body": "{% url $0 %}"
+    },
+    "with": {
+        "scope": "tpl",
+        "description": "{% with %}",
+        "prefix": "with",
+        "body": "{% with $1 as $2 %}$0{% endwith %}"
+    },
+    "endwith": {
+        "scope": "tpl",
+        "description": "{% endwith %}",
+        "prefix": "endwith",
+        "body": "{% endwith %}"
+    },
+}

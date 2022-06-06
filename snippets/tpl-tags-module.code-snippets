@@ -1,0 +1,152 @@
+{
+    "button": {
+        "scope": "tpl",
+        "description": "{% button %}",
+        "prefix": "button",
+        "body": "{% button text=\"$1\" ${2|action,postback|}={$0} %}"
+    },
+    "chart_pie": {
+        "scope": "tpl",
+        "description": "{% chart_pie %}",
+        "prefix": "chart_pie",
+        "body": "{% chart_pie data=$0 %}"
+    },
+    "chart_pie3d": {
+        "scope": "tpl",
+        "description": "{% chart_pie3d %}",
+        "prefix": "chart_pie3d",
+        "body": "{% chart_pie3d data=$0 %}"
+    },
+    "debug": {
+        "scope": "tpl",
+        "description": "{% debug %}",
+        "prefix": "debug",
+        "body": "{% debug %}"
+    },
+    "draggable": {
+        "scope": "tpl",
+        "description": "{% draggable %}",
+        "prefix": "draggable",
+        "body": "{% draggable id=$1 tag=$0 %}"
+    },
+    "droppable": {
+        "scope": "tpl",
+        "description": "{% droppable %}",
+        "prefix": "droppable",
+        "body": "{% droppable id=$1 tag=$0 %}"
+    },
+    "google_chart": {
+        "scope": "tpl",
+        "description": "{% google_chart %}",
+        "prefix": "google_chart",
+        "body": "{% google_chart $0 %}"
+    },
+    "inplace_textbox": {
+        "scope": "tpl",
+        "description": "{% inplace_textbox %}",
+        "prefix": "inplace_textbox",
+        "body": "{% inplace_textbox value=$0 %}"
+    },
+    "lazy": {
+        "scope": "tpl",
+        "description": "{% lazy %}",
+        "prefix": "lazy",
+        "body": "{% lazy $0 %}"
+    },
+    "live": {
+        "scope": "tpl",
+        "description": "{% live %}",
+        "prefix": "live",
+        "body": "{% live template=$1 topic=$0 %}"
+    },
+    "loremipsum": {
+        "scope": "tpl",
+        "description": "{% loremipsum %}",
+        "prefix": "loremipsum",
+        "body": "{% loremipsum words=${0:10} %}"
+    },
+    "mailinglist_subscribe": {
+        "scope": "tpl",
+        "description": "{% mailinglist_subscribe %}",
+        "prefix": "mailinglist_subscribe",
+        "body": "{% mailinglist_subscribe id=$1 template=\"${0:_scomp_mailinglist_subscribe}.tpl\" %}"
+    },
+    "menu": {
+        "scope": "tpl",
+        "description": "{% menu %}",
+        "prefix": "menu",
+        "body": "{% menu id=$0 %}"
+    },
+    "pager": {
+        "scope": "tpl",
+        "description": "{% pager %}",
+        "prefix": "pager",
+        "body": "{% pager result=$0 %}"
+    },
+    "poll": {
+        "scope": "tpl",
+        "description": "{% poll %}",
+        "prefix": "poll",
+        "body": "{% poll id=$0 %}"
+    },
+    "script": {
+        "scope": "tpl",
+        "description": "{% script %}",
+        "prefix": "script",
+        "body": "{% script %}"
+    },
+    "sortable": {
+        "scope": "tpl",
+        "description": "{% sortable %}",
+        "prefix": "sortable",
+        "body": "{% sortable id=$1 tag=$0 %}"
+    },
+    "sorter": {
+        "scope": "tpl",
+        "description": "{% sorter %}",
+        "prefix": "sorter",
+        "body": "{% sorter id=$1 tag=$0 %}"
+    },
+    "spinner": {
+        "scope": "tpl",
+        "description": "{% spinner %}",
+        "prefix": "spinner",
+        "body": "{% spinner %}"
+    },
+    "tabs": {
+        "scope": "tpl",
+        "description": "{% tabs %}",
+        "prefix": "tabs",
+        "body": "{% tabs id=$0 %}"
+    },
+    "validate": {
+        "scope": "tpl",
+        "description": "{% validate %}",
+        "prefix": "validate",
+        "body": "{% validate id=$1 type={${2|acceptance,confirmation,custom,date,email,email_unique,format,length,name_unique,numericality,postback,presence,username_unique|}} %}"
+    },
+    "wire": {
+        "scope": "tpl",
+        "description": "{% wire %}",
+        "prefix": "wire",
+        "body": "{% wire $0 %}"
+    },
+    "wire_submit": {
+        "scope": "tpl",
+        "description": "{% wire %}",
+        "prefix": "wire_submit",
+        "body": "{% wire type=\"submit\" id=\"$1\" postback=\"$2\" delegate=\"$3\" %}"
+    },
+    "wire_args": {
+        "scope": "tpl",
+        "description": "{% wire_args %}",
+        "prefix": "wire_args",
+        "body": "{% wire_args $0 %}"
+    },
+    "worker": {
+        "scope": "tpl",
+        "description": "{% worker %}",
+        "prefix": "worker",
+        "body": "{% worker name=\"$1\" src=\"$2.js\" args=%{$3} %}"
+    },
+}

@@ -1,0 +1,1280 @@
+{
+    "dispatch_host": {
+        "scope": "erlang",
+        "description": "dispatch_host",
+        "prefix": "obs_dispatch_host",
+        "body": [
+            "observe_dispatch_host(#dispatch_host{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "dispatch": {
+        "scope": "erlang",
+        "description": "dispatch",
+        "prefix": "obs_dispatch",
+        "body": [
+            "observe_dispatch(#dispatch{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "security_headers": {
+        "scope": "erlang",
+        "description": "security_headers",
+        "prefix": "obs_security_headers",
+        "body": [
+            "observe_security_headers(#security_headers{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "cors_headers": {
+        "scope": "erlang",
+        "description": "cors_headers",
+        "prefix": "obs_cors_headers",
+        "body": [
+            "observe_cors_headers(#cors_headers{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "resource_headers": {
+        "scope": "erlang",
+        "description": "resource_headers",
+        "prefix": "obs_resource_headers",
+        "body": [
+            "observe_resource_headers(#resource_headers{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "http_log_access": {
+        "scope": "erlang",
+        "description": "http_log_access",
+        "prefix": "obs_http_log_access",
+        "body": [
+            "observe_http_log_access(#http_log_access{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "module_activate": {
+        "scope": "erlang",
+        "description": "module_activate",
+        "prefix": "obs_module_activate",
+        "body": [
+            "observe_module_activate(#module_activate{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "module_deactivate": {
+        "scope": "erlang",
+        "description": "module_deactivate",
+        "prefix": "obs_module_deactivate",
+        "body": [
+            "observe_module_deactivate(#module_deactivate{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "content_types_dispatch": {
+        "scope": "erlang",
+        "description": "content_types_dispatch",
+        "prefix": "obs_content_types_dispatch",
+        "body": [
+            "observe_content_types_dispatch(#content_types_dispatch{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "logon_ready_page": {
+        "scope": "erlang",
+        "description": "logon_ready_page",
+        "prefix": "obs_logon_ready_page",
+        "body": [
+            "observe_logon_ready_page(#logon_ready_page{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "logon_submit": {
+        "scope": "erlang",
+        "description": "logon_submit",
+        "prefix": "obs_logon_submit",
+        "body": [
+            "observe_logon_submit(#logon_submit{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "logon_options": {
+        "scope": "erlang",
+        "description": "logon_options",
+        "prefix": "obs_logon_options",
+        "body": [
+            "observe_logon_options(#logon_options{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "identity_verification": {
+        "scope": "erlang",
+        "description": "identity_verification",
+        "prefix": "obs_identity_verification",
+        "body": [
+            "observe_identity_verification(#identity_verification{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "identity_verified": {
+        "scope": "erlang",
+        "description": "identity_verified",
+        "prefix": "obs_identity_verified",
+        "body": [
+            "observe_identity_verified(#identity_verified{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "identity_password_match": {
+        "scope": "erlang",
+        "description": "identity_password_match",
+        "prefix": "obs_identity_password_match",
+        "body": [
+            "observe_identity_password_match(#identity_password_match{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "signup_url": {
+        "scope": "erlang",
+        "description": "signup_url",
+        "prefix": "obs_signup_url",
+        "body": [
+            "observe_signup_url(#signup_url{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "signup": {
+        "scope": "erlang",
+        "description": "signup",
+        "prefix": "obs_signup",
+        "body": [
+            "observe_signup(#signup{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "signup_failed_url": {
+        "scope": "erlang",
+        "description": "signup_failed_url",
+        "prefix": "obs_signup_failed_url",
+        "body": [
+            "observe_signup_failed_url(#signup_failed_url{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "signup_check": {
+        "scope": "erlang",
+        "description": "signup_check",
+        "prefix": "obs_signup_check",
+        "body": [
+            "observe_signup_check(#signup_check{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "signup_done": {
+        "scope": "erlang",
+        "description": "signup_done",
+        "prefix": "obs_signup_done",
+        "body": [
+            "observe_signup_done(#signup_done{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "signup_confirm": {
+        "scope": "erlang",
+        "description": "signup_confirm",
+        "prefix": "obs_signup_confirm",
+        "body": [
+            "observe_signup_confirm(#signup_confirm{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "signup_confirm_redirect": {
+        "scope": "erlang",
+        "description": "signup_confirm_redirect",
+        "prefix": "obs_signup_confirm_redirect",
+        "body": [
+            "observe_signup_confirm_redirect(#signup_confirm_redirect{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "comment_insert": {
+        "scope": "erlang",
+        "description": "comment_insert",
+        "prefix": "obs_comment_insert",
+        "body": [
+            "observe_comment_insert(#comment_insert{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "language": {
+        "scope": "erlang",
+        "description": "language",
+        "prefix": "obs_language",
+        "body": [
+            "observe_language(#language{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "set_user_language": {
+        "scope": "erlang",
+        "description": "set_user_language",
+        "prefix": "obs_set_user_language",
+        "body": [
+            "observe_set_user_language(#set_user_language{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "url_abs": {
+        "scope": "erlang",
+        "description": "url_abs",
+        "prefix": "obs_url_abs",
+        "body": [
+            "observe_url_abs(#url_abs{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "url_rewrite": {
+        "scope": "erlang",
+        "description": "url_rewrite",
+        "prefix": "obs_url_rewrite",
+        "body": [
+            "observe_url_rewrite(#url_rewrite{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "dispatch_rewrite": {
+        "scope": "erlang",
+        "description": "dispatch_rewrite",
+        "prefix": "obs_dispatch_rewrite",
+        "body": [
+            "observe_dispatch_rewrite(#dispatch_rewrite{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "ssl_options": {
+        "scope": "erlang",
+        "description": "ssl_options",
+        "prefix": "obs_ssl_options",
+        "body": [
+            "observe_ssl_options(#ssl_options{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "admin_edit_blocks": {
+        "scope": "erlang",
+        "description": "admin_edit_blocks",
+        "prefix": "obs_admin_edit_blocks",
+        "body": [
+            "observe_admin_edit_blocks(#admin_edit_blocks{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "admin_rscform": {
+        "scope": "erlang",
+        "description": "admin_rscform",
+        "prefix": "obs_admin_rscform",
+        "body": [
+            "observe_admin_rscform(#admin_rscform{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "admin_menu": {
+        "scope": "erlang",
+        "description": "admin_menu",
+        "prefix": "obs_admin_menu",
+        "body": [
+            "observe_admin_menu(#admin_menu{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "menu_rsc": {
+        "scope": "erlang",
+        "description": "menu_rsc",
+        "prefix": "obs_menu_rsc",
+        "body": [
+            "observe_menu_rsc(#menu_rsc{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "output_html": {
+        "scope": "erlang",
+        "description": "output_html",
+        "prefix": "obs_output_html",
+        "body": [
+            "observe_output_html(#output_html{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "activity": {
+        "scope": "erlang",
+        "description": "activity",
+        "prefix": "obs_activity",
+        "body": [
+            "observe_activity(#activity{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "activity_send": {
+        "scope": "erlang",
+        "description": "activity_send",
+        "prefix": "obs_activity_send",
+        "body": [
+            "observe_activity_send(#activity_send{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "email_received": {
+        "scope": "erlang",
+        "description": "email_received",
+        "prefix": "obs_email_received",
+        "body": [
+            "observe_email_received(#email_received{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "email_is_blocked": {
+        "scope": "erlang",
+        "description": "email_is_blocked",
+        "prefix": "obs_email_is_blocked",
+        "body": [
+            "observe_email_is_blocked(#email_is_blocked{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "email_status": {
+        "scope": "erlang",
+        "description": "email_status",
+        "prefix": "obs_email_status",
+        "body": [
+            "observe_email_status(#email_status{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "email_bounced": {
+        "scope": "erlang",
+        "description": "email_bounced",
+        "prefix": "obs_email_bounced",
+        "body": [
+            "observe_email_bounced(#email_bounced{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "email_sent": {
+        "scope": "erlang",
+        "description": "email_sent",
+        "prefix": "obs_email_sent",
+        "body": [
+            "observe_email_sent(#email_sent{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "email_failed": {
+        "scope": "erlang",
+        "description": "email_failed",
+        "prefix": "obs_email_failed",
+        "body": [
+            "observe_email_failed(#email_failed{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "email_dkim_options": {
+        "scope": "erlang",
+        "description": "email_dkim_options",
+        "prefix": "obs_email_dkim_options",
+        "body": [
+            "observe_email_dkim_options(#email_dkim_options{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "email_send_encoded": {
+        "scope": "erlang",
+        "description": "email_send_encoded",
+        "prefix": "obs_email_send_encoded",
+        "body": [
+            "observe_email_send_encoded(#email_send_encoded{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "email_add_handler": {
+        "scope": "erlang",
+        "description": "email_add_handler",
+        "prefix": "obs_email_add_handler",
+        "body": [
+            "observe_email_add_handler(#email_add_handler{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "email_ensure_handler": {
+        "scope": "erlang",
+        "description": "email_ensure_handler",
+        "prefix": "obs_email_ensure_handler",
+        "body": [
+            "observe_email_ensure_handler(#email_ensure_handler{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "email_drop_handler": {
+        "scope": "erlang",
+        "description": "email_drop_handler",
+        "prefix": "obs_email_drop_handler",
+        "body": [
+            "observe_email_drop_handler(#email_drop_handler{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "mailinglist_mailing": {
+        "scope": "erlang",
+        "description": "mailinglist_mailing",
+        "prefix": "obs_mailinglist_mailing",
+        "body": [
+            "observe_mailinglist_mailing(#mailinglist_mailing{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "mailinglist_message": {
+        "scope": "erlang",
+        "description": "mailinglist_message",
+        "prefix": "obs_mailinglist_message",
+        "body": [
+            "observe_mailinglist_message(#mailinglist_message{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "category_hierarchy_save": {
+        "scope": "erlang",
+        "description": "category_hierarchy_save",
+        "prefix": "obs_category_hierarchy_save",
+        "body": [
+            "observe_category_hierarchy_save(#category_hierarchy_save{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "menu_save": {
+        "scope": "erlang",
+        "description": "menu_save",
+        "prefix": "obs_menu_save",
+        "body": [
+            "observe_menu_save(#menu_save{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "hierarchy_updated": {
+        "scope": "erlang",
+        "description": "hierarchy_updated",
+        "prefix": "obs_hierarchy_updated",
+        "body": [
+            "observe_hierarchy_updated(#hierarchy_updated{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "rsc_get": {
+        "scope": "erlang",
+        "description": "rsc_get",
+        "prefix": "obs_rsc_get",
+        "body": [
+            "observe_rsc_get(#rsc_get{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "rsc_delete": {
+        "scope": "erlang",
+        "description": "rsc_delete",
+        "prefix": "obs_rsc_delete",
+        "body": [
+            "observe_rsc_delete(#rsc_delete{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "rsc_insert": {
+        "scope": "erlang",
+        "description": "rsc_insert",
+        "prefix": "obs_rsc_insert",
+        "body": [
+            "observe_rsc_insert(#rsc_insert{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "rsc_merge": {
+        "scope": "erlang",
+        "description": "rsc_merge",
+        "prefix": "obs_rsc_merge",
+        "body": [
+            "observe_rsc_merge(#rsc_merge{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "rsc_update": {
+        "scope": "erlang",
+        "description": "rsc_update",
+        "prefix": "obs_rsc_update",
+        "body": [
+            "observe_rsc_update(#rsc_update{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "rsc_update_done": {
+        "scope": "erlang",
+        "description": "rsc_update_done",
+        "prefix": "obs_rsc_update_done",
+        "body": [
+            "observe_rsc_update_done(#rsc_update_done{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "rsc_upload": {
+        "scope": "erlang",
+        "description": "rsc_upload",
+        "prefix": "obs_rsc_upload",
+        "body": [
+            "observe_rsc_upload(#rsc_upload{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "custom_pivot": {
+        "scope": "erlang",
+        "description": "custom_pivot",
+        "prefix": "obs_custom_pivot",
+        "body": [
+            "observe_custom_pivot(#custom_pivot{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "pivot_rsc_data": {
+        "scope": "erlang",
+        "description": "pivot_rsc_data",
+        "prefix": "obs_pivot_rsc_data",
+        "body": [
+            "observe_pivot_rsc_data(#pivot_rsc_data{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "pivot_update": {
+        "scope": "erlang",
+        "description": "pivot_update",
+        "prefix": "obs_pivot_update",
+        "body": [
+            "observe_pivot_update(#pivot_update{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "pivot_fields": {
+        "scope": "erlang",
+        "description": "pivot_fields",
+        "prefix": "obs_pivot_fields",
+        "body": [
+            "observe_pivot_fields(#pivot_fields{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "rsc_pivot_done": {
+        "scope": "erlang",
+        "description": "rsc_pivot_done",
+        "prefix": "obs_rsc_pivot_done",
+        "body": [
+            "observe_rsc_pivot_done(#rsc_pivot_done{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "sanitize_element": {
+        "scope": "erlang",
+        "description": "sanitize_element",
+        "prefix": "obs_sanitize_element",
+        "body": [
+            "observe_sanitize_element(#sanitize_element{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "sanitize_embed_url": {
+        "scope": "erlang",
+        "description": "sanitize_embed_url",
+        "prefix": "obs_sanitize_embed_url",
+        "body": [
+            "observe_sanitize_embed_url(#sanitize_embed_url{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "acl_is_owner": {
+        "scope": "erlang",
+        "description": "acl_is_owner",
+        "prefix": "obs_acl_is_owner",
+        "body": [
+            "observe_acl_is_owner(#acl_is_owner{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "acl_is_allowed": {
+        "scope": "erlang",
+        "description": "acl_is_allowed",
+        "prefix": "obs_acl_is_allowed",
+        "body": [
+            "observe_acl_is_allowed(#acl_is_allowed{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "acl_is_allowed_prop": {
+        "scope": "erlang",
+        "description": "acl_is_allowed_prop",
+        "prefix": "obs_acl_is_allowed_prop",
+        "body": [
+            "observe_acl_is_allowed_prop(#acl_is_allowed_prop{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "acl_context_authenticated": {
+        "scope": "erlang",
+        "description": "acl_context_authenticated",
+        "prefix": "obs_acl_context_authenticated",
+        "body": [
+            "observe_acl_context_authenticated(#acl_context_authenticated{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "acl_logon": {
+        "scope": "erlang",
+        "description": "acl_logon",
+        "prefix": "obs_acl_logon",
+        "body": [
+            "observe_acl_logon(#acl_logon{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "acl_logoff": {
+        "scope": "erlang",
+        "description": "acl_logoff",
+        "prefix": "obs_acl_logoff",
+        "body": [
+            "observe_acl_logoff(#acl_logoff{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "acl_user_groups": {
+        "scope": "erlang",
+        "description": "acl_user_groups",
+        "prefix": "obs_acl_user_groups",
+        "body": [
+            "observe_acl_user_groups(#acl_user_groups{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_confirm": {
+        "scope": "erlang",
+        "description": "auth_confirm",
+        "prefix": "obs_auth_confirm",
+        "body": [
+            "observe_auth_confirm(#auth_confirm{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_confirm_done": {
+        "scope": "erlang",
+        "description": "auth_confirm_done",
+        "prefix": "obs_auth_confirm_done",
+        "body": [
+            "observe_auth_confirm_done(#auth_confirm_done{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_precheck": {
+        "scope": "erlang",
+        "description": "auth_precheck",
+        "prefix": "obs_auth_precheck",
+        "body": [
+            "observe_auth_precheck(#auth_precheck{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_postcheck": {
+        "scope": "erlang",
+        "description": "auth_postcheck",
+        "prefix": "obs_auth_postcheck",
+        "body": [
+            "observe_auth_postcheck(#auth_postcheck{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_checked": {
+        "scope": "erlang",
+        "description": "auth_checked",
+        "prefix": "obs_auth_checked",
+        "body": [
+            "observe_auth_checked(#auth_checked{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_reset": {
+        "scope": "erlang",
+        "description": "auth_reset",
+        "prefix": "obs_auth_reset",
+        "body": [
+            "observe_auth_reset(#auth_reset{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_validate": {
+        "scope": "erlang",
+        "description": "auth_validate",
+        "prefix": "obs_auth_validate",
+        "body": [
+            "observe_auth_validate(#auth_validate{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_logon": {
+        "scope": "erlang",
+        "description": "auth_logon",
+        "prefix": "obs_auth_logon",
+        "body": [
+            "observe_auth_logon(#auth_logon{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_logoff": {
+        "scope": "erlang",
+        "description": "auth_logoff",
+        "prefix": "obs_auth_logoff",
+        "body": [
+            "observe_auth_logoff(#auth_logoff{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_validated": {
+        "scope": "erlang",
+        "description": "auth_validated",
+        "prefix": "obs_auth_validated",
+        "body": [
+            "observe_auth_validated(#auth_validated{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_options_update": {
+        "scope": "erlang",
+        "description": "auth_options_update",
+        "prefix": "obs_auth_options_update",
+        "body": [
+            "observe_auth_options_update(#auth_options_update{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_client_logon_user": {
+        "scope": "erlang",
+        "description": "auth_client_logon_user",
+        "prefix": "obs_auth_client_logon_user",
+        "body": [
+            "observe_auth_client_logon_user(#auth_client_logon_user{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "auth_client_switch_user": {
+        "scope": "erlang",
+        "description": "auth_client_switch_user",
+        "prefix": "obs_auth_client_switch_user",
+        "body": [
+            "observe_auth_client_switch_user(#auth_client_switch_user{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "request_context": {
+        "scope": "erlang",
+        "description": "request_context",
+        "prefix": "obs_request_context",
+        "body": [
+            "observe_request_context(#request_context{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "session_context": {
+        "scope": "erlang",
+        "description": "session_context",
+        "prefix": "obs_session_context",
+        "body": [
+            "observe_session_context(#session_context{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "validate_query_args": {
+        "scope": "erlang",
+        "description": "validate_query_args",
+        "prefix": "obs_validate_query_args",
+        "body": [
+            "observe_validate_query_args(#validate_query_args{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "user_is_enabled": {
+        "scope": "erlang",
+        "description": "user_is_enabled",
+        "prefix": "obs_user_is_enabled",
+        "body": [
+            "observe_user_is_enabled(#user_is_enabled{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "user_context": {
+        "scope": "erlang",
+        "description": "user_context",
+        "prefix": "obs_user_context",
+        "body": [
+            "observe_user_context(#user_context{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "service_authorize": {
+        "scope": "erlang",
+        "description": "service_authorize",
+        "prefix": "obs_service_authorize",
+        "body": [
+            "observe_service_authorize(#service_authorize{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "page_url": {
+        "scope": "erlang",
+        "description": "page_url",
+        "prefix": "obs_page_url",
+        "body": [
+            "observe_page_url(#page_url{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "search_query": {
+        "scope": "erlang",
+        "description": "search_query",
+        "prefix": "obs_search_query",
+        "body": [
+            "observe_search_query(#search_query{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "edge_insert": {
+        "scope": "erlang",
+        "description": "edge_insert",
+        "prefix": "obs_edge_insert",
+        "body": [
+            "observe_edge_insert(#edge_insert{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "edge_delete": {
+        "scope": "erlang",
+        "description": "edge_delete",
+        "prefix": "obs_edge_delete",
+        "body": [
+            "observe_edge_delete(#edge_delete{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "edge_update": {
+        "scope": "erlang",
+        "description": "edge_update",
+        "prefix": "obs_edge_update",
+        "body": [
+            "observe_edge_update(#edge_update{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "m_config_update": {
+        "scope": "erlang",
+        "description": "m_config_update",
+        "prefix": "obs_m_config_update",
+        "body": [
+            "observe_m_config_update(#m_config_update{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "m_config_update_prop": {
+        "scope": "erlang",
+        "description": "m_config_update_prop",
+        "prefix": "obs_m_config_update_prop",
+        "body": [
+            "observe_m_config_update_prop(#m_config_update_prop{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "rsc_import_fetch": {
+        "scope": "erlang",
+        "description": "rsc_import_fetch",
+        "prefix": "obs_rsc_import_fetch",
+        "body": [
+            "observe_rsc_import_fetch(#rsc_import_fetch{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_import": {
+        "scope": "erlang",
+        "description": "media_import",
+        "prefix": "obs_media_import",
+        "body": [
+            "observe_media_import(#media_import{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_import_props": {
+        "scope": "erlang",
+        "description": "media_import_props",
+        "prefix": "obs_media_import_props",
+        "body": [
+            "observe_media_import_props(#media_import_props{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_upload_preprocess": {
+        "scope": "erlang",
+        "description": "media_upload_preprocess",
+        "prefix": "obs_media_upload_preprocess",
+        "body": [
+            "observe_media_upload_preprocess(#media_upload_preprocess{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_upload_props": {
+        "scope": "erlang",
+        "description": "media_upload_props",
+        "prefix": "obs_media_upload_props",
+        "body": [
+            "observe_media_upload_props(#media_upload_props{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_upload_rsc_props": {
+        "scope": "erlang",
+        "description": "media_upload_rsc_props",
+        "prefix": "obs_media_upload_rsc_props",
+        "body": [
+            "observe_media_upload_rsc_props(#media_upload_rsc_props{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_import_medium": {
+        "scope": "erlang",
+        "description": "media_import_medium",
+        "prefix": "obs_media_import_medium",
+        "body": [
+            "observe_media_import_medium(#media_import_medium{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_replace_file": {
+        "scope": "erlang",
+        "description": "media_replace_file",
+        "prefix": "obs_media_replace_file",
+        "body": [
+            "observe_media_replace_file(#media_replace_file{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_update_done": {
+        "scope": "erlang",
+        "description": "media_update_done",
+        "prefix": "obs_media_update_done",
+        "body": [
+            "observe_media_update_done(#media_update_done{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_preview_options": {
+        "scope": "erlang",
+        "description": "media_preview_options",
+        "prefix": "obs_media_preview_options",
+        "body": [
+            "observe_media_preview_options(#media_preview_options{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "rsc_query_item": {
+        "scope": "erlang",
+        "description": "rsc_query_item",
+        "prefix": "obs_rsc_query_item",
+        "body": [
+            "observe_rsc_query_item(#rsc_query_item{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "scomp_script_render": {
+        "scope": "erlang",
+        "description": "scomp_script_render",
+        "prefix": "obs_scomp_script_render",
+        "body": [
+            "observe_scomp_script_render(#scomp_script_render{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "action_event_type": {
+        "scope": "erlang",
+        "description": "action_event_type",
+        "prefix": "obs_action_event_type",
+        "body": [
+            "observe_action_event_type(#action_event_type{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "import_csv_definition": {
+        "scope": "erlang",
+        "description": "import_csv_definition",
+        "prefix": "obs_import_csv_definition",
+        "body": [
+            "observe_import_csv_definition(#import_csv_definition{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "multiupload": {
+        "scope": "erlang",
+        "description": "multiupload",
+        "prefix": "obs_multiupload",
+        "body": [
+            "observe_multiupload(#multiupload{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "dropbox_file": {
+        "scope": "erlang",
+        "description": "dropbox_file",
+        "prefix": "obs_dropbox_file",
+        "body": [
+            "observe_dropbox_file(#dropbox_file{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_identify_file": {
+        "scope": "erlang",
+        "description": "media_identify_file",
+        "prefix": "obs_media_identify_file",
+        "body": [
+            "observe_media_identify_file(#media_identify_file{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_identify_extension": {
+        "scope": "erlang",
+        "description": "media_identify_extension",
+        "prefix": "obs_media_identify_extension",
+        "body": [
+            "observe_media_identify_extension(#media_identify_extension{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_viewer": {
+        "scope": "erlang",
+        "description": "media_viewer",
+        "prefix": "obs_media_viewer",
+        "body": [
+            "observe_media_viewer(#media_viewer{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "media_stillimage": {
+        "scope": "erlang",
+        "description": "media_stillimage",
+        "prefix": "obs_media_stillimage",
+        "body": [
+            "observe_media_stillimage(#media_stillimage{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "survey_get_handlers": {
+        "scope": "erlang",
+        "description": "survey_get_handlers",
+        "prefix": "obs_survey_get_handlers",
+        "body": [
+            "observe_survey_get_handlers(#survey_get_handlers{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "survey_submit": {
+        "scope": "erlang",
+        "description": "survey_submit",
+        "prefix": "obs_survey_submit",
+        "body": [
+            "observe_survey_submit(#survey_submit{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "survey_is_allowed_results_download": {
+        "scope": "erlang",
+        "description": "survey_is_allowed_results_download",
+        "prefix": "obs_survey_is_allowed_results_download",
+        "body": [
+            "observe_survey_is_allowed_results_download(#survey_is_allowed_results_download{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "survey_is_submit": {
+        "scope": "erlang",
+        "description": "survey_is_submit",
+        "prefix": "obs_survey_is_submit",
+        "body": [
+            "observe_survey_is_submit(#survey_is_submit{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "tkvstore_put": {
+        "scope": "erlang",
+        "description": "tkvstore_put",
+        "prefix": "obs_tkvstore_put",
+        "body": [
+            "observe_tkvstore_put(#tkvstore_put{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "tkvstore_get": {
+        "scope": "erlang",
+        "description": "tkvstore_get",
+        "prefix": "obs_tkvstore_get",
+        "body": [
+            "observe_tkvstore_get(#tkvstore_get{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "tkvstore_delete": {
+        "scope": "erlang",
+        "description": "tkvstore_delete",
+        "prefix": "obs_tkvstore_delete",
+        "body": [
+            "observe_tkvstore_delete(#tkvstore_delete{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "debug_stream": {
+        "scope": "erlang",
+        "description": "debug_stream",
+        "prefix": "obs_debug_stream",
+        "body": [
+            "observe_debug_stream(#debug_stream{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "debug": {
+        "scope": "erlang",
+        "description": "debug",
+        "prefix": "obs_debug",
+        "body": [
+            "observe_debug(#debug{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "filewatcher": {
+        "scope": "erlang",
+        "description": "filewatcher",
+        "prefix": "obs_filewatcher",
+        "body": [
+            "observe_filewatcher(#filewatcher{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "import_resource": {
+        "scope": "erlang",
+        "description": "import_resource",
+        "prefix": "obs_import_resource",
+        "body": [
+            "observe_import_resource(#import_resource{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "export_resource_content_disposition": {
+        "scope": "erlang",
+        "description": "export_resource_content_disposition",
+        "prefix": "obs_export_resource_content_disposition",
+        "body": [
+            "observe_export_resource_content_disposition(#export_resource_content_disposition{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "export_resource_visible": {
+        "scope": "erlang",
+        "description": "export_resource_visible",
+        "prefix": "obs_export_resource_visible",
+        "body": [
+            "observe_export_resource_visible(#export_resource_visible{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "export_resource_content_type": {
+        "scope": "erlang",
+        "description": "export_resource_content_type",
+        "prefix": "obs_export_resource_content_type",
+        "body": [
+            "observe_export_resource_content_type(#export_resource_content_type{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "export_resource_filename": {
+        "scope": "erlang",
+        "description": "export_resource_filename",
+        "prefix": "obs_export_resource_filename",
+        "body": [
+            "observe_export_resource_filename(#export_resource_filename{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "export_resource_header": {
+        "scope": "erlang",
+        "description": "export_resource_header",
+        "prefix": "obs_export_resource_header",
+        "body": [
+            "observe_export_resource_header(#export_resource_header{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "export_resource_data": {
+        "scope": "erlang",
+        "description": "export_resource_data",
+        "prefix": "obs_export_resource_data",
+        "body": [
+            "observe_export_resource_data(#export_resource_data{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "export_resource_encode": {
+        "scope": "erlang",
+        "description": "export_resource_encode",
+        "prefix": "obs_export_resource_encode",
+        "body": [
+            "observe_export_resource_encode(#export_resource_encode{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "export_resource_footer": {
+        "scope": "erlang",
+        "description": "export_resource_footer",
+        "prefix": "obs_export_resource_footer",
+        "body": [
+            "observe_export_resource_footer(#export_resource_footer{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "postback_notify": {
+        "scope": "erlang",
+        "description": "postback_notify",
+        "prefix": "obs_postback_notify",
+        "body": [
+            "observe_postback_notify(#postback_notify{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "postback_event": {
+        "scope": "erlang",
+        "description": "postback_event",
+        "prefix": "obs_postback_event",
+        "body": [
+            "observe_postback_event(#postback_event{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "url_fetch_options": {
+        "scope": "erlang",
+        "description": "url_fetch_options",
+        "prefix": "obs_url_fetch_options",
+        "body": [
+            "observe_url_fetch_options(#url_fetch_options{$1}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+    "middleware": {
+        "scope": "erlang",
+        "description": "middleware",
+        "prefix": "obs_middleware",
+        "body": [
+            "observe_middleware(#middleware{ on = ${1|request,welformed,handled|} }, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
+}

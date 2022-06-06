@@ -1,0 +1,62 @@
+{
+    "atom": {
+        "scope": "tpl",
+        "description": "`atom`",
+        "prefix": "atom",
+        "body": "`$0`",
+    },
+    "filter": {
+        "scope": "tpl",
+        "description": "|filter",
+        "prefix": "filter",
+        "body": "|${1|add_day,make_list,add_hour,make_value,add_month,match,add_week,max,add_year,md5,after,member,append,min,as_atom,minmax,before,ne_day,brlinebreaks,nthtail,capfirst,parse_url,center,pickle,chunk,pprint,content_type_label,rand,content_type_urls,random,datediff,randomize,date,range,date_range,replace_args,element,replace,embedded_media,reversed,eq_day,rjust,escape_check,round,escape,sanitize_html,escape_ical,sanitize_url,escapejs,sha1,escapejson,show_media,escape_link,slice,escapexml,slugify,exclude,sort,filesizeformat,split,filter,split_in,first,stringify,fix_ampersands,striptags,flatten_value,sub_day,force_escape,sub_hour,format_duration,sub_month,format_integer,sub_week,format_number,sub_year,format_price,summary,group_by,tail,group_firstchar,timesince,group_title_firstchar,to_binary,if,toc,if_undefined,to_integer,index_of,to_json,in_future,tokens,in_past,to_name,insert,trans_filled,is_a,trim,is_defined,truncate,is_even,truncate_html,is_list,unescape,is_not_a,upper,is_number,url_abs,is_site_url,urlencode,is_undefined,url,is_visible,urlize,join,utc,last,vsplit_in,length,without_embedded_media,linebreaksbr,without,ljust,yesno,lower|}"
+    },
+    "map": {
+        "scope": "tpl",
+        "description": "%{ foo: bar }",
+        "prefix": "map",
+        "body": "%{ $1: $0 }",
+    },
+    "tag": {
+        "scope": "tpl",
+        "description": "{% tag %}",
+        "prefix": "tag",
+        "body": "{% ${1|autoescape,endautoescape,block,endblock,button,cache,endcache,call,catinclude,chart_pie,chart_pie3d,comment,endcomment,cycle,debug,draggable,droppable,elif,elseif,extends,filter,endfilter,for,endfor,google_chart,if,endif,ifequal,endifequal,ifnotequal,endifnotequal,image,image_data_url,image_url,include,inherit,inplace_textbox,javascript,endjavascript,lazy,lib,live,load,loremipsum,mailinglist_subscribe,media,menu,now,overrules,pager,poll,print,raw,endraw,script,sortable,sorter,spaceless,endspaceless,spinner,tabs,trans,translate,url,validate,wire,wire_args,with,endwith,worker|} %}",
+    },
+    "tag_all": {
+        "scope": "tpl",
+        "description": "{% all tag %}",
+        "prefix": "tag",
+        "body": "{% all ${1|catinclude,include|} %}",
+    },
+    "translate": {
+        "scope": "tpl",
+        "description": "{_ translate _}",
+        "prefix": "translate",
+        "body": "{_ $0 _}"
+    },
+    "variable": {
+        "scope": "tpl",
+        "description": "{{ var }}",
+        "prefix": "variable",
+        "body": "{{ $0 }}",
+    },
+    "global_vars": {
+        "scope": "tpl",
+        "description": "global_vars",
+        "prefix": "global_vars",
+        "body": "${0|zotonic_version,zotonic_dispatch,zotonic_dispatch_path,zotonic_dispatch_path_rewrite,z_language,q,now,m,true,false,undefined|}",
+    },
+    "icon": {
+        "scope": "tpl",
+        "description": "icon",
+        "prefix": "icon",
+        "body": "<span class=\"z-icon z-icon-${1|cross,cross-circle,drag,edit,facebook,google-plus,help,help-circle,info-circle,instagram,linkedin,logo-z,logo,minus,minus-circle,off,ok,ok-circle,plus,plus-circle,twitter,user|}\">$0</span>"
+    },
+    "icon_zotonic": {
+        "scope": "tpl",
+        "description": "icon",
+        "prefix": "icon",
+        "body": "<span class=\"z-icon zotonic-logo\">$0</span>"
+    },
+}
