@@ -100,6 +100,10 @@
 			},
 			{
 				"language": "erlang",
+				"path": "./snippets/erlang-stuff.code-snippets"
+			},
+			{
+				"language": "erlang",
 				"path": "./snippets/erlang-observers.code-snippets"
 			}
 		]

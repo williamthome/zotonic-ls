@@ -1,0 +1,38 @@
+{
+    "event_postback_args": {
+        "scope": "erlang",
+        "description": "event_postback",
+        "prefix": "event_postback",
+        "body": [
+            "event(#postback{message={$1, Args}}, Context) ->",
+            "\t${0:Context}."
+        ],
+    },
+    "event_postback": {
+        "scope": "erlang",
+        "description": "event_postback",
+        "prefix": "event_postback",
+        "body": [
+            "event(#postback{message=$1, trigger=$2, target=$2}, Context) ->",
+            "\t${0:Context}."
+        ],
+    },
+    "event_submit_args": {
+        "scope": "erlang",
+        "description": "event_submit",
+        "prefix": "event_submit",
+        "body": [
+            "event(#submit{message={$1, Args}}, Context) ->",
+            "\t${0:Context}."
+        ],
+    },
+    "event_submit": {
+        "scope": "erlang",
+        "description": "event_submit",
+        "prefix": "event_submit",
+        "body": [
+            "event(#submit{message=$1, trigger=$2, target=$2}, Context) ->",
+            "\t${0:Context}."
+        ],
+    },
+}
