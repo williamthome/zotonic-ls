@@ -249,6 +249,12 @@
         "prefix": "print",
         "body": "{% print $0 %}"
     },
+    "print_req": {
+        "scope": "tpl",
+        "description": "{% print %}",
+        "prefix": "print_req",
+        "body": "{% print m.req|make_list %}"
+    },
     "raw": {
         "scope": "tpl",
         "description": "{% raw %}",

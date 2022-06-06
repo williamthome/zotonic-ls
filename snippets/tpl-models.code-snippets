@@ -1,0 +1,434 @@
+{
+    "m_acl": {
+        "scope": "tpl",
+        "description": "m_acl",
+        "prefix": "m_acl",
+        "body": "m.acl.${1|user,is_admin,is_allowed,authenticated|}"
+    },
+    "m_acl_is_allowed": {
+        "scope": "tpl",
+        "description": "m_acl",
+        "prefix": "m_acl",
+        "body": "m.acl.is_allowed.${1|use,admin,view,delete,update,insert,link|}."
+    },
+    "m_acl_authenticated": {
+        "scope": "tpl",
+        "description": "m_acl",
+        "prefix": "m_acl",
+        "body": "m.acl.authenticated.${1|use,admin,view,delete,update,insert,link|}."
+    },
+    "m_acl_rule": {
+        "scope": "tpl",
+        "description": "m_acl_rule",
+        "prefix": "m_acl_rule",
+        "body": "m.acl_rule"
+    },
+    "m_acl_user_group": {
+        "scope": "tpl",
+        "description": "m_acl_user_group",
+        "prefix": "m_acl_user_group",
+        "body": "m.acl_user_group"
+    },
+    "m_admin": {
+        "scope": "tpl",
+        "description": "m_admin",
+        "prefix": "m_admin",
+        "body": "m.admin"
+    },
+    "m_admin_blocks": {
+        "scope": "tpl",
+        "description": "m_admin_blocks",
+        "prefix": "m_admin_blocks",
+        "body": "m.admin_blocks"
+    },
+    "m_admin_config": {
+        "scope": "tpl",
+        "description": "m_admin_config",
+        "prefix": "m_admin_config",
+        "body": "m.admin_config"
+    },
+    "m_admin_identity": {
+        "scope": "tpl",
+        "description": "m_admin_identity",
+        "prefix": "m_admin_identity",
+        "body": "m.admin_identity"
+    },
+    "m_admin_menu": {
+        "scope": "tpl",
+        "description": "m_admin_menu",
+        "prefix": "m_admin_menu",
+        "body": "m.admin_menu"
+    },
+    "m_admin_status": {
+        "scope": "tpl",
+        "description": "m_admin_status",
+        "prefix": "m_admin_status",
+        "body": "m.admin_status"
+    },
+    "m_auth2fa": {
+        "scope": "tpl",
+        "description": "m_auth2fa",
+        "prefix": "m_auth2fa",
+        "body": "m.auth2fa"
+    },
+    "m_authentication": {
+        "scope": "tpl",
+        "description": "m_authentication",
+        "prefix": "m_authentication",
+        "body": "m.authentication"
+    },
+    "m_backup": {
+        "scope": "tpl",
+        "description": "m_backup",
+        "prefix": "m_backup",
+        "body": "m.backup"
+    },
+    "m_backup_revision": {
+        "scope": "tpl",
+        "description": "m_backup_revision",
+        "prefix": "m_backup_revision",
+        "body": "m.backup_revision"
+    },
+    "m_category_complete": {
+        "scope": "tpl",
+        "description": "m_category",
+        "prefix": "m_category",
+        "body": "m.category.${1|tree,tree2,tree_flat,tree_flat_meta|}"
+    },
+    "m_category_single": {
+        "scope": "tpl",
+        "description": "m_category",
+        "prefix": "m_category",
+        "body": "m.category.$1.${2|tree,tree1,tree2,tree_flat,path,is_a,image,parent_id,nr,level,left,right,name,path|}"
+    },
+    "m_category_single_id": {
+        "scope": "tpl",
+        "description": "m_category",
+        "prefix": "m_category",
+        "body": "m.category.[$1].${2|tree,tree1,tree2,tree_flat,path,is_a,image,parent_id,nr,level,left,right,name,path|}"
+    },
+    "m_client_local_storage": {
+        "scope": "tpl",
+        "description": "m_client_local_storage",
+        "prefix": "m_client_local_storage",
+        "body": "m.client_local_storage"
+    },
+    "m_client_session_storage": {
+        "scope": "tpl",
+        "description": "m_client_session_storage",
+        "prefix": "m_client_session_storage",
+        "body": "m.client_session_storage"
+    },
+    "m_comment": {
+        "scope": "tpl",
+        "description": "m_comment",
+        "prefix": "m_comment",
+        "body": "m.comment"
+    },
+    "m_config": {
+        "scope": "tpl",
+        "description": "m_config",
+        "prefix": "m_config",
+        "body": "m.config"
+    },
+    "m_content_group": {
+        "scope": "tpl",
+        "description": "m_content_group",
+        "prefix": "m_content_group",
+        "body": "m.content_group"
+    },
+    "m_custom_redirect": {
+        "scope": "tpl",
+        "description": "m_custom_redirect",
+        "prefix": "m_custom_redirect",
+        "body": "m.custom_redirect"
+    },
+    "m_development": {
+        "scope": "tpl",
+        "description": "m_development",
+        "prefix": "m_development",
+        "body": "m.development"
+    },
+    "m_edge": {
+        "scope": "tpl",
+        "description": "m_edge",
+        "prefix": "m_edge",
+        "body": "m.edge"
+    },
+    "m_editor_tinymce": {
+        "scope": "tpl",
+        "description": "m_editor_tinymce",
+        "prefix": "m_editor_tinymce",
+        "body": "m.editor_tinymce"
+    },
+    "m_email_dkim": {
+        "scope": "tpl",
+        "description": "m_email_dkim",
+        "prefix": "m_email_dkim",
+        "body": "m.email_dkim"
+    },
+    "m_email_receive_recipient": {
+        "scope": "tpl",
+        "description": "m_email_receive_recipient",
+        "prefix": "m_email_receive_recipient",
+        "body": "m.email_receive_recipient"
+    },
+    "m_email_status": {
+        "scope": "tpl",
+        "description": "m_email_status",
+        "prefix": "m_email_status",
+        "body": "m.email_status"
+    },
+    "m_facebook": {
+        "scope": "tpl",
+        "description": "m_facebook",
+        "prefix": "m_facebook",
+        "body": "m.facebook"
+    },
+    "m_filestore": {
+        "scope": "tpl",
+        "description": "m_filestore",
+        "prefix": "m_filestore",
+        "body": "m.filestore"
+    },
+    "m_fileuploader": {
+        "scope": "tpl",
+        "description": "m_fileuploader",
+        "prefix": "m_fileuploader",
+        "body": "m.fileuploader"
+    },
+    "m_hierarchy": {
+        "scope": "tpl",
+        "description": "m_hierarchy",
+        "prefix": "m_hierarchy",
+        "body": "m.hierarchy"
+    },
+    "m_identity": {
+        "scope": "tpl",
+        "description": "m_identity",
+        "prefix": "m_identity",
+        "body": "m.identity[$1].${2|is_user,username|}"
+    },
+    "m_image_edit": {
+        "scope": "tpl",
+        "description": "m_image_edit",
+        "prefix": "m_image_edit",
+        "body": "m.image_edit"
+    },
+    "m_import_csv_data": {
+        "scope": "tpl",
+        "description": "m_import_csv_data",
+        "prefix": "m_import_csv_data",
+        "body": "m.import_csv_data"
+    },
+    "m_l10n": {
+        "scope": "tpl",
+        "description": "m_l10n",
+        "prefix": "m_l10n",
+        "body": "m.l10n"
+    },
+    "m_linkedin": {
+        "scope": "tpl",
+        "description": "m_linkedin",
+        "prefix": "m_linkedin",
+        "body": "m.linkedin"
+    },
+    "m_log": {
+        "scope": "tpl",
+        "description": "m_log",
+        "prefix": "m_log",
+        "body": "m.log"
+    },
+    "m_log_email": {
+        "scope": "tpl",
+        "description": "m_log_email",
+        "prefix": "m_log_email",
+        "body": "m.log_email"
+    },
+    "m_log_ui": {
+        "scope": "tpl",
+        "description": "m_log_ui",
+        "prefix": "m_log_ui",
+        "body": "m.log_ui"
+    },
+    "m_mailinglist": {
+        "scope": "tpl",
+        "description": "m_mailinglist",
+        "prefix": "m_mailinglist",
+        "body": "m.mailinglist"
+    },
+    "m_media": {
+        "scope": "tpl",
+        "description": "m_media",
+        "prefix": "m_media",
+        "body": "m.media[$1].${2|filename,rootname,original_filename,mime,width,height,orientation,sha1,size,preview_filename,preview_width,preview_height,is_deletable_file,is_deletable_preview,created|}"
+    },
+    "m_microsoft": {
+        "scope": "tpl",
+        "description": "m_microsoft",
+        "prefix": "m_microsoft",
+        "body": "m.microsoft"
+    },
+    "m_modules": {
+        "scope": "tpl",
+        "description": "m_modules",
+        "prefix": "m_modules",
+        "body": "m.modules.${1|active,all|}"
+    },
+    "m_modules_active": {
+        "scope": "tpl",
+        "description": "m_modules",
+        "prefix": "m_modules_active",
+        "body": "m.modules.active.mod_"
+    },
+    "m_mqtt_ticket": {
+        "scope": "tpl",
+        "description": "m_mqtt_ticket",
+        "prefix": "m_mqtt_ticket",
+        "body": "m.mqtt_ticket"
+    },
+    "m_oauth2": {
+        "scope": "tpl",
+        "description": "m_oauth2",
+        "prefix": "m_oauth2",
+        "body": "m.oauth2"
+    },
+    "m_oauth2_consumer": {
+        "scope": "tpl",
+        "description": "m_oauth2_consumer",
+        "prefix": "m_oauth2_consumer",
+        "body": "m.oauth2_consumer"
+    },
+    "m_oauth2_service": {
+        "scope": "tpl",
+        "description": "m_oauth2_service",
+        "prefix": "m_oauth2_service",
+        "body": "m.oauth2_service"
+    },
+    "m_predicate": {
+        "scope": "tpl",
+        "description": "m_predicate",
+        "prefix": "m_predicate",
+        "body": "m.predicate.${1|all,object_category,subject_category|}"
+    },
+    "m_ratelimit": {
+        "scope": "tpl",
+        "description": "m_ratelimit",
+        "prefix": "m_ratelimit",
+        "body": "m.ratelimit"
+    },
+    "m_req": {
+        "scope": "tpl",
+        "description": "m_req",
+        "prefix": "m_req",
+        "body": "m.req.${1|method,version,peer,is_ssl,host,raw_path,path,qs,referrer,user_agent,is_crawler,req_id,headers,timezone,language|}"
+    },
+    "m_rsc": {
+        "scope": "tpl",
+        "description": "m_rsc",
+        "prefix": "m_rsc",
+        "body": "m.rsc[$1].${2|title,short_title,summary,body,date_start,date_end,name,page_path,is_page_path_multiple,page_url,page_url_abs,default_page_url,is_authoritative,uri,category_id,category,seo_noindex,slug,seo_desc,is_me,is_visible,is_editable,is_linkable,is_ingroup,exists,is_a,is_cat,is_featured,is_protected,is_dependent,is_published,publication_start,publication_end,is_published_date,visible_for,content_group_id,o,s,op,sp,predicates_edit,media,medium,depiction,image_url,image_url_abs,thumbnail_url,thumbnail_url_abs,email,website,is_website_redirect,phone,phone_alt,phone_emergency,address_street_1,address_street_2,address_city,address_postcode,address_state,address_country,mail_street_1,mail_street_2,mail_city,mail_postcode,mail_state,mail_country,name_first,name_middle,name_surname_prefix,name_surname|}"
+    },
+    "m_rsc_is_a": {
+        "scope": "tpl",
+        "description": "m_rsc_is_a",
+        "prefix": "m_rsc_is_a",
+        "body": "m.rsc[$1].is_a."
+    },
+    "m_rsc_is_cat": {
+        "scope": "tpl",
+        "description": "m_rsc_is_cat",
+        "prefix": "m_rsc_is_cat",
+        "body": "m.rsc[$1].is_cat."
+    },
+    "m_rsc_gone": {
+        "scope": "tpl",
+        "description": "m_rsc_gone",
+        "prefix": "m_rsc_gone",
+        "body": "m.rsc_gone[$1].${2|new_id,new_uri,name,uri,page_path,is_authoritative,creator_id,created,modifier_id,modified|}"
+    },
+    "m_search": {
+        "scope": "tpl",
+        "description": "m_search",
+        "prefix": "m_search",
+        "body": "m.search"
+    },
+    "m_seo": {
+        "scope": "tpl",
+        "description": "m_seo",
+        "prefix": "m_seo",
+        "body": "m.seo"
+    },
+    "m_seo_sitemap": {
+        "scope": "tpl",
+        "description": "m_seo_sitemap",
+        "prefix": "m_seo_sitemap",
+        "body": "m.seo_sitemap"
+    },
+    "m_server_storage": {
+        "scope": "tpl",
+        "description": "m_server_storage",
+        "prefix": "m_server_storage",
+        "body": "m.server_storage"
+    },
+    "m_signup": {
+        "scope": "tpl",
+        "description": "m_signup",
+        "prefix": "m_signup",
+        "body": "m.signup"
+    },
+    "m_site": {
+        "scope": "tpl",
+        "description": "m_site",
+        "prefix": "m_site",
+        "body": "m.site"
+    },
+    "m_site_update": {
+        "scope": "tpl",
+        "description": "m_site_update",
+        "prefix": "m_site_update",
+        "body": "m.site_update"
+    },
+    "m_ssl_letsencrypt": {
+        "scope": "tpl",
+        "description": "m_ssl_letsencrypt",
+        "prefix": "m_ssl_letsencrypt",
+        "body": "m.ssl_letsencrypt"
+    },
+    "m_survey": {
+        "scope": "tpl",
+        "description": "m_survey",
+        "prefix": "m_survey",
+        "body": "m.survey"
+    },
+    "m_sysconfig": {
+        "scope": "tpl",
+        "description": "m_sysconfig",
+        "prefix": "m_sysconfig",
+        "body": "m.sysconfig"
+    },
+    "m_template": {
+        "scope": "tpl",
+        "description": "m_template",
+        "prefix": "m_template",
+        "body": "m.template"
+    },
+    "m_tkvstore": {
+        "scope": "tpl",
+        "description": "m_tkvstore",
+        "prefix": "m_tkvstore",
+        "body": "m.tkvstore"
+    },
+    "m_translation": {
+        "scope": "tpl",
+        "description": "m_translation",
+        "prefix": "m_translation",
+        "body": "m.translation.${1|language,language_list,language_list_enabled|}"
+    },
+    "m_twitter": {
+        "scope": "tpl",
+        "description": "m_twitter",
+        "prefix": "m_twitter",
+        "body": "m.twitter"
+    },
+}

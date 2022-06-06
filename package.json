@@ -91,6 +91,10 @@
 				"path": "./snippets/tpl-global-vars.code-snippets"
 			},
 			{
+				"language": "tpl",
+				"path": "./snippets/tpl-models.code-snippets"
+			},
+			{
 				"language": "erlang",
 				"path": "./snippets/erlang-observers.code-snippets"
 			}
