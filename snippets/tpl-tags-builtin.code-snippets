@@ -127,7 +127,7 @@
         "scope": "tpl",
         "description": "{% if %}",
         "prefix": "if",
-        "body": "{% if %}$0{% endif %}"
+        "body": "{% if $1 %}$0{% endif %}"
     },
     "elif": {
         "scope": "tpl",
