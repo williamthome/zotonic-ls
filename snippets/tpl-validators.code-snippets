@@ -1,0 +1,80 @@
+{
+    "acceptance": {
+        "scope": "tpl",
+        "description": "acceptance",
+        "prefix": "val_acceptance",
+        "body": "{% validate id=$1 type={acceptance} %}"
+    },
+    "confirmation": {
+        "scope": "tpl",
+        "description": "confirmation",
+        "prefix": "val_confirmation",
+        "body": "{% validate id=$1 type={confirmation match=$2} %}"
+    },
+    "custom": {
+        "scope": "tpl",
+        "description": "custom",
+        "prefix": "val_custom",
+        "body": "{% validate id=$1 type={custom against=$2} %}"
+    },
+    "date": {
+        "scope": "tpl",
+        "description": "date",
+        "prefix": "val_date",
+        "body": "{% validate id=$1 type={date separator=\"${2:-}\" format=\"${3:l}\"} %}"
+    },
+    "email": {
+        "scope": "tpl",
+        "description": "email",
+        "prefix": "val_email",
+        "body": "{% validate id=$1 type={email} %}"
+    },
+    "email_unique": {
+        "scope": "tpl",
+        "description": "email_unique",
+        "prefix": "val_email_unique",
+        "body": "{% validate id=$1 type={email} type={email_unique} %}"
+    },
+    "format": {
+        "scope": "tpl",
+        "description": "format",
+        "prefix": "val_format",
+        "body": "{% validate id=$1 type={format pattern=\"$2\"} %}"
+    },
+    "length": {
+        "scope": "tpl",
+        "description": "length",
+        "prefix": "val_length",
+        "body": "{% validate id=$1 type={length ${2|is,minimum,maximum|}=$3} %}"
+    },
+    "name_unique": {
+        "scope": "tpl",
+        "description": "name_unique",
+        "prefix": "val_name_unique",
+        "body": "{% validate id=$1 type={name_unique} %}"
+    },
+    "numericality": {
+        "scope": "tpl",
+        "description": "numericality",
+        "prefix": "val_numericality",
+        "body": "{% validate id=$1 type={numericality ${2|is,minimum,maximum|}=$3} %}"
+    },
+    "postback": {
+        "scope": "tpl",
+        "description": "postback",
+        "prefix": "val_postback",
+        "body": "{% validate id=$1 type={postback event=\"$2\"} %}"
+    },
+    "presence": {
+        "scope": "tpl",
+        "description": "presence",
+        "prefix": "val_presence",
+        "body": "{% validate id=$1 type={presence} %}"
+    },
+    "username_unique": {
+        "scope": "tpl",
+        "description": "username_unique",
+        "prefix": "val_username_unique",
+        "body": "{% validate id=$1 type={username_unique} %}"
+    },
+}

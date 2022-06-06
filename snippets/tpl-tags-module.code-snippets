@@ -123,7 +123,7 @@
         "scope": "tpl",
         "description": "{% validate %}",
         "prefix": "validate",
-        "body": "{% validate id=$1 type={$0} %}"
+        "body": "{% validate id=$1 type={${2|acceptance,confirmation,custom,date,email,email_unique,format,length,name_unique,numericality,postback,presence,username_unique|}} %}"
     },
     "wire": {
         "scope": "tpl",
