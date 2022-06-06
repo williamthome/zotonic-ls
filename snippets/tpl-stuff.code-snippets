@@ -56,4 +56,16 @@
         "prefix": "global_vars",
         "body": "${0|zotonic_version,zotonic_dispatch,zotonic_dispatch_path,zotonic_dispatch_path_rewrite,z_language,q,now,m,true,false,undefined|}",
     },
+    "icon": {
+        "scope": "tpl",
+        "description": "icon",
+        "prefix": "icon",
+        "body": "<span class=\"z-icon z-icon-${1|cross,cross-circle,drag,edit,facebook,google-plus,help,help-circle,info-circle,instagram,linkedin,logo-z,logo,minus,minus-circle,off,ok,ok-circle,plus,plus-circle,twitter,user|}\">$0</span>"
+    },
+    "icon_zotonic": {
+        "scope": "tpl",
+        "description": "icon",
+        "prefix": "icon",
+        "body": "<span class=\"z-icon zotonic-logo\">$0</span>"
+    },
 }
