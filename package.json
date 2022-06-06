@@ -81,6 +81,10 @@
 			{
 				"language": "tpl",
 				"path": "./snippets/tpl-filters.code-snippets"
+			},
+			{
+				"language": "erlang",
+				"path": "./snippets/erlang-observers.code-snippets"
 			}
 		]
 	},
