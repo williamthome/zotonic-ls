@@ -131,6 +131,12 @@
         "prefix": "wire",
         "body": "{% wire $0 %}"
     },
+    "wire_submit": {
+        "scope": "tpl",
+        "description": "{% wire %}",
+        "prefix": "wire_submit",
+        "body": "{% wire type=\"submit\" id=\"$1\" postback=\"$2\" delegate=\"$3\" %}"
+    },
     "wire_args": {
         "scope": "tpl",
         "description": "{% wire_args %}",
