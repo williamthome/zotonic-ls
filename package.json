@@ -87,6 +87,10 @@
 				"path": "./snippets/tpl-actions.code-snippets"
 			},
 			{
+				"language": "tpl",
+				"path": "./snippets/tpl-global-vars.code-snippets"
+			},
+			{
 				"language": "erlang",
 				"path": "./snippets/erlang-observers.code-snippets"
 			}

@@ -5,18 +5,6 @@
         "prefix": "atom",
         "body": "`$0`",
     },
-    "true": {
-        "scope": "tpl",
-        "description": "`true`",
-        "prefix": "true",
-        "body": "`true`$0",
-    },
-    "false": {
-        "scope": "tpl",
-        "description": "`false`",
-        "prefix": "false",
-        "body": "`false`$0",
-    },
     "filter": {
         "scope": "tpl",
         "description": "|filter",
@@ -61,5 +49,11 @@
             "observe_$1(#$1{$2}, Context, _Context) ->",
             "\t${0:Context}."
         ]
+    },
+    "global_vars": {
+        "scope": "tpl",
+        "description": "global_vars",
+        "prefix": "global_vars",
+        "body": "${0|zotonic_version,zotonic_dispatch,zotonic_dispatch_path,zotonic_dispatch_path_rewrite,z_language,q,now,m,true,false,undefined|}",
     },
 }
