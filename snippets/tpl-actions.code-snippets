@@ -1,0 +1,578 @@
+{
+    "with_args": {
+        "scope": "tpl",
+        "description": "with_args",
+        "prefix": "act_with_args",
+        "body": "action={with_args$0}"
+    },
+    "admin_tasks": {
+        "scope": "tpl",
+        "description": "admin_tasks",
+        "prefix": "act_admin_tasks",
+        "body": "action={admin_tasks$0}"
+    },
+    "redirect_incat": {
+        "scope": "tpl",
+        "description": "redirect_incat",
+        "prefix": "act_redirect_incat",
+        "body": "action={redirect_incat$0}"
+    },
+    "module_rescan": {
+        "scope": "tpl",
+        "description": "module_rescan",
+        "prefix": "act_module_rescan",
+        "body": "action={module_rescan$0}"
+    },
+    "module_toggle": {
+        "scope": "tpl",
+        "description": "module_toggle",
+        "prefix": "act_module_toggle",
+        "body": "action={module_toggle$0}"
+    },
+    "backup_start": {
+        "scope": "tpl",
+        "description": "backup_start",
+        "prefix": "act_backup_start",
+        "body": "action={backup_start$0}"
+    },
+    "config_delete": {
+        "scope": "tpl",
+        "description": "config_delete",
+        "prefix": "act_config_delete",
+        "body": "action={config_delete$0}"
+    },
+    "config_toggle": {
+        "scope": "tpl",
+        "description": "config_toggle",
+        "prefix": "act_config_toggle",
+        "body": "action={config_toggle$0}"
+    },
+    "dialog_config_delete": {
+        "scope": "tpl",
+        "description": "dialog_config_delete",
+        "prefix": "act_dialog_config_delete",
+        "body": "action={dialog_config_delete$0}"
+    },
+    "dialog_config_edit": {
+        "scope": "tpl",
+        "description": "dialog_config_edit",
+        "prefix": "act_dialog_config_edit",
+        "body": "action={dialog_config_edit$0}"
+    },
+    "dialog_config_new": {
+        "scope": "tpl",
+        "description": "dialog_config_new",
+        "prefix": "act_dialog_config_new",
+        "body": "action={dialog_config_new$0}"
+    },
+    "development_templates_stream": {
+        "scope": "tpl",
+        "description": "development_templates_stream",
+        "prefix": "act_development_templates_stream",
+        "body": "action={development_templates_stream$0}"
+    },
+    "dialog": {
+        "scope": "tpl",
+        "description": "dialog",
+        "prefix": "act_dialog",
+        "body": "action={dialog$0}"
+    },
+    "dialog_open": {
+        "scope": "tpl",
+        "description": "dialog_open",
+        "prefix": "act_dialog_open",
+        "body": "action={dialog_open$0}"
+    },
+    "dialog_close": {
+        "scope": "tpl",
+        "description": "dialog_close",
+        "prefix": "act_dialog_close",
+        "body": "action={dialog_close$0}"
+    },
+    "overlay_open": {
+        "scope": "tpl",
+        "description": "overlay_open",
+        "prefix": "act_overlay_open",
+        "body": "action={overlay_open$0}"
+    },
+    "overlay_close": {
+        "scope": "tpl",
+        "description": "overlay_close",
+        "prefix": "act_overlay_close",
+        "body": "action={overlay_close$0}"
+    },
+    "add_class": {
+        "scope": "tpl",
+        "description": "add_class",
+        "prefix": "act_add_class",
+        "body": "action={add_class$0}"
+    },
+    "animate": {
+        "scope": "tpl",
+        "description": "animate",
+        "prefix": "act_animate",
+        "body": "action={animate$0}"
+    },
+    "buttonize": {
+        "scope": "tpl",
+        "description": "buttonize",
+        "prefix": "act_buttonize",
+        "body": "action={buttonize$0}"
+    },
+    "effect": {
+        "scope": "tpl",
+        "description": "effect",
+        "prefix": "act_effect",
+        "body": "action={effect$0}"
+    },
+    "fade_in": {
+        "scope": "tpl",
+        "description": "fade_in",
+        "prefix": "act_fade_in",
+        "body": "action={fade_in$0}"
+    },
+    "fade_out": {
+        "scope": "tpl",
+        "description": "fade_out",
+        "prefix": "act_fade_out",
+        "body": "action={fade_out$0}"
+    },
+    "hide": {
+        "scope": "tpl",
+        "description": "hide",
+        "prefix": "act_hide",
+        "body": "action={hide$0}"
+    },
+    "insert_after": {
+        "scope": "tpl",
+        "description": "insert_after",
+        "prefix": "act_insert_after",
+        "body": "action={insert_after$0}"
+    },
+    "insert_before": {
+        "scope": "tpl",
+        "description": "insert_before",
+        "prefix": "act_insert_before",
+        "body": "action={insert_before$0}"
+    },
+    "insert_bottom": {
+        "scope": "tpl",
+        "description": "insert_bottom",
+        "prefix": "act_insert_bottom",
+        "body": "action={insert_bottom$0}"
+    },
+    "insert_top": {
+        "scope": "tpl",
+        "description": "insert_top",
+        "prefix": "act_insert_top",
+        "body": "action={insert_top$0}"
+    },
+    "jquery_effect": {
+        "scope": "tpl",
+        "description": "jquery_effect",
+        "prefix": "act_jquery_effect",
+        "body": "action={jquery_effect$0}"
+    },
+    "mask": {
+        "scope": "tpl",
+        "description": "mask",
+        "prefix": "act_mask",
+        "body": "action={mask$0}"
+    },
+    "mask_progress": {
+        "scope": "tpl",
+        "description": "mask_progress",
+        "prefix": "act_mask_progress",
+        "body": "action={mask_progress$0}"
+    },
+    "move": {
+        "scope": "tpl",
+        "description": "move",
+        "prefix": "act_move",
+        "body": "action={move$0}"
+    },
+    "remove": {
+        "scope": "tpl",
+        "description": "remove",
+        "prefix": "act_remove",
+        "body": "action={remove$0}"
+    },
+    "remove_class": {
+        "scope": "tpl",
+        "description": "remove_class",
+        "prefix": "act_remove_class",
+        "body": "action={remove_class$0}"
+    },
+    "replace": {
+        "scope": "tpl",
+        "description": "replace",
+        "prefix": "act_replace",
+        "body": "action={replace$0}"
+    },
+    "set_class": {
+        "scope": "tpl",
+        "description": "set_class",
+        "prefix": "act_set_class",
+        "body": "action={set_class$0}"
+    },
+    "show": {
+        "scope": "tpl",
+        "description": "show",
+        "prefix": "act_show",
+        "body": "action={show$0}"
+    },
+    "slide_down": {
+        "scope": "tpl",
+        "description": "slide_down",
+        "prefix": "act_slide_down",
+        "body": "action={slide_down$0}"
+    },
+    "slide_fade_in": {
+        "scope": "tpl",
+        "description": "slide_fade_in",
+        "prefix": "act_slide_fade_in",
+        "body": "action={slide_fade_in$0}"
+    },
+    "slide_fade_out": {
+        "scope": "tpl",
+        "description": "slide_fade_out",
+        "prefix": "act_slide_fade_out",
+        "body": "action={slide_fade_out$0}"
+    },
+    "slide_toggle": {
+        "scope": "tpl",
+        "description": "slide_toggle",
+        "prefix": "act_slide_toggle",
+        "body": "action={slide_toggle$0}"
+    },
+    "slide_up": {
+        "scope": "tpl",
+        "description": "slide_up",
+        "prefix": "act_slide_up",
+        "body": "action={slide_up$0}"
+    },
+    "toggle": {
+        "scope": "tpl",
+        "description": "toggle",
+        "prefix": "act_toggle",
+        "body": "action={toggle$0}"
+    },
+    "toggle_class": {
+        "scope": "tpl",
+        "description": "toggle_class",
+        "prefix": "act_toggle_class",
+        "body": "action={toggle_class$0}"
+    },
+    "unmask": {
+        "scope": "tpl",
+        "description": "unmask",
+        "prefix": "act_unmask",
+        "body": "action={unmask$0}"
+    },
+    "update": {
+        "scope": "tpl",
+        "description": "update",
+        "prefix": "act_update",
+        "body": "action={update$0}"
+    },
+    "update_iframe": {
+        "scope": "tpl",
+        "description": "update_iframe",
+        "prefix": "act_update_iframe",
+        "body": "action={update_iframe$0}"
+    },
+    "editor_add": {
+        "scope": "tpl",
+        "description": "editor_add",
+        "prefix": "act_editor_add",
+        "body": "action={editor_add$0}"
+    },
+    "editor_remove": {
+        "scope": "tpl",
+        "description": "editor_remove",
+        "prefix": "act_editor_remove",
+        "body": "action={editor_remove$0}"
+    },
+    "zlink": {
+        "scope": "tpl",
+        "description": "zlink",
+        "prefix": "act_zlink",
+        "body": "action={zlink$0}"
+    },
+    "zmedia": {
+        "scope": "tpl",
+        "description": "zmedia",
+        "prefix": "act_zmedia",
+        "body": "action={zmedia$0}"
+    },
+    "zmedia_choose": {
+        "scope": "tpl",
+        "description": "zmedia_choose",
+        "prefix": "act_zmedia_choose",
+        "body": "action={zmedia_choose$0}"
+    },
+    "zmedia_has_chosen": {
+        "scope": "tpl",
+        "description": "zmedia_has_chosen",
+        "prefix": "act_zmedia_has_chosen",
+        "body": "action={zmedia_has_chosen$0}"
+    },
+    "notify": {
+        "scope": "tpl",
+        "description": "notify",
+        "prefix": "act_notify",
+        "body": "action={notify$0}"
+    },
+    "postback": {
+        "scope": "tpl",
+        "description": "postback",
+        "prefix": "act_postback",
+        "body": "action={postback$0}"
+    },
+    "trigger_event": {
+        "scope": "tpl",
+        "description": "trigger_event",
+        "prefix": "act_trigger_event",
+        "body": "action={trigger_event$0}"
+    },
+    "publish": {
+        "scope": "tpl",
+        "description": "publish",
+        "prefix": "act_publish",
+        "body": "action={publish$0}"
+    },
+    "disable": {
+        "scope": "tpl",
+        "description": "disable",
+        "prefix": "act_disable",
+        "body": "action={disable$0}"
+    },
+    "enable": {
+        "scope": "tpl",
+        "description": "enable",
+        "prefix": "act_enable",
+        "body": "action={enable$0}"
+    },
+    "event": {
+        "scope": "tpl",
+        "description": "event",
+        "prefix": "act_event",
+        "body": "action={event$0}"
+    },
+    "focus": {
+        "scope": "tpl",
+        "description": "focus",
+        "prefix": "act_focus",
+        "body": "action={focus$0}"
+    },
+    "form_reset": {
+        "scope": "tpl",
+        "description": "form_reset",
+        "prefix": "act_form_reset",
+        "body": "action={form_reset$0}"
+    },
+    "reset": {
+        "scope": "tpl",
+        "description": "reset",
+        "prefix": "act_reset",
+        "body": "action={reset$0}"
+    },
+    "set_value": {
+        "scope": "tpl",
+        "description": "set_value",
+        "prefix": "act_set_value",
+        "body": "action={set_value$0}"
+    },
+    "submit": {
+        "scope": "tpl",
+        "description": "submit",
+        "prefix": "act_submit",
+        "body": "action={submit$0}"
+    },
+    "typeselect": {
+        "scope": "tpl",
+        "description": "typeselect",
+        "prefix": "act_typeselect",
+        "body": "action={typeselect$0}"
+    },
+    "validation_error": {
+        "scope": "tpl",
+        "description": "validation_error",
+        "prefix": "act_validation_error",
+        "body": "action={validation_error$0}"
+    },
+    "script": {
+        "scope": "tpl",
+        "description": "script",
+        "prefix": "act_script",
+        "body": "action={script$0}"
+    },
+    "dialog_mail_page": {
+        "scope": "tpl",
+        "description": "dialog_mail_page",
+        "prefix": "act_dialog_mail_page",
+        "body": "action={dialog_mail_page$0}"
+    },
+    "dialog_mailing_page": {
+        "scope": "tpl",
+        "description": "dialog_mailing_page",
+        "prefix": "act_dialog_mailing_page",
+        "body": "action={dialog_mailing_page$0}"
+    },
+    "mailing_page_test": {
+        "scope": "tpl",
+        "description": "mailing_page_test",
+        "prefix": "act_mailing_page_test",
+        "body": "action={mailing_page_test$0}"
+    },
+    "mailinglist_confirm": {
+        "scope": "tpl",
+        "description": "mailinglist_confirm",
+        "prefix": "act_mailinglist_confirm",
+        "body": "action={mailinglist_confirm$0}"
+    },
+    "mailinglist_unsubscribe": {
+        "scope": "tpl",
+        "description": "mailinglist_unsubscribe",
+        "prefix": "act_mailinglist_unsubscribe",
+        "body": "action={mailinglist_unsubscribe$0}"
+    },
+    "alert": {
+        "scope": "tpl",
+        "description": "alert",
+        "prefix": "act_alert",
+        "body": "action={alert$0}"
+    },
+    "confirm": {
+        "scope": "tpl",
+        "description": "confirm",
+        "prefix": "act_confirm",
+        "body": "action={confirm$0}"
+    },
+    "growl": {
+        "scope": "tpl",
+        "description": "growl",
+        "prefix": "act_growl",
+        "body": "action={growl$0}"
+    },
+    "redirect": {
+        "scope": "tpl",
+        "description": "redirect",
+        "prefix": "act_redirect",
+        "body": "action={redirect$0}"
+    },
+    "reload": {
+        "scope": "tpl",
+        "description": "reload",
+        "prefix": "act_reload",
+        "body": "action={reload$0}"
+    },
+    "dialog_predicate_new": {
+        "scope": "tpl",
+        "description": "dialog_predicate_new",
+        "prefix": "act_dialog_predicate_new",
+        "body": "action={dialog_predicate_new$0}"
+    },
+    "link": {
+        "scope": "tpl",
+        "description": "link",
+        "prefix": "act_link",
+        "body": "action={link$0}"
+    },
+    "unlink": {
+        "scope": "tpl",
+        "description": "unlink",
+        "prefix": "act_unlink",
+        "body": "action={unlink$0}"
+    },
+    "delete_media": {
+        "scope": "tpl",
+        "description": "delete_media",
+        "prefix": "act_delete_media",
+        "body": "action={delete_media$0}"
+    },
+    "delete_rsc": {
+        "scope": "tpl",
+        "description": "delete_rsc",
+        "prefix": "act_delete_rsc",
+        "body": "action={delete_rsc$0}"
+    },
+    "dialog_delete_rsc": {
+        "scope": "tpl",
+        "description": "dialog_delete_rsc",
+        "prefix": "act_dialog_delete_rsc",
+        "body": "action={dialog_delete_rsc$0}"
+    },
+    "dialog_duplicate_rsc": {
+        "scope": "tpl",
+        "description": "dialog_duplicate_rsc",
+        "prefix": "act_dialog_duplicate_rsc",
+        "body": "action={dialog_duplicate_rsc$0}"
+    },
+    "dialog_edit_basics": {
+        "scope": "tpl",
+        "description": "dialog_edit_basics",
+        "prefix": "act_dialog_edit_basics",
+        "body": "action={dialog_edit_basics$0}"
+    },
+    "dialog_media_upload": {
+        "scope": "tpl",
+        "description": "dialog_media_upload",
+        "prefix": "act_dialog_media_upload",
+        "body": "action={dialog_media_upload$0}"
+    },
+    "dialog_new_rsc": {
+        "scope": "tpl",
+        "description": "dialog_new_rsc",
+        "prefix": "act_dialog_new_rsc",
+        "body": "action={dialog_new_rsc$0}"
+    },
+    "moreresults": {
+        "scope": "tpl",
+        "description": "moreresults",
+        "prefix": "act_moreresults",
+        "body": "action={moreresults$0}"
+    },
+    "template": {
+        "scope": "tpl",
+        "description": "template",
+        "prefix": "act_template",
+        "body": "action={template$0}"
+    },
+    "auth_disconnect": {
+        "scope": "tpl",
+        "description": "auth_disconnect",
+        "prefix": "act_auth_disconnect",
+        "body": "action={auth_disconnect$0}"
+    },
+    "delete_username": {
+        "scope": "tpl",
+        "description": "delete_username",
+        "prefix": "act_delete_username",
+        "body": "action={delete_username$0}"
+    },
+    "dialog_delete_username": {
+        "scope": "tpl",
+        "description": "dialog_delete_username",
+        "prefix": "act_dialog_delete_username",
+        "body": "action={dialog_delete_username$0}"
+    },
+    "dialog_set_username_password": {
+        "scope": "tpl",
+        "description": "dialog_set_username_password",
+        "prefix": "act_dialog_set_username_password",
+        "body": "action={dialog_set_username_password$0}"
+    },
+    "dialog_user_add": {
+        "scope": "tpl",
+        "description": "dialog_user_add",
+        "prefix": "act_dialog_user_add",
+        "body": "action={dialog_user_add$0}"
+    },
+    "logoff": {
+        "scope": "tpl",
+        "description": "logoff",
+        "prefix": "act_logoff",
+        "body": "action={logoff$0}"
+    },
+}
