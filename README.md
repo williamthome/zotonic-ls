@@ -2,17 +2,19 @@
 
 ## Features
 
-### [WIP] Syntax highlight
+### Syntax highlight
+### Tpl Snippets
+### Erlang Snippets
 
 ![Syntax highlight](images/zotonic-ls.v0.0.01-alpha.gif)
 
 ## Todo
 
 - Improve semantic highlight
-> *refs*:
 > * [Writing a TextMate Grammar: Some Lessons Learned](https://www.apeth.com/nonblog/stories/textmatebundle.html)
 > * [Semantic Highlight Guide](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide)
 - Snippets
+> Review arguments and tabstops
 - Template search
 - Go to definition in template
 - Zotonic docs integration
