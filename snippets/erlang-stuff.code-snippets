@@ -35,4 +35,13 @@
             "\t${0:Context}."
         ],
     },
+    "observe": {
+        "scope": "erlang",
+        "description": "observe",
+        "prefix": "observe",
+        "body": [
+            "observe_$1(#$1{$2}, Context, _Context) ->",
+            "\t${0:Context}."
+        ]
+    },
 }
