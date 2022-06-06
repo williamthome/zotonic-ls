@@ -1,699 +1,9 @@
 {
-    "add_day": {
-        "scope": "tpl",
-        "description": "|add_day",
-        "prefix": "|add_day",
-        "body": "|add_day"
-    },
-    "make_list": {
-        "scope": "tpl",
-        "description": "|make_list",
-        "prefix": "|make_list",
-        "body": "|make_list"
-    },
-    "add_hour": {
-        "scope": "tpl",
-        "description": "|add_hour",
-        "prefix": "|add_hour",
-        "body": "|add_hour"
-    },
-    "make_value": {
-        "scope": "tpl",
-        "description": "|make_value",
-        "prefix": "|make_value",
-        "body": "|make_value"
-    },
-    "add_month": {
-        "scope": "tpl",
-        "description": "|add_month",
-        "prefix": "|add_month",
-        "body": "|add_month"
-    },
-    "match": {
-        "scope": "tpl",
-        "description": "|match",
-        "prefix": "|match",
-        "body": "|match"
-    },
-    "add_week": {
-        "scope": "tpl",
-        "description": "|add_week",
-        "prefix": "|add_week",
-        "body": "|add_week"
-    },
-    "max": {
-        "scope": "tpl",
-        "description": "|max",
-        "prefix": "|max",
-        "body": "|max"
-    },
-    "add_year": {
-        "scope": "tpl",
-        "description": "|add_year",
-        "prefix": "|add_year",
-        "body": "|add_year"
-    },
-    "md5": {
-        "scope": "tpl",
-        "description": "|md5",
-        "prefix": "|md5",
-        "body": "|md5"
-    },
-    "after": {
-        "scope": "tpl",
-        "description": "|after",
-        "prefix": "|after",
-        "body": "|after"
-    },
-    "member": {
-        "scope": "tpl",
-        "description": "|member",
-        "prefix": "|member",
-        "body": "|member"
-    },
-    "append": {
-        "scope": "tpl",
-        "description": "|append",
-        "prefix": "|append",
-        "body": "|append"
-    },
-    "min": {
-        "scope": "tpl",
-        "description": "|min",
-        "prefix": "|min",
-        "body": "|min"
-    },
-    "as_atom": {
-        "scope": "tpl",
-        "description": "|as_atom",
-        "prefix": "|as_atom",
-        "body": "|as_atom"
-    },
-    "minmax": {
-        "scope": "tpl",
-        "description": "|minmax",
-        "prefix": "|minmax",
-        "body": "|minmax"
-    },
-    "before": {
-        "scope": "tpl",
-        "description": "|before",
-        "prefix": "|before",
-        "body": "|before"
-    },
-    "ne_day": {
-        "scope": "tpl",
-        "description": "|ne_day",
-        "prefix": "|ne_day",
-        "body": "|ne_day"
-    },
-    "brlinebreaks": {
-        "scope": "tpl",
-        "description": "|brlinebreaks",
-        "prefix": "|brlinebreaks",
-        "body": "|brlinebreaks"
-    },
-    "nthtail": {
-        "scope": "tpl",
-        "description": "|nthtail",
-        "prefix": "|nthtail",
-        "body": "|nthtail"
-    },
-    "capfirst": {
-        "scope": "tpl",
-        "description": "|capfirst",
-        "prefix": "|capfirst",
-        "body": "|capfirst"
-    },
-    "parse_url": {
-        "scope": "tpl",
-        "description": "|parse_url",
-        "prefix": "|parse_url",
-        "body": "|parse_url"
-    },
-    "center": {
-        "scope": "tpl",
-        "description": "|center",
-        "prefix": "|center",
-        "body": "|center"
-    },
-    "pickle": {
-        "scope": "tpl",
-        "description": "|pickle",
-        "prefix": "|pickle",
-        "body": "|pickle"
-    },
-    "chunk": {
-        "scope": "tpl",
-        "description": "|chunk",
-        "prefix": "|chunk",
-        "body": "|chunk"
-    },
-    "pprint": {
-        "scope": "tpl",
-        "description": "|pprint",
-        "prefix": "|pprint",
-        "body": "|pprint"
-    },
-    "content_type_label": {
-        "scope": "tpl",
-        "description": "|content_type_label",
-        "prefix": "|content_type_label",
-        "body": "|content_type_label"
-    },
-    "rand": {
-        "scope": "tpl",
-        "description": "|rand",
-        "prefix": "|rand",
-        "body": "|rand"
-    },
-    "content_type_urls": {
-        "scope": "tpl",
-        "description": "|content_type_urls",
-        "prefix": "|content_type_urls",
-        "body": "|content_type_urls"
-    },
-    "random": {
-        "scope": "tpl",
-        "description": "|random",
-        "prefix": "|random",
-        "body": "|random"
-    },
-    "datediff": {
-        "scope": "tpl",
-        "description": "|datediff",
-        "prefix": "|datediff",
-        "body": "|datediff"
-    },
-    "randomize": {
-        "scope": "tpl",
-        "description": "|randomize",
-        "prefix": "|randomize",
-        "body": "|randomize"
-    },
-    "date": {
-        "scope": "tpl",
-        "description": "|date",
-        "prefix": "|date",
-        "body": "|date"
-    },
-    "range": {
-        "scope": "tpl",
-        "description": "|range",
-        "prefix": "|range",
-        "body": "|range"
-    },
-    "date_range": {
-        "scope": "tpl",
-        "description": "|date_range",
-        "prefix": "|date_range",
-        "body": "|date_range"
-    },
-    "replace_args": {
-        "scope": "tpl",
-        "description": "|replace_args",
-        "prefix": "|replace_args",
-        "body": "|replace_args"
-    },
-    "element": {
-        "scope": "tpl",
-        "description": "|element",
-        "prefix": "|element",
-        "body": "|element"
-    },
-    "replace": {
-        "scope": "tpl",
-        "description": "|replace",
-        "prefix": "|replace",
-        "body": "|replace"
-    },
-    "embedded_media": {
-        "scope": "tpl",
-        "description": "|embedded_media",
-        "prefix": "|embedded_media",
-        "body": "|embedded_media"
-    },
-    "reversed": {
-        "scope": "tpl",
-        "description": "|reversed",
-        "prefix": "|reversed",
-        "body": "|reversed"
-    },
-    "eq_day": {
-        "scope": "tpl",
-        "description": "|eq_day",
-        "prefix": "|eq_day",
-        "body": "|eq_day"
-    },
-    "rjust": {
-        "scope": "tpl",
-        "description": "|rjust",
-        "prefix": "|rjust",
-        "body": "|rjust"
-    },
-    "escape_check": {
-        "scope": "tpl",
-        "description": "|escape_check",
-        "prefix": "|escape_check",
-        "body": "|escape_check"
-    },
-    "round": {
-        "scope": "tpl",
-        "description": "|round",
-        "prefix": "|round",
-        "body": "|round"
-    },
-    "escape": {
-        "scope": "tpl",
-        "description": "|escape",
-        "prefix": "|escape",
-        "body": "|escape"
-    },
-    "sanitize_html": {
-        "scope": "tpl",
-        "description": "|sanitize_html",
-        "prefix": "|sanitize_html",
-        "body": "|sanitize_html"
-    },
-    "escape_ical": {
-        "scope": "tpl",
-        "description": "|escape_ical",
-        "prefix": "|escape_ical",
-        "body": "|escape_ical"
-    },
-    "sanitize_url": {
-        "scope": "tpl",
-        "description": "|sanitize_url",
-        "prefix": "|sanitize_url",
-        "body": "|sanitize_url"
-    },
-    "escapejs": {
-        "scope": "tpl",
-        "description": "|escapejs",
-        "prefix": "|escapejs",
-        "body": "|escapejs"
-    },
-    "sha1": {
-        "scope": "tpl",
-        "description": "|sha1",
-        "prefix": "|sha1",
-        "body": "|sha1"
-    },
-    "escapejson": {
-        "scope": "tpl",
-        "description": "|escapejson",
-        "prefix": "|escapejson",
-        "body": "|escapejson"
-    },
-    "show_media": {
-        "scope": "tpl",
-        "description": "|show_media",
-        "prefix": "|show_media",
-        "body": "|show_media"
-    },
-    "escape_link": {
-        "scope": "tpl",
-        "description": "|escape_link",
-        "prefix": "|escape_link",
-        "body": "|escape_link"
-    },
-    "slice": {
-        "scope": "tpl",
-        "description": "|slice",
-        "prefix": "|slice",
-        "body": "|slice"
-    },
-    "escapexml": {
-        "scope": "tpl",
-        "description": "|escapexml",
-        "prefix": "|escapexml",
-        "body": "|escapexml"
-    },
-    "slugify": {
-        "scope": "tpl",
-        "description": "|slugify",
-        "prefix": "|slugify",
-        "body": "|slugify"
-    },
-    "exclude": {
-        "scope": "tpl",
-        "description": "|exclude",
-        "prefix": "|exclude",
-        "body": "|exclude"
-    },
-    "sort": {
-        "scope": "tpl",
-        "description": "|sort",
-        "prefix": "|sort",
-        "body": "|sort"
-    },
-    "filesizeformat": {
-        "scope": "tpl",
-        "description": "|filesizeformat",
-        "prefix": "|filesizeformat",
-        "body": "|filesizeformat"
-    },
-    "split": {
-        "scope": "tpl",
-        "description": "|split",
-        "prefix": "|split",
-        "body": "|split"
-    },
-    "filter": {
-        "scope": "tpl",
-        "description": "|filter",
-        "prefix": "|filter",
-        "body": "|filter"
-    },
-    "split_in": {
-        "scope": "tpl",
-        "description": "|split_in",
-        "prefix": "|split_in",
-        "body": "|split_in"
-    },
     "first": {
         "scope": "tpl",
         "description": "|first",
         "prefix": "|first",
         "body": "|first"
-    },
-    "stringify": {
-        "scope": "tpl",
-        "description": "|stringify",
-        "prefix": "|stringify",
-        "body": "|stringify"
-    },
-    "fix_ampersands": {
-        "scope": "tpl",
-        "description": "|fix_ampersands",
-        "prefix": "|fix_ampersands",
-        "body": "|fix_ampersands"
-    },
-    "striptags": {
-        "scope": "tpl",
-        "description": "|striptags",
-        "prefix": "|striptags",
-        "body": "|striptags"
-    },
-    "flatten_value": {
-        "scope": "tpl",
-        "description": "|flatten_value",
-        "prefix": "|flatten_value",
-        "body": "|flatten_value"
-    },
-    "sub_day": {
-        "scope": "tpl",
-        "description": "|sub_day",
-        "prefix": "|sub_day",
-        "body": "|sub_day"
-    },
-    "force_escape": {
-        "scope": "tpl",
-        "description": "|force_escape",
-        "prefix": "|force_escape",
-        "body": "|force_escape"
-    },
-    "sub_hour": {
-        "scope": "tpl",
-        "description": "|sub_hour",
-        "prefix": "|sub_hour",
-        "body": "|sub_hour"
-    },
-    "format_duration": {
-        "scope": "tpl",
-        "description": "|format_duration",
-        "prefix": "|format_duration",
-        "body": "|format_duration"
-    },
-    "sub_month": {
-        "scope": "tpl",
-        "description": "|sub_month",
-        "prefix": "|sub_month",
-        "body": "|sub_month"
-    },
-    "format_integer": {
-        "scope": "tpl",
-        "description": "|format_integer",
-        "prefix": "|format_integer",
-        "body": "|format_integer"
-    },
-    "sub_week": {
-        "scope": "tpl",
-        "description": "|sub_week",
-        "prefix": "|sub_week",
-        "body": "|sub_week"
-    },
-    "format_number": {
-        "scope": "tpl",
-        "description": "|format_number",
-        "prefix": "|format_number",
-        "body": "|format_number"
-    },
-    "sub_year": {
-        "scope": "tpl",
-        "description": "|sub_year",
-        "prefix": "|sub_year",
-        "body": "|sub_year"
-    },
-    "format_price": {
-        "scope": "tpl",
-        "description": "|format_price",
-        "prefix": "|format_price",
-        "body": "|format_price"
-    },
-    "summary": {
-        "scope": "tpl",
-        "description": "|summary",
-        "prefix": "|summary",
-        "body": "|summary"
-    },
-    "group_by": {
-        "scope": "tpl",
-        "description": "|group_by",
-        "prefix": "|group_by",
-        "body": "|group_by"
-    },
-    "tail": {
-        "scope": "tpl",
-        "description": "|tail",
-        "prefix": "|tail",
-        "body": "|tail"
-    },
-    "group_firstchar": {
-        "scope": "tpl",
-        "description": "|group_firstchar",
-        "prefix": "|group_firstchar",
-        "body": "|group_firstchar"
-    },
-    "timesince": {
-        "scope": "tpl",
-        "description": "|timesince",
-        "prefix": "|timesince",
-        "body": "|timesince"
-    },
-    "group_title_firstchar": {
-        "scope": "tpl",
-        "description": "|group_title_firstchar",
-        "prefix": "|group_title_firstchar",
-        "body": "|group_title_firstchar"
-    },
-    "to_binary": {
-        "scope": "tpl",
-        "description": "|to_binary",
-        "prefix": "|to_binary",
-        "body": "|to_binary"
-    },
-    "if": {
-        "scope": "tpl",
-        "description": "|if",
-        "prefix": "|if",
-        "body": "|if"
-    },
-    "toc": {
-        "scope": "tpl",
-        "description": "|toc",
-        "prefix": "|toc",
-        "body": "|toc"
-    },
-    "if_undefined": {
-        "scope": "tpl",
-        "description": "|if_undefined",
-        "prefix": "|if_undefined",
-        "body": "|if_undefined"
-    },
-    "to_integer": {
-        "scope": "tpl",
-        "description": "|to_integer",
-        "prefix": "|to_integer",
-        "body": "|to_integer"
-    },
-    "index_of": {
-        "scope": "tpl",
-        "description": "|index_of",
-        "prefix": "|index_of",
-        "body": "|index_of"
-    },
-    "to_json": {
-        "scope": "tpl",
-        "description": "|to_json",
-        "prefix": "|to_json",
-        "body": "|to_json"
-    },
-    "in_future": {
-        "scope": "tpl",
-        "description": "|in_future",
-        "prefix": "|in_future",
-        "body": "|in_future"
-    },
-    "tokens": {
-        "scope": "tpl",
-        "description": "|tokens",
-        "prefix": "|tokens",
-        "body": "|tokens"
-    },
-    "in_past": {
-        "scope": "tpl",
-        "description": "|in_past",
-        "prefix": "|in_past",
-        "body": "|in_past"
-    },
-    "to_name": {
-        "scope": "tpl",
-        "description": "|to_name",
-        "prefix": "|to_name",
-        "body": "|to_name"
-    },
-    "insert": {
-        "scope": "tpl",
-        "description": "|insert",
-        "prefix": "|insert",
-        "body": "|insert"
-    },
-    "trans_filled": {
-        "scope": "tpl",
-        "description": "|trans_filled",
-        "prefix": "|trans_filled",
-        "body": "|trans_filled"
-    },
-    "is_a": {
-        "scope": "tpl",
-        "description": "|is_a",
-        "prefix": "|is_a",
-        "body": "|is_a"
-    },
-    "trim": {
-        "scope": "tpl",
-        "description": "|trim",
-        "prefix": "|trim",
-        "body": "|trim"
-    },
-    "is_defined": {
-        "scope": "tpl",
-        "description": "|is_defined",
-        "prefix": "|is_defined",
-        "body": "|is_defined"
-    },
-    "truncate": {
-        "scope": "tpl",
-        "description": "|truncate",
-        "prefix": "|truncate",
-        "body": "|truncate"
-    },
-    "is_even": {
-        "scope": "tpl",
-        "description": "|is_even",
-        "prefix": "|is_even",
-        "body": "|is_even"
-    },
-    "truncate_html": {
-        "scope": "tpl",
-        "description": "|truncate_html",
-        "prefix": "|truncate_html",
-        "body": "|truncate_html"
-    },
-    "is_list": {
-        "scope": "tpl",
-        "description": "|is_list",
-        "prefix": "|is_list",
-        "body": "|is_list"
-    },
-    "unescape": {
-        "scope": "tpl",
-        "description": "|unescape",
-        "prefix": "|unescape",
-        "body": "|unescape"
-    },
-    "is_not_a": {
-        "scope": "tpl",
-        "description": "|is_not_a",
-        "prefix": "|is_not_a",
-        "body": "|is_not_a"
-    },
-    "upper": {
-        "scope": "tpl",
-        "description": "|upper",
-        "prefix": "|upper",
-        "body": "|upper"
-    },
-    "is_number": {
-        "scope": "tpl",
-        "description": "|is_number",
-        "prefix": "|is_number",
-        "body": "|is_number"
-    },
-    "url_abs": {
-        "scope": "tpl",
-        "description": "|url_abs",
-        "prefix": "|url_abs",
-        "body": "|url_abs"
-    },
-    "is_site_url": {
-        "scope": "tpl",
-        "description": "|is_site_url",
-        "prefix": "|is_site_url",
-        "body": "|is_site_url"
-    },
-    "urlencode": {
-        "scope": "tpl",
-        "description": "|urlencode",
-        "prefix": "|urlencode",
-        "body": "|urlencode"
-    },
-    "is_undefined": {
-        "scope": "tpl",
-        "description": "|is_undefined",
-        "prefix": "|is_undefined",
-        "body": "|is_undefined"
-    },
-    "url": {
-        "scope": "tpl",
-        "description": "|url",
-        "prefix": "|url",
-        "body": "|url"
-    },
-    "is_visible": {
-        "scope": "tpl",
-        "description": "|is_visible",
-        "prefix": "|is_visible",
-        "body": "|is_visible"
-    },
-    "urlize": {
-        "scope": "tpl",
-        "description": "|urlize",
-        "prefix": "|urlize",
-        "body": "|urlize"
-    },
-    "join": {
-        "scope": "tpl",
-        "description": "|join",
-        "prefix": "|join",
-        "body": "|join"
-    },
-    "utc": {
-        "scope": "tpl",
-        "description": "|utc",
-        "prefix": "|utc",
-        "body": "|utc"
     },
     "last": {
         "scope": "tpl",
@@ -701,41 +11,17 @@
         "prefix": "|last",
         "body": "|last"
     },
-    "vsplit_in": {
-        "scope": "tpl",
-        "description": "|vsplit_in",
-        "prefix": "|vsplit_in",
-        "body": "|vsplit_in"
-    },
     "length": {
         "scope": "tpl",
         "description": "|length",
         "prefix": "|length",
         "body": "|length"
     },
-    "without_embedded_media": {
+    "to_binary": {
         "scope": "tpl",
-        "description": "|without_embedded_media",
-        "prefix": "|without_embedded_media",
-        "body": "|without_embedded_media"
-    },
-    "linebreaksbr": {
-        "scope": "tpl",
-        "description": "|linebreaksbr",
-        "prefix": "|linebreaksbr",
-        "body": "|linebreaksbr"
-    },
-    "without": {
-        "scope": "tpl",
-        "description": "|without",
-        "prefix": "|without",
-        "body": "|without"
-    },
-    "ljust": {
-        "scope": "tpl",
-        "description": "|ljust",
-        "prefix": "|ljust",
-        "body": "|ljust"
+        "description": "|to_binary",
+        "prefix": "|to_binary",
+        "body": "|to_binary"
     },
     "yesno": {
         "scope": "tpl",
@@ -743,10 +29,910 @@
         "prefix": "|yesno",
         "body": "|yesno"
     },
+    "add_hour": {
+        "scope": "tpl",
+        "description": "|add_hour",
+        "prefix": "|add_hour",
+        "body": "|add_hour"
+    },
+    "add_day": {
+        "scope": "tpl",
+        "description": "|add_day",
+        "prefix": "|add_day",
+        "body": "|add_day"
+    },
+    "add_month": {
+        "scope": "tpl",
+        "description": "|add_month",
+        "prefix": "|add_month",
+        "body": "|add_month"
+    },
+    "add_week": {
+        "scope": "tpl",
+        "description": "|add_week",
+        "prefix": "|add_week",
+        "body": "|add_week"
+    },
+    "add_year": {
+        "scope": "tpl",
+        "description": "|add_year",
+        "prefix": "|add_year",
+        "body": "|add_year"
+    },
+    "date": {
+        "scope": "tpl",
+        "description": "|date",
+        "prefix": "|date",
+        "body": "|date"
+    },
+    "date_range": {
+        "scope": "tpl",
+        "description": "|date_range",
+        "prefix": "|date_range",
+        "body": "|date_range"
+    },
+    "datediff": {
+        "scope": "tpl",
+        "description": "|datediff",
+        "prefix": "|datediff",
+        "body": "|datediff"
+    },
+    "eq_day": {
+        "scope": "tpl",
+        "description": "|eq_day",
+        "prefix": "|eq_day",
+        "body": "|eq_day"
+    },
+    "in_future": {
+        "scope": "tpl",
+        "description": "|in_future",
+        "prefix": "|in_future",
+        "body": "|in_future"
+    },
+    "in_past": {
+        "scope": "tpl",
+        "description": "|in_past",
+        "prefix": "|in_past",
+        "body": "|in_past"
+    },
+    "ne_day": {
+        "scope": "tpl",
+        "description": "|ne_day",
+        "prefix": "|ne_day",
+        "body": "|ne_day"
+    },
+    "sub_hour": {
+        "scope": "tpl",
+        "description": "|sub_hour",
+        "prefix": "|sub_hour",
+        "body": "|sub_hour"
+    },
+    "sub_day": {
+        "scope": "tpl",
+        "description": "|sub_day",
+        "prefix": "|sub_day",
+        "body": "|sub_day"
+    },
+    "sub_month": {
+        "scope": "tpl",
+        "description": "|sub_month",
+        "prefix": "|sub_month",
+        "body": "|sub_month"
+    },
+    "sub_week": {
+        "scope": "tpl",
+        "description": "|sub_week",
+        "prefix": "|sub_week",
+        "body": "|sub_week"
+    },
+    "sub_year": {
+        "scope": "tpl",
+        "description": "|sub_year",
+        "prefix": "|sub_year",
+        "body": "|sub_year"
+    },
+    "timesince": {
+        "scope": "tpl",
+        "description": "|timesince",
+        "prefix": "|timesince",
+        "body": "|timesince"
+    },
+    "utc": {
+        "scope": "tpl",
+        "description": "|utc",
+        "prefix": "|utc",
+        "body": "|utc"
+    },
+    "md5": {
+        "scope": "tpl",
+        "description": "|md5",
+        "prefix": "|md5",
+        "body": "|md5"
+    },
+    "sha1": {
+        "scope": "tpl",
+        "description": "|sha1",
+        "prefix": "|sha1",
+        "body": "|sha1"
+    },
+    "brlinebreaks": {
+        "scope": "tpl",
+        "description": "|brlinebreaks",
+        "prefix": "|brlinebreaks",
+        "body": "|brlinebreaks"
+    },
+    "escape": {
+        "scope": "tpl",
+        "description": "|escape",
+        "prefix": "|escape",
+        "body": "|escape"
+    },
+    "escape_check": {
+        "scope": "tpl",
+        "description": "|escape_check",
+        "prefix": "|escape_check",
+        "body": "|escape_check"
+    },
+    "escape_ical": {
+        "scope": "tpl",
+        "description": "|escape_ical",
+        "prefix": "|escape_ical",
+        "body": "|escape_ical"
+    },
+    "escape_link": {
+        "scope": "tpl",
+        "description": "|escape_link",
+        "prefix": "|escape_link",
+        "body": "|escape_link"
+    },
+    "escapejs": {
+        "scope": "tpl",
+        "description": "|escapejs",
+        "prefix": "|escapejs",
+        "body": "|escapejs"
+    },
+    "escapejson": {
+        "scope": "tpl",
+        "description": "|escapejson",
+        "prefix": "|escapejson",
+        "body": "|escapejson"
+    },
+    "escapexml": {
+        "scope": "tpl",
+        "description": "|escapexml",
+        "prefix": "|escapexml",
+        "body": "|escapexml"
+    },
+    "fix_ampersands": {
+        "scope": "tpl",
+        "description": "|fix_ampersands",
+        "prefix": "|fix_ampersands",
+        "body": "|fix_ampersands"
+    },
+    "force_escape": {
+        "scope": "tpl",
+        "description": "|force_escape",
+        "prefix": "|force_escape",
+        "body": "|force_escape"
+    },
+    "linebreaksbr": {
+        "scope": "tpl",
+        "description": "|linebreaksbr",
+        "prefix": "|linebreaksbr",
+        "body": "|linebreaksbr"
+    },
+    "slugify": {
+        "scope": "tpl",
+        "description": "|slugify",
+        "prefix": "|slugify",
+        "body": "|slugify"
+    },
+    "unescape": {
+        "scope": "tpl",
+        "description": "|unescape",
+        "prefix": "|unescape",
+        "body": "|unescape"
+    },
+    "urlencode": {
+        "scope": "tpl",
+        "description": "|urlencode",
+        "prefix": "|urlencode",
+        "body": "|urlencode"
+    },
+    "pickle": {
+        "scope": "tpl",
+        "description": "|pickle",
+        "prefix": "|pickle",
+        "body": "|pickle"
+    },
+    "show_media": {
+        "scope": "tpl",
+        "description": "|show_media",
+        "prefix": "|show_media",
+        "body": "|show_media"
+    },
+    "striptags": {
+        "scope": "tpl",
+        "description": "|striptags",
+        "prefix": "|striptags",
+        "body": "|striptags"
+    },
+    "truncate_html": {
+        "scope": "tpl",
+        "description": "|truncate_html",
+        "prefix": "|truncate_html",
+        "body": "|truncate_html"
+    },
+    "sanitize_html": {
+        "scope": "tpl",
+        "description": "|sanitize_html",
+        "prefix": "|sanitize_html",
+        "body": "|sanitize_html"
+    },
+    "sanitize_url": {
+        "scope": "tpl",
+        "description": "|sanitize_url",
+        "prefix": "|sanitize_url",
+        "body": "|sanitize_url"
+    },
+    "urlize": {
+        "scope": "tpl",
+        "description": "|urlize",
+        "prefix": "|urlize",
+        "body": "|urlize"
+    },
+    "embedded_media": {
+        "scope": "tpl",
+        "description": "|embedded_media",
+        "prefix": "|embedded_media",
+        "body": "|embedded_media"
+    },
+    "without_embedded_media": {
+        "scope": "tpl",
+        "description": "|without_embedded_media",
+        "prefix": "|without_embedded_media",
+        "body": "|without_embedded_media"
+    },
+    "after": {
+        "scope": "tpl",
+        "description": "|after",
+        "prefix": "|after",
+        "body": "|after"
+    },
+    "before": {
+        "scope": "tpl",
+        "description": "|before",
+        "prefix": "|before",
+        "body": "|before"
+    },
+    "chunk": {
+        "scope": "tpl",
+        "description": "|chunk",
+        "prefix": "|chunk",
+        "body": "|chunk"
+    },
+    "exclude": {
+        "scope": "tpl",
+        "description": "|exclude",
+        "prefix": "|exclude",
+        "body": "|exclude"
+    },
+    "filter": {
+        "scope": "tpl",
+        "description": "|filter",
+        "prefix": "|filter",
+        "body": "|filter"
+    },
+    "flatten_value": {
+        "scope": "tpl",
+        "description": "|flatten_value",
+        "prefix": "|flatten_value",
+        "body": "|flatten_value"
+    },
+    "group_by": {
+        "scope": "tpl",
+        "description": "|group_by",
+        "prefix": "|group_by",
+        "body": "|group_by"
+    },
+    "index_of": {
+        "scope": "tpl",
+        "description": "|index_of",
+        "prefix": "|index_of",
+        "body": "|index_of"
+    },
+    "is_list": {
+        "scope": "tpl",
+        "description": "|is_list",
+        "prefix": "|is_list",
+        "body": "|is_list"
+    },
+    "join": {
+        "scope": "tpl",
+        "description": "|join",
+        "prefix": "|join",
+        "body": "|join"
+    },
+    "make_list": {
+        "scope": "tpl",
+        "description": "|make_list",
+        "prefix": "|make_list",
+        "body": "|make_list"
+    },
+    "member": {
+        "scope": "tpl",
+        "description": "|member",
+        "prefix": "|member",
+        "body": "|member"
+    },
+    "nthtail": {
+        "scope": "tpl",
+        "description": "|nthtail",
+        "prefix": "|nthtail",
+        "body": "|nthtail"
+    },
+    "random": {
+        "scope": "tpl",
+        "description": "|random",
+        "prefix": "|random",
+        "body": "|random"
+    },
+    "randomize": {
+        "scope": "tpl",
+        "description": "|randomize",
+        "prefix": "|randomize",
+        "body": "|randomize"
+    },
+    "range": {
+        "scope": "tpl",
+        "description": "|range",
+        "prefix": "|range",
+        "body": "|range"
+    },
+    "reversed": {
+        "scope": "tpl",
+        "description": "|reversed",
+        "prefix": "|reversed",
+        "body": "|reversed"
+    },
+    "slice": {
+        "scope": "tpl",
+        "description": "|slice",
+        "prefix": "|slice",
+        "body": "|slice"
+    },
+    "sort": {
+        "scope": "tpl",
+        "description": "|sort",
+        "prefix": "|sort",
+        "body": "|sort"
+    },
+    "split": {
+        "scope": "tpl",
+        "description": "|split",
+        "prefix": "|split",
+        "body": "|split"
+    },
+    "split_in": {
+        "scope": "tpl",
+        "description": "|split_in",
+        "prefix": "|split_in",
+        "body": "|split_in"
+    },
+    "tail": {
+        "scope": "tpl",
+        "description": "|tail",
+        "prefix": "|tail",
+        "body": "|tail"
+    },
+    "vsplit_in": {
+        "scope": "tpl",
+        "description": "|vsplit_in",
+        "prefix": "|vsplit_in",
+        "body": "|vsplit_in"
+    },
+    "without": {
+        "scope": "tpl",
+        "description": "|without",
+        "prefix": "|without",
+        "body": "|without"
+    },
+    "inject_recipientdetails": {
+        "scope": "tpl",
+        "description": "|inject_recipientdetails",
+        "prefix": "|inject_recipientdetails",
+        "body": "|inject_recipientdetails"
+    },
+    "menu_flat": {
+        "scope": "tpl",
+        "description": "|menu_flat",
+        "prefix": "|menu_flat",
+        "body": "|menu_flat"
+    },
+    "menu_is_visible": {
+        "scope": "tpl",
+        "description": "|menu_is_visible",
+        "prefix": "|menu_is_visible",
+        "body": "|menu_is_visible"
+    },
+    "menu_expand": {
+        "scope": "tpl",
+        "description": "|menu_expand",
+        "prefix": "|menu_expand",
+        "body": "|menu_expand"
+    },
+    "menu_rsc": {
+        "scope": "tpl",
+        "description": "|menu_rsc",
+        "prefix": "|menu_rsc",
+        "body": "|menu_rsc"
+    },
+    "menu_subtree": {
+        "scope": "tpl",
+        "description": "|menu_subtree",
+        "prefix": "|menu_subtree",
+        "body": "|menu_subtree"
+    },
+    "menu_trail": {
+        "scope": "tpl",
+        "description": "|menu_trail",
+        "prefix": "|menu_trail",
+        "body": "|menu_trail"
+    },
+    "gravatar_code": {
+        "scope": "tpl",
+        "description": "|gravatar_code",
+        "prefix": "|gravatar_code",
+        "body": "|gravatar_code"
+    },
+    "twitter": {
+        "scope": "tpl",
+        "description": "|twitter",
+        "prefix": "|twitter",
+        "body": "|twitter"
+    },
+    "ip2country": {
+        "scope": "tpl",
+        "description": "|ip2country",
+        "prefix": "|ip2country",
+        "body": "|ip2country"
+    },
+    "ip2geo": {
+        "scope": "tpl",
+        "description": "|ip2geo",
+        "prefix": "|ip2geo",
+        "body": "|ip2geo"
+    },
+    "is_letsencrypt_valid_hostname": {
+        "scope": "tpl",
+        "description": "|is_letsencrypt_valid_hostname",
+        "prefix": "|is_letsencrypt_valid_hostname",
+        "body": "|is_letsencrypt_valid_hostname"
+    },
+    "filesizeformat": {
+        "scope": "tpl",
+        "description": "|filesizeformat",
+        "prefix": "|filesizeformat",
+        "body": "|filesizeformat"
+    },
+    "format_duration": {
+        "scope": "tpl",
+        "description": "|format_duration",
+        "prefix": "|format_duration",
+        "body": "|format_duration"
+    },
+    "format_integer": {
+        "scope": "tpl",
+        "description": "|format_integer",
+        "prefix": "|format_integer",
+        "body": "|format_integer"
+    },
+    "format_number": {
+        "scope": "tpl",
+        "description": "|format_number",
+        "prefix": "|format_number",
+        "body": "|format_number"
+    },
+    "format_price": {
+        "scope": "tpl",
+        "description": "|format_price",
+        "prefix": "|format_price",
+        "body": "|format_price"
+    },
+    "is_even": {
+        "scope": "tpl",
+        "description": "|is_even",
+        "prefix": "|is_even",
+        "body": "|is_even"
+    },
+    "is_number": {
+        "scope": "tpl",
+        "description": "|is_number",
+        "prefix": "|is_number",
+        "body": "|is_number"
+    },
+    "max": {
+        "scope": "tpl",
+        "description": "|max",
+        "prefix": "|max",
+        "body": "|max"
+    },
+    "min": {
+        "scope": "tpl",
+        "description": "|min",
+        "prefix": "|min",
+        "body": "|min"
+    },
+    "minmax": {
+        "scope": "tpl",
+        "description": "|minmax",
+        "prefix": "|minmax",
+        "body": "|minmax"
+    },
+    "rand": {
+        "scope": "tpl",
+        "description": "|rand",
+        "prefix": "|rand",
+        "body": "|rand"
+    },
+    "round": {
+        "scope": "tpl",
+        "description": "|round",
+        "prefix": "|round",
+        "body": "|round"
+    },
+    "to_integer": {
+        "scope": "tpl",
+        "description": "|to_integer",
+        "prefix": "|to_integer",
+        "body": "|to_integer"
+    },
+    "match": {
+        "scope": "tpl",
+        "description": "|match",
+        "prefix": "|match",
+        "body": "|match"
+    },
+    "replace": {
+        "scope": "tpl",
+        "description": "|replace",
+        "prefix": "|replace",
+        "body": "|replace"
+    },
+    "group_firstchar": {
+        "scope": "tpl",
+        "description": "|group_firstchar",
+        "prefix": "|group_firstchar",
+        "body": "|group_firstchar"
+    },
+    "group_title_firstchar": {
+        "scope": "tpl",
+        "description": "|group_title_firstchar",
+        "prefix": "|group_title_firstchar",
+        "body": "|group_title_firstchar"
+    },
+    "is_a": {
+        "scope": "tpl",
+        "description": "|is_a",
+        "prefix": "|is_a",
+        "body": "|is_a"
+    },
+    "is_not_a": {
+        "scope": "tpl",
+        "description": "|is_not_a",
+        "prefix": "|is_not_a",
+        "body": "|is_not_a"
+    },
+    "is_visible": {
+        "scope": "tpl",
+        "description": "|is_visible",
+        "prefix": "|is_visible",
+        "body": "|is_visible"
+    },
+    "admin_merge_diff": {
+        "scope": "tpl",
+        "description": "|admin_merge_diff",
+        "prefix": "|admin_merge_diff",
+        "body": "|admin_merge_diff"
+    },
+    "content_type_label": {
+        "scope": "tpl",
+        "description": "|content_type_label",
+        "prefix": "|content_type_label",
+        "body": "|content_type_label"
+    },
+    "content_type_urls": {
+        "scope": "tpl",
+        "description": "|content_type_urls",
+        "prefix": "|content_type_urls",
+        "body": "|content_type_urls"
+    },
+    "summary": {
+        "scope": "tpl",
+        "description": "|summary",
+        "prefix": "|summary",
+        "body": "|summary"
+    },
+    "temporary_rsc": {
+        "scope": "tpl",
+        "description": "|temporary_rsc",
+        "prefix": "|temporary_rsc",
+        "body": "|temporary_rsc"
+    },
+    "append": {
+        "scope": "tpl",
+        "description": "|append",
+        "prefix": "|append",
+        "body": "|append"
+    },
+    "capfirst": {
+        "scope": "tpl",
+        "description": "|capfirst",
+        "prefix": "|capfirst",
+        "body": "|capfirst"
+    },
+    "center": {
+        "scope": "tpl",
+        "description": "|center",
+        "prefix": "|center",
+        "body": "|center"
+    },
+    "insert": {
+        "scope": "tpl",
+        "description": "|insert",
+        "prefix": "|insert",
+        "body": "|insert"
+    },
+    "is_valid_email": {
+        "scope": "tpl",
+        "description": "|is_valid_email",
+        "prefix": "|is_valid_email",
+        "body": "|is_valid_email"
+    },
+    "ljust": {
+        "scope": "tpl",
+        "description": "|ljust",
+        "prefix": "|ljust",
+        "body": "|ljust"
+    },
+    "log_format_stack": {
+        "scope": "tpl",
+        "description": "|log_format_stack",
+        "prefix": "|log_format_stack",
+        "body": "|log_format_stack"
+    },
     "lower": {
         "scope": "tpl",
         "description": "|lower",
         "prefix": "|lower",
         "body": "|lower"
+    },
+    "replace_args": {
+        "scope": "tpl",
+        "description": "|replace_args",
+        "prefix": "|replace_args",
+        "body": "|replace_args"
+    },
+    "rjust": {
+        "scope": "tpl",
+        "description": "|rjust",
+        "prefix": "|rjust",
+        "body": "|rjust"
+    },
+    "stringify": {
+        "scope": "tpl",
+        "description": "|stringify",
+        "prefix": "|stringify",
+        "body": "|stringify"
+    },
+    "to_name": {
+        "scope": "tpl",
+        "description": "|to_name",
+        "prefix": "|to_name",
+        "body": "|to_name"
+    },
+    "toc": {
+        "scope": "tpl",
+        "description": "|toc",
+        "prefix": "|toc",
+        "body": "|toc"
+    },
+    "tokens": {
+        "scope": "tpl",
+        "description": "|tokens",
+        "prefix": "|tokens",
+        "body": "|tokens"
+    },
+    "trim": {
+        "scope": "tpl",
+        "description": "|trim",
+        "prefix": "|trim",
+        "body": "|trim"
+    },
+    "truncate": {
+        "scope": "tpl",
+        "description": "|truncate",
+        "prefix": "|truncate",
+        "body": "|truncate"
+    },
+    "upper": {
+        "scope": "tpl",
+        "description": "|upper",
+        "prefix": "|upper",
+        "body": "|upper"
+    },
+    "survey_answer_split": {
+        "scope": "tpl",
+        "description": "|survey_answer_split",
+        "prefix": "|survey_answer_split",
+        "body": "|survey_answer_split"
+    },
+    "survey_any_correct_answer": {
+        "scope": "tpl",
+        "description": "|survey_any_correct_answer",
+        "prefix": "|survey_any_correct_answer",
+        "body": "|survey_any_correct_answer"
+    },
+    "survey_any_wrong_answer": {
+        "scope": "tpl",
+        "description": "|survey_any_wrong_answer",
+        "prefix": "|survey_any_wrong_answer",
+        "body": "|survey_any_wrong_answer"
+    },
+    "survey_as_pages": {
+        "scope": "tpl",
+        "description": "|survey_as_pages",
+        "prefix": "|survey_as_pages",
+        "body": "|survey_as_pages"
+    },
+    "survey_is_stop": {
+        "scope": "tpl",
+        "description": "|survey_is_stop",
+        "prefix": "|survey_is_stop",
+        "body": "|survey_is_stop"
+    },
+    "survey_is_submit": {
+        "scope": "tpl",
+        "description": "|survey_is_submit",
+        "prefix": "|survey_is_submit",
+        "body": "|survey_is_submit"
+    },
+    "survey_prepare_matching": {
+        "scope": "tpl",
+        "description": "|survey_prepare_matching",
+        "prefix": "|survey_prepare_matching",
+        "body": "|survey_prepare_matching"
+    },
+    "survey_prepare_narrative": {
+        "scope": "tpl",
+        "description": "|survey_prepare_narrative",
+        "prefix": "|survey_prepare_narrative",
+        "body": "|survey_prepare_narrative"
+    },
+    "survey_prepare_thurstone": {
+        "scope": "tpl",
+        "description": "|survey_prepare_thurstone",
+        "prefix": "|survey_prepare_thurstone",
+        "body": "|survey_prepare_thurstone"
+    },
+    "survey_test_max_points": {
+        "scope": "tpl",
+        "description": "|survey_test_max_points",
+        "prefix": "|survey_test_max_points",
+        "body": "|survey_test_max_points"
+    },
+    "is_rtl": {
+        "scope": "tpl",
+        "description": "|is_rtl",
+        "prefix": "|is_rtl",
+        "body": "|is_rtl"
+    },
+    "language": {
+        "scope": "tpl",
+        "description": "|language",
+        "prefix": "|language",
+        "body": "|language"
+    },
+    "language_dir": {
+        "scope": "tpl",
+        "description": "|language_dir",
+        "prefix": "|language_dir",
+        "body": "|language_dir"
+    },
+    "language_sort": {
+        "scope": "tpl",
+        "description": "|language_sort",
+        "prefix": "|language_sort",
+        "body": "|language_sort"
+    },
+    "trans_filter_filled": {
+        "scope": "tpl",
+        "description": "|trans_filter_filled",
+        "prefix": "|trans_filter_filled",
+        "body": "|trans_filter_filled"
+    },
+    "element": {
+        "scope": "tpl",
+        "description": "|element",
+        "prefix": "|element",
+        "body": "|element"
+    },
+    "is_site_url": {
+        "scope": "tpl",
+        "description": "|is_site_url",
+        "prefix": "|is_site_url",
+        "body": "|is_site_url"
+    },
+    "url": {
+        "scope": "tpl",
+        "description": "|url",
+        "prefix": "|url",
+        "body": "|url"
+    },
+    "url_abs": {
+        "scope": "tpl",
+        "description": "|url_abs",
+        "prefix": "|url_abs",
+        "body": "|url_abs"
+    },
+    "parse_url": {
+        "scope": "tpl",
+        "description": "|parse_url",
+        "prefix": "|parse_url",
+        "body": "|parse_url"
+    },
+    "as_atom": {
+        "scope": "tpl",
+        "description": "|as_atom",
+        "prefix": "|as_atom",
+        "body": "|as_atom"
+    },
+    "default": {
+        "scope": "tpl",
+        "description": "|default",
+        "prefix": "|default",
+        "body": "|default"
+    },
+    "if": {
+        "scope": "tpl",
+        "description": "|if",
+        "prefix": "|if",
+        "body": "|if"
+    },
+    "if_undefined": {
+        "scope": "tpl",
+        "description": "|if_undefined",
+        "prefix": "|if_undefined",
+        "body": "|if_undefined"
+    },
+    "is_defined": {
+        "scope": "tpl",
+        "description": "|is_defined",
+        "prefix": "|is_defined",
+        "body": "|is_defined"
+    },
+    "is_undefined": {
+        "scope": "tpl",
+        "description": "|is_undefined",
+        "prefix": "|is_undefined",
+        "body": "|is_undefined"
+    },
+    "make_value": {
+        "scope": "tpl",
+        "description": "|make_value",
+        "prefix": "|make_value",
+        "body": "|make_value"
+    },
+    "pprint": {
+        "scope": "tpl",
+        "description": "|pprint",
+        "prefix": "|pprint",
+        "body": "|pprint"
+    },
+    "to_json": {
+        "scope": "tpl",
+        "description": "|to_json",
+        "prefix": "|to_json",
+        "body": "|to_json"
     },
 }
