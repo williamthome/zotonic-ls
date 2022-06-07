@@ -1,12 +1,24 @@
 # Zotonic Language Server
 
+Language server for [Zotonic](http://zotonic.com/), the Erlang Web Framework.
+
 ## Features
 
 ### Syntax highlight
-### Tpl Snippets
-### Erlang Snippets
 
-![Syntax highlight](images/zotonic-ls.v0.0.01-alpha.gif)
+Syntax highlight for Zotonic Template Language (.tpl).
+
+![Syntax highlight](images/syntax-highlight.gif)
+
+### Snippets
+
+Zotonic completion for .tpl and Erlang files.
+
+## Roadmap
+
+- Template search
+- Go to template
+- Docs integration
 
 ## Todo
 
@@ -18,6 +30,10 @@
 - Template search
 - Go to definition in template
 - Zotonic docs integration
+
+## Backers
+
+## [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/williamthome)
 
 ## Contributing
 
