@@ -117,6 +117,36 @@
         "prefix": "for",
         "body": "{% for $1 in $2 %}$0{% endfor %}"
     },
+    "for_media_in_text": {
+        "scope": "tpl",
+        "description": "{% for %} media in text",
+        "prefix": "for_media",
+        "body": [
+            "{% for media_id in id|embedded_media %}",
+            "\t{% media media_id width=${0:315} extent %}",
+            "{% endfor %}"
+        ]
+    },
+    "for_media_in_body": {
+        "scope": "tpl",
+        "description": "{% for %} media in body",
+        "prefix": "for_media",
+        "body": [
+            "{% for media_id in id.${1|body,body_extra|}|embedded_media %}",
+            "\t{% media media_id width=${0:315} extent %}",
+            "{% endfor %}"
+        ]
+    },
+    "for_without_media": {
+        "scope": "tpl",
+        "description": "{% for %} without media",
+        "prefix": "for_without_media",
+        "body": [
+            "{% for media_id in m.rsc[id].media|without_embedded_media:id %}",
+            "\t{% media media_id width=${0:315} extent %}",
+            "{% endfor %}"
+        ]
+    },
     "endfor": {
         "scope": "tpl",
         "description": "{% endfor %}",
