@@ -3,7 +3,7 @@
         "scope": "tpl",
         "description": "|first",
         "prefix": "|first",
-        "body": "|first"
+        "body": "|first:${0:1}"
     },
     "last": {
         "scope": "tpl",
@@ -27,61 +27,67 @@
         "scope": "tpl",
         "description": "|yesno",
         "prefix": "|yesno",
-        "body": "|yesno"
+        "body": "|yesno:\"$1,$2\""
+    },
+    "yesnomaybe": {
+        "scope": "tpl",
+        "description": "|yesno",
+        "prefix": "|yesno",
+        "body": "|yesno:\"$1,$2,$3\""
     },
     "add_hour": {
         "scope": "tpl",
         "description": "|add_hour",
         "prefix": "|add_hour",
-        "body": "|add_hour"
+        "body": "|add_hour:${0:1}"
     },
     "add_day": {
         "scope": "tpl",
         "description": "|add_day",
         "prefix": "|add_day",
-        "body": "|add_day"
+        "body": "|add_day:${0:1}"
     },
     "add_month": {
         "scope": "tpl",
         "description": "|add_month",
         "prefix": "|add_month",
-        "body": "|add_month"
+        "body": "|add_month:${0:1}"
     },
     "add_week": {
         "scope": "tpl",
         "description": "|add_week",
         "prefix": "|add_week",
-        "body": "|add_week"
+        "body": "|add_week:${0:1}"
     },
     "add_year": {
         "scope": "tpl",
         "description": "|add_year",
         "prefix": "|add_year",
-        "body": "|add_year"
+        "body": "|add_year:${0:1}"
     },
     "date": {
         "scope": "tpl",
         "description": "|date",
         "prefix": "|date",
-        "body": "|date"
+        "body": "|date:\"${0:Y-m-d}\""
     },
     "date_range": {
         "scope": "tpl",
         "description": "|date_range",
         "prefix": "|date_range",
-        "body": "|date_range"
+        "body": "|date_range:[$1]"
     },
     "datediff": {
         "scope": "tpl",
         "description": "|datediff",
         "prefix": "|datediff",
-        "body": "|datediff"
+        "body": "|datediff:\"${1|Y,M,D,H,I,S|}\""
     },
     "eq_day": {
         "scope": "tpl",
         "description": "|eq_day",
         "prefix": "|eq_day",
-        "body": "|eq_day"
+        "body": "|eq_day:"
     },
     "in_future": {
         "scope": "tpl",
@@ -99,37 +105,37 @@
         "scope": "tpl",
         "description": "|ne_day",
         "prefix": "|ne_day",
-        "body": "|ne_day"
+        "body": "|ne_day:"
     },
     "sub_hour": {
         "scope": "tpl",
         "description": "|sub_hour",
         "prefix": "|sub_hour",
-        "body": "|sub_hour"
+        "body": "|sub_hour:${0:1}"
     },
     "sub_day": {
         "scope": "tpl",
         "description": "|sub_day",
         "prefix": "|sub_day",
-        "body": "|sub_day"
+        "body": "|sub_day:${0:1}"
     },
     "sub_month": {
         "scope": "tpl",
         "description": "|sub_month",
         "prefix": "|sub_month",
-        "body": "|sub_month"
+        "body": "|sub_month:${0:1}"
     },
     "sub_week": {
         "scope": "tpl",
         "description": "|sub_week",
         "prefix": "|sub_week",
-        "body": "|sub_week"
+        "body": "|sub_week:${0:1}"
     },
     "sub_year": {
         "scope": "tpl",
         "description": "|sub_year",
         "prefix": "|sub_year",
-        "body": "|sub_year"
+        "body": "|sub_year:${0:1}"
     },
     "timesince": {
         "scope": "tpl",
@@ -261,7 +267,7 @@
         "scope": "tpl",
         "description": "|truncate_html",
         "prefix": "|truncate_html",
-        "body": "|truncate_html"
+        "body": "|truncate_html:${1:8}:\"${2:...}\""
     },
     "sanitize_html": {
         "scope": "tpl",
@@ -291,37 +297,37 @@
         "scope": "tpl",
         "description": "|without_embedded_media",
         "prefix": "|without_embedded_media",
-        "body": "|without_embedded_media"
+        "body": "|without_embedded_media:id"
     },
     "after": {
         "scope": "tpl",
         "description": "|after",
         "prefix": "|after",
-        "body": "|after"
+        "body": "|after:"
     },
     "before": {
         "scope": "tpl",
         "description": "|before",
         "prefix": "|before",
-        "body": "|before"
+        "body": "|before:"
     },
     "chunk": {
         "scope": "tpl",
         "description": "|chunk",
         "prefix": "|chunk",
-        "body": "|chunk"
+        "body": "|chunk:"
     },
     "exclude": {
         "scope": "tpl",
         "description": "|exclude",
         "prefix": "|exclude",
-        "body": "|exclude"
+        "body": "|exclude:`$1`"
     },
     "filter": {
         "scope": "tpl",
         "description": "|filter",
         "prefix": "|filter",
-        "body": "|filter"
+        "body": "|filter:`$1`"
     },
     "flatten_value": {
         "scope": "tpl",
@@ -333,13 +339,13 @@
         "scope": "tpl",
         "description": "|group_by",
         "prefix": "|group_by",
-        "body": "|group_by"
+        "body": "|group_by:"
     },
     "index_of": {
         "scope": "tpl",
         "description": "|index_of",
         "prefix": "|index_of",
-        "body": "|index_of"
+        "body": "|index_of:"
     },
     "is_list": {
         "scope": "tpl",
@@ -351,7 +357,13 @@
         "scope": "tpl",
         "description": "|join",
         "prefix": "|join",
-        "body": "|join"
+        "body": "|join:\"\""
+    },
+    "join_special": {
+        "scope": "tpl",
+        "description": "|join",
+        "prefix": "|join",
+        "body": "|join:\"$1\":_\"$2\""
     },
     "make_list": {
         "scope": "tpl",
@@ -363,13 +375,13 @@
         "scope": "tpl",
         "description": "|member",
         "prefix": "|member",
-        "body": "|member"
+        "body": "|member:"
     },
     "nthtail": {
         "scope": "tpl",
         "description": "|nthtail",
         "prefix": "|nthtail",
-        "body": "|nthtail"
+        "body": "|nthtail:${0:1}"
     },
     "random": {
         "scope": "tpl",
@@ -387,7 +399,7 @@
         "scope": "tpl",
         "description": "|range",
         "prefix": "|range",
-        "body": "|range"
+        "body": "|range:$1:${2:1}"
     },
     "reversed": {
         "scope": "tpl",
@@ -399,25 +411,25 @@
         "scope": "tpl",
         "description": "|slice",
         "prefix": "|slice",
-        "body": "|slice"
+        "body": "|slice:[$1,$2]"
     },
     "sort": {
         "scope": "tpl",
         "description": "|sort",
         "prefix": "|sort",
-        "body": "|sort"
+        "body": "|sort:'${1|asc,desc|}'"
     },
     "split": {
         "scope": "tpl",
         "description": "|split",
         "prefix": "|split",
-        "body": "|split"
+        "body": "|split:\"$1\""
     },
     "split_in": {
         "scope": "tpl",
         "description": "|split_in",
         "prefix": "|split_in",
-        "body": "|split_in"
+        "body": "|split_in:"
     },
     "tail": {
         "scope": "tpl",
@@ -429,13 +441,13 @@
         "scope": "tpl",
         "description": "|vsplit_in",
         "prefix": "|vsplit_in",
-        "body": "|vsplit_in"
+        "body": "|vsplit_in:"
     },
     "without": {
         "scope": "tpl",
         "description": "|without",
         "prefix": "|without",
-        "body": "|without"
+        "body": "|without:"
     },
     "inject_recipientdetails": {
         "scope": "tpl",
@@ -527,6 +539,12 @@
         "prefix": "|format_integer",
         "body": "|format_integer"
     },
+    "format_integer_fixed": {
+        "scope": "tpl",
+        "description": "|format_integer fixed",
+        "prefix": "|format_integer",
+        "body": "|format_integer:"
+    },
     "format_number": {
         "scope": "tpl",
         "description": "|format_number",
@@ -555,19 +573,19 @@
         "scope": "tpl",
         "description": "|max",
         "prefix": "|max",
-        "body": "|max"
+        "body": "|max:"
     },
     "min": {
         "scope": "tpl",
         "description": "|min",
         "prefix": "|min",
-        "body": "|min"
+        "body": "|min:"
     },
     "minmax": {
         "scope": "tpl",
         "description": "|minmax",
         "prefix": "|minmax",
-        "body": "|minmax"
+        "body": "|minmax:$1:"
     },
     "rand": {
         "scope": "tpl",
@@ -591,43 +609,55 @@
         "scope": "tpl",
         "description": "|match",
         "prefix": "|match",
-        "body": "|match"
+        "body": "|match:\"$1\""
     },
     "replace": {
         "scope": "tpl",
         "description": "|replace",
         "prefix": "|replace",
-        "body": "|replace"
+        "body": "|replace:[\"$1\", \"$2\"]"
     },
     "group_firstchar": {
         "scope": "tpl",
         "description": "|group_firstchar",
         "prefix": "|group_firstchar",
-        "body": "|group_firstchar"
+        "body": "|group_firstchar:\"$1\":${2:1}"
     },
     "group_title_firstchar": {
         "scope": "tpl",
         "description": "|group_title_firstchar",
         "prefix": "|group_title_firstchar",
-        "body": "|group_title_firstchar"
+        "body": "|group_title_firstchar:"
     },
     "is_a": {
         "scope": "tpl",
         "description": "|is_a",
         "prefix": "|is_a",
-        "body": "|is_a"
+        "body": "|is_a:\"$1\""
+    },
+    "is_a_max": {
+        "scope": "tpl",
+        "description": "|is_a max",
+        "prefix": "|is_a",
+        "body": "|is_a:\"$1\":"
     },
     "is_not_a": {
         "scope": "tpl",
         "description": "|is_not_a",
         "prefix": "|is_not_a",
-        "body": "|is_not_a"
+        "body": "|is_not_a:\"$1\""
     },
     "is_visible": {
         "scope": "tpl",
         "description": "|is_visible",
         "prefix": "|is_visible",
         "body": "|is_visible"
+    },
+    "is_visible_max": {
+        "scope": "tpl",
+        "description": "|is_visible max",
+        "prefix": "|is_visible",
+        "body": "|is_visible:"
     },
     "admin_merge_diff": {
         "scope": "tpl",
@@ -653,17 +683,23 @@
         "prefix": "|summary",
         "body": "|summary"
     },
+    "summary_max": {
+        "scope": "tpl",
+        "description": "|summary max",
+        "prefix": "|summary",
+        "body": "|summary:"
+    },
     "temporary_rsc": {
         "scope": "tpl",
         "description": "|temporary_rsc",
         "prefix": "|temporary_rsc",
-        "body": "|temporary_rsc"
+        "body": "|temporary_rsc:{props $1=$2}"
     },
     "append": {
         "scope": "tpl",
         "description": "|append",
         "prefix": "|append",
-        "body": "|append"
+        "body": "|append:\"$1\""
     },
     "capfirst": {
         "scope": "tpl",
@@ -675,13 +711,13 @@
         "scope": "tpl",
         "description": "|center",
         "prefix": "|center",
-        "body": "|center"
+        "body": "|center:"
     },
     "insert": {
         "scope": "tpl",
         "description": "|insert",
         "prefix": "|insert",
-        "body": "|insert"
+        "body": "|insert:\"$1\""
     },
     "is_valid_email": {
         "scope": "tpl",
@@ -693,7 +729,7 @@
         "scope": "tpl",
         "description": "|ljust",
         "prefix": "|ljust",
-        "body": "|ljust"
+        "body": "|ljust:"
     },
     "log_format_stack": {
         "scope": "tpl",
@@ -711,13 +747,19 @@
         "scope": "tpl",
         "description": "|replace_args",
         "prefix": "|replace_args",
-        "body": "|replace_args"
+        "body": "|replace_args:[\"$1\"$0]"
+    },
+    "replace_args_single": {
+        "scope": "tpl",
+        "description": "|replace_args single",
+        "prefix": "|replace_args",
+        "body": "|replace_args:\"$1\""
     },
     "rjust": {
         "scope": "tpl",
         "description": "|rjust",
         "prefix": "|rjust",
-        "body": "|rjust"
+        "body": "|rjust:"
     },
     "stringify": {
         "scope": "tpl",
@@ -741,7 +783,7 @@
         "scope": "tpl",
         "description": "|tokens",
         "prefix": "|tokens",
-        "body": "|tokens"
+        "body": "|tokens:\"$1\""
     },
     "trim": {
         "scope": "tpl",
@@ -753,7 +795,7 @@
         "scope": "tpl",
         "description": "|truncate",
         "prefix": "|truncate",
-        "body": "|truncate"
+        "body": "|truncate:${1:8}:\"${2:...}\""
     },
     "upper": {
         "scope": "tpl",
@@ -849,13 +891,13 @@
         "scope": "tpl",
         "description": "|trans_filter_filled",
         "prefix": "|trans_filter_filled",
-        "body": "|trans_filter_filled"
+        "body": "|trans_filter_filled:`$1`"
     },
     "element": {
         "scope": "tpl",
         "description": "|element",
         "prefix": "|element",
-        "body": "|element"
+        "body": "|element:"
     },
     "is_site_url": {
         "scope": "tpl",
@@ -891,19 +933,19 @@
         "scope": "tpl",
         "description": "|default",
         "prefix": "|default",
-        "body": "|default"
+        "body": "|default:"
     },
     "if": {
         "scope": "tpl",
         "description": "|if",
         "prefix": "|if",
-        "body": "|if"
+        "body": "|if:\"$1\":\"$2\""
     },
     "if_undefined": {
         "scope": "tpl",
         "description": "|if_undefined",
         "prefix": "|if_undefined",
-        "body": "|if_undefined"
+        "body": "|if_undefined:"
     },
     "is_defined": {
         "scope": "tpl",
