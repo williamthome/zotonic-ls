@@ -6,18 +6,26 @@ Language server for [Zotonic](http://zotonic.com/), the Erlang Web Framework.
 
 ### Syntax highlight
 
-Syntax highlight for Zotonic Template Language (.tpl).
+Syntax highlight for `Zotonic Template Language (.tpl)`.
 
 ![Syntax highlight](images/syntax-highlight.gif)
 
 ### Snippets
 
-Zotonic completion for .tpl and Erlang files.
+Zotonic completion for `.tpl` and `Erlang` files by pressing <kbd>Ctrl</kbd> + <kbd>Space</kbd>.\
+In template files use `act` prefix for [actions](http://docs.zotonic.com/en/latest/ref/actions/), `m` for [models](http://docs.zotonic.com/en/latest/ref/models/), `val` for [validators](http://docs.zotonic.com/en/latest/ref/validators/index.html#validators), `|` for [filters](http://docs.zotonic.com/en/latest/ref/filters/) and for [tags](http://docs.zotonic.com/en/latest/ref/tags/) just the tag name.\
+Also some special completions are provided, like the atoms `true`, `false` and `undefined`, `for` loops, `map` tag and more.
+
+![Snippets](images/snippets.gif)
+
+### Go to definition
+
+Navigate to files in the `.tpl` by pressing <kbd>Ctrl</kbd> + <kbd>Click</kbd> over file names.
+
+![Go to definition](images/go-to-definition.gif)
 
 ## Roadmap
 
-- Template search
-- Go to template
 - Docs integration
 
 ## Todo
