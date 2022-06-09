@@ -32,6 +32,9 @@
 	"activationEvents": [
 		"onStartupFinished"
 	],
+	"capabilities": {
+		"definitionProvider": "true"
+	},
 	"main": "./out/extension.js",
 	"contributes": {
 		"configurationDefaults": {
