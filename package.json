@@ -140,5 +140,8 @@
 		"targetPlatform": "undefined",
 		"updated": false,
 		"preRelease": false
+	},
+	"dependencies": {
+		"axios": "^0.27.2"
 	}
 }

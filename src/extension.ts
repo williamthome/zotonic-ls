@@ -1,6 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import axios from "axios";
+import config from "./config";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -70,6 +72,32 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(definitionProvider);
+
+	const hoverProvider = vscode.languages.registerHoverProvider('tpl', {
+		async provideHover(document, position, _token) {
+			const patternMatch = (pattern: RegExp) => {
+				const wordRange = document.getWordRangeAtPosition(position, pattern)
+				return !!wordRange && !wordRange.isEmpty
+					? document.getText(wordRange)
+					: undefined
+			}
+
+			const doc = config.getDoc(patternMatch)
+			if (!doc || !doc.raw) return
+
+			const response = await axios.get(doc.raw);
+			if (response.status !== 200) return
+
+			const markdown = new vscode.MarkdownString(response.data);
+			markdown.supportHtml = true;
+			markdown.isTrusted = true;
+			markdown.supportThemeIcons = true;
+
+			return new vscode.Hover(markdown);
+		}
+	});
+
+	context.subscriptions.push(hoverProvider);
 }
 
 // this method is called when your extension is deactivated
