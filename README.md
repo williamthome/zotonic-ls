@@ -6,7 +6,7 @@ Language server for [Zotonic](http://zotonic.com/), the Erlang Web Framework.
 
 ### Syntax highlight
 
-Syntax highlight for `Zotonic Template Language (.tpl)`.
+Syntax highlight for Zotonic Template Language (.tpl).
 
 ![Syntax highlight](images/syntax-highlight.gif)
 
@@ -24,20 +24,28 @@ Navigate to files in the `.tpl` by pressing <kbd>Ctrl</kbd> + <kbd>Click</kbd> o
 
 ![Go to definition](images/go-to-definition.gif)
 
-## Roadmap
+### Docs integration
 
-- Docs integration
+Zotonic documentation is displayed hovering tags, actions, filters, validators, models and translations.
+
+![Docs integration](images/docs-integration.gif)
 
 ## Todo
 
-- Improve semantic highlight
-> * [Writing a TextMate Grammar: Some Lessons Learned](https://www.apeth.com/nonblog/stories/textmatebundle.html)
-> * [Semantic Highlight Guide](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide)
-- Snippets
-> Review arguments and tabstops
-- Template search
-- Go to definition in template
-- Zotonic docs integration
+### Syntax Highlight
+
+Improve semantic highlight.\
+See:
+- [Writing a TextMate Grammar: Some Lessons Learned](https://www.apeth.com/nonblog/stories/textmatebundle.html)
+- [Semantic Highlight Guide](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide)
+
+### Snippets
+
+Review arguments and tabstops.
+
+### Docs
+
+Improve style.
 
 ## Backers
 
