@@ -3,7 +3,7 @@
 import * as vscode from 'vscode';
 import axios from "axios";
 import config from "./config";
-import { m_get, Expression, FindFile } from './utils/snippets';
+import { mGetExpressions, Expression, FindFile } from './utils/snippets';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -120,7 +120,7 @@ export function activate(context: vscode.ExtensionContext) {
 					}
 
 					const model = modelMatch[0];
-					const modelExpressionsFinder = (m: string) => m_get(findFile, m);
+					const modelExpressionsFinder = (m: string) => mGetExpressions(findFile, m);
 					const snippet = new vscode.CompletionItem(model);
 					snippet.insertText = new vscode.SnippetString(model);
 					snippet.command = {

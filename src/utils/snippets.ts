@@ -21,14 +21,14 @@ type Behaviour = "m_get" | "m_post" | "m_delete";
 
 // API
 
-export async function m_get(findFile: FindFile, model: string) {
+export async function mGetExpressions(findFile: FindFile, model: string) {
     const re = /(?<=m_get\s*\(\s*\[\s*)(\w|<|\{).*?(?=\s*(\||\]))/g;
-    return await getFileTokens("m_get", re, findFile, model);
+    return await getFileExpressions("m_get", re, findFile, model);
 }
 
 // Internal functions
 
-async function getFileTokens(
+async function getFileExpressions(
     behaviour: Behaviour,
     re: RegExp,
     findFile: FindFile,
