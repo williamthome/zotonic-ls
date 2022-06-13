@@ -96,10 +96,6 @@
 			},
 			{
 				"language": "tpl",
-				"path": "./snippets/tpl-models.code-snippets"
-			},
-			{
-				"language": "tpl",
 				"path": "./snippets/tpl-validators.code-snippets"
 			},
 			{
