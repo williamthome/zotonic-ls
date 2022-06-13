@@ -66,7 +66,7 @@ npm install
 code .
 ```
 
-Make sure you have [TSlint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) extension installed.
+Make sure you have [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension installed.
 
 ### Debugging the extension
 
