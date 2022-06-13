@@ -28,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const lastDotIndex = text.lastIndexOf(".");
 			if (lastDotIndex <= 0) { return; };
 
-			const ext = text.substring(lastDotIndex);
+			const ext = text.substring(lastDotIndex + 1);
 			if (!ext) { return; };
 
 			const lastSlashIndex = text.lastIndexOf("/");
@@ -41,20 +41,20 @@ export function activate(context: vscode.ExtensionContext) {
 			const imageLocationPattern = "**/priv/lib/images/**/";
 
 			const extLocationPattern = {
-				".tpl": tplLocationPattern,
-				".js": jsLocationPattern,
-				".css": cssLocationPattern,
-				".apng": imageLocationPattern,
-				".gif": imageLocationPattern,
-				".ico": imageLocationPattern,
-				".cur": imageLocationPattern,
-				".jpg": imageLocationPattern,
-				".jpeg": imageLocationPattern,
-				".jfif": imageLocationPattern,
-				".pjpeg": imageLocationPattern,
-				".pjp": imageLocationPattern,
-				".png": imageLocationPattern,
-				".svg": imageLocationPattern,
+				tpl: tplLocationPattern,
+				js: jsLocationPattern,
+				css: cssLocationPattern,
+				apng: imageLocationPattern,
+				gif: imageLocationPattern,
+				ico: imageLocationPattern,
+				cur: imageLocationPattern,
+				jpg: imageLocationPattern,
+				jpeg: imageLocationPattern,
+				jfif: imageLocationPattern,
+				pjpeg: imageLocationPattern,
+				pjp: imageLocationPattern,
+				png: imageLocationPattern,
+				svg: imageLocationPattern,
 			};
 
 			const locationPattern = extLocationPattern[ext as keyof typeof extLocationPattern];
