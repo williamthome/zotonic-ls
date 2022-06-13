@@ -2,7 +2,7 @@
 	"name": "zotonic-ls",
 	"displayName": "Zotonic",
 	"description": "Syntax highlight for Zotonic templates (.tpl).",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"publisher": "williamthome",
 	"license": "Apache-2.0",
 	"icon": "images/z_logo.png",
@@ -36,7 +36,12 @@
 		"definitionProvider": "true",
 		"hoverProvider": "true",
 		"completionProvider": {
-			"triggerCharacters": [ ".", "[", "{", "|" ]
+			"triggerCharacters": [
+				".",
+				"[",
+				"{",
+				"|"
+			]
 		}
 	},
 	"main": "./out/extension.js",

@@ -1,11 +1,11 @@
-import { Docs } from "../utils/docs"
+import { Docs } from "../utils/docs";
 
 export type DocsConfig = {
     docs: Docs,
     language: string,
     version: string,
     branch: string,
-}
+};
 
 const docsConfig: DocsConfig = {
     docs: {
@@ -464,6 +464,6 @@ const docsConfig: DocsConfig = {
     language: "en",
     version: "latest",
     branch: "master",
-}
+};
 
-export default docsConfig
+export default docsConfig;
