@@ -23,11 +23,11 @@ type Behaviour = "m_get" | "m_post" | "m_delete";
 
 export function behaviourFactory(findFile: FindFile) {
     return (behaviour: Behaviour) => {
-        switch(behaviour) {
+        switch (behaviour) {
             case "m_get":
                 return m_get;
             default:
-                throw(new Error(`Behaviour '${behaviour}' not implemented.`));
+                throw (new Error(`Behaviour '${behaviour}' not implemented.`));
         }
     };
 }
@@ -126,7 +126,7 @@ function parseExpressionToken(data: string) {
             }
         }
     }
-    throw(new Error(`Unexpected no match in expression token parser for data '${data}'`));
+    throw (new Error(`Unexpected no match in expression token parser for data '${data}'`));
 }
 
 function tokensToSnippet(tokens: Array<Token>) {

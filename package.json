@@ -36,7 +36,12 @@
 		"definitionProvider": "true",
 		"hoverProvider": "true",
 		"completionProvider": {
-			"triggerCharacters": [ ".", "[", "{", "|" ]
+			"triggerCharacters": [
+				".",
+				"[",
+				"{",
+				"|"
+			]
 		}
 	},
 	"main": "./out/extension.js",

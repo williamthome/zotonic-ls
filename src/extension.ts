@@ -22,18 +22,18 @@ export function activate(context: vscode.ExtensionContext) {
 	const definitionProvider = vscode.languages.registerDefinitionProvider('tpl', {
 		async provideDefinition(document, position, _token) {
 			const wordRange = document.getWordRangeAtPosition(position, /(?<=").*?(?=")/);
-			if (!wordRange || wordRange.isEmpty) {return;};
+			if (!wordRange || wordRange.isEmpty) { return; };
 
 			const text = document.getText(wordRange);
 			const lastDotIndex = text.lastIndexOf(".");
-			if (lastDotIndex <= 0) {return;};
+			if (lastDotIndex <= 0) { return; };
 
 			const ext = text.substring(lastDotIndex);
-			if (!ext) {return;};
+			if (!ext) { return; };
 
 			const lastSlashIndex = text.lastIndexOf("/");
 			const fileName = text.substring(lastSlashIndex).replace("/", "");
-			if (!fileName) {return;};
+			if (!fileName) { return; };
 
 			const tplLocationPattern = "**/priv/templates/**/";
 			const jsLocationPattern = "**/priv/lib/**/";
@@ -58,13 +58,13 @@ export function activate(context: vscode.ExtensionContext) {
 			};
 
 			const locationPattern = extLocationPattern[ext as keyof typeof extLocationPattern];
-			if (!locationPattern) {return;};
+			if (!locationPattern) { return; };
 
 			const filePattern = `${locationPattern}${fileName}`;
 			const ignorePattern = "**/_build/**";
 
 			const files = await vscode.workspace.findFiles(filePattern, ignorePattern);
-			if (!files) {return;}
+			if (!files) { return; }
 
 			return files.map(uri => new vscode.Location(
 				uri, new vscode.Position(0, 0)
@@ -84,10 +84,10 @@ export function activate(context: vscode.ExtensionContext) {
 			};
 
 			const doc = config.getDoc(patternMatch);
-			if (!doc || !doc.raw) {return;};
+			if (!doc || !doc.raw) { return; };
 
 			const response = await axios.get(doc.raw);
-			if (response.status !== 200) {return;};
+			if (response.status !== 200) { return; };
 
 			const markdown = new vscode.MarkdownString(response.data);
 			markdown.supportHtml = true;
@@ -148,7 +148,7 @@ export function activate(context: vscode.ExtensionContext) {
 				mSnippet
 			];
 		}
-	// })
+		// })
 	}, ".", "[", "{", "|");
 
 	context.subscriptions.push(completionProvider);

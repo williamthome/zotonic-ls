@@ -37,7 +37,7 @@ function maybeGenDocUri(
 ) {
     for (const doc of Object.values(docs)) {
         const token = patternMatch(doc.pattern);
-        if (!token || (doc.tokens?.length && !doc.tokens.includes(token))) {continue;};
+        if (!token || (doc.tokens?.length && !doc.tokens.includes(token))) { continue; };
         return doc.genUri(token);
     }
 }
