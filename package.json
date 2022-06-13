@@ -33,7 +33,8 @@
 		"onStartupFinished"
 	],
 	"capabilities": {
-		"definitionProvider": "true"
+		"definitionProvider": "true",
+		"hoverProvider": "true"
 	},
 	"main": "./out/extension.js",
 	"contributes": {
