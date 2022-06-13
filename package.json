@@ -38,9 +38,6 @@
 	},
 	"main": "./out/extension.js",
 	"contributes": {
-		"configurationDefaults": {
-			"editor.snippetSuggestions": "top"
-		},
 		"languages": [
 			{
 				"id": "tpl",
