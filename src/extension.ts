@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 import axios from "axios";
 import config from "./config";
+import { m_get, Expression, FindFile } from './utils/snippets';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -98,7 +99,96 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(hoverProvider);
+
+	const completionProvider = vscode.languages.registerCompletionItemProvider('tpl', {
+		async provideCompletionItems(
+			document: vscode.TextDocument,
+			position: vscode.Position,
+			_token: vscode.CancellationToken,
+			_context: vscode.CompletionContext
+		) {
+			const modelNameRe = /\bm\.(\w+)?/
+			const modelNameRange = document.getWordRangeAtPosition(position, modelNameRe)
+			if (!!modelNameRange && !modelNameRange.isEmpty) {
+				const modelsPattern = "{apps,apps_user}/**/src/models/**/m_*.erl"
+				const models = await vscode.workspace.findFiles(modelsPattern);
+				return models.reduce((arr, file) => {
+					const modelRe = /(?<=\bm_).*?(?=.erl)/
+					const modelMatch = modelRe.exec(file.fsPath)
+					if (!modelMatch || !modelMatch.length) {
+						return arr
+					}
+
+					const model = modelMatch[0]
+					const modelExpressionsFinder = (m: string) => m_get(findFile, m)
+					const snippet = new vscode.CompletionItem(model)
+					snippet.insertText = new vscode.SnippetString(model)
+					snippet.command = {
+						command: "tpl.snippet.pick",
+						title: "m_get",
+						arguments: [model, modelExpressionsFinder]
+					}
+					arr.push(snippet)
+					return arr
+				}, new Array<vscode.CompletionItem>())
+			}
+
+			const variableRe = /(?<=\[).*?(?=\])|(?<={).*?(?=})|(?<=:).*?(?=}|,)|(?<==).*?(?=(}|,|%}))/
+			const variableRange = document.getWordRangeAtPosition(position, variableRe)
+			if (!!variableRange) {
+				// TODO: Variables snippets.
+				//       It will be awesome if variables can pop up as suggestion.
+				return
+			}
+
+			const mSnippet = new vscode.CompletionItem("m")
+			mSnippet.insertText = new vscode.SnippetString("m")
+
+			return [
+				mSnippet
+			]
+		}
+	// })
+	}, ".", "[", "{", "|")
+
+	context.subscriptions.push(completionProvider)
+
+	vscode.commands.registerCommand('tpl.snippet.pick', async (model, modelExpressionsFinder) => {
+		const expressions: Array<Expression> = await modelExpressionsFinder(model)
+		if (expressions instanceof Error) {
+			await vscode.window.showErrorMessage(expressions.message)
+			return undefined
+		}
+
+		const quickPick = vscode.window.createQuickPick();
+		quickPick.items = expressions.map(({ expression: label }) => ({ label }));
+		quickPick.onDidChangeSelection(async ([{ label }]) => {
+			const token = expressions.find(token => token.expression === label)
+			if (!token) {
+				throw (new Error(`Unexpected no token match in quick pick with label '${label}'`))
+			}
+
+			await vscode.commands.executeCommand("tpl.snippet.insert", token.snippet)
+			quickPick.hide();
+		});
+		quickPick.show();
+	})
+
+	vscode.commands.registerTextEditorCommand('tpl.snippet.insert', (editor, _edit, snippet) => {
+		return editor.insertSnippet(
+			new vscode.SnippetString(snippet),
+		);
+	})
 }
 
 // this method is called when your extension is deactivated
 export function deactivate() { }
+
+// Internal functions
+
+const findFile: FindFile = async (pattern, ignorePattern = null) => {
+	const files = await vscode.workspace.findFiles(pattern, ignorePattern, 1);
+	return files.length
+		? files[0].fsPath
+		: undefined
+}
