@@ -21,17 +21,6 @@ type Behaviour = "m_get" | "m_post" | "m_delete";
 
 // API
 
-export function behaviourFactory(findFile: FindFile) {
-    return (behaviour: Behaviour) => {
-        switch (behaviour) {
-            case "m_get":
-                return m_get;
-            default:
-                throw (new Error(`Behaviour '${behaviour}' not implemented.`));
-        }
-    };
-}
-
 export async function m_get(findFile: FindFile, model: string) {
     const re = /(?<=m_get\s*\(\s*\[\s*)(\w|<|\{).*?(?=\s*(\||\]))/g;
     return await getFileTokens("m_get", re, findFile, model);
