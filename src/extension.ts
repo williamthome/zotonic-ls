@@ -148,7 +148,6 @@ export function activate(context: vscode.ExtensionContext) {
 				mSnippet
 			];
 		}
-		// })
 	}, ".", "[", "{", "|");
 
 	context.subscriptions.push(completionProvider);

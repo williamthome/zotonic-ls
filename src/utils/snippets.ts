@@ -34,13 +34,6 @@ async function getFileTokens(
     findFile: FindFile,
     model: string,
 ) {
-    // const files = await vscode.workspace.findFiles(`{apps,apps_user}/**/src/models/**/m_${model}.erl`, null, 1);
-    // if (!files.length) {
-    //     return new Error(`Could not find the model '${model}'.`)
-    // }
-
-    // const filePath = files[0].fsPath
-
     const filePath = await findFile(`{apps,apps_user}/**/src/models/**/m_${model}.erl`);
     if (!filePath) {
         return new Error(`Could not find the model '${model}'.`);
