@@ -33,13 +33,14 @@
 		"onStartupFinished"
 	],
 	"capabilities": {
-		"definitionProvider": "true"
+		"definitionProvider": "true",
+		"hoverProvider": "true",
+		"completionProvider": {
+			"triggerCharacters": [ ".", "[", "{", "|" ]
+		}
 	},
 	"main": "./out/extension.js",
 	"contributes": {
-		"configurationDefaults": {
-			"editor.snippetSuggestions": "top"
-		},
 		"languages": [
 			{
 				"id": "tpl",
@@ -92,10 +93,6 @@
 			{
 				"language": "tpl",
 				"path": "./snippets/tpl-global-vars.code-snippets"
-			},
-			{
-				"language": "tpl",
-				"path": "./snippets/tpl-models.code-snippets"
 			},
 			{
 				"language": "tpl",

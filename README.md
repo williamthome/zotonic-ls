@@ -18,6 +18,10 @@ Also some special completions are provided, like the atoms `true`, `false` and `
 
 ![Snippets](images/snippets.gif)
 
+A great help is the models snippets. Typing `m.` all models are listed and picking one shows all `m_get` possibilities.
+
+![m_get snippets](images/m_get_snippets.gif)
+
 ### Go to definition
 
 Navigate to files in the `.tpl` by pressing <kbd>Ctrl</kbd> + <kbd>Click</kbd> over file names.
@@ -66,7 +70,7 @@ npm install
 code .
 ```
 
-Make sure you have [TSlint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) extension installed.
+Make sure you have [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension installed.
 
 ### Debugging the extension
 
