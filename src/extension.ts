@@ -108,6 +108,51 @@ export function activate(context: vscode.ExtensionContext) {
 			_token: vscode.CancellationToken,
 			_context: vscode.CompletionContext
 		) {
+			const tplRe = /(?={%).*?(?:%})|(?={{).*?(?:}})|(?={#).*?(?:#})|(?={_).*?(?:_})/;
+			const tplRange = document.getWordRangeAtPosition(position, tplRe);
+			if (tplRange && !tplRange.isEmpty) {
+				const modelNameRe = /\bm\.(\w+)?/;
+				const modelNameRange = document.getWordRangeAtPosition(position, modelNameRe);
+				if (!!modelNameRange && !modelNameRange.isEmpty) {
+					const modelsPattern = "{apps,apps_user}/**/src/models/**/m_*.erl";
+					const models = await vscode.workspace.findFiles(modelsPattern);
+					return models.reduce((arr, file) => {
+						const modelRe = /(?<=\bm_).*?(?=.erl)/;
+						const modelMatch = modelRe.exec(file.fsPath);
+						if (!modelMatch || !modelMatch.length) {
+							return arr;
+						}
+
+						const model = modelMatch[0];
+						const modelExpressionsFinder = (m: string) => mGetExpressions(findFile, m);
+						const snippet = new vscode.CompletionItem(model);
+						snippet.insertText = new vscode.SnippetString(model);
+						snippet.command = {
+							command: "tpl.snippet.pick",
+							title: "m_get",
+							arguments: [model, modelExpressionsFinder]
+						};
+						arr.push(snippet);
+						return arr;
+					}, new Array<vscode.CompletionItem>());
+				}
+
+				const variableRe = /(?<=\[).*?(?=\])|(?<={).*?(?=})|(?<=:).*?(?=}|,)|(?<==).*?(?=(}|,|%}))/;
+				const variableRange = document.getWordRangeAtPosition(position, variableRe);
+				if (!!variableRange) {
+					// TODO: Variables snippets.
+					//       It will be awesome if variables can pop up as suggestion.
+					return;
+				}
+
+				const mSnippet = new vscode.CompletionItem("m");
+				mSnippet.insertText = new vscode.SnippetString("m");
+
+				return [
+					mSnippet
+				];
+			}
+
 			const isNotHtmlRe = /(?<=<\s*script.*?>).*?(?=<\/\s*script\s*>)|(?<=<\s*style.*?>).*?(?=<\/\s*style\s*>)|(?={%\s*javascript\s*%}).*?(?:{%\s*endjavascript\s*%})|(?={%\s*comment\s*%}).*?(?:{%\s*endcomment\s*%})|(?={%).*?(?:%})|(?={{).*?(?:}})|(?={#).*?(?:#})|(?={_).*?(?:_})/;
 			const isHtmlRange = !document.getWordRangeAtPosition(position, isNotHtmlRe);
 			if (isHtmlRange) {
@@ -144,46 +189,7 @@ export function activate(context: vscode.ExtensionContext) {
 				return htmlCompletionList as vscode.CompletionList;
 			}
 
-			const modelNameRe = /\bm\.(\w+)?/;
-			const modelNameRange = document.getWordRangeAtPosition(position, modelNameRe);
-			if (!!modelNameRange && !modelNameRange.isEmpty) {
-				const modelsPattern = "{apps,apps_user}/**/src/models/**/m_*.erl";
-				const models = await vscode.workspace.findFiles(modelsPattern);
-				return models.reduce((arr, file) => {
-					const modelRe = /(?<=\bm_).*?(?=.erl)/;
-					const modelMatch = modelRe.exec(file.fsPath);
-					if (!modelMatch || !modelMatch.length) {
-						return arr;
-					}
-
-					const model = modelMatch[0];
-					const modelExpressionsFinder = (m: string) => mGetExpressions(findFile, m);
-					const snippet = new vscode.CompletionItem(model);
-					snippet.insertText = new vscode.SnippetString(model);
-					snippet.command = {
-						command: "tpl.snippet.pick",
-						title: "m_get",
-						arguments: [model, modelExpressionsFinder]
-					};
-					arr.push(snippet);
-					return arr;
-				}, new Array<vscode.CompletionItem>());
-			}
-
-			const variableRe = /(?<=\[).*?(?=\])|(?<={).*?(?=})|(?<=:).*?(?=}|,)|(?<==).*?(?=(}|,|%}))/;
-			const variableRange = document.getWordRangeAtPosition(position, variableRe);
-			if (!!variableRange) {
-				// TODO: Variables snippets.
-				//       It will be awesome if variables can pop up as suggestion.
-				return;
-			}
-
-			const mSnippet = new vscode.CompletionItem("m");
-			mSnippet.insertText = new vscode.SnippetString("m");
-
-			return [
-				mSnippet
-			];
+			return undefined;
 		}
 	}, ".", "[", "{", "|");
 
