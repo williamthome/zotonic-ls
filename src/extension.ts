@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as vscodeHtmlLanguageService from "vscode-html-languageservice";
 import axios from "axios";
 import config from "./config";
 import { mGetExpressions, Expression, FindFile } from './utils/snippets';
@@ -107,6 +108,42 @@ export function activate(context: vscode.ExtensionContext) {
 			_token: vscode.CancellationToken,
 			_context: vscode.CompletionContext
 		) {
+			const isNotHtmlRe = /(?<=<\s*script.*?>).*?(?=<\/\s*script\s*>)|(?<=<\s*style.*?>).*?(?=<\/\s*style\s*>)|(?={%\s*javascript\s*%}).*?(?:{%\s*endjavascript\s*%})|(?={%\s*comment\s*%}).*?(?:{%\s*endcomment\s*%})|(?={%).*?(?:%})|(?={{).*?(?:}})|(?={#).*?(?:#})|(?={_).*?(?:_})/;
+			const isHtmlRange = !document.getWordRangeAtPosition(position, isNotHtmlRe);
+			if (isHtmlRange) {
+				const htmlLanguageService =
+					vscodeHtmlLanguageService.getLanguageService();
+				const htmlTextDocument =
+					vscodeHtmlLanguageService.TextDocument.create(
+						document.uri.path,
+						document.languageId,
+						document.version,
+						document.getText()
+					);
+				const htmlDocument =
+					vscodeHtmlLanguageService.getLanguageService().parseHTMLDocument(
+						htmlTextDocument
+					);
+				const htmlCompletionList =
+					htmlLanguageService.doComplete(
+						htmlTextDocument,
+						position,
+						htmlDocument
+					);
+				htmlCompletionList.items = htmlCompletionList.items.map(i => {
+					if (i.textEdit?.newText) {
+						i.command = {
+							command: "tpl.snippet.insert",
+							arguments: [i.textEdit.newText],
+							title: i.label
+						};
+						i.textEdit.newText = "";
+					}
+					return i;
+				});
+				return htmlCompletionList as vscode.CompletionList;
+			}
+
 			const modelNameRe = /\bm\.(\w+)?/;
 			const modelNameRange = document.getWordRangeAtPosition(position, modelNameRe);
 			if (!!modelNameRange && !modelNameRange.isEmpty) {
