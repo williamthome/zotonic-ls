@@ -18,9 +18,15 @@ Also some special completions are provided, like the atoms `true`, `false` and `
 
 ![Snippets](images/snippets.gif)
 
+#### Models
+
 A great help is the models snippets. Typing `m.` all models are listed and picking one shows all `m_get` possibilities.
 
 ![m_get snippets](images/m_get_snippets.gif)
+
+#### Other languages completions
+
+- HTML: Typing `<` outside a `.tpl` expression popups HTML snippets.
 
 ### Go to definition
 
@@ -38,22 +44,27 @@ Zotonic documentation is displayed hovering tags, actions, filters, validators, 
 
 ### Syntax Highlight
 
-Improve semantic highlight.\
-See:
-- [Writing a TextMate Grammar: Some Lessons Learned](https://www.apeth.com/nonblog/stories/textmatebundle.html)
-- [Semantic Highlight Guide](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide)
+- Improve semantic highlight. See:
+  - [Writing a TextMate Grammar: Some Lessons Learned](https://www.apeth.com/nonblog/stories/textmatebundle.html)
+  - [Semantic Highlight Guide](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide)
 
 ### Snippets
 
-Review arguments and tabstops.
+- Review arguments and tabstops;
+- CSS completions;
+- Javascript completions.
 
 ### Docs
 
-Improve style.
+- Review links;
+- Improve style.
 
 ## Backers
 
-## [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/williamthome)
+If you like this tool, please consider buying me a coffee ( or more ) as a token of appreciation.\
+I'm thankful for your never-ending support.
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/williamthome)
 
 ## Contributing
 

@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as vscodeHtmlLanguageService from "vscode-html-languageservice";
 import axios from "axios";
 import config from "./config";
 import { mGetExpressions, Expression, FindFile } from './utils/snippets';
@@ -107,48 +108,97 @@ export function activate(context: vscode.ExtensionContext) {
 			_token: vscode.CancellationToken,
 			_context: vscode.CompletionContext
 		) {
-			const modelNameRe = /\bm\.(\w+)?/;
-			const modelNameRange = document.getWordRangeAtPosition(position, modelNameRe);
-			if (!!modelNameRange && !modelNameRange.isEmpty) {
-				const modelsPattern = "{apps,apps_user}/**/src/models/**/m_*.erl";
-				const models = await vscode.workspace.findFiles(modelsPattern);
-				return models.reduce((arr, file) => {
-					const modelRe = /(?<=\bm_).*?(?=.erl)/;
-					const modelMatch = modelRe.exec(file.fsPath);
-					if (!modelMatch || !modelMatch.length) {
-						return arr;
+			const tplRe = /(?<={(%|{|#|_)?).*/;
+			const tplRange = document.getWordRangeAtPosition(position, tplRe);
+			if (tplRange && !tplRange.isEmpty) {
+				const variableRe = /(?<=\[).*?(?=\])|(?<={).*?(?=})|(?<=:).*?(?=}|,)|(?<==).*?(?=(%}|,|}))/;
+				const variableRange = document.getWordRangeAtPosition(position, variableRe);
+				if (!!variableRange) {
+					// TODO: Variables snippets.
+					//       It will be awesome if variables can pop up as suggestion.
+
+					const modelNameRe = /\bm\.(\w+)?/;
+					const modelNameRange = document.getWordRangeAtPosition(position, modelNameRe);
+					if (!!modelNameRange && !modelNameRange.isEmpty) {
+						const modelsPattern = "{apps,apps_user}/**/src/models/**/m_*.erl";
+						const models = await vscode.workspace.findFiles(modelsPattern);
+						return models.reduce((arr, file) => {
+							const modelRe = /(?<=\bm_).*?(?=.erl)/;
+							const modelMatch = modelRe.exec(file.fsPath);
+							if (!modelMatch || !modelMatch.length) {
+								return arr;
+							}
+
+							const model = modelMatch[0];
+							const modelExpressionsFinder = (m: string) => mGetExpressions(findFile, m);
+							const snippet = new vscode.CompletionItem(model);
+							snippet.insertText = new vscode.SnippetString(model);
+							snippet.command = {
+								command: "tpl.snippet.pick",
+								title: "m_get",
+								arguments: [model, modelExpressionsFinder]
+							};
+							arr.push(snippet);
+							return arr;
+						}, new Array<vscode.CompletionItem>());
 					}
 
-					const model = modelMatch[0];
-					const modelExpressionsFinder = (m: string) => mGetExpressions(findFile, m);
-					const snippet = new vscode.CompletionItem(model);
-					snippet.insertText = new vscode.SnippetString(model);
-					snippet.command = {
-						command: "tpl.snippet.pick",
-						title: "m_get",
-						arguments: [model, modelExpressionsFinder]
-					};
-					arr.push(snippet);
-					return arr;
-				}, new Array<vscode.CompletionItem>());
+					const modelRe = /(?<=(\b(if|in)\b|({|:|=))\s*)(\s|m(\.)?)/;
+					const modelRange = document.getWordRangeAtPosition(position, modelRe);
+					if (!!modelRange && !modelRange.isEmpty) {
+						const snippet = new vscode.CompletionItem("m.");
+						snippet.insertText = new vscode.SnippetString("m.");
+						snippet.command = {
+							command: "editor.action.triggerSuggest",
+							title: "m"
+						};
+
+						return [snippet];
+					}
+				}
+
+				return undefined;
 			}
 
-			const variableRe = /(?<=\[).*?(?=\])|(?<={).*?(?=})|(?<=:).*?(?=}|,)|(?<==).*?(?=(}|,|%}))/;
-			const variableRange = document.getWordRangeAtPosition(position, variableRe);
-			if (!!variableRange) {
-				// TODO: Variables snippets.
-				//       It will be awesome if variables can pop up as suggestion.
-				return;
+			const htmlRe = /(?<=<).*/;
+			const htmlRange = document.getWordRangeAtPosition(position, htmlRe);
+			if (htmlRange && !htmlRange.isEmpty) {
+				const htmlLanguageService =
+					vscodeHtmlLanguageService.getLanguageService();
+				const htmlTextDocument =
+					vscodeHtmlLanguageService.TextDocument.create(
+						document.uri.path,
+						document.languageId,
+						document.version,
+						document.getText()
+					);
+				const htmlDocument =
+					vscodeHtmlLanguageService.getLanguageService().parseHTMLDocument(
+						htmlTextDocument
+					);
+				const htmlCompletionList =
+					htmlLanguageService.doComplete(
+						htmlTextDocument,
+						position,
+						htmlDocument
+					);
+				htmlCompletionList.items = htmlCompletionList.items.map(i => {
+					if (i.textEdit?.newText) {
+						i.command = {
+							command: "tpl.snippet.insert",
+							arguments: [i.textEdit.newText],
+							title: i.label
+						};
+						i.textEdit.newText = "";
+					}
+					return i;
+				});
+				return htmlCompletionList as vscode.CompletionList;
 			}
 
-			const mSnippet = new vscode.CompletionItem("m");
-			mSnippet.insertText = new vscode.SnippetString("m");
-
-			return [
-				mSnippet
-			];
+			return undefined;
 		}
-	}, ".", "[", "{", "|");
+	}, ".", "[", "{", "|", "<");
 
 	context.subscriptions.push(completionProvider);
 

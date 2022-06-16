@@ -40,7 +40,8 @@
 				".",
 				"[",
 				"{",
-				"|"
+				"|",
+				"<"
 			]
 		}
 	},
@@ -144,6 +145,7 @@
 		"preRelease": false
 	},
 	"dependencies": {
-		"axios": "^0.27.2"
+		"axios": "^0.27.2",
+		"vscode-html-languageservice": "^5.0.0"
 	}
 }
