@@ -1,3 +1,5 @@
+[!["Sponsor"](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)]([https://www.buymeacoffee.com/williamthome](https://github.com/sponsors/williamthome))
+
 # Zotonic Language Server
 
 Language server for [Zotonic](http://zotonic.com/), the Erlang Web Framework.
@@ -40,6 +42,12 @@ Zotonic documentation is displayed hovering tags, actions, filters, validators, 
 
 ![Docs integration](images/docs-integration.gif)
 
+## Insltalation
+
+### VSCode
+
+Download and install the extension for free at the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=williamthome.zotonic-ls) or directly in the VSCode extensions feature.
+
 ## Todo
 
 ### Syntax Highlight
@@ -59,12 +67,16 @@ Zotonic documentation is displayed hovering tags, actions, filters, validators, 
 - Review links;
 - Improve style.
 
-## Backers
+## Sponsors
 
-If you like this tool, please consider buying me a coffee ( or more ) as a token of appreciation.\
-I'm thankful for your never-ending support.
+If you like this tool, please consider [sponsoring me](https://github.com/sponsors/williamthome).\
+I'm thankful for your never-ending support :heart:
+
+I also accept coffees :coffee:
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/williamthome)
+
+Special thanks go to [@mworrel](https://github.com/mworrell) for buying me 5x coffees! o/
 
 ## Contributing
 
