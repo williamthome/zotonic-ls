@@ -1,3 +1,6 @@
+{% extends "" %}
+{% include "" %}
+
 <a href="{% url admin_edit_rsc id=42 foo="bar" absolute_url %}"></a>
 
 <h1 class="title {% if m.req.csp_nonce as foo %}{{ foo }}{% else %}bar{% endif %}">My title</h1>
