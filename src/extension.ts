@@ -112,7 +112,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const tplRange = document.getWordRangeAtPosition(position, tplRe);
 			if (tplRange && !tplRange.isEmpty) {
 				// TODO: If is include, provide vars completion.
-				const templateRe = /(?<={%\s*(include|extends)\s*\").*?(?=")/;
+				const templateRe = /(?<={%\s*(extends|(all\s*)?((cat)?include))\s*\").*?(?=")/;
 				const templateRange = document.getWordRangeAtPosition(position, templateRe);
 				if (!!templateRange) {
 					const templatesPattern = "{apps,apps_user}/**/priv/templates/**/*.tpl";
