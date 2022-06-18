@@ -111,6 +111,29 @@ export function activate(context: vscode.ExtensionContext) {
 			const tplRe = /(?<={(%|{|#|_)?).*/;
 			const tplRange = document.getWordRangeAtPosition(position, tplRe);
 			if (tplRange && !tplRange.isEmpty) {
+				// TODO: If is include, provide vars completion.
+				const templateRe = /(?<={%\s*(include|extends)\s*\").*?(?=")/;
+				const templateRange = document.getWordRangeAtPosition(position, templateRe);
+				if (!!templateRange) {
+					const templatesPattern = "{apps,apps_user}/**/priv/templates/**/*.tpl";
+					const templates = await vscode.workspace.findFiles(templatesPattern);
+					return templates.reduce((arr, file) => {
+						const filePathRe = /(?<=\/priv\/templates\/).*/;
+						const filePathMatch = filePathRe.exec(file.fsPath);
+						if (!filePathMatch || !filePathMatch.length) {
+							return arr;
+						}
+						const filePath = filePathMatch[0];
+						if (!arr.some((s) => s.label === filePath)) {
+							const snippet = new vscode.CompletionItem(filePath);
+							snippet.insertText = new vscode.SnippetString(filePath);
+
+							arr.push(snippet);
+						}
+						return arr;
+					}, new Array<vscode.CompletionItem>());
+				}
+
 				const variableRe = /(?<=\[).*?(?=\])|(?<={).*?(?=})|(?<=:).*?(?=}|,)|(?<==).*?(?=(%}|,|}))/;
 				const variableRange = document.getWordRangeAtPosition(position, variableRe);
 				if (!!variableRange) {
