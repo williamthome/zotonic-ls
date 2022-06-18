@@ -3,13 +3,13 @@
         "scope": "tpl",
         "description": "{% all catinclude %}",
         "prefix": "all catinclude",
-        "body": "{% all catinclude \"$0.tpl\" %}"
+        "body": "{% all catinclude \"$1\" %}"
     },
     "all include": {
         "scope": "tpl",
         "description": "{% all include %}",
         "prefix": "all include",
-        "body": "{% all include \"$0.tpl\" %}"
+        "body": "{% all include \"$1\" %}"
     },
     "autoescape": {
         "scope": "tpl",
@@ -57,7 +57,7 @@
         "scope": "tpl",
         "description": "{% catinclude %}",
         "prefix": "catinclude",
-        "body": "{% catinclude \"$0.tpl\" %}"
+        "body": "{% catinclude \"$1\" %}"
     },
     "comment": {
         "scope": "tpl",
@@ -97,7 +97,7 @@
         "scope": "tpl",
         "description": "{% extends %}",
         "prefix": "extends",
-        "body": "{% extends \"$0.tpl\" %}"
+        "body": "{% extends \"$1\" %}"
     },
     "filter": {
         "scope": "tpl",
@@ -223,7 +223,7 @@
         "scope": "tpl",
         "description": "{% include %}",
         "prefix": "include",
-        "body": "{% include \"$0.tpl\" %}"
+        "body": "{% include \"$1\" %}"
     },
     "inherit": {
         "scope": "tpl",
