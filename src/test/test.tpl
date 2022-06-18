@@ -1,5 +1,8 @@
 {% extends "" %}
 {% include "" %}
+{% catinclude "" %}
+{% all include "" %}
+{% all catinclude "" %}
 
 <a href="{% url admin_edit_rsc id=42 foo="bar" absolute_url %}"></a>
 
