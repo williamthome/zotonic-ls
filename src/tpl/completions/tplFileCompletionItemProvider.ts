@@ -2,24 +2,29 @@ import { findFilesByPattern } from "../utils/path";
 import { TplCompletionItemProvider } from "./tplCompletionItemProvider";
 import { ITplSnippet } from "./tplSnippet";
 
+type TransformSnippet = (snippet: ITplSnippet, filePath: string) => ITplSnippet;
+
 interface ConstructorArgs {
     workspaces?: string[],
     roots: string[][],
     extensions: string[],
-    pattern: RegExp
+    pattern: RegExp,
+    transformSnippet?: TransformSnippet
 }
 
 export class TplFileCompletionItemProvider extends TplCompletionItemProvider {
     public workspaces: string[];
     public roots: string[][];
     public extensions: string[];
+    public transformSnippet?: TransformSnippet;
 
-    constructor({ workspaces, roots, extensions, pattern }: ConstructorArgs) {
+    constructor({ workspaces, roots, extensions, pattern, transformSnippet }: ConstructorArgs) {
         super({ pattern });
 
         this.workspaces = workspaces || ["apps", "apps_user"];
         this.extensions = extensions;
         this.roots = roots;
+        this.transformSnippet = transformSnippet;
     }
 
     public async loadSnippets(baseDir: string): Promise<ITplSnippet[]> {
@@ -37,20 +42,10 @@ export class TplFileCompletionItemProvider extends TplCompletionItemProvider {
             }
             const filePath = filePathMatch[0];
             if (!arr.some((s) => s.prefix === filePath)) {
-                const snippet: ITplSnippet = {
-                    prefix: filePath,
-                    body: filePath,
-                    // TODO: Transform snippet
-                    // description: "A .tpl file located at '<apps|apps_user>/<module>/priv/images'.",
-                    // documentation: `
-                    //     <h1>Templates</h1>
-                    //     <p>Templates are text files marked up using the Zotonic template language. Zotonic interprets that mark-up to dynamically generate HTML pages. Zotonic’s template syntax is very similar to the Django Template Language (DTL).</p>
-                    //     <br>
-                    //     <a href="https://zotonic.com/en/latest/developer-guide/templates.html">@docs/developer-guide</a>
-                    //     <br>
-                    //     <a href="https://zotonic.com/search?qs=templates">@docs/search</a>
-                    // `
-                };
+                const baseSnippet: ITplSnippet = { prefix: filePath, body: filePath };
+                const snippet = this.transformSnippet
+                    ? this.transformSnippet(baseSnippet, filePath)
+                    : baseSnippet;
 
                 arr.push(snippet);
             }

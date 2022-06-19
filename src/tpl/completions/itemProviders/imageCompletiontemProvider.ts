@@ -20,7 +20,11 @@ export class ImageCompletionItemProvider extends TplFileCompletionItemProvider {
                 ["priv", "files", "archive"],
                 ["priv", "lib", "images"]
             ],
-            pattern: /(?<={%\s*image(_data)?(_url)?\s*\").*?(?=")/
+            pattern: /(?<={%\s*image(_data)?(_url)?\s*\").*?(?=")/,
+            transformSnippet(snippet) {
+                snippet.description = "A image file located at '<apps|apps_user>/<module>/priv/(files/archives|lib/images)'.";
+                return snippet;
+            },
         });
     }
 }
