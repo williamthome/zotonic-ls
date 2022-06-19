@@ -1,4 +1,4 @@
-import { TemplateCompletionItemProvider } from "./completions/itemProviders";
+import { ImageCompletionItemProvider, TemplateCompletionItemProvider } from "./completions/itemProviders";
 import { TplProvider } from "./tplProvider";
 
 interface ConstructorArgs {
@@ -17,8 +17,9 @@ export class Tpl {
     }
 
     public async setup() {
-        this.registerProvider(new TemplateCompletionItemProvider());
-        return this;
+        return this
+            .registerProvider(new TemplateCompletionItemProvider())
+            .registerProvider(new ImageCompletionItemProvider());
     }
 
     public registerProvider(provider: TplProvider) {

@@ -3,6 +3,9 @@
 {% catinclude "" %}
 {% all include "" %}
 {% all catinclude "" %}
+{% image "" %}
+{% image_url "" %}
+{% image_data_url "" %}
 
 <a href="{% url admin_edit_rsc id=42 foo="bar" absolute_url %}"></a>
 
