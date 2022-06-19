@@ -1,19 +1,20 @@
-// The module 'vscode' contains the VS Code extensibility API
+// The module "vscode" contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import { ExtensionContext } from 'vscode';
-import { Tpl } from './tpl';
+import { ExtensionContext } from "vscode";
+import { Tpl } from "./tpl";
+import { TplParser } from "./tplParser";
 // import * as vscodeHtmlLanguageService from "vscode-html-languageservice";
 // import axios from "axios";
 // import config from "./config";
-// import { mGetExpressions, Expression, FindFile } from './utils/snippets';
+// import { mGetExpressions, Expression, FindFile } from "./utils/snippets";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-export function activate(context: ExtensionContext) {
+export async function activate(context: ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "zotonic" is now active!');
+	console.log("Congratulations, your extension 'zotonic' is now active!");
 
 	// TODO: Improve the "go to definition" highlight.
 	//       e.g.:
@@ -21,7 +22,7 @@ export function activate(context: ExtensionContext) {
 	//         Pressing control over `http_ping` highlight only the `http_ping`,
 	//         but `js/modules/http_ping.js` should be highlighted,
 	//      @see this question in StackOverflow here https://stackoverflow.com/questions/72554515/go-to-definition-highlight-in-vscode-lsp
-	// const definitionProvider = vscode.languages.registerDefinitionProvider('tpl', {
+	// const definitionProvider = vscode.languages.registerDefinitionProvider("tpl", {
 	// 	async provideDefinition(document, position, _token) {
 	// 		const wordRange = document.getWordRangeAtPosition(position, /(?<=").*?(?=")/);
 	// 		if (!wordRange || wordRange.isEmpty) { return; };
@@ -76,7 +77,7 @@ export function activate(context: ExtensionContext) {
 
 	// context.subscriptions.push(definitionProvider);
 
-	// const hoverProvider = vscode.languages.registerHoverProvider('tpl', {
+	// const hoverProvider = vscode.languages.registerHoverProvider("tpl", {
 	// 	async provideHover(document, position, _token) {
 	// 		const patternMatch = (pattern: RegExp) => {
 	// 			const wordRange = document.getWordRangeAtPosition(position, pattern);
@@ -102,7 +103,7 @@ export function activate(context: ExtensionContext) {
 
 	// context.subscriptions.push(hoverProvider);
 
-	// const completionProvider = vscode.languages.registerCompletionItemProvider('tpl', {
+	// const completionProvider = vscode.languages.registerCompletionItemProvider("tpl", {
 	// 	async provideCompletionItems(
 	// 		document: vscode.TextDocument,
 	// 		position: vscode.Position,
@@ -217,7 +218,7 @@ export function activate(context: ExtensionContext) {
 
 	// context.subscriptions.push(completionProvider);
 
-	// vscode.commands.registerCommand('tpl.snippet.pick', async (model, modelExpressionsFinder) => {
+	// vscode.commands.registerCommand("tpl.snippet.pick", async (model, modelExpressionsFinder) => {
 	// 	const expressions: Array<Expression> = await modelExpressionsFinder(model);
 	// 	if (expressions instanceof Error) {
 	// 		await vscode.window.showErrorMessage(expressions.message);
@@ -229,7 +230,7 @@ export function activate(context: ExtensionContext) {
 	// 	quickPick.onDidChangeSelection(async ([{ label }]) => {
 	// 		const token = expressions.find(token => token.expression === label);
 	// 		if (!token) {
-	// 			throw (new Error(`Unexpected no token match in quick pick with label '${label}'`));
+	// 			throw (new Error(`Unexpected no token match in quick pick with label "${label}"`));
 	// 		}
 
 	// 		await vscode.commands.executeCommand("tpl.snippet.insert", token.snippet);
@@ -238,13 +239,17 @@ export function activate(context: ExtensionContext) {
 	// 	quickPick.show();
 	// });
 
-	// vscode.commands.registerTextEditorCommand('tpl.snippet.insert', (editor, _edit, snippet) => {
+	// vscode.commands.registerTextEditorCommand("tpl.snippet.insert", (editor, _edit, snippet) => {
 	// 	return editor.insertSnippet(
 	// 		new vscode.SnippetString(snippet),
 	// 	);
 	// });
 
-	new Tpl(context).setup();
+	const tpl = new Tpl();
+	await tpl.setup();
+
+	const tplParser = new TplParser();
+	tplParser.registerProviders(tpl, context);
 }
 
 // this method is called when your extension is deactivated

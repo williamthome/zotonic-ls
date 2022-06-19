@@ -1,0 +1,1 @@
+export { TemplateCompletionItemProvider } from "./templateCompletiontemProvider";
