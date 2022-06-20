@@ -8,6 +8,9 @@ export class TemplateCompletionItemProvider extends TplFileCompletionItemProvide
                 ["priv", "templates"]
             ],
             pattern: /(?<={%\s*(extends|(all\s*)?((cat)?include))\s*\").*?(?=")/,
+            filenameRegExp(rootsEscaped: string) {
+                return new RegExp(`(?<=\\/(${rootsEscaped})\\/).*`);
+            },
             transformSnippet(snippet) {
                 snippet.description = "A .tpl file located at '<apps|apps_user>/<module>/priv/templates'.";
                 snippet.documentation = `

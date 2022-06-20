@@ -2,6 +2,7 @@ import { findFilesByPattern } from "../utils/path";
 import { TplCompletionItemProvider } from "./tplCompletionItemProvider";
 import { ITplSnippet } from "./tplSnippet";
 
+type FilenameRegExp = (rootsEscaped: string) => RegExp;
 type TransformSnippet = (snippet: ITplSnippet, filePath: string) => ITplSnippet;
 
 interface ConstructorArgs {
@@ -9,6 +10,7 @@ interface ConstructorArgs {
     roots: string[][],
     extensions: string[],
     pattern: RegExp,
+    filenameRegExp: FilenameRegExp;
     transformSnippet?: TransformSnippet
 }
 
@@ -16,14 +18,23 @@ export class TplFileCompletionItemProvider extends TplCompletionItemProvider {
     public workspaces: string[];
     public roots: string[][];
     public extensions: string[];
+    public filenameRegExp: FilenameRegExp;
     public transformSnippet?: TransformSnippet;
 
-    constructor({ workspaces, roots, extensions, pattern, transformSnippet }: ConstructorArgs) {
+    constructor({
+        workspaces,
+        roots,
+        extensions,
+        pattern,
+        filenameRegExp,
+        transformSnippet
+    }: ConstructorArgs) {
         super({ pattern });
 
         this.workspaces = workspaces || ["apps", "apps_user"];
-        this.extensions = extensions;
         this.roots = roots;
+        this.extensions = extensions;
+        this.filenameRegExp = filenameRegExp;
         this.transformSnippet = transformSnippet;
     }
 
@@ -35,8 +46,7 @@ export class TplFileCompletionItemProvider extends TplCompletionItemProvider {
         const files = await findFilesByPattern(baseDir, pattern);
         const snippets = files.reduce((arr, file) => {
             const rootsEscaped = this.roots.map(r => r.join("\\/")).join("|");
-            const filePathRe = new RegExp(`(?<=\\/(${rootsEscaped})\\/).*`);
-            const filePathMatch = filePathRe.exec(file);
+            const filePathMatch = this.filenameRegExp(rootsEscaped).exec(file);
             if (!filePathMatch || !filePathMatch.length) {
                 return arr;
             }

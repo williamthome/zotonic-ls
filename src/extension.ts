@@ -1,6 +1,6 @@
 // The module "vscode" contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import { ExtensionContext } from "vscode";
+import { ExtensionContext, commands, window } from "vscode";
 import { Tpl } from "./tpl";
 import { TplParser } from "./tplParser";
 // import * as vscodeHtmlLanguageService from "vscode-html-languageservice";
@@ -249,7 +249,25 @@ export async function activate(context: ExtensionContext) {
 	await tpl.setup();
 
 	const tplParser = new TplParser();
-	tplParser.registerProviders(tpl, context);
+	await tplParser.setup(tpl, context);
+
+	// const snippetPickCommand = commands.registerCommand("tpl.snippet.pick", async (snippets: string[]) => {
+	// 	const quickPick = window.createQuickPick();
+	// 	quickPick.items = snippets.map((snippet) => ({ label: snippet }));
+	// 	quickPick.onDidChangeSelection(async ([{ label }]) => {
+	// 		const snippet = snippets.find(snippet => snippet === label);
+	// 		if (!snippet) {
+	// 			throw (new Error(`Unexpected no snippet match in quick pick with label "${label}"`));
+	// 		}
+
+	// 		// await commands.executeCommand("tpl.snippet.insert", snippet);
+	// 		console.log("snippet", snippet);
+	// 		quickPick.hide();
+	// 	});
+	// 	quickPick.show();
+	// });
+
+	// context.subscriptions.push(snippetPickCommand);
 }
 
 // this method is called when your extension is deactivated
