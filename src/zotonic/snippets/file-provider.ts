@@ -1,6 +1,6 @@
 import { ISnippet } from "../core";
-import { findFilesByPattern } from "../utils/path";
 import { SnippetProvider } from "./provider";
+import { findFilesByPattern } from "../utils/path";
 
 type FilenameRegExp = (rootsEscaped: string) => RegExp;
 type TransformSnippet = (snippet: ISnippet, filePath: string) => ISnippet;

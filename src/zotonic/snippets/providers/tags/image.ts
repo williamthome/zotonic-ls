@@ -1,6 +1,6 @@
-import { FileSnippetProvider } from "../file-provider";
+import { FileSnippetProvider } from "../../file-provider";
 
-export class ImageSnippetProvider extends FileSnippetProvider {
+export class TagImageSnippetProvider extends FileSnippetProvider {
     constructor() {
         super({
             extensions: [

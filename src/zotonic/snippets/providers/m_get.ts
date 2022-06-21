@@ -5,7 +5,9 @@ export class MGetSnippetProvider extends FileSnippetProvider {
     constructor() {
         super({
             extensions: ["erl"],
-            roots: [["src", "models"]],
+            roots: [
+                ["src", "models"]
+            ],
             // TODO: Improve pattern
             // pattern: /(?<=({%|{{|%{|\[).*?\bm\. ).*?(?=/,
             pattern: /\bm\.(\w+)?/,

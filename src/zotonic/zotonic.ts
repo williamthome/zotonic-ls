@@ -1,9 +1,9 @@
 import { ISnippetProvider } from "./core";
 import {
-    ImageSnippetProvider,
+    TagImageSnippetProvider,
     MGetSnippetProvider,
     ModelSnippetProvider,
-    TemplateSnippetProvider
+    TagTemplateSnippetProvider,
 } from "./snippets/providers";
 
 interface ConstructorArgs {
@@ -23,10 +23,10 @@ export class Zotonic {
 
     public async setup() {
         return this
-            .registerProvider(new TemplateSnippetProvider())
-            .registerProvider(new ImageSnippetProvider())
-            .registerProvider(new ModelSnippetProvider())
+            .registerProvider(new TagTemplateSnippetProvider())
+            .registerProvider(new TagImageSnippetProvider())
             .registerProvider(new MGetSnippetProvider())
+            .registerProvider(new ModelSnippetProvider())
         ;
     }
 
