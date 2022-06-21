@@ -48,9 +48,9 @@
 // };
 
 export interface ITplCommand {
-    getUserChoice: <T extends string>(
-        choices: T[] | Readonly<T[]>,
-        next: (choice: T) => Promise<void>
-    ) => Promise<T | undefined>,
+    getUserChoice: (
+        choices: string[],
+        next: (choice: string) => Promise<void>
+    ) => Promise<void>,
     insertSnippet: (snippet: string) => Promise<void>
 };

@@ -3,7 +3,7 @@ import { ITplCommand } from "../commands";
 export type ITplSnippetCommandCallback = (commands: ITplCommand) => Promise<void>;
 
 export interface ITplSnippetCommand {
-    name: string,
+    hint: string,
     callback: ITplSnippetCommandCallback
 }
 

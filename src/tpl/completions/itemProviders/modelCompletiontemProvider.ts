@@ -23,11 +23,11 @@ export class ModelCompletionItemProvider extends TplFileCompletionItemProvider {
                 ];
 
                 snippet.command = {
-                    name: "m_get",
+                    hint: "m_get",
                     callback: async (commands: ITplCommand) => {
-                        commands.getUserChoice(modelSnippets, async (snippet) => {
-                            console.log("model", snippet);
-                            await commands.insertSnippet(snippet);
+                        commands.getUserChoice(modelSnippets, async (choice) => {
+                            console.log("model", choice);
+                            await commands.insertSnippet(choice);
                         });
                     }
                 };

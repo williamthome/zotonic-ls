@@ -14,6 +14,8 @@ import {
     commands,
     Disposable,
     SnippetString,
+    TextEditor,
+    TextEditorEdit,
 } from "vscode";
 import {
     Tpl,
@@ -26,12 +28,24 @@ import {
 import { ITplCommand } from "./tpl/commands";
 // import { TplCommandName } from "./tpl/commands";
 
-// const commandNames = [
-//     "tpl.snippet.pick",
-//     "tpl.snippet.insert"
-// ] as const;
+type TplCommandName = keyof ITplCommand | "executeCommand";
 
-// type CommandName = typeof commandNames[number];
+type VSCodeCommandName<T extends TplCommandName> = `tpl.${T}`;
+
+type TplCommandFunction<T extends TplCommandName> =
+    T extends keyof ITplCommand
+        ? ITplCommand[T] extends (...args: any[]) => any ? ITplCommand[T] : never
+        : (...args: any[]) => any;
+
+type TplCommandArgs<T extends TplCommandName> =
+    T extends keyof ITplCommand
+        ? ITplCommand[T] extends (...args: infer Args) => any ? Args : never
+        : any[];
+
+type TplCommandReturn<T extends TplCommandName> =
+    T extends keyof ITplCommand
+        ? ITplCommand[T] extends (...args: any[]) => infer Return ? Return : never
+        : unknown;
 
 // type Command = { [Property in TplCommandName]: CommandName };
 
@@ -89,37 +103,59 @@ export class TplParser {
 
     get commands(): ITplCommand {
         return {
-            getUserChoice(choices, next) {
-                return commands.executeCommand("tpl.choice", choices, next) as any;
+            getUserChoice: (choices, next) => {
+                return this.executeCommand("getUserChoice", choices, next);
             },
-            insertSnippet(snippet) {
-                return commands.executeCommand("tpl.snippet.insert", snippet) as any;
+            insertSnippet: (snippet) => {
+                return this.executeCommand("insertSnippet", snippet);
             },
         };
     };
 
-    registerCommand(context: ExtensionContext, name: string, callback: (...args: any[]) => any) {
-        const command = commands.registerCommand(name, callback);
+    genCommandName<T extends TplCommandName>(commandName: T): VSCodeCommandName<T> {
+        return `tpl.${commandName}`;
+    }
+
+    parseCommandName<T extends TplCommandName>(commandName: VSCodeCommandName<T>): T {
+        return commandName.padStart("tpl.".length) as T;
+    }
+
+    executeCommand<T extends TplCommandName>(tplCommandName: T, ...args: TplCommandArgs<T>) {
+        const vscodeCommandName = this.genCommandName(tplCommandName);
+        return commands.executeCommand(vscodeCommandName, ...args) as TplCommandReturn<T>;
+    }
+
+    registerCommand<T extends TplCommandName>(context: ExtensionContext, tplCommandName: T, callback: TplCommandFunction<T>) {
+        const vscodeCommandName = this.genCommandName(tplCommandName);
+        const command = commands.registerCommand(vscodeCommandName, callback);
+        context.subscriptions.push(command);
+        return this;
+    }
+
+    registerTextEditorCommand<T extends TplCommandName>(context: ExtensionContext, tplCommandName: T, callback: (editor: TextEditor, edit: TextEditorEdit,...args: TplCommandArgs<T>) => void) {
+        const vscodeCommandName = this.genCommandName(tplCommandName);
+        const command = commands.registerTextEditorCommand(
+            vscodeCommandName,
+            callback as (textEditor: TextEditor, edit: TextEditorEdit, ...args: any[]) => void
+        );
         context.subscriptions.push(command);
         return this;
     }
 
     registerInsertSnippet(context: ExtensionContext) {
-        const command = commands.registerTextEditorCommand(
-            "tpl.snippet.insert",
-            (editor, _edit, snippet) => {
-                console.log("snippet", snippet);
-		        return editor.insertSnippet(new SnippetString(snippet));
-	    });
-        context.subscriptions.push(command);
-        return this;
+        return this.registerTextEditorCommand(
+            context,
+            "insertSnippet",
+            (editor, _edit, snippet) =>
+                editor.insertSnippet(new SnippetString(snippet))
+        );
     }
 
     registerPickUserChoice(context: ExtensionContext) {
         return this.registerCommand(
             context,
-            "tpl.choice",
-            (choices: string[], next: (choice: string) => Promise<void>) => {
+            "getUserChoice",
+            async (choices: string[], next: (choice: string) => Promise<void>) => {
                 const quickPick = window.createQuickPick();
                 quickPick.items = choices.map((choice) => ({ label: choice }));
                 quickPick.onDidChangeSelection(async ([{ label }]) => {
@@ -138,7 +174,7 @@ export class TplParser {
     public registerCallbackCommand(context: ExtensionContext) {
         return this.registerCommand(
             context,
-            "tpl.command",
+            "executeCommand",
             (callback: ITplSnippetCommandCallback) => callback(this.commands)
         );
     }
@@ -187,8 +223,8 @@ export class TplParser {
 
         if (snippet.command) {
             completionItem.command = {
-                command: "tpl.command",
-                title: snippet.command.name,
+                command: this.genCommandName("executeCommand"),
+                title: snippet.command.hint,
                 arguments: [snippet.command.callback]
             };
         }
@@ -209,7 +245,8 @@ export class TplParser {
                 // TODO: Snippets cache
                 const baseDir = this.getDocumentWorkspaceFolder() || __dirname;
                 const snippets = await provider.getSnippets(baseDir);
-                return snippets.map(this.parseCompletionItem);
+
+                return snippets.map((s) => this.parseCompletionItem(s));
             };
         };
         return { provideCompletionItems };
