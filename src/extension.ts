@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import { ExtensionContext } from "vscode";
 import { Zotonic } from "./zotonic";
-import { ZotonicToVSCode } from "./zotonic-to-vscode";
+import { ZotonicVSCode } from "./zotonic-vscode";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -15,8 +15,8 @@ export async function activate(context: ExtensionContext) {
 	const zotonic = new Zotonic();
 	await zotonic.setup();
 
-	const zotonicToVSCode = new ZotonicToVSCode();
-	await zotonicToVSCode.setup(zotonic, context);
+	const zotonicVSCode = new ZotonicVSCode();
+	await zotonicVSCode.setup(zotonic, context);
 }
 
 // this method is called when your extension is deactivated

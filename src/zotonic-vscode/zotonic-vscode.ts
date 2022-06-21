@@ -13,8 +13,6 @@ import {
     workspace,
     commands,
     SnippetString,
-    TextEditor,
-    TextEditorEdit,
 } from "vscode";
 import {
     Zotonic,
@@ -23,50 +21,19 @@ import {
     ISnippetCommandCallback,
     ISnippetProvider,
     SnippetProvider,
-} from "./zotonic";
+} from "../zotonic";
+import {
+    RegisterTplCommand,
+    TplCommandName,
+    VSCodeCommandName,
+    TplCommandArgs,
+    TplCommandReturn,
+    TplCommandFunction,
+    TextEditorCommandCallback,
+    TplCommandInterpreter,
+} from "./core";
 
-
-type TplCommandName = keyof ICommand | "executeCommand";
-
-type VSCodeCommandName<T extends TplCommandName> = `tpl.${T}`;
-
-type TplCommandFunction<T extends TplCommandName> =
-    T extends keyof ICommand
-    ? ICommand[T] extends (...args: any[]) => any ? ICommand[T] : never
-    : (...args: any[]) => any;
-
-type TplCommandArgs<T extends TplCommandName> =
-    T extends keyof ICommand
-    ? ICommand[T] extends (...args: infer Args) => any ? Args : never
-    : any[];
-
-type TplCommandReturn<T extends TplCommandName> =
-    T extends keyof ICommand
-    ? ICommand[T] extends (...args: any[]) => infer Return ? Return : never
-    : unknown;
-
-type CommandKind = "command" | "textEditorCommand";
-
-type CommandKindArgs<T extends CommandKind> =
-    T extends "command"
-    ? []
-    : T extends "textEditorCommand"
-    ? [TextEditor, TextEditorEdit]
-    : never;
-
-interface TplCommandInterpreter<T extends TplCommandName, K extends CommandKind = "command"> {
-    tplCommandName: T,
-    kind: K,
-    callback: (...args: [...CommandKindArgs<K>, ...TplCommandArgs<T> extends any[] ? TplCommandArgs<T> : any[]]) => TplCommandReturn<T>
-}
-
-type RegisterTplCommand = {
-    [T in TplCommandName]: TplCommandInterpreter<T, any>
-};
-
-type TextEditorCommandCallback<T extends any[] = any[]> = (textEditor: TextEditor, edit: TextEditorEdit, ...args: T) => void;
-
-export class ZotonicToVSCode {
+export class ZotonicVSCode {
     public async setup(tpl: Zotonic, context: ExtensionContext) {
         this
             .registerProviders(tpl, context)
