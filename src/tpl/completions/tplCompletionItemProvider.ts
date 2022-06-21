@@ -1,21 +1,23 @@
 import { ITplSnippet } from "./tplSnippet";
 
-export type ITplCompletionItemProvider = {
-    selector: string,
+type TplSelector = "tpl";
+
+export interface ITplCompletionItemProvider {
+    selector: TplSelector,
     pattern: RegExp,
-    getSnippets(baseDir: string): Promise<ITplSnippet[]>
+    getSnippets(baseDir: string): Promise<ITplSnippet[]>,
 };
 
 interface ConstructorArgs {
+    selector?: TplSelector,
     pattern: RegExp,
-    selector?: string
 }
 
 export abstract class TplCompletionItemProvider implements ITplCompletionItemProvider {
     public abstract loadSnippets(baseDir: string): Promise<ITplSnippet[]>;
 
     public pattern: RegExp;
-    public selector: string;
+    public selector: TplSelector;
 
     private _snippets: ITplSnippet[] | undefined;
 

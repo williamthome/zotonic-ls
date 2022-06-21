@@ -50,7 +50,10 @@
 export interface ITplCommand {
     getUserChoice: (
         choices: string[],
-        next: (choice: string) => Promise<void>
-    ) => Promise<void>,
-    insertSnippet: (snippet: string) => Promise<void>
+        next: (choice: string) => Thenable<void>
+    ) => Thenable<void>,
+
+    insertSnippet: (snippet: string) => Thenable<void>,
+
+    showUpSnippets: () => Thenable<void>,
 };

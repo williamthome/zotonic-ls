@@ -1,18 +1,19 @@
 import { ITplCommand } from "./commands";
+import { ITplCompletionItemProvider } from "./completions";
 import {
     ImageCompletionItemProvider,
-    ModelCompletionItemProvider,
+    MGetCompletionItemProvider,
     TemplateCompletionItemProvider
 } from "./completions/itemProviders";
-import { TplProvider } from "./tplProvider";
+import { ModelCompletionItemProvider } from "./completions/itemProviders/modelCompletionItemProvider";
 
 interface ConstructorArgs {
-    providers?: TplProvider[],
+    providers?: ITplCompletionItemProvider[],
     commands?: ITplCommand[],
 }
 
 export class Tpl {
-    private _providers: TplProvider[];
+    private _providers: ITplCompletionItemProvider[];
     private _commands: ITplCommand[];
 
     constructor({ providers, commands }: ConstructorArgs = {}) {
@@ -33,10 +34,11 @@ export class Tpl {
             .registerProvider(new TemplateCompletionItemProvider())
             .registerProvider(new ImageCompletionItemProvider())
             .registerProvider(new ModelCompletionItemProvider())
+            .registerProvider(new MGetCompletionItemProvider())
         ;
     }
 
-    public registerProvider(provider: TplProvider) {
+    public registerProvider(provider: ITplCompletionItemProvider) {
         this._providers.push(provider);
         return this;
     }

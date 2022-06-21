@@ -12,7 +12,6 @@ import {
     window,
     workspace,
     commands,
-    Disposable,
     SnippetString,
     TextEditor,
     TextEditorEdit,
@@ -20,7 +19,6 @@ import {
 import {
     Tpl,
     ITplSnippet,
-    TplProvider,
     TplCompletionItemProvider,
     ITplCompletionItemProvider,
     ITplSnippetCommandCallback
@@ -28,7 +26,7 @@ import {
 import { ITplCommand } from "./tpl/commands";
 // import { TplCommandName } from "./tpl/commands";
 
-type TplCommandName = keyof ITplCommand | "executeCommand";
+type TplCommandName = keyof ITplCommand | "executeCommand" | "showUpSnippets";
 
 type VSCodeCommandName<T extends TplCommandName> = `tpl.${T}`;
 
@@ -106,8 +104,13 @@ export class TplParser {
             getUserChoice: (choices, next) => {
                 return this.executeCommand("getUserChoice", choices, next);
             },
+
             insertSnippet: (snippet) => {
                 return this.executeCommand("insertSnippet", snippet);
+            },
+
+            showUpSnippets: () => {
+                return this.executeCommand("showUpSnippets");
             },
         };
     };
@@ -155,7 +158,7 @@ export class TplParser {
         return this.registerCommand(
             context,
             "getUserChoice",
-            async (choices: string[], next: (choice: string) => Promise<void>) => {
+            async (choices: string[], next: (choice: string) => Thenable<void>) => {
                 const quickPick = window.createQuickPick();
                 quickPick.items = choices.map((choice) => ({ label: choice }));
                 quickPick.onDidChangeSelection(async ([{ label }]) => {
@@ -168,6 +171,14 @@ export class TplParser {
                 });
                 quickPick.show();
             }
+        );
+    }
+
+    registerShowUpSnippets(context: ExtensionContext) {
+        return this.registerCommand(
+            context,
+            "showUpSnippets",
+            () => commands.executeCommand("editor.action.triggerSuggest")
         );
     }
 
@@ -184,16 +195,18 @@ export class TplParser {
             .registerPickUserChoice(context)
             .registerInsertSnippet(context)
             .registerCallbackCommand(context)
+            .registerShowUpSnippets(context)
         ;
     }
 
     public registerProvider(context: ExtensionContext) {
-        return (provider: TplProvider) => {
+        return (provider: ITplCompletionItemProvider) => {
             if (provider instanceof TplCompletionItemProvider) {
                 context.subscriptions.push(
                     languages.registerCompletionItemProvider(
                         provider.selector,
-                        this.parseCompletionItemProvider(provider)
+                        this.parseCompletionItemProvider(provider),
+                        ".", "[", "{", "|", "<"
                     )
                 );
             }
@@ -224,7 +237,7 @@ export class TplParser {
         if (snippet.command) {
             completionItem.command = {
                 command: this.genCommandName("executeCommand"),
-                title: snippet.command.hint,
+                title: snippet.command.hint || snippet.prefix,
                 arguments: [snippet.command.callback]
             };
         }

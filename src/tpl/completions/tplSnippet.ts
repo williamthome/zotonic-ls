@@ -1,9 +1,9 @@
 import { ITplCommand } from "../commands";
 
-export type ITplSnippetCommandCallback = (commands: ITplCommand) => Promise<void>;
+export type ITplSnippetCommandCallback = (commands: ITplCommand) => Thenable<void>;
 
 export interface ITplSnippetCommand {
-    hint: string,
+    hint?: string,
     callback: ITplSnippetCommandCallback
 }
 
@@ -13,7 +13,7 @@ export interface ITplSnippetCommand {
  */
 export type ITplSnippet = {
     prefix: string,
-    body: string | [string, ...string[]],
+    body?: string | [string, ...string[]],
     description?: string,
     documentation?: string,
     command?: ITplSnippetCommand,

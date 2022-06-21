@@ -1,39 +1,23 @@
-import { ITplCommand } from "../../commands";
-import { TplFileCompletionItemProvider } from "../tplFileCompletionItemProvider";
+import { TplCompletionItemProvider } from "../tplCompletionItemProvider";
+import { ITplSnippet } from "../tplSnippet";
 
-export class ModelCompletionItemProvider extends TplFileCompletionItemProvider {
+export class ModelCompletionItemProvider extends TplCompletionItemProvider {
     constructor() {
         super({
-            extensions: ["erl"],
-            roots: [["src", "models"]],
-            // TODO: Improve pattern
-            // pattern: /(?<=({%|{{|%{|\[).*?\bm\. ).*?(?=/,
-            pattern: /\bm\.(\w+)?/,
-            filenameRegExp() {
-                return /(?<=\bm_).*?(?=.erl)/;
-            },
-            transformSnippet(snippet) {
-                snippet.description = "A model located at '<apps|apps_user>/<module>/src/models'.";
-                // TODO: Snippet command
-                // const modelExpressionsFinder = (m: string) => mGetExpressions(findFile, m);
-                const modelSnippets = [
-                    "m.test[$1]",
-                    "m.test2[$1]",
-                    "m.test3[$1]",
-                ];
+            selector: "tpl",
+            pattern: /\bm\b/,
+        });
+    }
 
-                snippet.command = {
-                    hint: "m_get",
-                    callback: async (commands: ITplCommand) => {
-                        commands.getUserChoice(modelSnippets, async (choice) => {
-                            console.log("model", choice);
-                            await commands.insertSnippet(choice);
-                        });
-                    }
-                };
-
-                return snippet;
-            },
+    public loadSnippets(): Promise<ITplSnippet[]> {
+        return new Promise((resolve) => {
+            resolve([{
+                prefix: "m.",
+                description: "Provide data to templates.",
+                command: {
+                    callback: (commands) => commands.showUpSnippets()
+                },
+            }]);
         });
     }
 }
