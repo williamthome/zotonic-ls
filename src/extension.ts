@@ -13,10 +13,10 @@ export async function activate(context: ExtensionContext) {
 	console.log("Congratulations, your extension 'zotonic' is now active!");
 
 	const zotonic = new Zotonic();
-	await zotonic.setup();
+	zotonic.setup();
 
 	const zotonicVSCode = new ZotonicVSCode();
-	await zotonicVSCode.setup(zotonic, context);
+	zotonicVSCode.setup(zotonic, context);
 }
 
 // this method is called when your extension is deactivated

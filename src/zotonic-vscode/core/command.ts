@@ -45,3 +45,5 @@ export type RegisterTplCommand = {
 };
 
 export type TextEditorCommandCallback<T extends any[] = any[]> = (textEditor: TextEditor, edit: TextEditorEdit, ...args: T) => void;
+
+export type GenCommandName = <T extends TplCommandName>(commandName: T) => VSCodeCommandName<T>;

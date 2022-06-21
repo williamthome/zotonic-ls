@@ -21,7 +21,7 @@ export class Zotonic {
         return this._providers;
     }
 
-    public async setup() {
+    public setup() {
         return this
             .registerProvider(new TagTemplateSnippetProvider())
             .registerProvider(new TagImageSnippetProvider())
