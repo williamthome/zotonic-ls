@@ -1,6 +1,7 @@
 import { ITplCommand } from "../commands";
 
-export type ITplSnippetCommandCallback = (commands: ITplCommand) => Thenable<void>;
+export type ITplSnippetCommandCallback =
+    (commands: ITplCommand) => Thenable<void>;
 
 export interface ITplSnippetCommand {
     hint?: string,
@@ -17,5 +18,4 @@ export type ITplSnippet = {
     description?: string,
     documentation?: string,
     command?: ITplSnippetCommand,
-    // callback: (...args: any[]) =>
 };

@@ -24,7 +24,6 @@ import {
     ITplSnippetCommandCallback
 } from "./tpl";
 import { ITplCommand } from "./tpl/commands";
-// import { TplCommandName } from "./tpl/commands";
 
 type TplCommandName = keyof ITplCommand | "executeCommand" | "showUpSnippets";
 
@@ -44,54 +43,7 @@ type TplCommandReturn<T extends TplCommandName> =
     T extends keyof ITplCommand
         ? ITplCommand[T] extends (...args: any[]) => infer Return ? Return : never
         : unknown;
-
-// type Command = { [Property in TplCommandName]: CommandName };
-
-class TplCommandParser {
-    // registerCommand(context: ExtensionContext, name: CommandName, callback: (...args: any[]) => any) {
-    //     const command = commands.registerCommand(name, callback);
-    //     context.subscriptions.push(command);
-    //     return this;
-    // }
-
-    // registerCommands(context: ExtensionContext) {
-    //     this.registerSnippetPick(context);
-    // }
-
-    // registerSnippetPick(context: ExtensionContext) {
-    //     this.registerCommand(context, "tpl.snippet.pick", (snippets: string[]) => {
-    //         const quickPick = window.createQuickPick();
-    //         quickPick.items = snippets.map((snippet) => ({ label: snippet }));
-    //         quickPick.onDidChangeSelection(async ([{ label }]) => {
-    //             const snippet = snippets.find(snippet => snippet === label);
-    //             if (!snippet) {
-    //                 throw (new Error(`Unexpected no snippet match in quick pick with label "${label}"`));
-    //             }
-
-    //             // await commands.executeCommand("tpl.snippet.insert", snippet);
-    //             console.log("snippet", snippet);
-    //             quickPick.hide();
-    //         });
-    //         quickPick.show();
-    //     });
-    // }
-}
-
 export class TplParser {
-    // get commands(): Command {
-    //     return {
-    //         snippetPick: "tpl.snippet.pick"
-    //     };
-    // }
-
-    // public registerCommands() {
-    //     commandNames.forEach(v => {
-    //         if (v === "tpl.snippet.pick") {
-
-    //         }
-    //     });
-    // }
-
     public async setup(tpl: Tpl, context: ExtensionContext) {
         this
             .registerProviders(tpl, context)
@@ -117,10 +69,6 @@ export class TplParser {
 
     genCommandName<T extends TplCommandName>(commandName: T): VSCodeCommandName<T> {
         return `tpl.${commandName}`;
-    }
-
-    parseCommandName<T extends TplCommandName>(commandName: VSCodeCommandName<T>): T {
-        return commandName.padStart("tpl.".length) as T;
     }
 
     executeCommand<T extends TplCommandName>(tplCommandName: T, ...args: TplCommandArgs<T>) {

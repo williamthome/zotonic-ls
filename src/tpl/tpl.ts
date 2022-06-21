@@ -1,4 +1,3 @@
-import { ITplCommand } from "./commands";
 import { ITplCompletionItemProvider } from "./completions";
 import {
     ImageCompletionItemProvider,
@@ -9,24 +8,17 @@ import { ModelCompletionItemProvider } from "./completions/itemProviders/modelCo
 
 interface ConstructorArgs {
     providers?: ITplCompletionItemProvider[],
-    commands?: ITplCommand[],
 }
 
 export class Tpl {
     private _providers: ITplCompletionItemProvider[];
-    private _commands: ITplCommand[];
 
-    constructor({ providers, commands }: ConstructorArgs = {}) {
+    constructor({ providers }: ConstructorArgs = {}) {
         this._providers = providers || [];
-        this._commands = commands || [];
     }
 
     get providers() {
         return this._providers;
-    }
-
-    get commands() {
-        return this._commands;
     }
 
     public async setup() {
@@ -40,11 +32,6 @@ export class Tpl {
 
     public registerProvider(provider: ITplCompletionItemProvider) {
         this._providers.push(provider);
-        return this;
-    }
-
-    public registerCommand(command: ITplCommand) {
-        this._commands.push(command);
         return this;
     }
 }
