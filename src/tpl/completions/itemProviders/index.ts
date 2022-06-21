@@ -1,3 +1,3 @@
-export { TemplateCompletionItemProvider } from "./templateCompletiontemProvider";
-export { ImageCompletionItemProvider } from "./imageCompletiontemProvider";
-export { ModelCompletionItemProvider } from "./modelCompletiontemProvider";
+export { TemplateCompletionItemProvider } from "./templateCompletionItemProvider";
+export { ImageCompletionItemProvider } from "./imageCompletionItemProvider";
+export { ModelCompletionItemProvider } from "./modelCompletionItemProvider";
