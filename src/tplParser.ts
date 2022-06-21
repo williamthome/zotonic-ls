@@ -25,7 +25,7 @@ import {
 } from "./tpl";
 import { ITplCommand } from "./tpl/commands";
 
-type TplCommandName = keyof ITplCommand | "executeCommand" | "showUpSnippets";
+type TplCommandName = keyof ITplCommand | "executeCommand";
 
 type VSCodeCommandName<T extends TplCommandName> = `tpl.${T}`;
 
@@ -43,6 +43,29 @@ type TplCommandReturn<T extends TplCommandName> =
     T extends keyof ITplCommand
         ? ITplCommand[T] extends (...args: any[]) => infer Return ? Return : never
         : unknown;
+
+
+type CommandKind = "command" | "textEditorCommand";
+
+type CommandKindArgs<T extends CommandKind> =
+    T extends "command"
+        ? []
+        : T extends "textEditorCommand"
+            ? [TextEditor, TextEditorEdit]
+            : never;
+
+interface TplCommandInterpreter<T extends TplCommandName, K extends CommandKind = "command"> {
+    tplCommandName: T,
+    kind: K,
+    callback: (...args: [...CommandKindArgs<K>, ...TplCommandArgs<T> extends any[] ? TplCommandArgs<T> : any[]]) => TplCommandReturn<T>
+}
+
+type RegisterTplCommand = {
+    [T in TplCommandName]: TplCommandInterpreter<T, any>
+};
+
+type TextEditorCommandCallback<T extends any[] = any[]> = (textEditor: TextEditor, edit: TextEditorEdit, ...args: T) => void;
+
 export class TplParser {
     public async setup(tpl: Tpl, context: ExtensionContext) {
         this
@@ -51,7 +74,7 @@ export class TplParser {
         ;
     }
 
-    get commands(): ITplCommand {
+    get tplCommands(): ITplCommand {
         return {
             getUserChoice: (choices, next) => {
                 return this.executeCommand("getUserChoice", choices, next);
@@ -66,6 +89,15 @@ export class TplParser {
             },
         };
     };
+
+    get vscodeCommands(): RegisterTplCommand {
+        return {
+            executeCommand: this.commandCallback,
+            getUserChoice: this.commandGetUserChoice,
+            insertSnippet: this.commandInsertSnippet,
+            showUpSnippets: this.commandShowUpSnippets,
+        };
+    }
 
     genCommandName<T extends TplCommandName>(commandName: T): VSCodeCommandName<T> {
         return `tpl.${commandName}`;
@@ -83,74 +115,84 @@ export class TplParser {
         return this;
     }
 
-    registerTextEditorCommand<T extends TplCommandName>(context: ExtensionContext, tplCommandName: T, callback: (editor: TextEditor, edit: TextEditorEdit,...args: TplCommandArgs<T>) => void) {
+    registerTextEditorCommand<T extends TplCommandName>(context: ExtensionContext, tplCommandName: T, callback: TextEditorCommandCallback<TplCommandArgs<T>>) {
         const vscodeCommandName = this.genCommandName(tplCommandName);
         const command = commands.registerTextEditorCommand(
             vscodeCommandName,
-            callback as (textEditor: TextEditor, edit: TextEditorEdit, ...args: any[]) => void
+            callback as TextEditorCommandCallback
         );
         context.subscriptions.push(command);
         return this;
     }
 
-    registerInsertSnippet(context: ExtensionContext) {
-        return this.registerTextEditorCommand(
-            context,
-            "insertSnippet",
-            (editor, _edit, snippet) =>
-                editor.insertSnippet(new SnippetString(snippet))
-        );
+    get commandInsertSnippet(): TplCommandInterpreter<"insertSnippet", "textEditorCommand"> {
+        return {
+            tplCommandName: "insertSnippet",
+            kind: "textEditorCommand",
+            async callback(editor, _edit, snippet){
+                editor.insertSnippet(new SnippetString(snippet));
+            }
+        };
     }
 
-    registerPickUserChoice(context: ExtensionContext) {
-        return this.registerCommand(
-            context,
-            "getUserChoice",
-            async (choices: string[], next: (choice: string) => Thenable<void>) => {
+    get commandGetUserChoice(): TplCommandInterpreter<"getUserChoice"> {
+        return {
+            tplCommandName: "getUserChoice",
+            kind: "command",
+            async callback(choices, next) {
                 const quickPick = window.createQuickPick();
                 quickPick.items = choices.map((choice) => ({ label: choice }));
                 quickPick.onDidChangeSelection(async ([{ label }]) => {
                     const choice = choices.find(choice => choice === label);
                     if (!choice) {
+                        // TODO: Include valid choices in the error message
                         throw (new Error(`Unexpected no choice match in quick pick with label "${label}"`));
                     }
                     await next(choice);
                     quickPick.hide();
                 });
                 quickPick.show();
-            }
-        );
+            },
+        };
     }
 
-    registerShowUpSnippets(context: ExtensionContext) {
-        return this.registerCommand(
-            context,
-            "showUpSnippets",
-            () => commands.executeCommand("editor.action.triggerSuggest")
-        );
+    get commandShowUpSnippets(): TplCommandInterpreter<"showUpSnippets"> {
+        return {
+            tplCommandName: "showUpSnippets",
+            kind: "command",
+            callback: () => commands.executeCommand("editor.action.triggerSuggest")
+        };
     }
 
-    public registerCallbackCommand(context: ExtensionContext) {
-        return this.registerCommand(
-            context,
-            "executeCommand",
-            (callback: ITplSnippetCommandCallback) => callback(this.commands)
-        );
+    get commandCallback(): TplCommandInterpreter<"executeCommand"> {
+        return {
+            tplCommandName: "executeCommand",
+            kind: "command",
+            callback: (callback: ITplSnippetCommandCallback) => callback(this.tplCommands),
+        };
     }
 
     public registerCommands(context: ExtensionContext) {
-        return this
-            .registerPickUserChoice(context)
-            .registerInsertSnippet(context)
-            .registerCallbackCommand(context)
-            .registerShowUpSnippets(context)
-        ;
+        for (const {kind, tplCommandName, callback} of Object.values(this.vscodeCommands)) {
+            switch(kind) {
+                case "command":
+                    this.registerCommand(context, tplCommandName, callback);
+                    continue;
+                case "textEditorCommand":
+                    this.registerTextEditorCommand(context, tplCommandName, callback as TextEditorCommandCallback);
+                    continue;
+                default:
+                    throw new Error("Command kind not implemented.");
+            }
+        }
+        return this;
     }
 
     public registerProvider(context: ExtensionContext) {
         return (provider: ITplCompletionItemProvider) => {
             if (provider instanceof TplCompletionItemProvider) {
                 context.subscriptions.push(
+                    // TODO: Move trigger characteres to provider
                     languages.registerCompletionItemProvider(
                         provider.selector,
                         this.parseCompletionItemProvider(provider),
