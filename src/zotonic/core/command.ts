@@ -1,4 +1,4 @@
-export interface ITplCommand {
+export interface ICommand {
     getUserChoice: (
         choices: string[],
         next: (choice: string) => Thenable<void>

@@ -1,7 +1,7 @@
-import { TplCompletionItemProvider } from "../tplCompletionItemProvider";
-import { ITplSnippet } from "../tplSnippet";
+import { ISnippet } from "../../core";
+import { SnippetProvider } from "../provider";
 
-export class ModelCompletionItemProvider extends TplCompletionItemProvider {
+export class ModelSnippetProvider extends SnippetProvider {
     constructor() {
         super({
             selector: "tpl",
@@ -9,7 +9,7 @@ export class ModelCompletionItemProvider extends TplCompletionItemProvider {
         });
     }
 
-    public loadSnippets(): Promise<ITplSnippet[]> {
+    public loadSnippets(): Promise<ISnippet[]> {
         return new Promise((resolve) => {
             resolve([{
                 prefix: "m.",

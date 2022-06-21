@@ -17,42 +17,42 @@ import {
     TextEditorEdit,
 } from "vscode";
 import {
-    Tpl,
-    ITplSnippet,
-    TplCompletionItemProvider,
-    ITplCompletionItemProvider,
-    ITplSnippetCommandCallback
-} from "./tpl";
-import { ITplCommand } from "./tpl/commands";
+    Zotonic,
+    ICommand,
+    ISnippet,
+    ISnippetCommandCallback,
+    ISnippetProvider,
+    SnippetProvider,
+} from "./zotonic";
 
-type TplCommandName = keyof ITplCommand | "executeCommand";
+
+type TplCommandName = keyof ICommand | "executeCommand";
 
 type VSCodeCommandName<T extends TplCommandName> = `tpl.${T}`;
 
 type TplCommandFunction<T extends TplCommandName> =
-    T extends keyof ITplCommand
-        ? ITplCommand[T] extends (...args: any[]) => any ? ITplCommand[T] : never
-        : (...args: any[]) => any;
+    T extends keyof ICommand
+    ? ICommand[T] extends (...args: any[]) => any ? ICommand[T] : never
+    : (...args: any[]) => any;
 
 type TplCommandArgs<T extends TplCommandName> =
-    T extends keyof ITplCommand
-        ? ITplCommand[T] extends (...args: infer Args) => any ? Args : never
-        : any[];
+    T extends keyof ICommand
+    ? ICommand[T] extends (...args: infer Args) => any ? Args : never
+    : any[];
 
 type TplCommandReturn<T extends TplCommandName> =
-    T extends keyof ITplCommand
-        ? ITplCommand[T] extends (...args: any[]) => infer Return ? Return : never
-        : unknown;
-
+    T extends keyof ICommand
+    ? ICommand[T] extends (...args: any[]) => infer Return ? Return : never
+    : unknown;
 
 type CommandKind = "command" | "textEditorCommand";
 
 type CommandKindArgs<T extends CommandKind> =
     T extends "command"
-        ? []
-        : T extends "textEditorCommand"
-            ? [TextEditor, TextEditorEdit]
-            : never;
+    ? []
+    : T extends "textEditorCommand"
+    ? [TextEditor, TextEditorEdit]
+    : never;
 
 interface TplCommandInterpreter<T extends TplCommandName, K extends CommandKind = "command"> {
     tplCommandName: T,
@@ -66,15 +66,15 @@ type RegisterTplCommand = {
 
 type TextEditorCommandCallback<T extends any[] = any[]> = (textEditor: TextEditor, edit: TextEditorEdit, ...args: T) => void;
 
-export class TplParser {
-    public async setup(tpl: Tpl, context: ExtensionContext) {
+export class ZotonicToVSCode {
+    public async setup(tpl: Zotonic, context: ExtensionContext) {
         this
             .registerProviders(tpl, context)
             .registerCommands(context)
-        ;
+            ;
     }
 
-    get tplCommands(): ITplCommand {
+    get tplCommands(): ICommand {
         return {
             getUserChoice: (choices, next) => {
                 return this.executeCommand("getUserChoice", choices, next);
@@ -129,7 +129,7 @@ export class TplParser {
         return {
             tplCommandName: "insertSnippet",
             kind: "textEditorCommand",
-            async callback(editor, _edit, snippet){
+            async callback(editor, _edit, snippet) {
                 editor.insertSnippet(new SnippetString(snippet));
             }
         };
@@ -168,13 +168,13 @@ export class TplParser {
         return {
             tplCommandName: "executeCommand",
             kind: "command",
-            callback: (callback: ITplSnippetCommandCallback) => callback(this.tplCommands),
+            callback: (callback: ISnippetCommandCallback) => callback(this.tplCommands),
         };
     }
 
     public registerCommands(context: ExtensionContext) {
-        for (const {kind, tplCommandName, callback} of Object.values(this.vscodeCommands)) {
-            switch(kind) {
+        for (const { kind, tplCommandName, callback } of Object.values(this.vscodeCommands)) {
+            switch (kind) {
                 case "command":
                     this.registerCommand(context, tplCommandName, callback);
                     continue;
@@ -189,8 +189,8 @@ export class TplParser {
     }
 
     public registerProvider(context: ExtensionContext) {
-        return (provider: ITplCompletionItemProvider) => {
-            if (provider instanceof TplCompletionItemProvider) {
+        return (provider: ISnippetProvider) => {
+            if (provider instanceof SnippetProvider) {
                 context.subscriptions.push(
                     // TODO: Move trigger characteres to provider
                     languages.registerCompletionItemProvider(
@@ -199,16 +199,18 @@ export class TplParser {
                         ".", "[", "{", "|", "<"
                     )
                 );
+            } else {
+                throw new Error("Provider not implemented.");
             }
         };
     }
 
-    public registerProviders(tpl: Tpl, context: ExtensionContext) {
+    public registerProviders(tpl: Zotonic, context: ExtensionContext) {
         tpl.providers.forEach(this.registerProvider(context));
         return this;
     }
 
-    public parseCompletionItem(snippet: ITplSnippet): CompletionItem {
+    public parseCompletionItem(snippet: ISnippet): CompletionItem {
         const completionItem = new CompletionItem(
             snippet.prefix, CompletionItemKind.Snippet
         );
@@ -236,7 +238,7 @@ export class TplParser {
     }
 
     public parseCompletionItemProvider(
-        provider: ITplCompletionItemProvider
+        provider: ISnippetProvider
     ): CompletionItemProvider {
         const provideCompletionItems = async (
             document: TextDocument,

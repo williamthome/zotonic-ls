@@ -1,7 +1,7 @@
-import { ITplCommand } from "../../commands";
-import { TplFileCompletionItemProvider } from "../tplFileCompletionItemProvider";
+import { ICommand } from "../../core";
+import { FileSnippetProvider } from "../file-provider";
 
-export class MGetCompletionItemProvider extends TplFileCompletionItemProvider {
+export class MGetSnippetProvider extends FileSnippetProvider {
     constructor() {
         super({
             extensions: ["erl"],
@@ -24,7 +24,7 @@ export class MGetCompletionItemProvider extends TplFileCompletionItemProvider {
 
                 snippet.command = {
                     hint: "m_get",
-                    callback: async (commands: ITplCommand) => {
+                    callback: async (commands: ICommand) => {
                         commands.getUserChoice(modelSnippets, async (choice) => {
                             console.log("model", choice);
                             await commands.insertSnippet(choice);

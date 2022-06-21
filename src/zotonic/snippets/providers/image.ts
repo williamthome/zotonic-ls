@@ -1,6 +1,6 @@
-import { TplFileCompletionItemProvider } from "../tplFileCompletionItemProvider";
+import { FileSnippetProvider } from "../file-provider";
 
-export class ImageCompletionItemProvider extends TplFileCompletionItemProvider {
+export class ImageSnippetProvider extends FileSnippetProvider {
     constructor() {
         super({
             extensions: [

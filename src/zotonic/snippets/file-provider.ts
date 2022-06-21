@@ -1,9 +1,9 @@
+import { ISnippet } from "../core";
 import { findFilesByPattern } from "../utils/path";
-import { TplCompletionItemProvider } from "./tplCompletionItemProvider";
-import { ITplSnippet } from "./tplSnippet";
+import { SnippetProvider } from "./provider";
 
 type FilenameRegExp = (rootsEscaped: string) => RegExp;
-type TransformSnippet = (snippet: ITplSnippet, filePath: string) => ITplSnippet;
+type TransformSnippet = (snippet: ISnippet, filePath: string) => ISnippet;
 
 interface ConstructorArgs {
     workspaces?: string[],
@@ -14,7 +14,7 @@ interface ConstructorArgs {
     transformSnippet?: TransformSnippet
 }
 
-export class TplFileCompletionItemProvider extends TplCompletionItemProvider {
+export class FileSnippetProvider extends SnippetProvider {
     public workspaces: string[];
     public roots: string[][];
     public extensions: string[];
@@ -38,7 +38,7 @@ export class TplFileCompletionItemProvider extends TplCompletionItemProvider {
         this.transformSnippet = transformSnippet;
     }
 
-    public async loadSnippets(baseDir: string): Promise<ITplSnippet[]> {
+    public async loadSnippets(baseDir: string): Promise<ISnippet[]> {
         const workspaces = this.workspaces.join(",");
         const roots = this.roots.map(r => r.join("/")).join(",");
         const extensions = this.extensions.join(",");
@@ -52,7 +52,7 @@ export class TplFileCompletionItemProvider extends TplCompletionItemProvider {
             }
             const filePath = filePathMatch[0];
             if (!arr.some((s) => s.prefix === filePath)) {
-                const baseSnippet: ITplSnippet = { prefix: filePath, body: filePath };
+                const baseSnippet: ISnippet = { prefix: filePath, body: filePath };
                 const snippet = this.transformSnippet
                     ? this.transformSnippet(baseSnippet, filePath)
                     : baseSnippet;
@@ -60,7 +60,7 @@ export class TplFileCompletionItemProvider extends TplCompletionItemProvider {
                 arr.push(snippet);
             }
             return arr;
-        }, new Array<ITplSnippet>());
+        }, new Array<ISnippet>());
         return snippets;
     };
 }
