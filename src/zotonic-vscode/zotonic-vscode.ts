@@ -31,6 +31,8 @@ import {
     TplCommandFunction,
     TextEditorCommandCallback,
     TplCommandInterpreter,
+    CommandKind,
+    CommandInterpreterCallback,
 } from "./core";
 
 export class ZotonicVSCode {
@@ -92,21 +94,30 @@ export class ZotonicVSCode {
         return this;
     }
 
-    get commandInsertSnippet(): TplCommandInterpreter<"insertSnippet", "textEditorCommand"> {
-        return {
-            tplCommandName: "insertSnippet",
-            kind: "textEditorCommand",
-            async callback(editor, _edit, snippet) {
-                editor.insertSnippet(new SnippetString(snippet));
-            }
-        };
+    // TODO: Review the 'interpreter' word
+    genCommandInterpreter<Name extends TplCommandName, Kind extends CommandKind>(
+        tplCommandName: Name,
+        kind: Kind,
+        callback: CommandInterpreterCallback<Name, Kind>
+    ): TplCommandInterpreter<Name, Kind> {
+        return { tplCommandName, kind, callback };
     }
 
-    get commandGetUserChoice(): TplCommandInterpreter<"getUserChoice"> {
-        return {
-            tplCommandName: "getUserChoice",
-            kind: "command",
-            async callback(choices, next) {
+    get commandInsertSnippet() {
+        return this.genCommandInterpreter(
+            "insertSnippet",
+            "textEditorCommand",
+            async (editor, _edit, snippet) => {
+                editor.insertSnippet(new SnippetString(snippet));
+            }
+        );
+    }
+
+    get commandGetUserChoice() {
+        return this.genCommandInterpreter(
+            "getUserChoice",
+            "command",
+            async (choices, next) => {
                 const quickPick = window.createQuickPick();
                 quickPick.items = choices.map((choice) => ({ label: choice }));
                 quickPick.onDidChangeSelection(async ([{ label }]) => {
@@ -119,24 +130,24 @@ export class ZotonicVSCode {
                     quickPick.hide();
                 });
                 quickPick.show();
-            },
-        };
+            }
+        );
     }
 
-    get commandShowUpSnippets(): TplCommandInterpreter<"showUpSnippets"> {
-        return {
-            tplCommandName: "showUpSnippets",
-            kind: "command",
-            callback: () => commands.executeCommand("editor.action.triggerSuggest")
-        };
+    get commandShowUpSnippets() {
+        return this.genCommandInterpreter(
+            "showUpSnippets",
+            "command",
+            () => commands.executeCommand("editor.action.triggerSuggest")
+        );
     }
 
-    get commandCallback(): TplCommandInterpreter<"executeCommand"> {
-        return {
-            tplCommandName: "executeCommand",
-            kind: "command",
-            callback: (callback: ISnippetCommandCallback) => callback(this.tplCommands),
-        };
+    get commandCallback() {
+        return this.genCommandInterpreter(
+            "executeCommand",
+            "command",
+            (callback: ISnippetCommandCallback) => callback(this.tplCommands)
+        );
     }
 
     public registerCommands(context: ExtensionContext) {

@@ -29,10 +29,15 @@ export type CommandKindArgs<T extends CommandKind> =
     ? [TextEditor, TextEditorEdit]
     : never;
 
+export type CommandInterpreterCallback<T extends TplCommandName, K extends CommandKind> =
+    (...args: [...CommandKindArgs<K>, ...TplCommandArgs<T> extends any[]
+        ? TplCommandArgs<T>
+        : any[]]) => TplCommandReturn<T>;
+
 export interface TplCommandInterpreter<T extends TplCommandName, K extends CommandKind = "command"> {
     tplCommandName: T,
     kind: K,
-    callback: (...args: [...CommandKindArgs<K>, ...TplCommandArgs<T> extends any[] ? TplCommandArgs<T> : any[]]) => TplCommandReturn<T>
+    callback: CommandInterpreterCallback<T, K>
 }
 
 export type RegisterTplCommand = {
