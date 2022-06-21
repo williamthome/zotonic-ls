@@ -52,7 +52,10 @@ export class FileSnippetProvider extends SnippetProvider {
             }
             const filePath = filePathMatch[0];
             if (!arr.some((s) => s.prefix === filePath)) {
-                const baseSnippet: ISnippet = { prefix: filePath, body: filePath };
+                const baseSnippet: ISnippet = {
+                    prefix: filePath,
+                    body: filePath
+                };
                 const snippet = this.transformSnippet
                     ? this.transformSnippet(baseSnippet, filePath)
                     : baseSnippet;

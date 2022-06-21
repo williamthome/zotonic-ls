@@ -18,6 +18,7 @@ export type ISnippet = {
     description?: string,
     documentation?: string,
     command?: ISnippetCommand,
+    triggerCharacters?: string[]
 };
 
 export type Selector = "tpl";

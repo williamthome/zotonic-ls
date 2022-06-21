@@ -170,11 +170,10 @@ export class ZotonicVSCode {
         return (provider: ISnippetProvider) => {
             if (provider instanceof SnippetProvider) {
                 context.subscriptions.push(
-                    // TODO: Move trigger characteres to provider
                     languages.registerCompletionItemProvider(
                         provider.selector,
                         this.parseCompletionItemProvider(provider),
-                        ".", "[", "{", "|", "<"
+                        ...provider.triggerCharacters
                     )
                 );
             } else {

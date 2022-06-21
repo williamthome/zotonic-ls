@@ -3,6 +3,7 @@ import { ISnippet, ISnippetProvider, Selector } from "../core";
 interface ConstructorArgs {
     selector?: Selector,
     pattern: RegExp,
+    triggerCharacters?: string[]
 }
 
 export abstract class SnippetProvider implements ISnippetProvider {
@@ -10,12 +11,14 @@ export abstract class SnippetProvider implements ISnippetProvider {
 
     public pattern: RegExp;
     public selector: Selector;
+    public triggerCharacters: string[];
 
     private _snippets: ISnippet[] | undefined;
 
-    constructor({ pattern, selector }: ConstructorArgs) {
+    constructor({ pattern, selector, triggerCharacters }: ConstructorArgs) {
         this.pattern = pattern;
         this.selector = selector || "tpl";
+        this.triggerCharacters = triggerCharacters || [".", "[", "{", "|", "<"];
     }
 
     public async getSnippets(baseDir: string) {
