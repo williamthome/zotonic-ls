@@ -25,7 +25,6 @@ export class ZotonicVSCodeProvider {
     public registerProvider(context: ExtensionContext) {
         return (provider: ISnippetProvider) => {
             if (provider instanceof SnippetProvider) {
-                console.log(provider.triggerCharacters);
                 context.subscriptions.push(
                     languages.registerCompletionItemProvider(
                         provider.selector,
