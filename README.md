@@ -1,4 +1,4 @@
-[!["Sponsor"](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)]([https://www.buymeacoffee.com/williamthome](https://github.com/sponsors/williamthome))
+[!["Sponsor"](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](<[https://www.buymeacoffee.com/williamthome](https://github.com/sponsors/williamthome)>)
 
 # Zotonic Language Server
 
@@ -28,7 +28,7 @@ A great help is the models snippets. Typing `m.` all models are listed and picki
 
 #### Other languages completions
 
-- HTML: Typing `<` outside a `.tpl` expression popups HTML snippets.
+-   HTML: Typing `<` outside a `.tpl` expression popups HTML snippets.
 
 ### Go to definition
 
@@ -52,20 +52,20 @@ Download and install the extension for free at the [Visual Studio Marketplace](h
 
 ### Syntax Highlight
 
-- Improve semantic highlight. See:
-  - [Writing a TextMate Grammar: Some Lessons Learned](https://www.apeth.com/nonblog/stories/textmatebundle.html)
-  - [Semantic Highlight Guide](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide)
+-   Improve semantic highlight. See:
+    -   [Writing a TextMate Grammar: Some Lessons Learned](https://www.apeth.com/nonblog/stories/textmatebundle.html)
+    -   [Semantic Highlight Guide](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide)
 
 ### Snippets
 
-- Review arguments and tabstops;
-- CSS completions;
-- Javascript completions.
+-   Review arguments and tabstops;
+-   CSS completions;
+-   Javascript completions.
 
 ### Docs
 
-- Review links;
-- Improve style.
+-   Review links;
+-   Improve style.
 
 ## Sponsors
 
@@ -93,11 +93,25 @@ npm install
 code .
 ```
 
-Make sure you have [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension installed.
+### Extensions
+
+Make sure you have [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier ESLint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint) extensions installed.
+
+#### Config
+
+-   Open user or workspace `settings.json` by:
+    -   Windows/Linux: <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>P</kbd> or `File > Preferences > Settings`
+    -   MacOS: <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>P</kbd> or `Code > Preferences > Settings`
+-   Add this to the settings file:
+
+```json
+"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+"editor.formatOnSave": true,
+```
 
 ### Debugging the extension
 
 Press <kbd>F5</kbd> to start debugging.
-To reload, if in dev window,  press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F5</kbd> or, if in extension host window, <kbd>Ctrl</kbd> + <kbd>R</kbd>.
+To reload, if in dev window, press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F5</kbd> or, if in extension host window, <kbd>Ctrl</kbd> + <kbd>R</kbd>.
 
 [See this article](https://code.visualstudio.com/api/get-started/your-first-extension) for more information about debugging.
