@@ -141,7 +141,8 @@
         "lint": "eslint src --ext ts --cache --fix",
         "format": "prettier --write ./src/**/*.{ts,json}",
         "test": "node ./out/test/runTest.js",
-        "update": "npx npm-check-updates -u && npm install"
+        "update": "npx npm-check-updates -u && npm install",
+        "prepare": "husky install"
     },
     "devDependencies": {
         "@types/glob": "^7.2.0",
