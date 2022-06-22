@@ -51,7 +51,7 @@ export class FileSnippetProvider extends SnippetProvider {
         const pattern = `${root}/**/${path}/**/*.${ext}`;
 
         const files = await findFilesByPattern(baseDir, pattern);
-        const snippets = files.reduce((arr, filePath) => {
+        return files.reduce((arr, filePath) => {
             const escapedWorkspaces = this.workspaces
                 .map((r) => r.join('\\/'))
                 .join('|');
@@ -78,7 +78,6 @@ export class FileSnippetProvider extends SnippetProvider {
             }
             return arr;
         }, new Array<ISnippet>());
-        return snippets;
     }
 
     private maybeEmbrace<T, K>(arr: T, value?: K) {
