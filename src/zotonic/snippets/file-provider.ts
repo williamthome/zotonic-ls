@@ -3,7 +3,11 @@ import { SnippetProvider } from './provider';
 import { findFilesByPattern } from '../utils/path';
 
 type FilenameRegExp = (escapedWorkspaces: string) => RegExp;
-type TransformSnippet = (snippet: ISnippet, filePath: string) => ISnippet;
+type TransformSnippet = (
+    snippet: ISnippet,
+    filePath: string,
+    fileName: string,
+) => ISnippet;
 
 interface ConstructorArgs {
     workspacesRoot?: string | string[];
@@ -48,23 +52,23 @@ export class FileSnippetProvider extends SnippetProvider {
         const extensions = this.extensions.join(',');
         const pattern = `{${workspacesRoot}}/**/{${workspaces}}/**/*.{${extensions}}`;
         const files = await findFilesByPattern(baseDir, pattern);
-        const snippets = files.reduce((arr, file) => {
+        const snippets = files.reduce((arr, filePath) => {
             const escapedWorkspaces = this.workspaces
                 .map((r) => r.join('\\/'))
                 .join('|');
             const filePathMatch =
-                this.filenameRegExp(escapedWorkspaces).exec(file);
+                this.filenameRegExp(escapedWorkspaces).exec(filePath);
             if (!filePathMatch || !filePathMatch.length) {
                 return arr;
             }
-            const filePath = filePathMatch[0];
-            if (!arr.some((s) => s.prefix === filePath)) {
+            const fileName = filePathMatch[0];
+            if (!arr.some((s) => s.prefix === fileName)) {
                 const baseSnippet: ISnippet = {
-                    prefix: filePath,
-                    body: filePath,
+                    prefix: fileName,
+                    body: fileName,
                 };
                 const snippet = this.transformSnippet
-                    ? this.transformSnippet(baseSnippet, filePath)
+                    ? this.transformSnippet(baseSnippet, filePath, fileName)
                     : baseSnippet;
 
                 arr.push(snippet);

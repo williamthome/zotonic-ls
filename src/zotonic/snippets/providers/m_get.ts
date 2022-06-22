@@ -12,7 +12,7 @@ export class MGetSnippetProvider extends FileSnippetProvider {
             filenameRegExp() {
                 return /(?<=\bm_).*?(?=.erl)/;
             },
-            transformSnippet(snippet, filePath) {
+            transformSnippet(snippet, filePath, fileName) {
                 snippet.description =
                     "A model located at '<apps|apps_user>/<module>/src/models'.";
                 // TODO: Snippet command
@@ -23,7 +23,10 @@ export class MGetSnippetProvider extends FileSnippetProvider {
                     'm.test3[$1]',
                 ];
 
-                console.log(filePath);
+                console.log({
+                    filePath,
+                    fileName,
+                });
 
                 snippet.command = {
                     hint: 'm_get',
