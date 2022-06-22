@@ -8,13 +8,46 @@
     "plugins": [
         "@typescript-eslint"
     ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
     "rules": {
         "@typescript-eslint/naming-convention": "warn",
         "@typescript-eslint/semi": "warn",
         "curly": "warn",
         "eqeqeq": "warn",
         "no-throw-literal": "warn",
-        "semi": "off"
+        "semi": "off",
+        "object-curly-newline": [
+            "error",
+            {
+                "ObjectExpression": "always",
+                "ObjectPattern": {
+                    "multiline": true,
+                    "consistent": true
+                },
+                "ImportDeclaration": {
+                    "multiline": true,
+                    "consistent": true
+                },
+                "ExportDeclaration": {
+                    "multiline": true,
+                    "consistent": true
+                }
+            }
+        ],
+        "comma-dangle": [2, "always-multiline"],
+        "max-len": [
+            "error",
+            {
+                "code": 80,
+                "ignoreTemplateLiterals": true,
+                "ignoreStrings": true,
+                "ignoreComments": true
+            }
+        ]
     },
     "ignorePatterns": [
         "out",
