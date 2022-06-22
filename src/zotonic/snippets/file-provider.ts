@@ -45,28 +45,31 @@ export class FileSnippetProvider extends SnippetProvider {
     }
 
     public async loadSnippets(baseDir: string): Promise<ISnippet[]> {
-        const workspacesRoot = Array.isArray(this.workspacesRoot)
-            ? this.workspacesRoot.join(',')
-            : this.workspacesRoot;
-        const workspaces = this.workspaces.map((r) => r.join('/')).join(',');
-        const extensions = this.extensions.join(',');
-        const pattern = `{${workspacesRoot}}/**/{${workspaces}}/**/*.{${extensions}}`;
+        const root = this.maybeEmbrace(this.workspacesRoot);
+        const path = this.maybeEmbrace(this.workspaces.map((r) => r.join('/')));
+        const ext = this.maybeEmbrace(this.extensions);
+        const pattern = `${root}/**/${path}/**/*.${ext}`;
+
         const files = await findFilesByPattern(baseDir, pattern);
         const snippets = files.reduce((arr, filePath) => {
             const escapedWorkspaces = this.workspaces
                 .map((r) => r.join('\\/'))
                 .join('|');
+
             const filePathMatch =
                 this.filenameRegExp(escapedWorkspaces).exec(filePath);
+
             if (!filePathMatch || !filePathMatch.length) {
                 return arr;
             }
+
             const fileName = filePathMatch[0];
             if (!arr.some((s) => s.prefix === fileName)) {
                 const baseSnippet: ISnippet = {
                     prefix: fileName,
                     body: fileName,
                 };
+
                 const snippet = this.transformSnippet
                     ? this.transformSnippet(baseSnippet, filePath, fileName)
                     : baseSnippet;
@@ -76,5 +79,13 @@ export class FileSnippetProvider extends SnippetProvider {
             return arr;
         }, new Array<ISnippet>());
         return snippets;
+    }
+
+    private maybeEmbrace<T, K>(arr: T, value?: K) {
+        return Array.isArray(arr)
+            ? arr.length > 1
+                ? `{${value || arr.join(',')}}`
+                : value || arr[0]
+            : value;
     }
 }

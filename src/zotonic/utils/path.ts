@@ -1,11 +1,21 @@
-// TODO: Decouple from vscode and use the baseDir arg. Maybe use 'glob' lib.
-import { workspace } from 'vscode';
+import { glob } from 'glob';
 
 export async function findFilesByPattern(
-    _baseDir: string,
+    baseDir: string,
     pattern: string,
     ignorePattern?: string,
 ): Promise<string[]> {
-    const files = await workspace.findFiles(pattern, ignorePattern);
-    return files.map((f) => f.fsPath);
+    return new Promise((resolve, reject) => {
+        glob(
+            pattern,
+            {
+                cwd: baseDir,
+                ignore: ignorePattern,
+                absolute: true,
+            },
+            (err, matches) => {
+                err ? reject(err) : resolve(matches);
+            },
+        );
+    });
 }
