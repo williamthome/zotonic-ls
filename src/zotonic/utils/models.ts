@@ -40,7 +40,7 @@ async function getFileExpressions(
     const matches = data.match(re);
     if (!matches) {
         return new Error(
-            `The model '${model}' have no match for '${behaviour}'.`,
+            `The model '${model}' has no '${behaviour}' functions.`,
         );
     }
 
