@@ -31,9 +31,9 @@ export class MGetSnippetProvider extends FileSnippetProvider {
 
                         commands.getUserChoice(
                             modelExpressions,
-                            async (useChoice) => {
+                            async (userChoice) => {
                                 const i = mGetResult.findIndex(
-                                    (mGet) => mGet.expression === useChoice,
+                                    (mGet) => mGet.expression === userChoice,
                                 );
                                 const snippet = mGetResult[i].snippet;
                                 await commands.insertSnippet(snippet);
