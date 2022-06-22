@@ -1,3 +1,3 @@
 export * from './tags';
-export * from './m_get';
+export * from './m-get';
 export * from './model';
