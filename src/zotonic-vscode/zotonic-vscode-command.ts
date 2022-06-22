@@ -131,13 +131,8 @@ export class ZotonicVSCodeCommand {
                     label: choice,
                 }));
                 quickPick.onDidChangeSelection(async ([{ label }]) => {
-                    const choice = choices.find((choice) => choice === label);
-                    if (!choice) {
-                        // TODO: Include valid choices in the error message
-                        throw new Error(
-                            `Unexpected no choice match in quick pick with label "${label}"`,
-                        );
-                    }
+                    const i = choices.indexOf(label);
+                    const choice = choices[i];
                     await next(choice);
                     quickPick.hide();
                 });
