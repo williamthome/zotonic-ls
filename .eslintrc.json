@@ -23,7 +23,11 @@
         "object-curly-newline": [
             "error",
             {
-                "ObjectExpression": "always",
+                "ObjectExpression": {
+                    "multiline": true,
+                    "consistent": true,
+                    "minProperties": 1
+                },
                 "ObjectPattern": {
                     "multiline": true,
                     "consistent": true

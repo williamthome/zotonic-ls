@@ -13,8 +13,7 @@ interface ConstructorArgs {
 export class Zotonic {
     private _providers: ISnippetProvider[];
 
-    constructor({ providers }: ConstructorArgs = {
-}) {
+    constructor({ providers }: ConstructorArgs = {}) {
         this._providers = providers || [];
     }
 
