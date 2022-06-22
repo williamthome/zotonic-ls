@@ -21,9 +21,9 @@ type Behaviour = 'm_get' | 'm_post' | 'm_delete';
 
 // API
 
-export async function mGetExpressions(findFile: FindFile, model: string) {
+export async function mGetExpressions(filePath: string, model: string) {
     const re = /(?<=m_get\s*\(\s*\[\s*)(\w|<|\{).*?(?=\s*(\||\]))/g;
-    return await getFileExpressions('m_get', re, findFile, model);
+    return await getFileExpressions('m_get', re, filePath, model);
 }
 
 // Internal functions
@@ -31,16 +31,9 @@ export async function mGetExpressions(findFile: FindFile, model: string) {
 async function getFileExpressions(
     behaviour: Behaviour,
     re: RegExp,
-    findFile: FindFile,
+    filePath: string,
     model: string,
 ) {
-    const filePath = await findFile(
-        `{apps,apps_user}/**/src/models/**/m_${model}.erl`,
-    );
-    if (!filePath) {
-        return new Error(`Could not find the model '${model}'.`);
-    }
-
     const data = await fs.promises.readFile(filePath, {
         encoding: 'utf8',
     });
