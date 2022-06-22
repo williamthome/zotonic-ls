@@ -24,8 +24,7 @@ export class MGetSnippetProvider extends FileSnippetProvider {
                             model,
                         );
                         if (mGetResult instanceof Error) {
-                            // TODO: Show error message
-                            return;
+                            return commands.growlError(mGetResult.message);
                         }
 
                         const modelExpressions = mGetResult.map(

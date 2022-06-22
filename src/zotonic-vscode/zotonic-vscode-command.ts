@@ -31,6 +31,14 @@ export class ZotonicVSCodeCommand {
             showUpSnippets: () => {
                 return this.executeCommand('showUpSnippets');
             },
+
+            growl: (msg) => {
+                return this.executeCommand('growl', msg);
+            },
+
+            growlError: (msg) => {
+                return this.executeCommand('growlError', msg);
+            },
         };
     }
 
@@ -40,6 +48,8 @@ export class ZotonicVSCodeCommand {
             getUserChoice: this.commandGetUserChoice,
             insertSnippet: this.commandInsertSnippet,
             showUpSnippets: this.commandShowUpSnippets,
+            growl: this.commandGrowl,
+            growlError: this.commandGrowlError,
         };
     }
 
@@ -139,6 +149,22 @@ export class ZotonicVSCodeCommand {
     get commandShowUpSnippets() {
         return this.genCommandInterpreter('showUpSnippets', 'command', () =>
             commands.executeCommand('editor.action.triggerSuggest'),
+        );
+    }
+
+    get commandGrowl() {
+        return this.genCommandInterpreter('growl', 'command', async (msg) => {
+            await window.showInformationMessage(msg);
+        });
+    }
+
+    get commandGrowlError() {
+        return this.genCommandInterpreter(
+            'growlError',
+            'command',
+            async (msg) => {
+                await window.showErrorMessage(msg);
+            },
         );
     }
 

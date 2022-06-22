@@ -7,4 +7,8 @@ export interface ICommand {
     insertSnippet: (snippet: string) => Thenable<void>;
 
     showUpSnippets: () => Thenable<void>;
+
+    growl: (msg: string) => Thenable<void>;
+
+    growlError: (msg: string) => Thenable<void>;
 }
