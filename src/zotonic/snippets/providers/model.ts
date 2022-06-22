@@ -5,7 +5,7 @@ export class ModelSnippetProvider extends SnippetProvider {
     constructor() {
         super({
             selector: 'tpl',
-            pattern: /\bm\b/,
+            pattern: /(?<={%|{{|%{|\[).*?\bm(\.)?\b/,
         });
     }
 

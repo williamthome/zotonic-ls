@@ -7,9 +7,7 @@ export class MGetSnippetProvider extends FileSnippetProvider {
         super({
             extensions: ['erl'],
             workspaces: [['src', 'models']],
-            // TODO: Improve pattern
-            // pattern: /(?<=({%|{{|%{|\[).*?\bm\. ).*?(?=/,
-            pattern: /\bm\.(\w+)?/,
+            pattern: /(?<={%|{{|%{|\[).*?\bm\.(\w+)?/,
             filenameRegExp() {
                 return /(?<=\bm_).*?(?=.erl)/;
             },
