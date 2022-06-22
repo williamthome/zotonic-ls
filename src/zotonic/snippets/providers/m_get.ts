@@ -5,14 +5,14 @@ export class MGetSnippetProvider extends FileSnippetProvider {
     constructor() {
         super({
             extensions: ['erl'],
-            roots: [['src', 'models']],
+            workspaces: [['src', 'models']],
             // TODO: Improve pattern
             // pattern: /(?<=({%|{{|%{|\[).*?\bm\. ).*?(?=/,
             pattern: /\bm\.(\w+)?/,
             filenameRegExp() {
                 return /(?<=\bm_).*?(?=.erl)/;
             },
-            transformSnippet(snippet) {
+            transformSnippet(snippet, filePath) {
                 snippet.description =
                     "A model located at '<apps|apps_user>/<module>/src/models'.";
                 // TODO: Snippet command
@@ -22,6 +22,8 @@ export class MGetSnippetProvider extends FileSnippetProvider {
                     'm.test2[$1]',
                     'm.test3[$1]',
                 ];
+
+                console.log(filePath);
 
                 snippet.command = {
                     hint: 'm_get',

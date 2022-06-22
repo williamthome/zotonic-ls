@@ -2,12 +2,12 @@ import { ISnippet } from '../core';
 import { SnippetProvider } from './provider';
 import { findFilesByPattern } from '../utils/path';
 
-type FilenameRegExp = (rootsEscaped: string) => RegExp;
+type FilenameRegExp = (escapedWorkspaces: string) => RegExp;
 type TransformSnippet = (snippet: ISnippet, filePath: string) => ISnippet;
 
 interface ConstructorArgs {
-    workspaces?: string[];
-    roots: string[][];
+    workspacesRoot?: string | string[];
+    workspaces: string[][];
     extensions: string[];
     pattern: RegExp;
     filenameRegExp: FilenameRegExp;
@@ -15,15 +15,15 @@ interface ConstructorArgs {
 }
 
 export class FileSnippetProvider extends SnippetProvider {
-    public workspaces: string[];
-    public roots: string[][];
+    public workspacesRoot: string | string[];
+    public workspaces: string[][];
     public extensions: string[];
     public filenameRegExp: FilenameRegExp;
     public transformSnippet?: TransformSnippet;
 
     constructor({
+        workspacesRoot,
         workspaces,
-        roots,
         extensions,
         pattern,
         filenameRegExp,
@@ -33,22 +33,27 @@ export class FileSnippetProvider extends SnippetProvider {
             pattern,
         });
 
-        this.workspaces = workspaces || ['apps', 'apps_user'];
-        this.roots = roots;
+        this.workspacesRoot = workspacesRoot || ['apps', 'apps_user'];
+        this.workspaces = workspaces;
         this.extensions = extensions;
         this.filenameRegExp = filenameRegExp;
         this.transformSnippet = transformSnippet;
     }
 
     public async loadSnippets(baseDir: string): Promise<ISnippet[]> {
-        const workspaces = this.workspaces.join(',');
-        const roots = this.roots.map((r) => r.join('/')).join(',');
+        const workspacesRoot = Array.isArray(this.workspacesRoot)
+            ? this.workspacesRoot.join(',')
+            : this.workspacesRoot;
+        const workspaces = this.workspaces.map((r) => r.join('/')).join(',');
         const extensions = this.extensions.join(',');
-        const pattern = `{${workspaces}}/**/{${roots}}/**/*.{${extensions}}`;
+        const pattern = `{${workspacesRoot}}/**/{${workspaces}}/**/*.{${extensions}}`;
         const files = await findFilesByPattern(baseDir, pattern);
         const snippets = files.reduce((arr, file) => {
-            const rootsEscaped = this.roots.map((r) => r.join('\\/')).join('|');
-            const filePathMatch = this.filenameRegExp(rootsEscaped).exec(file);
+            const escapedWorkspaces = this.workspaces
+                .map((r) => r.join('\\/'))
+                .join('|');
+            const filePathMatch =
+                this.filenameRegExp(escapedWorkspaces).exec(file);
             if (!filePathMatch || !filePathMatch.length) {
                 return arr;
             }

@@ -4,7 +4,7 @@ export class TagTemplateSnippetProvider extends FileSnippetProvider {
     constructor() {
         super({
             extensions: ['tpl'],
-            roots: [['priv', 'templates']],
+            workspaces: [['priv', 'templates']],
             pattern: /(?<={%\s*(extends|(all\s*)?((cat)?include))\s*").*?(?=")/,
             filenameRegExp(rootsEscaped: string) {
                 return new RegExp(`(?<=\\/(${rootsEscaped})\\/).*`);

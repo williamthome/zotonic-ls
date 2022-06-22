@@ -16,7 +16,7 @@ export class TagImageSnippetProvider extends FileSnippetProvider {
                 'png',
                 'svg',
             ],
-            roots: [
+            workspaces: [
                 ['priv', 'files', 'archive'],
                 ['priv', 'lib', 'images'],
             ],
