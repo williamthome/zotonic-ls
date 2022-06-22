@@ -1,23 +1,25 @@
-import { ISnippet } from "../../core";
-import { SnippetProvider } from "../provider";
+import { ISnippet } from '../../core';
+import { SnippetProvider } from '../provider';
 
 export class ModelSnippetProvider extends SnippetProvider {
     constructor() {
         super({
-            selector: "tpl",
+            selector: 'tpl',
             pattern: /\bm\b/,
         });
     }
 
     public loadSnippets(): Promise<ISnippet[]> {
         return new Promise((resolve) => {
-            resolve([{
-                prefix: "m.",
-                description: "Provide data to templates.",
-                command: {
-                    callback: (commands) => commands.showUpSnippets()
+            resolve([
+                {
+                    prefix: 'm.',
+                    description: 'Provide data to templates.',
+                    command: {
+                        callback: (commands) => commands.showUpSnippets(),
+                    },
                 },
-            }]);
+            ]);
         });
     }
 }

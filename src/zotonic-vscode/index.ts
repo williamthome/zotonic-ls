@@ -1,1 +1,1 @@
-export * from "./zotonic-vscode";
+export * from './zotonic-vscode';

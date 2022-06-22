@@ -1,9 +1,9 @@
-import { ISnippet, ISnippetProvider, Selector } from "../core";
+import { ISnippet, ISnippetProvider, Selector } from '../core';
 
 interface ConstructorArgs {
-    selector?: Selector,
-    pattern: RegExp,
-    triggerCharacters?: string[]
+    selector?: Selector;
+    pattern: RegExp;
+    triggerCharacters?: string[];
 }
 
 export abstract class SnippetProvider implements ISnippetProvider {
@@ -17,8 +17,8 @@ export abstract class SnippetProvider implements ISnippetProvider {
 
     constructor({ pattern, selector, triggerCharacters }: ConstructorArgs) {
         this.pattern = pattern;
-        this.selector = selector || "tpl";
-        this.triggerCharacters = triggerCharacters || [".", "[", "{", "|", "<"];
+        this.selector = selector || 'tpl';
+        this.triggerCharacters = triggerCharacters || ['.', '[', '{', '|', '<'];
     }
 
     public async getSnippets(baseDir: string) {

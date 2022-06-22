@@ -1,16 +1,21 @@
 // Defs
 
 export type Doc = {
-    pattern: RegExp,
-    genUri: (token: string) => string,
-    tokens?: string[]
+    pattern: RegExp;
+    genUri: (token: string) => string;
+    tokens?: string[];
 };
 
 export type Docs = { [key: string]: Doc };
 
 // API
 
-export default function (docs: Docs, language: string, version: string, branch: string) {
+export default function (
+    docs: Docs,
+    language: string,
+    version: string,
+    branch: string,
+) {
     return function (patternMatch: (pattern: RegExp) => string | undefined) {
         const uri = maybeGenDocUri(docs, patternMatch);
         return {
@@ -23,7 +28,7 @@ export default function (docs: Docs, language: string, version: string, branch: 
 
 // Internal functions
 
-function genDocUrl(language: string, version: string, uri = "/") {
+function genDocUrl(language: string, version: string, uri = '/') {
     return `http://docs.zotonic.com/${language}/${version}${uri}`;
 }
 
@@ -33,11 +38,13 @@ function genDocRawUrl(branch: string, uri: string) {
 
 function maybeGenDocUri(
     docs: Docs,
-    patternMatch: (pattern: RegExp) => string | undefined
+    patternMatch: (pattern: RegExp) => string | undefined,
 ) {
     for (const doc of Object.values(docs)) {
         const token = patternMatch(doc.pattern);
-        if (!token || (doc.tokens?.length && !doc.tokens.includes(token))) { continue; };
+        if (!token || (doc.tokens?.length && !doc.tokens.includes(token))) {
+            continue;
+        }
         return doc.genUri(token);
     }
 }

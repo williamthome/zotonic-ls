@@ -3,27 +3,27 @@ import * as fs from 'fs';
 // Defs
 
 export type Token = {
-    token: string,
-    editable?: boolean,
-    prefix?: string,
-    suffix?: string
+    token: string;
+    editable?: boolean;
+    prefix?: string;
+    suffix?: string;
 };
 
 export type Expression = {
-    expression: string,
-    tokens: Array<Token>,
-    snippet: string
+    expression: string;
+    tokens: Array<Token>;
+    snippet: string;
 };
 
 export type FindFile = (pattern: string) => Promise<string | undefined>;
 
-type Behaviour = "m_get" | "m_post" | "m_delete";
+type Behaviour = 'm_get' | 'm_post' | 'm_delete';
 
 // API
 
 export async function mGetExpressions(findFile: FindFile, model: string) {
     const re = /(?<=m_get\s*\(\s*\[\s*)(\w|<|\{).*?(?=\s*(\||\]))/g;
-    return await getFileExpressions("m_get", re, findFile, model);
+    return await getFileExpressions('m_get', re, findFile, model);
 }
 
 // Internal functions
@@ -34,15 +34,21 @@ async function getFileExpressions(
     findFile: FindFile,
     model: string,
 ) {
-    const filePath = await findFile(`{apps,apps_user}/**/src/models/**/m_${model}.erl`);
+    const filePath = await findFile(
+        `{apps,apps_user}/**/src/models/**/m_${model}.erl`,
+    );
     if (!filePath) {
         return new Error(`Could not find the model '${model}'.`);
     }
 
-    const data = await fs.promises.readFile(filePath, { encoding: "utf8" });
+    const data = await fs.promises.readFile(filePath, {
+        encoding: 'utf8',
+    });
     const matches = data.match(re);
     if (!matches) {
-        return new Error(`The model '${model}' have no match for '${behaviour}'.`);
+        return new Error(
+            `The model '${model}' have no match for '${behaviour}'.`,
+        );
     }
 
     return matches.map(parseExpression);
@@ -56,20 +62,20 @@ function parseExpression(expression: string) {
     return {
         expression,
         tokens,
-        snippet
+        snippet,
     };
 }
 
 function parseExpressionToken(data: string) {
-    const constantRe = /(?<=<<\").*?(?=\">>)/;
+    const constantRe = /(?<=<<").*?(?=">>)/;
     const constantMatch = constantRe.exec(data);
 
     if (constantMatch && constantMatch.length === 1) {
         return [
             {
                 token: constantMatch[0],
-                prefix: "."
-            }
+                prefix: '.',
+            },
         ];
     } else {
         const propsRe = /(?<=\{\s*)(\w+)(?:\s*,\s*)(\w+)(?=\s*\})/;
@@ -79,19 +85,19 @@ function parseExpressionToken(data: string) {
                 {
                     token: propsMatch[1],
                     editable: true,
-                    prefix: "[{",
+                    prefix: '[{',
                 },
                 {
-                    token: "Prop",
+                    token: 'Prop',
                     editable: true,
-                    prefix: " ",
-                    suffix: "="
+                    prefix: ' ',
+                    suffix: '=',
                 },
                 {
-                    token: "Value",
+                    token: 'Value',
                     editable: true,
-                    suffix: "}]",
-                }
+                    suffix: '}]',
+                },
             ];
         } else {
             const paramRe = /\w+/;
@@ -101,22 +107,26 @@ function parseExpressionToken(data: string) {
                     {
                         token: data,
                         editable: true,
-                        prefix: "[",
-                        suffix: "]",
-                    }
+                        prefix: '[',
+                        suffix: ']',
+                    },
                 ];
             }
         }
     }
-    throw (new Error(`Unexpected no match in expression token parser for data '${data}'`));
+    throw new Error(
+        `Unexpected no match in expression token parser for data '${data}'`,
+    );
 }
 
 function tokensToSnippet(tokens: Array<Token>) {
     return tokens.reduce(
-        (snippet, { token, editable, prefix = "", suffix = "" }, i) => {
-            const acc = `${prefix}${editable ? `\${${i + 1}:${token}}` : token}${suffix}`;
+        (snippet, { token, editable, prefix = '', suffix = '' }, i) => {
+            const acc = `${prefix}${
+                editable ? `\${${i + 1}:${token}}` : token
+            }${suffix}`;
             return snippet + acc;
         },
-        ""
+        '',
     );
 }

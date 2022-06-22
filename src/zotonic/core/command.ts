@@ -1,10 +1,10 @@
 export interface ICommand {
     getUserChoice: (
         choices: string[],
-        next: (choice: string) => Thenable<void>
-    ) => Thenable<void>,
+        next: (choice: string) => Thenable<void>,
+    ) => Thenable<void>;
 
-    insertSnippet: (snippet: string) => Thenable<void>,
+    insertSnippet: (snippet: string) => Thenable<void>;
 
-    showUpSnippets: () => Thenable<void>,
-};
+    showUpSnippets: () => Thenable<void>;
+}

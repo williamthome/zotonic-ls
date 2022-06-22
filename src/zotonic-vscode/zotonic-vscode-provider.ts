@@ -1,11 +1,21 @@
-import { CancellationToken, CompletionContext, CompletionItem, CompletionItemKind, CompletionItemProvider, ExtensionContext, languages, MarkdownString, Position, TextDocument, window, workspace } from "vscode";
-import { ISnippet, ISnippetProvider } from "../zotonic/core";
-import { SnippetProvider } from "../zotonic/snippets";
-import { Zotonic } from "../zotonic/zotonic";
-import { GenCommandName } from "./core";
+import {
+    CompletionItem,
+    CompletionItemKind,
+    CompletionItemProvider,
+    ExtensionContext,
+    languages,
+    MarkdownString,
+    Position,
+    TextDocument,
+    window,
+    workspace,
+} from 'vscode';
+import { ISnippet, ISnippetProvider } from '../zotonic/core';
+import { SnippetProvider } from '../zotonic/snippets';
+import { Zotonic } from '../zotonic/zotonic';
+import { GenCommandName } from './core';
 
 export class ZotonicVSCodeProvider {
-
     constructor(public genCommandName: GenCommandName) {}
 
     public async setup(zotonic: Zotonic, context: ExtensionContext) {
@@ -20,11 +30,11 @@ export class ZotonicVSCodeProvider {
                     languages.registerCompletionItemProvider(
                         provider.selector,
                         this.parseCompletionItemProvider(provider),
-                        ...provider.triggerCharacters
-                    )
+                        ...provider.triggerCharacters,
+                    ),
                 );
             } else {
-                throw new Error("Provider not implemented.");
+                throw new Error('Provider not implemented.');
             }
         };
     }
@@ -36,15 +46,18 @@ export class ZotonicVSCodeProvider {
 
     public parseCompletionItem(snippet: ISnippet): CompletionItem {
         const completionItem = new CompletionItem(
-            snippet.prefix, CompletionItemKind.Snippet
+            snippet.prefix,
+            CompletionItemKind.Snippet,
         );
         completionItem.insertText = Array.isArray(snippet.body)
-            ? snippet.body.join("\n")
+            ? snippet.body.join('\n')
             : snippet.body;
         completionItem.detail = snippet.description;
 
         if (snippet.documentation) {
-            const documentation = new MarkdownString(snippet.documentation.trim());
+            const documentation = new MarkdownString(
+                snippet.documentation.trim(),
+            );
             documentation.supportHtml = true;
             documentation.isTrusted = true;
             completionItem.documentation = documentation;
@@ -52,21 +65,21 @@ export class ZotonicVSCodeProvider {
 
         if (snippet.command) {
             completionItem.command = {
-                command: this.genCommandName("executeCommand"),
+                command: this.genCommandName('executeCommand'),
                 title: snippet.command.hint || snippet.prefix,
-                arguments: [snippet.command.callback]
+                arguments: [snippet.command.callback],
             };
         }
 
         return completionItem;
     }
 
-    public parseCompletionItemProvider(provider: ISnippetProvider): CompletionItemProvider {
+    public parseCompletionItemProvider(
+        provider: ISnippetProvider,
+    ): CompletionItemProvider {
         const provideCompletionItems = async (
             document: TextDocument,
             position: Position,
-            _token: CancellationToken,
-            _context: CompletionContext
         ): Promise<CompletionItem[] | undefined> => {
             if (document.getWordRangeAtPosition(position, provider.pattern)) {
                 // TODO: Snippets cache
@@ -74,9 +87,11 @@ export class ZotonicVSCodeProvider {
                 const snippets = await provider.getSnippets(baseDir);
 
                 return snippets.map((s) => this.parseCompletionItem(s));
-            };
+            }
         };
-        return { provideCompletionItems };
+        return {
+            provideCompletionItems,
+        };
     }
 
     private getDocumentWorkspaceFolder(): string | undefined {

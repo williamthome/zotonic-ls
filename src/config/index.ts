@@ -1,12 +1,12 @@
-import getDoc from "../utils/docs";
-import docsConfig, { DocsConfig } from "./docs";
+import getDoc from '../utils/docs';
+import docsConfig, { DocsConfig } from './docs';
 
 type Config = {
-    docs: DocsConfig,
+    docs: DocsConfig;
 };
 
 const config: Config = {
-    docs: docsConfig
+    docs: docsConfig,
 };
 
 export default {
@@ -15,6 +15,6 @@ export default {
         docsConfig.docs,
         docsConfig.language,
         docsConfig.version,
-        docsConfig.branch
-    )
+        docsConfig.branch,
+    ),
 };

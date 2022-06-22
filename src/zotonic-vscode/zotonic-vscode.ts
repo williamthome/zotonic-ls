@@ -1,7 +1,7 @@
-import { ExtensionContext } from "vscode";
-import { Zotonic } from "../zotonic/zotonic";
-import { ZotonicVSCodeCommand } from "./zotonic-vscode-command";
-import { ZotonicVSCodeProvider } from "./zotonic-vscode-provider";
+import { ExtensionContext } from 'vscode';
+import { Zotonic } from '../zotonic/zotonic';
+import { ZotonicVSCodeCommand } from './zotonic-vscode-command';
+import { ZotonicVSCodeProvider } from './zotonic-vscode-provider';
 
 export class ZotonicVSCode {
     public commands: ZotonicVSCodeCommand;
@@ -9,7 +9,9 @@ export class ZotonicVSCode {
 
     constructor() {
         this.commands = new ZotonicVSCodeCommand();
-        this.providers = new ZotonicVSCodeProvider(this.commands.genCommandName);
+        this.providers = new ZotonicVSCodeProvider(
+            this.commands.genCommandName,
+        );
     }
 
     public setup(zotonic: Zotonic, context: ExtensionContext) {

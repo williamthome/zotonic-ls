@@ -1,19 +1,20 @@
-import { ISnippetProvider } from "./core";
+import { ISnippetProvider } from './core';
 import {
     TagImageSnippetProvider,
     MGetSnippetProvider,
     ModelSnippetProvider,
     TagTemplateSnippetProvider,
-} from "./snippets/providers";
+} from './snippets/providers';
 
 interface ConstructorArgs {
-    providers?: ISnippetProvider[],
+    providers?: ISnippetProvider[];
 }
 
 export class Zotonic {
     private _providers: ISnippetProvider[];
 
-    constructor({ providers }: ConstructorArgs = {}) {
+    constructor({ providers }: ConstructorArgs = {
+}) {
         this._providers = providers || [];
     }
 
@@ -22,12 +23,10 @@ export class Zotonic {
     }
 
     public setup() {
-        return this
-            .registerProvider(new TagTemplateSnippetProvider())
+        return this.registerProvider(new TagTemplateSnippetProvider())
             .registerProvider(new TagImageSnippetProvider())
             .registerProvider(new MGetSnippetProvider())
-            .registerProvider(new ModelSnippetProvider())
-        ;
+            .registerProvider(new ModelSnippetProvider());
     }
 
     public registerProvider(provider: ISnippetProvider) {

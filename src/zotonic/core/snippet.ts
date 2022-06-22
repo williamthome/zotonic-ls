@@ -1,11 +1,10 @@
-import { ICommand } from "./command";
+import { ICommand } from './command';
 
-export type ISnippetCommandCallback =
-    (commands: ICommand) => Thenable<void>;
+export type ISnippetCommandCallback = (commands: ICommand) => Thenable<void>;
 
 export interface ISnippetCommand {
-    hint?: string,
-    callback: ISnippetCommandCallback
+    hint?: string;
+    callback: ISnippetCommandCallback;
 }
 
 /**
@@ -13,18 +12,18 @@ export interface ISnippetCommand {
  * @see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets
  */
 export type ISnippet = {
-    prefix: string,
-    body?: string | [string, ...string[]],
-    description?: string,
-    documentation?: string,
-    command?: ISnippetCommand,
-    triggerCharacters?: string[]
+    prefix: string;
+    body?: string | [string, ...string[]];
+    description?: string;
+    documentation?: string;
+    command?: ISnippetCommand;
+    triggerCharacters?: string[];
 };
 
-export type Selector = "tpl";
+export type Selector = 'tpl';
 
 export interface ISnippetProvider {
-    selector: Selector,
-    pattern: RegExp,
-    getSnippets(baseDir: string): Thenable<ISnippet[]>,
-};
+    selector: Selector;
+    pattern: RegExp;
+    getSnippets(baseDir: string): Thenable<ISnippet[]>;
+}
