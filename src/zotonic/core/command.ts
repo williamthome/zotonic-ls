@@ -11,4 +11,6 @@ export interface ICommand {
     growl: (msg: string) => Thenable<void>;
 
     growlError: (msg: string) => Thenable<void>;
+
+    get: <T>(url: string) => Thenable<T | Error>;
 }

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ExtensionContext, SnippetString, commands, window } from 'vscode';
 import { ICommand, ISnippetCommandCallback } from '../zotonic/core';
 import {
@@ -39,6 +40,11 @@ export class ZotonicVSCodeCommand {
             growlError: (msg) => {
                 return this.executeCommand('growlError', msg);
             },
+
+            get: (url) => {
+                // TODO: Check type
+                return this.executeCommand('get', url) as any;
+            },
         };
     }
 
@@ -50,6 +56,7 @@ export class ZotonicVSCodeCommand {
             showUpSnippets: this.commandShowUpSnippets,
             growl: this.commandGrowl,
             growlError: this.commandGrowlError,
+            get: this.commandHttpGet,
         };
     }
 
@@ -161,6 +168,13 @@ export class ZotonicVSCodeCommand {
                 await window.showErrorMessage(msg);
             },
         );
+    }
+
+    get commandHttpGet() {
+        return this.genCommandInterpreter('get', 'command', async (url) => {
+            const response = await axios.get(url);
+            return response.status === 200 ? response.data : undefined;
+        });
     }
 
     get commandCallback() {
