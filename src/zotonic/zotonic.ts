@@ -57,8 +57,11 @@ export class Zotonic {
     }
 
     private setupHovers() {
+        const host = this._docHost;
+        const args = { host };
+
         return this.registerHover(
-            new BuiltinTagHoverProvider({ host: this._docHost }),
-        ).registerHover(new ModuleTagHoverProvider({ host: this._docHost }));
+            new BuiltinTagHoverProvider(args),
+        ).registerHover(new ModuleTagHoverProvider(args));
     }
 }
