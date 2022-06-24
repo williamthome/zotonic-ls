@@ -1,5 +1,5 @@
 import { IHoverProvider, ISnippetProvider } from './core';
-import { TagHoverProvider } from './hover/providers';
+import { ScompHoverProvider, TagHoverProvider } from './hover/providers';
 import {
     TagImageSnippetProvider,
     MGetSnippetProvider,
@@ -56,6 +56,6 @@ export class Zotonic {
     private setupHovers() {
         return this.registerHover(
             new TagHoverProvider({ host: this._docHost }),
-        );
+        ).registerHover(new ScompHoverProvider({ host: this._docHost }));
     }
 }
