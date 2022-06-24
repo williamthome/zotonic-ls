@@ -11,7 +11,10 @@ export async function activate(context: ExtensionContext) {
     // This line of code will only be executed once when your extension is activated
     console.log("Congratulations, your extension 'zotonic' is now active!");
 
-    const zotonic = new Zotonic();
+    // TODO: Get version from user config
+    const version = 'master';
+    const docHost = `https://raw.githubusercontent.com/zotonic/zotonic/${version}/doc`;
+    const zotonic = new Zotonic({ docHost });
     zotonic.setup();
 
     const zotonicVSCode = new ZotonicVSCode();

@@ -10,15 +10,18 @@ import {
 interface ConstructorArgs {
     providers?: ISnippetProvider[];
     hovers?: IHoverProvider[];
+    docHost: string;
 }
 
 export class Zotonic {
     private _providers: ISnippetProvider[];
     private _hovers: IHoverProvider[];
+    private _docHost: string;
 
-    constructor({ providers, hovers }: ConstructorArgs = {}) {
+    constructor({ providers, hovers, docHost }: ConstructorArgs) {
         this._providers = providers || [];
         this._hovers = hovers || [];
+        this._docHost = docHost;
     }
 
     get providers() {
@@ -51,6 +54,8 @@ export class Zotonic {
     }
 
     private setupHovers() {
-        return this.registerHover(new TagHoverProvider());
+        return this.registerHover(
+            new TagHoverProvider({ host: this._docHost }),
+        );
     }
 }
