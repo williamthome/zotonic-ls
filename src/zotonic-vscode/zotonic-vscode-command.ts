@@ -43,7 +43,7 @@ export class ZotonicVSCodeCommand {
 
             get: (url) => {
                 // TODO: Check type
-                return this.executeCommand('get', url) as any;
+                return this.executeCommand('get', url) as never;
             },
         };
     }
