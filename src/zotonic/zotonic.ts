@@ -3,6 +3,7 @@ import {
     ModuleTagHoverProvider,
     BuiltinTagHoverProvider,
     ActionHoverProvider,
+    FilterHoverProvider,
 } from './hover/providers';
 import {
     TagImageSnippetProvider,
@@ -63,6 +64,7 @@ export class Zotonic {
 
         return this.registerHover(new BuiltinTagHoverProvider(args))
             .registerHover(new ModuleTagHoverProvider(args))
-            .registerHover(new ActionHoverProvider(args));
+            .registerHover(new ActionHoverProvider(args))
+            .registerHover(new FilterHoverProvider(args));
     }
 }
