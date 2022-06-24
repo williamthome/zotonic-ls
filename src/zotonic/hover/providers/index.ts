@@ -1,2 +1,2 @@
-export * from './tag';
-export * from './scomp';
+export * from './builtin-tag';
+export * from './module-tag';

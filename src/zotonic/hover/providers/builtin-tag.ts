@@ -4,7 +4,7 @@ interface ConstructorArgs {
     host: string;
 }
 
-export class TagHoverProvider extends DocHoverProvider {
+export class BuiltinTagHoverProvider extends DocHoverProvider {
     public host: string;
 
     constructor({ host }: ConstructorArgs) {
