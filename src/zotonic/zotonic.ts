@@ -2,6 +2,7 @@ import { IHoverProvider, ISnippetProvider } from './core';
 import {
     ModuleTagHoverProvider,
     BuiltinTagHoverProvider,
+    ActionHoverProvider,
 } from './hover/providers';
 import {
     TagImageSnippetProvider,
@@ -60,8 +61,8 @@ export class Zotonic {
         const host = this._docHost;
         const args = { host };
 
-        return this.registerHover(
-            new BuiltinTagHoverProvider(args),
-        ).registerHover(new ModuleTagHoverProvider(args));
+        return this.registerHover(new BuiltinTagHoverProvider(args))
+            .registerHover(new ModuleTagHoverProvider(args))
+            .registerHover(new ActionHoverProvider(args));
     }
 }
