@@ -11,10 +11,10 @@ interface ConstructorArgs {
 export class DocHoverProvider extends HoverProvider {
     public genUrl: GenUrl;
 
-    constructor({ pattern, genUrl: urlGen }: ConstructorArgs) {
+    constructor({ pattern, genUrl }: ConstructorArgs) {
         super({ pattern });
 
-        this.genUrl = urlGen;
+        this.genUrl = genUrl;
     }
 
     public async content(
