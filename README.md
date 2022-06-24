@@ -97,6 +97,8 @@ code .
 
 Make sure you have [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier ESLint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint) extensions installed.
 
+Optionally you can install the [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) extension to see things <span style="color: green;">_TODO_</span>, to <span style="color: yellow;">_FIXME_</span>, or <span style="color: red;">_BUG_</span>.
+
 #### Config
 
 -   Open user or workspace `settings.json` by:
