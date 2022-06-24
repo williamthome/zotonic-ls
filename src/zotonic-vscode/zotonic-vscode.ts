@@ -4,12 +4,14 @@ import { ZotonicVSCodeCommand } from './zotonic-vscode-command';
 import { ZotonicVSCodeProvider } from './zotonic-vscode-provider';
 import { ZotonicVSCodeHover } from './zotonic-vscode-hover';
 import { ZotonicVSCodeFileFinder } from './zotonic-vscode-file-finder';
+import { ZotonicVSCodeDefinition } from './zotonic-vscode-definition';
 
 export class ZotonicVSCode {
     public commands: ZotonicVSCodeCommand;
     public providers: ZotonicVSCodeProvider;
     public hover: ZotonicVSCodeHover;
     public fileFinder: ZotonicVSCodeFileFinder;
+    public definitions: ZotonicVSCodeDefinition;
 
     constructor() {
         this.commands = new ZotonicVSCodeCommand();
@@ -18,6 +20,7 @@ export class ZotonicVSCode {
         );
         this.hover = new ZotonicVSCodeHover();
         this.fileFinder = new ZotonicVSCodeFileFinder();
+        this.definitions = new ZotonicVSCodeDefinition();
     }
 
     public setup(zotonic: Zotonic, context: ExtensionContext) {
@@ -28,5 +31,6 @@ export class ZotonicVSCode {
             this.commands.tplCommands,
             context,
         );
+        this.definitions.registerProviders(zotonic, this.fileFinder, context);
     }
 }

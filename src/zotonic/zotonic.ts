@@ -1,4 +1,5 @@
-import { IHoverProvider, ISnippetProvider } from './core';
+import { IDefinitionProvider, IHoverProvider, ISnippetProvider } from './core';
+import { TplDefinitionProvider } from './definition';
 import {
     ModuleTagHoverProvider,
     BuiltinTagHoverProvider,
@@ -18,17 +19,20 @@ import {
 interface ConstructorArgs {
     providers?: ISnippetProvider[];
     hovers?: IHoverProvider[];
+    definitions?: IDefinitionProvider[];
     docHost: string;
 }
 
 export class Zotonic {
     private _providers: ISnippetProvider[];
     private _hovers: IHoverProvider[];
+    private _definitions: IDefinitionProvider[];
     private _docHost: string;
 
-    constructor({ providers, hovers, docHost }: ConstructorArgs) {
+    constructor({ providers, hovers, definitions, docHost }: ConstructorArgs) {
         this._providers = providers || [];
         this._hovers = hovers || [];
+        this._definitions = definitions || [];
         this._docHost = docHost;
     }
 
@@ -40,8 +44,12 @@ export class Zotonic {
         return this._hovers;
     }
 
+    get definitions() {
+        return this._definitions;
+    }
+
     public setup() {
-        return this.setupSnippets().setupHovers();
+        return this.setupSnippets().setupHovers().setupDefinitions();
     }
 
     public registerSnippet(provider: ISnippetProvider) {
@@ -51,6 +59,11 @@ export class Zotonic {
 
     public registerHover(hover: IHoverProvider) {
         this._hovers.push(hover);
+        return this;
+    }
+
+    public registerDefinition(definition: IDefinitionProvider) {
+        this._definitions.push(definition);
         return this;
     }
 
@@ -72,5 +85,12 @@ export class Zotonic {
             .registerHover(new ValidatorHoverProvider(args))
             .registerHover(new ModelHoverProvider(args))
             .registerHover(new TranslationHoverProvider(args));
+    }
+
+    public setupDefinitions() {
+        const ignoreLocations = ['**/_build/**'];
+        const args = { ignoreLocations };
+
+        return this.registerDefinition(new TplDefinitionProvider(args));
     }
 }
