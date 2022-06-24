@@ -30,7 +30,8 @@ export class ZotonicVSCodeFileFinder extends FileFinder {
         });
     };
 
-    // TODO: Check this function usecase and maybe remove it
+    // TODO: Check this function usecase and maybe remove or use it instead of findByPattern.
+    // Some tests have shown that it is more efficient
     public async vscodeFindByPattern({
         pattern,
         ignorePattern,

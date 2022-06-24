@@ -1,3 +1,5 @@
+// TODO: Improve readability
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TextEditor, TextEditorEdit } from 'vscode';
 import { ICommand } from '../../zotonic/core';
