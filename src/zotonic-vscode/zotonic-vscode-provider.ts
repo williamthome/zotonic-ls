@@ -7,10 +7,8 @@ import {
     MarkdownString,
     Position,
     TextDocument,
-    window,
-    workspace,
 } from 'vscode';
-import { ISnippet, ISnippetProvider } from '../zotonic/core';
+import { IFileFinder, ISnippet, ISnippetProvider } from '../zotonic/core';
 import { SnippetProvider } from '../zotonic/snippets';
 import { Zotonic } from '../zotonic/zotonic';
 import { GenCommandName } from './core';
@@ -18,17 +16,24 @@ import { GenCommandName } from './core';
 export class ZotonicVSCodeProvider {
     constructor(public genCommandName: GenCommandName) {}
 
-    public async setup(zotonic: Zotonic, context: ExtensionContext) {
-        this.registerProviders(zotonic, context);
+    public async setup(
+        zotonic: Zotonic,
+        fileFinder: IFileFinder,
+        context: ExtensionContext,
+    ) {
+        this.registerProviders(zotonic, fileFinder, context);
     }
 
-    public registerProvider(context: ExtensionContext) {
+    public registerProvider(
+        fileFinder: IFileFinder,
+        context: ExtensionContext,
+    ) {
         return (provider: ISnippetProvider) => {
             if (provider instanceof SnippetProvider) {
                 context.subscriptions.push(
                     languages.registerCompletionItemProvider(
                         provider.selector,
-                        this.parseCompletionItemProvider(provider),
+                        this.parseCompletionItemProvider(provider, fileFinder),
                         ...provider.triggerCharacters,
                     ),
                 );
@@ -38,8 +43,12 @@ export class ZotonicVSCodeProvider {
         };
     }
 
-    public registerProviders(zotonic: Zotonic, context: ExtensionContext) {
-        zotonic.providers.forEach(this.registerProvider(context));
+    public registerProviders(
+        zotonic: Zotonic,
+        fileFinder: IFileFinder,
+        context: ExtensionContext,
+    ) {
+        zotonic.providers.forEach(this.registerProvider(fileFinder, context));
         return this;
     }
 
@@ -75,32 +84,19 @@ export class ZotonicVSCodeProvider {
 
     public parseCompletionItemProvider(
         provider: ISnippetProvider,
+        fileFinder: IFileFinder,
     ): CompletionItemProvider {
         const provideCompletionItems = async (
             document: TextDocument,
             position: Position,
         ): Promise<CompletionItem[] | undefined> => {
             if (document.getWordRangeAtPosition(position, provider.pattern)) {
-                // TODO: Snippets cache
-                const baseDir = this.getDocumentWorkspaceFolder() || __dirname;
-                const snippets = await provider.getSnippets(baseDir);
-
+                const snippets = await provider.getSnippets(fileFinder);
                 return snippets.map((s) => this.parseCompletionItem(s));
             }
         };
         return {
             provideCompletionItems,
         };
-    }
-
-    private getDocumentWorkspaceFolder(): string | undefined {
-        if (!window.activeTextEditor || !workspace.workspaceFolders) {
-            return undefined;
-        }
-
-        const fileName = window.activeTextEditor.document.fileName;
-        return workspace.workspaceFolders
-            .map((folder) => folder.uri.fsPath)
-            .filter((fsPath) => fileName.startsWith(fsPath))[0];
     }
 }

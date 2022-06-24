@@ -6,7 +6,7 @@ export class TagTemplateSnippetProvider extends FileSnippetProvider {
             extensions: ['tpl'],
             workspaces: [['priv', 'templates']],
             pattern: /(?<={%\s*(extends|(all\s*)?((cat)?include))\s*").*?(?=")/,
-            filenameRegExp(rootsEscaped: string) {
+            fileNamePattern(rootsEscaped: string) {
                 return new RegExp(`(?<=\\/(${rootsEscaped})\\/).*`);
             },
             transformSnippet(snippet) {

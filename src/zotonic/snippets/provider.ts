@@ -1,4 +1,4 @@
-import { ISnippet, ISnippetProvider, Selector } from '../core';
+import { IFileFinder, ISnippet, ISnippetProvider, Selector } from '../core';
 
 interface ConstructorArgs {
     selector?: Selector;
@@ -7,7 +7,7 @@ interface ConstructorArgs {
 }
 
 export abstract class SnippetProvider implements ISnippetProvider {
-    public abstract loadSnippets(baseDir: string): Promise<ISnippet[]>;
+    public abstract loadSnippets(fileFinder: IFileFinder): Promise<ISnippet[]>;
 
     public pattern: RegExp;
     public selector: Selector;
@@ -21,9 +21,9 @@ export abstract class SnippetProvider implements ISnippetProvider {
         this.triggerCharacters = triggerCharacters || ['.', '[', '{', '|', '<'];
     }
 
-    public async getSnippets(baseDir: string) {
+    public async getSnippets(fileFinder: IFileFinder) {
         if (!this._snippets) {
-            this._snippets = await this.loadSnippets(baseDir);
+            this._snippets = await this.loadSnippets(fileFinder);
         }
         return this._snippets;
     }

@@ -8,7 +8,7 @@ export class MGetSnippetProvider extends FileSnippetProvider {
             extensions: ['erl'],
             workspaces: [['src', 'models']],
             pattern: /(?<={%|{{|%{|\[).*?\bm\.(\w+)?/,
-            filenameRegExp() {
+            fileNamePattern() {
                 return /(?<=\bm_).*?(?=.erl)/;
             },
             transformSnippet(snippet, filePath, model) {

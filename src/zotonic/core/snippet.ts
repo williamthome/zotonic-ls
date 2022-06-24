@@ -1,4 +1,5 @@
 import { ICommand } from './command';
+import { IFileFinder } from './file-finder';
 
 export type ISnippetCommandCallback = (commands: ICommand) => Thenable<void>;
 
@@ -25,5 +26,5 @@ export type Selector = 'tpl';
 export interface ISnippetProvider {
     selector: Selector;
     pattern: RegExp;
-    getSnippets(baseDir: string): Thenable<ISnippet[]>;
+    getSnippets(fileFinder: IFileFinder): Thenable<ISnippet[]>;
 }

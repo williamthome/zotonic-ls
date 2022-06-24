@@ -1,8 +1,6 @@
-import { ISnippet } from '../core';
+import { FileNamePattern, IFileFinder, ISnippet } from '../core';
 import { SnippetProvider } from './provider';
-import { findFilesByPattern } from '../utils/path';
 
-type FilenameRegExp = (escapedWorkspaces: string) => RegExp;
 type TransformSnippet = (
     snippet: ISnippet,
     filePath: string,
@@ -14,7 +12,7 @@ interface ConstructorArgs {
     workspaces: string[][];
     extensions: string[];
     pattern: RegExp;
-    filenameRegExp: FilenameRegExp;
+    fileNamePattern: FileNamePattern;
     transformSnippet?: TransformSnippet;
 }
 
@@ -22,7 +20,7 @@ export class FileSnippetProvider extends SnippetProvider {
     public workspacesRoot: string | string[];
     public workspaces: string[][];
     public extensions: string[];
-    public filenameRegExp: FilenameRegExp;
+    public fileNamePattern: FileNamePattern;
     public transformSnippet?: TransformSnippet;
 
     constructor({
@@ -30,7 +28,7 @@ export class FileSnippetProvider extends SnippetProvider {
         workspaces,
         extensions,
         pattern,
-        filenameRegExp,
+        fileNamePattern,
         transformSnippet,
     }: ConstructorArgs) {
         super({
@@ -40,51 +38,28 @@ export class FileSnippetProvider extends SnippetProvider {
         this.workspacesRoot = workspacesRoot || ['apps', 'apps_user'];
         this.workspaces = workspaces;
         this.extensions = extensions;
-        this.filenameRegExp = filenameRegExp;
+        this.fileNamePattern = fileNamePattern;
         this.transformSnippet = transformSnippet;
     }
 
-    public async loadSnippets(baseDir: string): Promise<ISnippet[]> {
-        const root = this.maybeEmbrace(this.workspacesRoot);
-        const path = this.maybeEmbrace(this.workspaces.map((r) => r.join('/')));
-        const ext = this.maybeEmbrace(this.extensions);
-        const pattern = `${root}/**/${path}/**/*.${ext}`;
+    public async loadSnippets(fileFinder: IFileFinder): Promise<ISnippet[]> {
+        const files = await fileFinder.findInWorkspace({
+            maybeWorkspacesRoot: this.workspacesRoot,
+            workspaces: this.workspaces,
+            extensions: this.extensions,
+            fileNamePattern: this.fileNamePattern,
+            allowDuplicates: false,
+        });
 
-        const files = await findFilesByPattern(baseDir, pattern);
-        return files.reduce((arr, filePath) => {
-            const escapedWorkspaces = this.workspaces
-                .map((r) => r.join('\\/'))
-                .join('|');
+        return files.map(({ fileName, filePath }) => {
+            const baseSnippet: ISnippet = {
+                prefix: fileName,
+                body: fileName,
+            };
 
-            const filePathMatch =
-                this.filenameRegExp(escapedWorkspaces).exec(filePath);
-
-            if (!filePathMatch || !filePathMatch.length) {
-                return arr;
-            }
-
-            const fileName = filePathMatch[0];
-            if (!arr.some((s) => s.prefix === fileName)) {
-                const baseSnippet: ISnippet = {
-                    prefix: fileName,
-                    body: fileName,
-                };
-
-                const snippet = this.transformSnippet
-                    ? this.transformSnippet(baseSnippet, filePath, fileName)
-                    : baseSnippet;
-
-                arr.push(snippet);
-            }
-            return arr;
-        }, new Array<ISnippet>());
-    }
-
-    private maybeEmbrace<T, K>(arr: T, value?: K) {
-        return Array.isArray(arr)
-            ? arr.length > 1
-                ? `{${value || arr.join(',')}}`
-                : value || arr[0]
-            : value;
+            return this.transformSnippet
+                ? this.transformSnippet(baseSnippet, filePath, fileName)
+                : baseSnippet;
+        });
     }
 }

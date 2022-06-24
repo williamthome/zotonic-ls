@@ -21,7 +21,7 @@ export class TagImageSnippetProvider extends FileSnippetProvider {
                 ['priv', 'lib', 'images'],
             ],
             pattern: /(?<={%\s*image(_data)?(_url)?\s*").*?(?=")/,
-            filenameRegExp(rootsEscaped: string) {
+            fileNamePattern(rootsEscaped: string) {
                 return new RegExp(`(?<=\\/(${rootsEscaped})\\/).*`);
             },
             transformSnippet(snippet) {
