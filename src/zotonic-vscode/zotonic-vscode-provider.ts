@@ -16,14 +16,6 @@ import { GenCommandName } from './core';
 export class ZotonicVSCodeProvider {
     constructor(public genCommandName: GenCommandName) {}
 
-    public async setup(
-        zotonic: Zotonic,
-        fileFinder: IFileFinder,
-        context: ExtensionContext,
-    ) {
-        this.registerProviders(zotonic, fileFinder, context);
-    }
-
     public registerProvider(
         fileFinder: IFileFinder,
         context: ExtensionContext,

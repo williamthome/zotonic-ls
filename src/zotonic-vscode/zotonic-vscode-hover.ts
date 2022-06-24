@@ -13,14 +13,6 @@ import {
 } from '../zotonic';
 
 export class ZotonicVSCodeHover {
-    public async setup(
-        zotonic: Zotonic,
-        commands: ICommand,
-        context: ExtensionContext,
-    ) {
-        this.registerProviders(zotonic, commands, context);
-    }
-
     public registerProvider(context: ExtensionContext, commands: ICommand) {
         return (provider: IHoverProvider) => {
             if (provider instanceof ZHoverProvider) {

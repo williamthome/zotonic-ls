@@ -15,10 +15,6 @@ import {
 } from './core';
 
 export class ZotonicVSCodeCommand {
-    public async setup(context: ExtensionContext) {
-        this.registerCommands(context);
-    }
-
     get tplCommands(): ICommand {
         return {
             getUserChoice: (choices, next) => {
