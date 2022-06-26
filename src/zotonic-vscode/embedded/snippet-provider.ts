@@ -7,6 +7,7 @@ import {
 
 interface ConstructorArgs {
     selector?: Selector;
+    // TODO: Rename to regex
     pattern: RegExp;
     triggerCharacters?: string[];
 }
@@ -18,6 +19,7 @@ export abstract class EmbeddedSnippetProvider
         ...args: EmbeddedGetSnippetsArgs
     ): EmbeddedGetSnippetsReturn;
 
+    // TODO: Rename to regex
     public pattern: RegExp;
     public selector: Selector;
     public triggerCharacters: string[];

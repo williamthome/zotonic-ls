@@ -12,5 +12,6 @@ export interface ICommand {
 
     growlError: (msg: string) => Thenable<void>;
 
+    // TODO: Rename or move to a HTTP commands file
     get: <T>(url: string) => Thenable<T | Error>;
 }

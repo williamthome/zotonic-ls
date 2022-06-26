@@ -31,6 +31,7 @@ export type GetSnippets = (fileFinder: IFileFinder) => Thenable<ISnippet[]>;
 
 export interface ISnippetProvider {
     selector: Selector;
+    // TODO: Rename to regex
     pattern: RegExp;
     getSnippets: GetSnippets;
 }

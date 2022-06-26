@@ -1,3 +1,4 @@
+// TODO: Rename to FileNameRegex
 export type FileNamePattern = (escapedWorkspaces: string) => RegExp;
 
 export interface FindInWorkspaceArgs {
@@ -20,7 +21,9 @@ export type FindInWorkspace = (
 
 export interface FindByPatternArgs {
     cwd?: string;
+    // TODO: Rename to globPattern
     pattern: string;
+    // TODO: Rename to globIgnorePattern
     ignorePattern?: string;
 }
 
