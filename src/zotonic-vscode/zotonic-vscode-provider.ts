@@ -5,13 +5,13 @@ import {
     ExtensionContext,
     languages,
     MarkdownString,
-    Position,
-    TextDocument,
 } from 'vscode';
 import { IFileFinder, ISnippet, ISnippetProvider } from '../zotonic/core';
 import { SnippetProvider } from '../zotonic/snippets';
 import { Zotonic } from '../zotonic/zotonic';
 import { GenCommandName } from './core';
+import { EmbeddedSnippetProvider } from './embedded';
+import { HtmlSnippetProvider } from './embedded/html';
 
 export class ZotonicVSCodeProvider {
     constructor(public genCommandName: GenCommandName) {}
@@ -20,8 +20,11 @@ export class ZotonicVSCodeProvider {
         fileFinder: IFileFinder,
         context: ExtensionContext,
     ) {
-        return (provider: ISnippetProvider) => {
-            if (provider instanceof SnippetProvider) {
+        return (provider: ISnippetProvider | EmbeddedSnippetProvider) => {
+            if (
+                provider instanceof SnippetProvider ||
+                provider instanceof EmbeddedSnippetProvider
+            ) {
                 context.subscriptions.push(
                     languages.registerCompletionItemProvider(
                         provider.selector,
@@ -40,13 +43,16 @@ export class ZotonicVSCodeProvider {
         fileFinder: IFileFinder,
         context: ExtensionContext,
     ) {
-        zotonic.providers.forEach(this.registerProvider(fileFinder, context));
+        const register = this.registerProvider(fileFinder, context);
+        zotonic.providers.forEach(register);
+        register(new HtmlSnippetProvider());
         return this;
     }
 
     public parseCompletionItem(snippet: ISnippet): CompletionItem {
         const completionItem = new CompletionItem(
             snippet.prefix,
+            // TODO: Get kind from snippet
             CompletionItemKind.Snippet,
         );
         completionItem.insertText = Array.isArray(snippet.body)
@@ -75,20 +81,30 @@ export class ZotonicVSCodeProvider {
     }
 
     public parseCompletionItemProvider(
-        provider: ISnippetProvider,
+        provider: ISnippetProvider | EmbeddedSnippetProvider,
         fileFinder: IFileFinder,
     ): CompletionItemProvider {
-        const provideCompletionItems = async (
-            document: TextDocument,
-            position: Position,
-        ): Promise<CompletionItem[] | undefined> => {
-            if (document.getWordRangeAtPosition(position, provider.pattern)) {
-                const snippets = await provider.getSnippets(fileFinder);
-                return snippets.map((s) => this.parseCompletionItem(s));
-            }
-        };
         return {
-            provideCompletionItems,
+            provideCompletionItems: async (document, position) => {
+                if (
+                    document.getWordRangeAtPosition(position, provider.pattern)
+                ) {
+                    let snippets: ISnippet[] | undefined;
+                    if (provider instanceof EmbeddedSnippetProvider) {
+                        const getSnippets = provider.getSnippets(
+                            document,
+                            position,
+                        );
+                        snippets = getSnippets
+                            ? await getSnippets(fileFinder)
+                            : undefined;
+                    } else {
+                        snippets = await provider.getSnippets(fileFinder);
+                    }
+
+                    return snippets?.map((s) => this.parseCompletionItem(s));
+                }
+            },
         };
     }
 }
