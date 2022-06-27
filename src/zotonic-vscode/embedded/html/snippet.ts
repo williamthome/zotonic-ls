@@ -22,7 +22,6 @@ export class HtmlSnippetProvider extends EmbeddedSnippetProvider {
         position: Position,
     ): ISnippetProvider['getSnippets'] | undefined {
         const range = document.getWordRangeAtPosition(position, this.pattern);
-        console.log({ range });
         if (!range || range.isEmpty) {
             return undefined;
         }
