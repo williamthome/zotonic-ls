@@ -11,6 +11,23 @@ export class ZotonicVSCodeFileFinder extends FileFinder {
     }
 
     public findByPattern = ({
+        pattern,
+        ignorePattern,
+    }: FindByPatternArgs): Promise<string[]> => {
+        return this.vscodeFindByPattern({ pattern, ignorePattern });
+    };
+
+    public async vscodeFindByPattern({
+        pattern,
+        ignorePattern,
+    }: FindByPatternArgs): Promise<string[]> {
+        const files = await workspace.findFiles(pattern, ignorePattern);
+        return files.map((f) => f.fsPath);
+    }
+
+    // TODO: Maybe remove this function.
+    //       Changed to vscodeFindByPattern due to perfomance reason.
+    public globFindByPattern = ({
         cwd,
         pattern,
         ignorePattern,
@@ -29,16 +46,6 @@ export class ZotonicVSCodeFileFinder extends FileFinder {
             );
         });
     };
-
-    // TODO: Check this function usecase and maybe remove or use it instead of findByPattern.
-    // Some tests have shown that it is more efficient
-    public async vscodeFindByPattern({
-        pattern,
-        ignorePattern,
-    }: FindByPatternArgs): Promise<string[]> {
-        const files = await workspace.findFiles(pattern, ignorePattern);
-        return files.map((f) => f.fsPath);
-    }
 
     private getDocumentWorkspaceFolder(): string | undefined {
         if (!window.activeTextEditor || !workspace.workspaceFolders) {
