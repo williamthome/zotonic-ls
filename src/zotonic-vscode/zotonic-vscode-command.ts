@@ -117,9 +117,11 @@ export class ZotonicVSCodeCommand {
     get commandInsertSnippet() {
         return this.genCommandInterpreter(
             'insertSnippet',
-            'textEditorCommand',
-            async (editor, _edit, snippet) => {
-                editor.insertSnippet(new SnippetString(snippet));
+            'command',
+            async (snippet) => {
+                await this.activeEditor().insertSnippet(
+                    new SnippetString(snippet),
+                );
             },
         );
     }
@@ -145,8 +147,12 @@ export class ZotonicVSCodeCommand {
     }
 
     get commandShowUpSnippets() {
-        return this.genCommandInterpreter('showUpSnippets', 'command', () =>
-            commands.executeCommand('editor.action.triggerSuggest'),
+        return this.genCommandInterpreter(
+            'showUpSnippets',
+            'command',
+            async () => {
+                await commands.executeCommand('editor.action.triggerSuggest');
+            },
         );
     }
 
@@ -201,5 +207,13 @@ export class ZotonicVSCodeCommand {
             }
         }
         return this;
+    }
+
+    private activeEditor() {
+        const activeEditor = window.activeTextEditor;
+        if (!activeEditor) {
+            throw new Error('No active editor.');
+        }
+        return activeEditor;
     }
 }
