@@ -1,17 +1,25 @@
+import { Position } from './document';
+
+export type CommandReturn<T = void> = Thenable<T>;
+
 export interface ICommand {
     getUserChoice: (
         choices: string[],
-        next: (choice: string) => Thenable<void>,
-    ) => Thenable<void>;
+        next: (choice: string) => CommandReturn,
+    ) => CommandReturn;
 
-    insertSnippet: (snippet: string) => Thenable<void>;
+    currentPosition: () => CommandReturn<Position>;
 
-    showUpSnippets: () => Thenable<void>;
+    insertSnippet: (snippet: string) => CommandReturn;
 
-    growl: (msg: string) => Thenable<void>;
+    showUpSnippets: () => CommandReturn;
 
-    growlError: (msg: string) => Thenable<void>;
+    deleteText: (begin: Position, end: Position) => CommandReturn;
+
+    growl: (msg: string) => CommandReturn;
+
+    growlError: (msg: string) => CommandReturn;
 
     // TODO: Rename or move to a HTTP commands file
-    get: <T>(url: string) => Thenable<T | Error>;
+    get: <T>(url: string) => CommandReturn<T | Error>;
 }

@@ -47,8 +47,16 @@ export class HtmlSnippetProvider extends EmbeddedSnippetProvider {
                     prefix: i.label,
                     command: {
                         callback: async (commands) => {
-                            // FIXME: Create a command to delete the duplicated label/prefix.
-                            commands.insertSnippet(insertText);
+                            const currentPosition =
+                                await commands.currentPosition();
+
+                            await commands.insertSnippet(insertText);
+
+                            // TODO: Position helper functions.
+                            await commands.deleteText(currentPosition, {
+                                line: currentPosition.line,
+                                column: currentPosition.column + i.label.length,
+                            });
                         },
                     },
                 };

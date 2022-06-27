@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { ExtensionContext, SnippetString, commands, window } from 'vscode';
+import {
+    ExtensionContext,
+    SnippetString,
+    commands,
+    window,
+    Range,
+    Position,
+} from 'vscode';
 import { ICommand, ISnippetCommandCallback } from '../zotonic/core';
 import {
     RegisterTplCommand,
@@ -21,12 +28,20 @@ export class ZotonicVSCodeCommand {
                 return this.executeCommand('getUserChoice', choices, next);
             },
 
+            currentPosition: () => {
+                return this.executeCommand('currentPosition');
+            },
+
             insertSnippet: (snippet) => {
                 return this.executeCommand('insertSnippet', snippet);
             },
 
             showUpSnippets: () => {
                 return this.executeCommand('showUpSnippets');
+            },
+
+            deleteText: (begin, end) => {
+                return this.executeCommand('deleteText', begin, end);
             },
 
             growl: (msg) => {
@@ -48,8 +63,10 @@ export class ZotonicVSCodeCommand {
         return {
             executeCommand: this.commandCallback,
             getUserChoice: this.commandGetUserChoice,
+            currentPosition: this.commandCurrentPosition,
             insertSnippet: this.commandInsertSnippet,
             showUpSnippets: this.commandShowUpSnippets,
+            deleteText: this.commandDeleteText,
             growl: this.commandGrowl,
             growlError: this.commandGrowlError,
             get: this.commandHttpGet,
@@ -114,6 +131,17 @@ export class ZotonicVSCodeCommand {
         };
     }
 
+    get commandCurrentPosition() {
+        return this.genCommandInterpreter('currentPosition', 'command', () => {
+            const { line, character } = this.activeEditor().selection.active;
+
+            return Promise.resolve({
+                line,
+                column: character,
+            });
+        });
+    }
+
     get commandInsertSnippet() {
         return this.genCommandInterpreter(
             'insertSnippet',
@@ -152,6 +180,24 @@ export class ZotonicVSCodeCommand {
             'command',
             async () => {
                 await commands.executeCommand('editor.action.triggerSuggest');
+            },
+        );
+    }
+
+    get commandDeleteText() {
+        return this.genCommandInterpreter(
+            'deleteText',
+            'command',
+            async (begin, end) => {
+                await this.activeEditor().edit((edit) => {
+                    // TODO: Parse position.
+                    edit.delete(
+                        new Range(
+                            new Position(begin.line, begin.column),
+                            new Position(end.line, end.column),
+                        ),
+                    );
+                });
             },
         );
     }
