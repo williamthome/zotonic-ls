@@ -1,4 +1,4 @@
 {
-    "*.ts": "npm run check && npm run lint",
+    "!(*(jest.config|test|spec)).ts": ["npm run check", "npm run lint"],
     "*.{ts,json}": "npm run format"
 }
