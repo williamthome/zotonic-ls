@@ -1,4 +1,4 @@
 {
-    "*.ts": "npm run lint",
+    "*.ts": "npm run check && npm run lint",
     "*.{ts,json}": "npm run format"
 }
