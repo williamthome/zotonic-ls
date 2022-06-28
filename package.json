@@ -142,9 +142,17 @@
         "format": "prettier --write ./src/**/*.{ts,json}",
         "check": "npx tsc --noEmit",
         "prettify": "npm run lint && npm run format",
-        "test": "node ./out/__tests__/runTest.js",
         "update": "npx npm-check-updates -u && npm install",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "test": "npx jest --passWithNoTests --silent --noStackTrace --runInBand --detectOpenHandles && npm run test:integration",
+        "test:verbose": "npx jest --passWithNoTests --runInBand --detectOpenHandles",
+        "test:unit": "npm test -- --watch \"^(.*/)*(.*\\.)*(spec)\\.ts$\"",
+        "test:unit:verbose": "npm run test:verbose -- --watch \"^(.*/)*(.*\\.)*(spec)\\.ts$\"",
+        "test:integration": "node ./out/__tests__/runTest.js",
+        "test:staged": "npm test -- --findRelatedTests",
+        "test:ci": "npm test -- --coverage",
+        "test:clear": "npx jest --clearCache",
+        "eslint:test": "npx eslint --fix --cache --ext .ts src/__tests__/"
     },
     "devDependencies": {
         "@types/glob": "^7.2.0",
