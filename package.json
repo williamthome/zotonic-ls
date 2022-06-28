@@ -141,7 +141,7 @@
         "lint": "eslint src --ext ts --cache --fix",
         "format": "prettier --write ./src/**/*.{ts,json}",
         "check": "npx tsc --noEmit",
-        "pretty": "npm run lint && npm run format",
+        "prettify": "npm run lint && npm run format",
         "test": "node ./out/__tests__/runTest.js",
         "update": "npx npm-check-updates -u && npm install",
         "prepare": "husky install"
