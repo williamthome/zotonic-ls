@@ -140,7 +140,6 @@
         "pretest": "npm run compile && npm run lint",
         "lint": "eslint src --ext ts --cache --fix",
         "format": "prettier --write ./src/**/*.{ts,json}",
-        "check": "npx tsc --noEmit --skipLibCheck",
         "prettify": "npm run lint && npm run format",
         "update": "npx npm-check-updates -u && npm install",
         "prepare": "husky install",
