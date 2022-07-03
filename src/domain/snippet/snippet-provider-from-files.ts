@@ -1,8 +1,4 @@
-import {
-    FilenameRegexByWorkspace,
-    TransformSnippet,
-    FilesByWorkspace,
-} from '../file';
+import { TransformSnippet, FilesByWorkspace } from '../file';
 import { buildSnippet } from './snippet';
 import { buildSnippetProvider } from './snippet-provider';
 
@@ -12,7 +8,6 @@ export function buildSnippetProviderFromFiles(args: {
     workspacesRoot?: string | string[];
     workspaces: string[][];
     extensions: string[];
-    filenameRegexByWorkspace: FilenameRegexByWorkspace;
     transformSnippet?: TransformSnippet;
     filesByWorkspace: FilesByWorkspace;
 }) {

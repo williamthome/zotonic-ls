@@ -1,14 +1,9 @@
 import { buildSnippetProviderFromFiles } from '@/domain/snippet/snippet-provider-from-files';
-import { expectEqual } from '@/__tests__/__utils__';
-import {
-    filenameRegexByWorkspaceSpy,
-    filesByWorkspaceSpy,
-    transformSnippetSpy,
-} from '../__spies__';
+import { expectEqual, expectThrowException } from '@/__tests__/__utils__';
+import { filesByWorkspaceSpy, transformSnippetSpy } from '../__spies__';
 
 describe('domain/snippet/snippet-provider-from-files', () => {
     function makeSut() {
-        const filenameRegexByWorkspace = filenameRegexByWorkspaceSpy();
         const transformSnippet = transformSnippetSpy();
         const filesByWorkspace = filesByWorkspaceSpy();
 
@@ -18,14 +13,12 @@ describe('domain/snippet/snippet-provider-from-files', () => {
             workspacesRoot: ['apps'],
             workspaces: [['priv', 'lib'], ['src']],
             triggerCharacters: ['.'],
-            filenameRegexByWorkspace: filenameRegexByWorkspace.spy,
             transformSnippet: transformSnippet.spy,
             filesByWorkspace: filesByWorkspace.spy,
         });
 
         return {
             sut,
-            filenameRegexByWorkspaceSpy: filenameRegexByWorkspace,
             transformSnippetSpy: transformSnippet,
             filesByWorkspaceSpy: filesByWorkspace,
         };
