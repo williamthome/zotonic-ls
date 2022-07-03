@@ -36,4 +36,30 @@ describe('domain/snippet/snippet-provider-from-files', () => {
             });
         });
     });
+
+    describe('transformSnippet', () => {
+        it('should be called same as snippets length', async () => {
+            const { sut, transformSnippetSpy } = makeSut();
+
+            const snippets = await sut.getSnippets();
+
+            expectEqual(transformSnippetSpy.calledTimes, snippets.length);
+        });
+
+        it('should be called with right args', () => {
+            const { sut, transformSnippetSpy } = makeSut();
+
+            sut.getSnippets();
+
+            expectEqual(transformSnippetSpy.args, undefined);
+        });
+
+        it('should throw if throws', () => {
+            const { sut, transformSnippetSpy } = makeSut();
+
+            transformSnippetSpy.throwException = true;
+
+            expectThrowException(sut.getSnippets());
+        });
+    });
 });
