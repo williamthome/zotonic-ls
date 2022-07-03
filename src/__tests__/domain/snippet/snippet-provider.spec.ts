@@ -1,5 +1,5 @@
 import { buildSnippetProvider } from '@/domain/snippet/snippet-provider';
-import { expectEqual, expectRaiseException } from '@/__tests__/__utils__';
+import { expectEqual, expectThrowException } from '@/__tests__/__utils__';
 import { getSnippetsSpy } from '../__spies__/snippet-spy';
 
 describe('domain/snippet/snippet-provider', () => {
@@ -51,9 +51,9 @@ describe('domain/snippet/snippet-provider', () => {
         it('should throw if throws', () => {
             const { sut, getSnippetsSpy } = makeSut();
 
-            getSnippetsSpy.raiseException = true;
+            getSnippetsSpy.throwException = true;
 
-            expectRaiseException(sut.getSnippets());
+            expectThrowException(sut.getSnippets());
         });
     });
 });

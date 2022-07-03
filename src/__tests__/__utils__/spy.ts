@@ -1,8 +1,8 @@
 import { Args } from '@/domain/types';
 
-function buildSpyOptions(args: { raiseException?: boolean } = {}) {
+function buildSpyOptions(args: { throwException?: boolean } = {}) {
     return {
-        raiseException: args.raiseException ?? false,
+        throwException: args.throwException ?? false,
     };
 }
 
@@ -25,8 +25,8 @@ export function buildSpy<T extends (args: any) => any>(
         set options(options: SpyOptionsArgs) {
             _options = buildSpyOptions(options);
         },
-        set raiseException(raiseException: boolean) {
-            this.options.raiseException = raiseException;
+        set throwException(throwException: boolean) {
+            this.options.throwException = throwException;
         },
         get args() {
             return _lastArgs;
@@ -47,7 +47,7 @@ export function buildSpy<T extends (args: any) => any>(
             _calledTimes++;
             _lastArgs = args.length ? args[0] : undefined;
 
-            if (_options.raiseException) {
+            if (_options.throwException) {
                 const error = new Error();
                 _lastValue = error;
                 throw error;
