@@ -6,7 +6,10 @@ export type File = ReturnType<typeof buildFile>;
 
 export type FilenameRegexByWorkspace = (workspace: string) => RegExp;
 
-export type TransformSnippet = (snippet: Snippet, file: File) => Snippet;
+export type TransformSnippet = (args: {
+    snippet: Snippet;
+    file: File;
+}) => Snippet;
 
 export type FilesByWorkspace = (args: {
     cwd?: string;

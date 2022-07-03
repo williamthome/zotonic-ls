@@ -28,11 +28,11 @@ export function buildSnippetProviderFromFiles(args: {
             });
 
             return files.map((file) => {
-                const baseSnippet = buildSnippet({ label: file.name });
+                const snippet = buildSnippet({ label: file.name });
 
                 return args.transformSnippet
-                    ? args.transformSnippet(baseSnippet, file)
-                    : baseSnippet;
+                    ? args.transformSnippet({ snippet, file })
+                    : snippet;
             });
         },
     });
