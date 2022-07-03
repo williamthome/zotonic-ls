@@ -4,6 +4,10 @@ export function expectEqual<A, B>(a: A, b: B) {
     return expect(a).toEqual(b);
 }
 
+export function expectNotEqual<A, B>(a: A, b: B) {
+    return expect(a).not.toEqual(b);
+}
+
 export function expectThrowException<Fn extends AnyFunction | AnyPromise>(
     fn: Fn,
 ) {
