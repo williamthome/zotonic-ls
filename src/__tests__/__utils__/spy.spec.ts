@@ -1,11 +1,11 @@
-import { expectEqual, expectThrowException } from './expect';
-import { buildSpy } from './spy';
+import { expectEqual, expectNotEqual, expectThrowException } from './expect';
+import { buildSpy, SpyOptionsArgs } from './spy';
 
 describe('utils/spy', () => {
-    function makeSut() {
+    function makeSut(options?: SpyOptionsArgs) {
         const fn = (args: { foo: 'bar' }) => args.foo;
 
-        const sut = buildSpy(fn);
+        const sut = buildSpy(fn, options);
 
         return {
             sut,
@@ -39,9 +39,7 @@ describe('utils/spy', () => {
     });
 
     it('should throw if throws', () => {
-        const { sut, fn } = makeSut();
-
-        sut.throwException = true;
+        const { fn } = makeSut({ throwException: true });
 
         expectThrowException(fn);
     });

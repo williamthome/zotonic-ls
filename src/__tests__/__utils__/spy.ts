@@ -6,8 +6,8 @@ function buildSpyOptions(args: { throwException?: boolean } = {}) {
     };
 }
 
-type SpyOptionsArgs = Args<typeof buildSpyOptions>;
-type SpyOptions = ReturnType<typeof buildSpyOptions>;
+export type SpyOptionsArgs = Args<typeof buildSpyOptions>;
+export type SpyOptions = ReturnType<typeof buildSpyOptions>;
 
 export function buildSpy<T extends (args: any) => any>(
     mock: T,
