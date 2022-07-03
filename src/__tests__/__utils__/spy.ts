@@ -53,7 +53,7 @@ export function buildSpy<T extends (args: any) => any>(
                 throw error;
             }
 
-            const value = mock(args);
+            const value = mock(_lastArgs);
             _lastValue = value;
             return value;
         },
