@@ -27,7 +27,17 @@ export default {
     coverageDirectory: 'coverage',
 
     // An array of regexp pattern strings used to skip coverage collection
-    coveragePathIgnorePatterns: ['/node_modules/', '.+\\.d\\.ts', 'index.ts'],
+    coveragePathIgnorePatterns: [
+        '/node_modules/',
+        '/__tests__/infra',
+        '.+\\.d\\.ts',
+        'index.ts',
+        'types.ts',
+        'extension.ts',
+        // TODO: Remove dirs above
+        '/src/zotonic/',
+        '/src/zotonic-vscode/',
+    ],
 
     // Indicates which provider should be used to instrument code for coverage
     coverageProvider: 'v8',
