@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export type AnyObject = Record<string, unknown>;
 
 export type AnyFunction = (...args: any[]) => unknown;
