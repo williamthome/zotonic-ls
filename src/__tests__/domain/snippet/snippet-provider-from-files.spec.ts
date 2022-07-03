@@ -7,11 +7,15 @@ describe('domain/snippet/snippet-provider-from-files', () => {
         const transformSnippet = transformSnippetSpy();
         const filesByWorkspace = filesByWorkspaceSpy();
 
+        const extensions = ['baz'];
+        const workspacesRoot = ['apps'];
+        const workspaces = [['priv', 'lib'], ['src']];
+
         const sut = buildSnippetProviderFromFiles({
             regex: /foo/,
-            extensions: ['baz'],
-            workspacesRoot: ['apps'],
-            workspaces: [['priv', 'lib'], ['src']],
+            extensions,
+            workspacesRoot,
+            workspaces,
             triggerCharacters: ['.'],
             transformSnippet: transformSnippet.spy,
             filesByWorkspace: filesByWorkspace.spy,
@@ -19,6 +23,9 @@ describe('domain/snippet/snippet-provider-from-files', () => {
 
         return {
             sut,
+            extensions,
+            workspacesRoot,
+            workspaces,
             transformSnippetSpy: transformSnippet,
             filesByWorkspaceSpy: filesByWorkspace,
         };
@@ -58,6 +65,43 @@ describe('domain/snippet/snippet-provider-from-files', () => {
             const { sut, transformSnippetSpy } = makeSut();
 
             transformSnippetSpy.throwException = true;
+
+            expectThrowException(sut.getSnippets());
+        });
+    });
+
+    describe('filesByWorkspace', () => {
+        it('should be called once', async () => {
+            const { sut, filesByWorkspaceSpy } = makeSut();
+
+            await sut.getSnippets();
+
+            expectEqual(filesByWorkspaceSpy.calledOnce, true);
+        });
+
+        it('should be called with right args', () => {
+            const {
+                sut,
+                extensions,
+                workspacesRoot,
+                workspaces,
+                filesByWorkspaceSpy,
+            } = makeSut();
+
+            sut.getSnippets();
+
+            expectEqual(filesByWorkspaceSpy.args, {
+                extensions,
+                workspacesRoot,
+                workspaces,
+                allowDuplicates: false,
+            });
+        });
+
+        it('should throw if throws', () => {
+            const { sut, filesByWorkspaceSpy } = makeSut();
+
+            filesByWorkspaceSpy.throwException = true;
 
             expectThrowException(sut.getSnippets());
         });
