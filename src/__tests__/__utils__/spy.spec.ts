@@ -21,6 +21,12 @@ describe('utils/spy', () => {
         expectEqual(sut.args, { foo: 'bar' });
     });
 
+    it('should be called with no args', () => {
+        const sut = buildSpy(() => undefined);
+        sut.spy();
+        expectEqual(sut.args, undefined);
+    });
+
     it('should be called', () => {
         const { sut } = makeSut();
 
