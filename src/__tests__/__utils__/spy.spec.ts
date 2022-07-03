@@ -47,9 +47,10 @@ describe('utils/spy', () => {
     });
 
     it('should throw if throws', () => {
-        const { fn } = makeSut({ throwException: true });
+        const { sut } = makeSut({ throwException: true });
 
-        expectThrowException(fn);
+        expectThrowException(() => sut.spy({ foo: 'bar' }));
+        expectEqual(sut.value, new Error());
     });
 
     it('should return the expected value', () => {
