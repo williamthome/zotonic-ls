@@ -51,4 +51,16 @@ describe('utils/spy', () => {
 
         expectEqual(sut.value, fn({ foo: 'bar' }));
     });
+
+    it('should set options', () => {
+        const { sut } = makeSut({ throwException: true });
+
+        const oldOptions = sut.options;
+        sut.options = { throwException: false };
+
+        expectNotEqual(oldOptions, sut.options);
+
+        sut.options.throwException = true;
+        expectEqual(oldOptions, sut.options);
+    });
 });
