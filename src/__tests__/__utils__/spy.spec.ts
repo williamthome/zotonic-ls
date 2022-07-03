@@ -71,4 +71,14 @@ describe('utils/spy', () => {
         sut.options.throwException = true;
         expectEqual(oldOptions, sut.options);
     });
+
+    it('should reset collected values', () => {
+        const { sut } = makeSut();
+
+        sut.spy({ foo: 'bar' });
+        sut.reset();
+
+        expectEqual(sut.args, undefined);
+        expectEqual(sut.value, undefined);
+    });
 });
