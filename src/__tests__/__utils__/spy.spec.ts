@@ -21,6 +21,14 @@ describe('utils/spy', () => {
         expectEqual(sut.args, { foo: 'bar' });
     });
 
+    it('should be called', () => {
+        const { sut } = makeSut();
+
+        sut.spy({ foo: 'bar' });
+
+        expectEqual(sut.wasCalled, true);
+    });
+
     it('should be called once', () => {
         const { sut } = makeSut();
 
