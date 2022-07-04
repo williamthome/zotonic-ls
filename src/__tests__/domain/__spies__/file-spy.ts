@@ -1,6 +1,8 @@
+// TODO: Check unused functions
+
 import {
-    FilenameRegexByWorkspace,
-    FilesByGlobPattern,
+    // FilenameRegexByWorkspace,
+    // FilesByGlobPattern,
     FilesByWorkspace,
 } from '@/domain/file';
 import { buildSpy } from '@/__tests__/__utils__';
@@ -12,12 +14,12 @@ export function filesByWorkspaceSpy() {
     });
 }
 
-export function filesByGlobPatternSpy() {
-    return buildSpy<FilesByGlobPattern>(() => {
-        return Promise.resolve([fileMock()]);
-    });
-}
+// export function filesByGlobPatternSpy() {
+//     return buildSpy<FilesByGlobPattern>(() => {
+//         return Promise.resolve([fileMock()]);
+//     });
+// }
 
-export function filenameRegexByWorkspaceSpy() {
-    return buildSpy<FilenameRegexByWorkspace>(() => /bar.baz/);
-}
+// export function filenameRegexByWorkspaceSpy() {
+//     return buildSpy<FilenameRegexByWorkspace>(() => /bar.baz/);
+// }
