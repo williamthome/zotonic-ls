@@ -3,8 +3,7 @@
     "compilerOptions": {
         "noUnusedLocals": false,
         "noUnusedParameters": false,
-        "sourceMap": true,
-        "inlineSourceMap": true
+        "sourceMap": true
     },
     "exclude": []
 }
