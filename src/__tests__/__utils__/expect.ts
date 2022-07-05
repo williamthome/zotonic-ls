@@ -24,6 +24,14 @@ export function expectThrowException<Fn extends AnyFunction | AnyPromise>(
         : expect(fn).toThrow();
 }
 
+export function expectNotThrowException<Fn extends AnyFunction | AnyPromise>(
+    fn: Fn,
+) {
+    return fn instanceof Promise
+        ? expect(fn).rejects.not.toThrow()
+        : expect(fn).not.toThrow();
+}
+
 export function expectInstanceOf<V, I>(value: V, instance: I) {
     return expect(value).toBeInstanceOf(instance);
 }
