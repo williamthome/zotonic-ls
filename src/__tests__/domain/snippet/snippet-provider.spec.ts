@@ -2,6 +2,7 @@ import { buildSnippetProvider } from '@/domain/snippet/snippet-provider';
 import {
     expectAny,
     expectEqual,
+    expectNotThrowException,
     expectThrowException,
 } from '@/__tests__/__utils__';
 import { getSnippetsSpy } from '../__spies__/snippet-spy';
@@ -58,6 +59,14 @@ describe('domain/snippet/snippet-provider', () => {
             getSnippetsSpy.throwException = true;
 
             expectThrowException(sut.getSnippets());
+        });
+    });
+
+    describe('flush', () => {
+        it('should not throw', () => {
+            const { sut } = makeSut();
+
+            expectNotThrowException(sut.flush);
         });
     });
 });
