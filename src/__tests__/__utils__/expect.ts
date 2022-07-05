@@ -1,11 +1,11 @@
 import { AnyFunction, AnyPromise } from '@/domain/types';
 
 export function expectEqual<A, B>(a: A, b: B) {
-    return expect(a).toEqual(b);
+    return expect(a).toStrictEqual(b);
 }
 
 export function expectNotEqual<A, B>(a: A, b: B) {
-    return expect(a).not.toEqual(b);
+    return expect(a).not.toStrictEqual(b);
 }
 
 export function expectThrowException<Fn extends AnyFunction | AnyPromise>(
