@@ -1,4 +1,4 @@
-import { Snippet } from './snippet';
+import { Snippet } from './snippets';
 
 // Types
 

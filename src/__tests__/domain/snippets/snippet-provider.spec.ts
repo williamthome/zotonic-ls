@@ -1,4 +1,4 @@
-import { buildSnippetProvider } from '@/domain/snippet/snippet-provider';
+import { buildSnippetProvider } from '@/domain/snippets/snippet-provider';
 import {
     expectAny,
     expectEqual,
