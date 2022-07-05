@@ -1,5 +1,5 @@
 import { buildSnippet } from '@/domain/snippet/snippet';
-import { expectEqual } from '@/__tests__/__utils__';
+import { expectAny, expectEqual } from '@/__tests__/__utils__';
 
 describe('domain/snippet/snippet', () => {
     function makeSut() {
@@ -13,11 +13,11 @@ describe('domain/snippet/snippet', () => {
             const { sut } = makeSut();
 
             expectEqual(sut, {
-                label: expect.any(String),
-                body: expect.any(String),
-                description: expect.any(String),
-                documentation: expect.any(String),
-                triggerCharacters: expect.any(Array),
+                label: expectAny(String),
+                body: expectAny(String),
+                description: expectAny(String),
+                documentation: expectAny(String),
+                triggerCharacters: expectAny(Array),
             });
         });
     });

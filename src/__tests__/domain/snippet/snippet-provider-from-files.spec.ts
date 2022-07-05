@@ -1,5 +1,9 @@
 import { buildSnippetProviderFromFiles } from '@/domain/snippet/snippet-provider-from-files';
-import { expectEqual, expectThrowException } from '@/__tests__/__utils__';
+import {
+    expectAny,
+    expectEqual,
+    expectThrowException,
+} from '@/__tests__/__utils__';
 import { filesByWorkspaceSpy, transformSnippetSpy } from '../__spies__';
 
 describe('domain/snippet/snippet-provider-from-files', () => {
@@ -36,10 +40,10 @@ describe('domain/snippet/snippet-provider-from-files', () => {
             const { sut } = makeSut();
 
             expectEqual(sut, {
-                regex: expect.any(RegExp),
-                triggerCharacters: expect.any(Array),
-                getSnippets: expect.any(Function),
-                flush: expect.any(Function),
+                regex: expectAny(RegExp),
+                triggerCharacters: expectAny(Array),
+                getSnippets: expectAny(Function),
+                flush: expectAny(Function),
             });
         });
     });

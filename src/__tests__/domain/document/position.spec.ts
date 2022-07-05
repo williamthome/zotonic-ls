@@ -1,5 +1,5 @@
 import { buildPosition } from '@/domain/document/position';
-import { expectEqual } from '@/__tests__/__utils__';
+import { expectAny, expectEqual } from '@/__tests__/__utils__';
 
 describe('domain/document/position', () => {
     describe('buildPosition', () => {
@@ -9,8 +9,8 @@ describe('domain/document/position', () => {
                 column: 0,
             });
             expectEqual(position, {
-                line: expect.any(Number),
-                column: expect.any(Number),
+                line: expectAny(Number),
+                column: expectAny(Number),
             });
         });
     });
