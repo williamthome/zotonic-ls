@@ -1,4 +1,9 @@
-import { expectEqual, expectNotEqual, expectThrowException } from './expect';
+import {
+    expectEqual,
+    expectInstanceOf,
+    expectNotEqual,
+    expectThrowException,
+} from './expect';
 import { buildSpy, SpyOptionsArgs } from './spy';
 
 describe('utils/spy', () => {
@@ -56,7 +61,7 @@ describe('utils/spy', () => {
         const { sut } = makeSut({ throwException: true });
 
         expectThrowException(() => sut.spy({ foo: 'bar' }));
-        expectEqual(sut.value, new Error());
+        expectInstanceOf(sut.value, Error);
     });
 
     it('should return the expected value', () => {
