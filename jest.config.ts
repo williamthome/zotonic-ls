@@ -34,7 +34,7 @@ export default {
         'index.ts',
         'types.ts',
         'extension.ts',
-        // TODO: Remove dirs above
+        // TODO: Remove dirs below
         '/src/zotonic/',
         '/src/zotonic-vscode/',
     ],
