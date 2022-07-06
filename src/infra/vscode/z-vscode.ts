@@ -1,4 +1,4 @@
-import { Z } from '@/data';
+import { Z } from '../../data';
 import { ExtensionContext } from 'vscode';
 import { registerSnippetProvider } from './z-vscode-snippet-provider';
 

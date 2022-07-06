@@ -8,9 +8,9 @@ export function expectNotEqual<A, B>(a: A, b: B) {
     return expect(a).not.toStrictEqual(b);
 }
 
-// export function expectBeArray<T>(arr: T) {
-//     return expect(arr).toStrictEqual(expect.any(Array));
-// }
+export function expectBeArray<T>(arr: T) {
+    return expect(arr).toStrictEqual(expect.any(Array));
+}
 
 // export function expectNotEmpty<T extends Array<unknown>>(arr: T) {
 //     return expect(arr.length).toBeGreaterThan(0);

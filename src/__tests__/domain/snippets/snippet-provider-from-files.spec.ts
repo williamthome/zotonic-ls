@@ -1,15 +1,22 @@
+import { File } from '@/domain/file';
 import { buildSnippetProviderFromFiles } from '@/domain/snippets/snippet-provider-from-files';
 import {
     expectAny,
+    expectBeArray,
     expectEqual,
     expectThrowException,
 } from '@/__tests__/__utils__';
-import { filesByWorkspaceSpy, transformSnippetSpy } from '../__spies__';
+import {
+    filenameRegexByWorkspaceSpy,
+    filesByGlobPatternSpy,
+    transformSnippetSpy,
+} from '../__spies__';
 
 describe('domain/snippet/snippet-provider-from-files', () => {
     function makeSut() {
         const transformSnippet = transformSnippetSpy();
-        const filesByWorkspace = filesByWorkspaceSpy();
+        const filenameRegexByWorkspace = filenameRegexByWorkspaceSpy();
+        const filesByGlobPattern = filesByGlobPatternSpy();
 
         const extensions = ['baz'];
         const workspacesRoot = ['apps'];
@@ -18,12 +25,14 @@ describe('domain/snippet/snippet-provider-from-files', () => {
         const sut = buildSnippetProviderFromFiles({
             regex: /foo/,
             extensions,
-            workspacesRoot,
             workspaces,
             triggerCharacters: ['.'],
+            workspacesRoot: ['root'],
             transformSnippet: transformSnippet.spy,
-            filesByWorkspace: filesByWorkspace.spy,
+            filenameRegexByWorkspace: filenameRegexByWorkspace.spy,
+            filesByGlobPattern: filesByGlobPattern.spy,
         });
+        filenameRegexByWorkspace;
 
         return {
             sut,
@@ -31,7 +40,8 @@ describe('domain/snippet/snippet-provider-from-files', () => {
             workspacesRoot,
             workspaces,
             transformSnippetSpy: transformSnippet,
-            filesByWorkspaceSpy: filesByWorkspace,
+            filenameRegexByWorkspaceSpy: filenameRegexByWorkspace,
+            filesByGlobPatternSpy: filesByGlobPattern,
         };
     }
 
@@ -74,38 +84,62 @@ describe('domain/snippet/snippet-provider-from-files', () => {
         });
     });
 
-    describe('filesByWorkspace', () => {
-        it('should be called once', async () => {
-            const { sut, filesByWorkspaceSpy } = makeSut();
+    describe('filenameRegexByWorkspace', () => {
+        it('should be called same as files length', async () => {
+            const { sut, filenameRegexByWorkspaceSpy, filesByGlobPatternSpy } =
+                makeSut();
 
             await sut.getSnippets();
 
-            expectEqual(filesByWorkspaceSpy.calledOnce, true);
+            const files = await filesByGlobPatternSpy.value;
+            expectBeArray(files);
+
+            const filesLength = (files as Array<File>).length;
+            expectEqual(filenameRegexByWorkspaceSpy.calledTimes, filesLength);
         });
 
-        it('should be called with right args', () => {
-            const {
-                sut,
-                extensions,
-                workspacesRoot,
-                workspaces,
-                filesByWorkspaceSpy,
-            } = makeSut();
+        it('should be called with right args', async () => {
+            const { sut, filenameRegexByWorkspaceSpy } = makeSut();
 
-            sut.getSnippets();
+            await sut.getSnippets();
 
-            expectEqual(filesByWorkspaceSpy.args, {
-                extensions,
-                workspacesRoot,
-                workspaces,
-                allowDuplicates: false,
+            expectEqual(filenameRegexByWorkspaceSpy.args, {
+                workspace: 'priv\\/lib|src',
             });
         });
 
         it('should throw if throws', () => {
-            const { sut, filesByWorkspaceSpy } = makeSut();
+            const { sut, filenameRegexByWorkspaceSpy } = makeSut();
 
-            filesByWorkspaceSpy.throwException = true;
+            filenameRegexByWorkspaceSpy.throwException = true;
+
+            expectThrowException(sut.getSnippets());
+        });
+    });
+
+    describe('filesByGlobPatternSpy', () => {
+        it('should be called once', () => {
+            const { sut, filesByGlobPatternSpy } = makeSut();
+
+            sut.getSnippets();
+
+            expectEqual(filesByGlobPatternSpy.calledOnce, true);
+        });
+
+        it('should be called with right args', () => {
+            const { sut, filesByGlobPatternSpy } = makeSut();
+
+            sut.getSnippets();
+
+            expectEqual(filesByGlobPatternSpy.args, {
+                globPattern: 'root/**/{priv/lib,src}/**/*.baz',
+            });
+        });
+
+        it('should throw if throws', () => {
+            const { sut, filesByGlobPatternSpy } = makeSut();
+
+            filesByGlobPatternSpy.throwException = true;
 
             expectThrowException(sut.getSnippets());
         });

@@ -1,14 +1,14 @@
-import { FilesByWorkspace } from '@/domain/file';
-import { buildImageTagSnippetProvider } from '@/domain/snippets';
+import { FilesByGlobPattern } from '../domain/file';
+import { buildImageTagSnippetProvider } from '../domain/snippets';
 
-export function buildZ() {
-    const filesByWorkspace: FilesByWorkspace = () => {
-        return Promise.resolve([]);
-    };
-
+export function buildZ(args: {
+    filesByGlobPattern: FilesByGlobPattern;
+    workspacesRoot: [string, ...string[]];
+}) {
     const _snippetProviders = [
         buildImageTagSnippetProvider({
-            filesByWorkspace,
+            filesByGlobPattern: args.filesByGlobPattern,
+            workspacesRoot: args.workspacesRoot,
         }),
     ];
 

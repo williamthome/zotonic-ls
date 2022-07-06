@@ -1,8 +1,9 @@
-import { FilesByWorkspace } from '@/domain/file';
+import { FilesByGlobPattern } from '../../../../domain/file';
 import { buildSnippetProviderFromFiles } from '../../snippet-provider-from-files';
 
 export function buildImageTagSnippetProvider(args: {
-    filesByWorkspace: FilesByWorkspace;
+    filesByGlobPattern: FilesByGlobPattern;
+    workspacesRoot: [string, ...string[]];
 }) {
     return buildSnippetProviderFromFiles({
         regex: /(?<={%\s*image(_data)?(_url)?\s*").*?(?=")/,
@@ -23,6 +24,10 @@ export function buildImageTagSnippetProvider(args: {
             'png',
             'svg',
         ],
-        filesByWorkspace: args.filesByWorkspace,
+        filenameRegexByWorkspace({ workspace }) {
+            return new RegExp(`(?<=\\/(${workspace})\\/).*`);
+        },
+        filesByGlobPattern: args.filesByGlobPattern,
+        workspacesRoot: args.workspacesRoot,
     });
 }

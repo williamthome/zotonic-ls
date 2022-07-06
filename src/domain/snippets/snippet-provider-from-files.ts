@@ -1,26 +1,36 @@
-import { TransformSnippet, FilesByWorkspace } from '../file';
+import {
+    TransformSnippet,
+    buildFilesByWorkspaces,
+    FilenameRegexByWorkspace,
+    FilesByGlobPattern,
+} from '../file';
 import { buildSnippet } from './snippet';
 import { buildSnippetProvider } from './snippet-provider';
 
 export function buildSnippetProviderFromFiles(args: {
     regex: RegExp;
     triggerCharacters?: string[];
-    workspacesRoot?: string | string[];
+    workspacesRoot: [string, ...string[]];
     workspaces: string[][];
     extensions: string[];
     transformSnippet?: TransformSnippet;
-    filesByWorkspace: FilesByWorkspace;
+    filenameRegexByWorkspace: FilenameRegexByWorkspace;
+    filesByGlobPattern: FilesByGlobPattern;
 }) {
+    const filesByWorkspaces = buildFilesByWorkspaces({
+        workspacesRoot: args.workspacesRoot,
+        workspaces: args.workspaces,
+        extensions: args.extensions,
+        filenameRegexByWorkspace: args.filenameRegexByWorkspace,
+        filesByGlobPattern: args.filesByGlobPattern,
+        allowDuplicates: false,
+    });
+
     return buildSnippetProvider({
         regex: args.regex,
         triggerCharacters: args.triggerCharacters,
         async getSnippets() {
-            const files = await args.filesByWorkspace({
-                workspacesRoot: args.workspacesRoot || ['apps', 'apps_user'],
-                workspaces: args.workspaces,
-                extensions: args.extensions,
-                allowDuplicates: false,
-            });
+            const files = await filesByWorkspaces();
 
             return files.map((file) => {
                 const snippet = buildSnippet({ label: file.name });
