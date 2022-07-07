@@ -3,7 +3,7 @@ import {
     buildFilesByWorkspaces,
     FilenameRegexByWorkspace,
     FilesByGlobPattern,
-} from '../file';
+} from '../files';
 import { buildSnippet } from './snippet';
 import { buildSnippetProvider } from './snippet-provider';
 

@@ -1,4 +1,4 @@
-import { File } from '@/domain/file';
+import { File } from '@/domain/files';
 import { buildSnippetProviderFromFiles } from '@/domain/snippets/snippet-provider-from-files';
 import {
     expectAny,

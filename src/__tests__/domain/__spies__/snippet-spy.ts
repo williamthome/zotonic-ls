@@ -1,4 +1,4 @@
-import { TransformSnippet } from '@/domain/file';
+import { TransformSnippet } from '@/domain/files';
 import { GetSnippets } from '@/domain/snippets';
 import { buildSpy } from '@/__tests__/__utils__';
 import { snippetMock } from '../__mocks__';

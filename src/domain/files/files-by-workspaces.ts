@@ -1,35 +1,7 @@
-import { Snippet } from './snippets';
-import { formatToGlobPattern } from './utils';
+import { formatToGlobPattern } from '../utils';
+import { buildFile, File } from './file';
+import { FilenameRegexByWorkspace, FilesByGlobPattern } from './protocol';
 
-// Types
-
-export type File = ReturnType<typeof buildFile>;
-
-export type FilenameRegexByWorkspace = (args: { workspace: string }) => RegExp;
-
-export type TransformSnippet = (args: {
-    snippet: Snippet;
-    file: File;
-}) => Snippet;
-
-export type FilesByWorkspaces = typeof buildFilesByWorkspaces;
-
-export type FilesByGlobPattern = (args: {
-    cwd?: string;
-    globPattern: string;
-    ignoreGlobPattern?: string;
-}) => Promise<File[]>;
-
-// API
-
-export function buildFile(args: { name: string; path: string }) {
-    return {
-        name: args.name,
-        path: args.path,
-    };
-}
-
-// TODO: Split into more functions
 export function buildFilesByWorkspaces(args: {
     cwd?: string;
     workspacesRoot: [string, ...string[]];
@@ -76,3 +48,5 @@ export function buildFilesByWorkspaces(args: {
         }, new Array<File>());
     };
 }
+
+export type FilesByWorkspaces = typeof buildFilesByWorkspaces;

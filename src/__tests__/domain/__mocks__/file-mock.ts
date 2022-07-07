@@ -1,4 +1,4 @@
-import { buildFile } from '@/domain/file';
+import { buildFile } from '@/domain/files';
 
 export function fileMock() {
     // TODO: Generate fake random values

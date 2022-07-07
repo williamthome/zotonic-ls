@@ -1,4 +1,4 @@
-import { buildFile, FilesByGlobPattern } from '../../domain/file';
+import { buildFile, FilesByGlobPattern } from '../../domain/files';
 import { workspace } from 'vscode';
 
 export function buildFilesByGlobPattern(): FilesByGlobPattern {

@@ -4,7 +4,7 @@ import {
     FilenameRegexByWorkspace,
     FilesByGlobPattern,
     // FilesByWorkspaces,
-} from '@/domain/file';
+} from '@/domain/files';
 import { buildSpy } from '@/__tests__/__utils__';
 import { fileMock } from '../__mocks__/file-mock';
 
