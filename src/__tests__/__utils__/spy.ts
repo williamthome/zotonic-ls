@@ -1,4 +1,4 @@
-import { Args } from '@/domain/types';
+import { Args } from '@/common/types';
 
 function buildSpyOptions(args: { throwException?: boolean } = {}) {
     return {

@@ -2,10 +2,10 @@ import {
     minZero,
     joinWithBreakLine,
     formatToGlobPattern,
-} from '@/domain/utils';
+} from '@/common/utils';
 import { expectEqual } from '../__utils__';
 
-describe('domain/utils', () => {
+describe('common/utils', () => {
     describe('minZero', () => {
         it('should return zero', () => {
             expectEqual(minZero(-1), 0);

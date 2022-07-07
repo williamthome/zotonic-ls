@@ -1,5 +1,5 @@
-import { immutable } from '../functional-programming';
-import { joinWithBreakLine } from '../utils';
+import { immutable } from '../../common/functional-programming';
+import { joinWithBreakLine } from '../../common/utils';
 
 export function buildSnippet(args: {
     label: string;

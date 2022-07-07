@@ -3,10 +3,10 @@ import {
     copy,
     transform,
     merge,
-} from '@/domain/functional-programming';
+} from '@/common/functional-programming';
 import { expectEqual } from '../__utils__';
 
-describe('domain/functional-programming', () => {
+describe('common/functional-programming', () => {
     describe('immutable', () => {
         it('should be readonly', () => {
             const obj = immutable({ foo: 'bar' });

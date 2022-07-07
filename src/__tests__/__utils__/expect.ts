@@ -1,4 +1,4 @@
-import { AnyFunction, AnyPromise } from '@/domain/types';
+import { AnyFunction, AnyPromise } from '@/common/types';
 
 export function expectEqual<A, B>(a: A, b: B) {
     return expect(a).toStrictEqual(b);
