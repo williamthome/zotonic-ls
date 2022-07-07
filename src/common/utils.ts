@@ -17,10 +17,6 @@ export function formatToGlobPattern<T extends string | Array<unknown>>(
 
 export function getFileNameFromPath(path: string) {
     const parts = path.split(/\/|\\/);
-    if (parts.length === 0) {
-        return '';
-    }
-
     const lastPart = parts[parts.length - 1].split('.');
     return lastPart[0];
 }
