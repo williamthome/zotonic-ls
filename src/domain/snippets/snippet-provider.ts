@@ -1,4 +1,4 @@
-import { immutable } from '../fp';
+import { immutable } from '../functional-programming';
 import { Args } from '../types';
 import { Snippet } from './snippet';
 

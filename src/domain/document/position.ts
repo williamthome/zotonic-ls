@@ -1,4 +1,4 @@
-import { immutable } from '../fp';
+import { immutable } from '../functional-programming';
 import { minZero } from '../utils';
 
 export function buildPosition(args: { line: number; column: number }) {

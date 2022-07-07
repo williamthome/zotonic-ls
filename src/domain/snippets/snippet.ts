@@ -1,4 +1,4 @@
-import { immutable } from '../fp';
+import { immutable } from '../functional-programming';
 import { joinWithBreakLine } from '../utils';
 
 export function buildSnippet(args: {

@@ -1,7 +1,12 @@
-import { immutable, copy, transform, merge } from '@/domain/fp';
+import {
+    immutable,
+    copy,
+    transform,
+    merge,
+} from '@/domain/functional-programming';
 import { expectEqual } from '../__utils__';
 
-describe('domain/fp', () => {
+describe('domain/functional-programming', () => {
     describe('immutable', () => {
         it('should be readonly', () => {
             const obj = immutable({ foo: 'bar' });
