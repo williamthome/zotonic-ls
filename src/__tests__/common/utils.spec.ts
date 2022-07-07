@@ -2,7 +2,7 @@ import {
     minZero,
     joinWithBreakLine,
     formatToGlobPattern,
-    getFileNameFromPath,
+    filenameFrom,
 } from '@/common/utils';
 import { expectEqual } from '../__utils__';
 
@@ -41,7 +41,7 @@ describe('common/utils', () => {
         });
     });
 
-    describe('getFileNameFromPath', () => {
+    describe('filenameFrom', () => {
         [
             'foo',
             'foo.bar',
@@ -52,13 +52,13 @@ describe('common/utils', () => {
             '\\fizz\\foo.bar',
         ].forEach((path) => {
             it('should return foo as file name', () => {
-                const filename = getFileNameFromPath(path);
+                const filename = filenameFrom(path);
                 expectEqual(filename, 'foo');
             });
         });
 
         it('should return empty if empty path', () => {
-            const filename = getFileNameFromPath('');
+            const filename = filenameFrom('');
             expectEqual(filename, '');
         });
     });

@@ -1,6 +1,6 @@
 import { workspace } from 'vscode';
 import { buildFile, FilesByGlobPattern } from '../../domain/files';
-import { getFileNameFromPath } from '../../common/utils';
+import { filenameFrom } from '../../common/utils';
 
 export function buildFilesByGlobPattern(): FilesByGlobPattern {
     return async function (args) {
@@ -12,7 +12,7 @@ export function buildFilesByGlobPattern(): FilesByGlobPattern {
         );
         return files.map((f) =>
             buildFile({
-                name: getFileNameFromPath(f.path),
+                name: filenameFrom(f.path),
                 path: f.fsPath,
             }),
         );
