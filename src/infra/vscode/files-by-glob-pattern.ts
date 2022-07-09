@@ -1,6 +1,6 @@
 import { workspace } from 'vscode';
-import { buildFile, FilesByGlobPattern } from '../../domain/files';
-import { filenameFrom } from '../../common/utils';
+import { buildFile, FilesByGlobPattern } from '@/domain/files';
+import { filenameFrom } from '@/common/utils';
 
 export function buildFilesByGlobPattern(): FilesByGlobPattern {
     return async function (args) {

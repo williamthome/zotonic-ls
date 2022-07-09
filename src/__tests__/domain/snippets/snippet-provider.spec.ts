@@ -5,7 +5,7 @@ import {
     expectNotThrowException,
     expectThrowException,
 } from '@/__tests__/__utils__';
-import { getSnippetsSpy } from '../__spies__/snippet-spy';
+import { getSnippetsSpy } from '@/__tests__/domain/__spies__/';
 
 describe('domain/snippet/snippet-provider', () => {
     function makeSut() {

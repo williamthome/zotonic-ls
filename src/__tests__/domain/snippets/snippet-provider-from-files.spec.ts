@@ -10,7 +10,7 @@ import {
     filenameRegexByWorkspaceSpy,
     filesByGlobPatternSpy,
     transformSnippetSpy,
-} from '../__spies__';
+} from '@/__tests__/domain/__spies__';
 
 describe('domain/snippet/snippet-provider-from-files', () => {
     function makeSut() {

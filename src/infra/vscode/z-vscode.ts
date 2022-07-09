@@ -1,5 +1,5 @@
-import { Z } from '../../data';
 import { ExtensionContext } from 'vscode';
+import { Z } from '@/data';
 import { registerSnippetProvider } from './completion-item-provider';
 
 export function buildZVSCode(args: { z: Z; context: ExtensionContext }) {

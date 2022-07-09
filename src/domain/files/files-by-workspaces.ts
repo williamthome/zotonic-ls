@@ -1,4 +1,4 @@
-import { formatToGlobPattern } from '../../common/utils';
+import { formatToGlobPattern } from '@/common/utils';
 import { buildFile, File } from './file';
 import { FilenameRegexByWorkspace, FilesByGlobPattern } from './protocol';
 

@@ -4,7 +4,7 @@ import {
     transform,
     merge,
 } from '@/common/functional-programming';
-import { expectEqual } from '../__utils__';
+import { expectEqual } from '@/__tests__/__utils__';
 
 describe('common/functional-programming', () => {
     describe('immutable', () => {

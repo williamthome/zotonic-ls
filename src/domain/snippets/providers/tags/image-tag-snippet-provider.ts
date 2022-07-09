@@ -1,5 +1,5 @@
-import { FilesByGlobPattern } from '../../../files';
-import { buildSnippetProviderFromFiles } from '../../snippet-provider-from-files';
+import { FilesByGlobPattern } from '@/domain/files';
+import { buildSnippetProviderFromFiles } from '@/domain/snippets';
 
 export function buildImageTagSnippetProvider(args: {
     filesByGlobPattern: FilesByGlobPattern;

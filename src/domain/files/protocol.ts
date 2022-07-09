@@ -1,4 +1,4 @@
-import { Snippet } from '../snippets';
+import { Snippet } from '@/domain/snippets';
 import { File } from './file';
 
 export type FilenameRegexByWorkspace = (args: { workspace: string }) => RegExp;

@@ -4,7 +4,7 @@ import {
     formatToGlobPattern,
     filenameFrom,
 } from '@/common/utils';
-import { expectEqual } from '../__utils__';
+import { expectEqual } from '@/__tests__/__utils__';
 
 describe('common/utils', () => {
     describe('minZero', () => {

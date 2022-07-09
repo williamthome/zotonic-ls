@@ -1,6 +1,6 @@
-import { transform } from '../../../common/functional-programming';
-import { FilesByGlobPattern } from '../../files';
-import { buildSnippetProviderFromFiles } from '../snippet-provider-from-files';
+import { transform } from '@/common/functional-programming';
+import { FilesByGlobPattern } from '@/domain/files';
+import { buildSnippetProviderFromFiles } from '@/domain/snippets';
 
 export function buildModelSnippetProvider(args: {
     filesByGlobPattern: FilesByGlobPattern;

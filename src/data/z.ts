@@ -1,9 +1,9 @@
-import { FilesByGlobPattern } from '../domain/files';
+import { FilesByGlobPattern } from '@/domain/files';
 import {
     buildImageTagSnippetProvider,
     buildModelSnippetProvider,
     SnippetProvider,
-} from '../domain/snippets';
+} from '@/domain/snippets';
 
 export function buildZ(args: {
     filesByGlobPattern: FilesByGlobPattern;

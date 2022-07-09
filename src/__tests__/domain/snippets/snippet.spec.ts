@@ -1,4 +1,4 @@
-import { buildSnippet } from '@/domain/snippets/snippet';
+import { buildSnippet } from '@/domain/snippets';
 import { expectAny, expectEqual } from '@/__tests__/__utils__';
 
 describe('domain/snippet/snippet', () => {

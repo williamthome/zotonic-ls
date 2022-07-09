@@ -1,5 +1,5 @@
-import { immutable } from '../../common/functional-programming';
-import { Args } from '../../common/types';
+import { immutable } from '@/common/functional-programming';
+import { Args } from '@/common/types';
 import { Snippet } from './snippet';
 
 export type GetSnippets = () => Promise<Snippet[]>;
