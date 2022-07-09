@@ -35,6 +35,8 @@ jobs:
                   run: npm run test:ci
 
             - name: Coveralls
+              # TODO: Check why Coveralls fails on Windows OS
+              if: runner.os != 'Windows'
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
