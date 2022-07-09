@@ -2,6 +2,7 @@ import { FilesByGlobPattern } from '@/domain/files';
 import {
     buildImageTagSnippetProvider,
     buildModelSnippetProvider,
+    buildMSnippetProvider,
     SnippetProvider,
 } from '@/domain/snippets';
 
@@ -9,7 +10,7 @@ export function buildZ(args: {
     filesByGlobPattern: FilesByGlobPattern;
     workspacesRoot: [string, ...string[]];
 }) {
-    const _snippetProviders: SnippetProvider[] = [];
+    const _snippetProviders: SnippetProvider[] = [buildMSnippetProvider()];
 
     const _snippetProvidersFromFiles = [
         buildImageTagSnippetProvider,
