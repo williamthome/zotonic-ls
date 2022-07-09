@@ -1,4 +1,5 @@
 [!["Sponsor"](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](<[https://www.buymeacoffee.com/williamthome](https://github.com/sponsors/williamthome)>)
+[![Coverage Status](https://coveralls.io/repos/github/williamthome/zotonic-ls/badge.svg?branch=main)](https://coveralls.io/github/williamthome/zotonic-ls?branch=main)
 
 # Zotonic Language Server
 

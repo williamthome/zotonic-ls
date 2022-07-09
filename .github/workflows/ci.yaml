@@ -32,7 +32,26 @@ jobs:
             - name: Run tests
               uses: GabrielBB/xvfb-action@v1.0
               with:
-                  run: npm test
+                  run: npm run test:ci
+
+            - name: Coveralls
+              uses: coverallsapp/github-action@master
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  parallel: true
+                  flag-name: run-os-${{ matrix.os }}-node-${{ matrix.node-version }}
+
+    finish:
+        needs: build
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Coveralls finished
+              uses: coverallsapp/github-action@master
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  parallel-finished: true
 
     publish:
         if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/pre-release'
