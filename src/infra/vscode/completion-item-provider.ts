@@ -5,6 +5,7 @@ import {
     ExtensionContext,
     languages,
 } from 'vscode';
+import { formatDoc } from './utils';
 
 export function registerSnippetProvider(args: {
     selector: string;
@@ -44,6 +45,6 @@ function snippetToVSCode(snippet: Snippet): CompletionItem {
         label: snippet.label,
         insertText: snippet.body,
         detail: snippet.description,
-        documentation: snippet.documentation,
+        documentation: formatDoc(snippet.documentation),
     };
 }
