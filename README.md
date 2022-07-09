@@ -1,5 +1,13 @@
 [!["Sponsor"](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](<[https://www.buymeacoffee.com/williamthome](https://github.com/sponsors/williamthome)>)
+![GitHub Repo stars](https://img.shields.io/github/stars/williamthome/zotonic-ls?style=social)
+![License](https://img.shields.io/github/license/williamthome/zotonic-ls)
+![GitHub CI Status](https://img.shields.io/github/workflow/status/williamthome/zotonic-ls/ci)
+![Lines of code](https://img.shields.io/tokei/lines/github/williamthome/zotonic-ls)
 [![Coverage Status](https://coveralls.io/repos/github/williamthome/zotonic-ls/badge.svg?branch=main)](https://coveralls.io/github/williamthome/zotonic-ls?branch=main)
+[![Known Vulnerabilities](https://snyk.io/test/github/williamthome/zotonic-ls/badge.svg)](https://snyk.io/test/github/williamthome/zotonic-ls)
+![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/williamthome.zotonic-ls)
+![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/williamthome.zotonic-ls)
+![Visual Studio Marketplace Rating (Stars)](https://img.shields.io/visual-studio-marketplace/stars/williamthome.zotonic-ls)
 
 # Zotonic Language Server
 
