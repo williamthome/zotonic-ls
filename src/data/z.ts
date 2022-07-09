@@ -3,6 +3,7 @@ import {
     buildImageTagSnippetProvider,
     buildModelSnippetProvider,
     buildMSnippetProvider,
+    buildTemplateTagSnippetProvider,
     SnippetProvider,
 } from '@/domain/snippets';
 
@@ -13,8 +14,9 @@ export function buildZ(args: {
     const _snippetProviders: SnippetProvider[] = [buildMSnippetProvider()];
 
     const _snippetProvidersFromFiles = [
-        buildImageTagSnippetProvider,
         buildModelSnippetProvider,
+        buildImageTagSnippetProvider,
+        buildTemplateTagSnippetProvider,
     ];
 
     _snippetProvidersFromFiles.forEach((snippetProvider) => {
