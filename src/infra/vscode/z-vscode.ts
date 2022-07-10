@@ -1,5 +1,5 @@
 import { ExtensionContext } from 'vscode';
-import { Z } from '@/data';
+import { Z } from '@/domain/z';
 import { registerSnippetProvider } from './completion-item-provider';
 import { registerHoverProvider } from './hover-provider';
 
