@@ -16,7 +16,7 @@ describe('domain/snippet/snippet', () => {
                 label: expectAny(String),
                 body: expectAny(String),
                 description: expectAny(String),
-                documentation: expectAny(String),
+                documentation: expectAny(Object),
                 triggerCharacters: expectAny(Array),
             });
         });
