@@ -35,7 +35,12 @@ export async function activate(context: ExtensionContext) {
         host,
         httpRequest,
     });
-    const zVSCode = buildZVSCode({ z, context });
+
+    const zVSCode = buildZVSCode({
+        z,
+        context,
+        filesByGlobPattern,
+    });
     zVSCode.setup();
 }
 

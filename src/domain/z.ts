@@ -17,6 +17,7 @@ import {
     buildTemplateTagSnippetProvider,
     SnippetProvider,
 } from '@/domain/snippets';
+import { buildTplDefinitionProvider, DefinitionProvider } from './definitions';
 
 export function buildZ(args: {
     filesByGlobPattern: FilesByGlobPattern;
@@ -62,6 +63,10 @@ export function buildZ(args: {
         );
     });
 
+    const _definitionProviders: DefinitionProvider[] = [
+        buildTplDefinitionProvider(),
+    ];
+
     return {
         get selector() {
             return 'tpl';
@@ -71,6 +76,9 @@ export function buildZ(args: {
         },
         get hoverProviders() {
             return _hoverProviders;
+        },
+        get definitionProviders() {
+            return _definitionProviders;
         },
     };
 }
