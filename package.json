@@ -137,7 +137,7 @@
         "vscode:prepublish": "npm run compile",
         "compile": "tsc && tsc-alias",
         "watch": "concurrently --kill-others \"tsc -w\" \"tsc-alias -w\"",
-        "pretest": "tsc -p ./src/__tests__ && tsc-alias -p ./src/__tests__",
+        "pretest": "tsc -p ./src/__tests__ && tsc-alias -p ./src/__tests__/tsconfig.json",
         "lint": "eslint src --ext ts --cache --fix",
         "format": "prettier --write ./src/**/*.{ts,json}",
         "prettify": "npm run lint && npm run format",
