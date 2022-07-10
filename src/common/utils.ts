@@ -6,9 +6,7 @@ export function joinWithBreakLine(toJoin: string | [string, ...string[]]) {
     return Array.isArray(toJoin) ? toJoin.join('\n') : toJoin;
 }
 
-export function formatToGlobPattern<T extends string | Array<unknown>>(
-    value: T,
-) {
+export function formatToGlobPattern(value: string | Array<string>) {
     if (Array.isArray(value)) {
         return value.length > 1 ? `{${value.join(',')}}` : value[0];
     }
