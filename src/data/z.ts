@@ -4,6 +4,7 @@ import {
     buildActionHoverProvider,
     buildBuiltInTagHoverProvider,
     buildFilterHoverProvider,
+    buildModelHoverProvider,
 } from '@/domain/hover';
 import { HttpRequest } from '@/domain/http';
 import {
@@ -43,6 +44,7 @@ export function buildZ(args: {
         buildActionHoverProvider,
         buildBuiltInTagHoverProvider,
         buildFilterHoverProvider,
+        buildModelHoverProvider,
     ];
 
     _documentationHoverProvider.forEach((hoverProvider) => {
