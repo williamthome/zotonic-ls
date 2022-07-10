@@ -1,5 +1,9 @@
 import { FilesByGlobPattern } from '@/domain/files';
-import { HoverProvider, buildActionHoverProvider } from '@/domain/hover';
+import {
+    HoverProvider,
+    buildActionHoverProvider,
+    buildBuiltInTagHoverProvider,
+} from '@/domain/hover';
 import { HttpRequest } from '@/domain/http';
 import {
     buildImageTagSnippetProvider,
@@ -34,7 +38,10 @@ export function buildZ(args: {
 
     const _hoverProviders: HoverProvider[] = [];
 
-    const _documentationHoverProvider = [buildActionHoverProvider];
+    const _documentationHoverProvider = [
+        buildActionHoverProvider,
+        buildBuiltInTagHoverProvider,
+    ];
 
     _documentationHoverProvider.forEach((hoverProvider) => {
         _hoverProviders.push(
