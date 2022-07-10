@@ -1,4 +1,6 @@
 import { FilesByGlobPattern } from '@/domain/files';
+import { HoverProvider, buildActionHoverProvider } from '@/domain/hover';
+import { HttpRequest } from '@/domain/http';
 import {
     buildImageTagSnippetProvider,
     buildModelSnippetProvider,
@@ -10,6 +12,8 @@ import {
 export function buildZ(args: {
     filesByGlobPattern: FilesByGlobPattern;
     workspacesRoot: [string, ...string[]];
+    host: string;
+    httpRequest: HttpRequest;
 }) {
     const _snippetProviders: SnippetProvider[] = [buildMSnippetProvider()];
 
@@ -28,12 +32,28 @@ export function buildZ(args: {
         );
     });
 
+    const _hoverProviders: HoverProvider[] = [];
+
+    const _documentationHoverProvider = [buildActionHoverProvider];
+
+    _documentationHoverProvider.forEach((hoverProvider) => {
+        _hoverProviders.push(
+            hoverProvider({
+                host: args.host,
+                httpGet: args.httpRequest,
+            }),
+        );
+    });
+
     return {
         get selector() {
             return 'tpl';
         },
         get snippetProviders() {
             return _snippetProviders;
+        },
+        get hoverProviders() {
+            return _hoverProviders;
         },
     };
 }

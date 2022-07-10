@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import { ExtensionContext } from 'vscode';
 import { buildZ } from './data';
+import { buildHttpRequest } from './infra/http';
 import { buildZVSCode, buildFilesByGlobPattern } from './infra/vscode';
 // import { Zotonic } from './zotonic';
 // import { ZotonicVSCode } from './zotonic-vscode';
@@ -24,10 +25,15 @@ export async function activate(context: ExtensionContext) {
 
     const filesByGlobPattern = buildFilesByGlobPattern();
     const workspacesRoot: [string, ...string[]] = ['apps', 'apps_user'];
+    const zotonicVersion = 'master';
+    const host = `https://raw.githubusercontent.com/zotonic/zotonic/${zotonicVersion}/doc`;
+    const httpRequest = buildHttpRequest();
 
     const z = buildZ({
         filesByGlobPattern,
         workspacesRoot,
+        host,
+        httpRequest,
     });
     const zVSCode = buildZVSCode({ z, context });
     zVSCode.setup();

@@ -1,3 +1,5 @@
+// TODO: Change 'Doc' to 'Hover'
+
 import { immutable } from '@/common/functional-programming';
 import { Args } from '@/common/types';
 

@@ -16,5 +16,7 @@ export function htmlToMarkdown(html: string) {
     const markdown = new MarkdownString(html.trim());
     markdown.supportHtml = true;
     markdown.isTrusted = true;
+    markdown.supportThemeIcons = true;
+
     return markdown;
 }
