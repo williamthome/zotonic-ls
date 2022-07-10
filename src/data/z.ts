@@ -57,7 +57,7 @@ export function buildZ(args: {
         _hoverProviders.push(
             hoverProvider({
                 host: args.host,
-                httpGet: args.httpRequest,
+                httpRequest: args.httpRequest,
             }),
         );
     });
