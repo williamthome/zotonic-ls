@@ -43,7 +43,7 @@ export function buildZ(args: {
 
     const _hoverProviders: HoverProvider[] = [];
 
-    const _documentationHoverProvider = [
+    const _documentationHoverProviders = [
         buildActionHoverProvider,
         buildBuiltInTagHoverProvider,
         buildFilterHoverProvider,
@@ -53,7 +53,7 @@ export function buildZ(args: {
         buildValidatorHoverProvider,
     ];
 
-    _documentationHoverProvider.forEach((hoverProvider) => {
+    _documentationHoverProviders.forEach((hoverProvider) => {
         _hoverProviders.push(
             hoverProvider({
                 host: args.host,
