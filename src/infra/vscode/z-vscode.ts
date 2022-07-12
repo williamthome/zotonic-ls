@@ -13,21 +13,21 @@ export function buildZVSCode(args: {
     const { z, context, filesByGlobPattern } = args;
     return {
         setup() {
-            z.snippetProviders.map(
+            z.snippetProviders.forEach(
                 registerSnippetProvider({
                     selector: z.selector,
                     context,
                 }),
             );
 
-            z.hoverProviders.map(
+            z.hoverProviders.forEach(
                 registerHoverProvider({
                     selector: z.selector,
                     context,
                 }),
             );
 
-            z.definitionProviders.map(
+            z.definitionProviders.forEach(
                 registerDefinitionProvider({
                     selector: z.selector,
                     context,
