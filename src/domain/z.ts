@@ -1,4 +1,4 @@
-import { FilesByGlobPattern } from '@/domain/files';
+import { FilesByGlobPattern } from './files';
 import {
     HoverProvider,
     buildActionHoverProvider,
@@ -8,15 +8,15 @@ import {
     buildModuleTagHoverProvider,
     buildTranslationHoverProvider,
     buildValidatorHoverProvider,
-} from '@/domain/hover';
-import { HttpRequest } from '@/domain/http';
+} from './hover';
+import { HttpRequest } from './http';
 import {
     buildImageTagSnippetProvider,
     buildModelSnippetProvider,
     buildMSnippetProvider,
     buildTemplateTagSnippetProvider,
     SnippetProvider,
-} from '@/domain/snippets';
+} from './snippets';
 import { buildTplDefinitionProvider, DefinitionProvider } from './definitions';
 import { immutable } from '@/common/functional-programming';
 
