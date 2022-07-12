@@ -18,6 +18,7 @@ import {
     SnippetProvider,
 } from '@/domain/snippets';
 import { buildTplDefinitionProvider, DefinitionProvider } from './definitions';
+import { immutable } from '@/common/functional-programming';
 
 export function buildZ(args: {
     filesByGlobPattern: FilesByGlobPattern;
@@ -67,7 +68,7 @@ export function buildZ(args: {
         buildTplDefinitionProvider(),
     ];
 
-    return {
+    return immutable({
         get selector() {
             return 'tpl';
         },
@@ -80,7 +81,7 @@ export function buildZ(args: {
         get definitionProviders() {
             return _definitionProviders;
         },
-    };
+    });
 }
 
 export type Z = ReturnType<typeof buildZ>;
