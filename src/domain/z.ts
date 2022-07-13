@@ -1,24 +1,9 @@
-import { FilesByGlobPattern } from './files';
-import {
-    HoverProvider,
-    buildActionHoverProvider,
-    buildBuiltInTagHoverProvider,
-    buildFilterHoverProvider,
-    buildModelHoverProvider,
-    buildModuleTagHoverProvider,
-    buildTranslationHoverProvider,
-    buildValidatorHoverProvider,
-} from './hover';
-import { HttpRequest } from './http';
-import {
-    buildImageTagSnippetProvider,
-    buildModelSnippetProvider,
-    buildMSnippetProvider,
-    buildTemplateTagSnippetProvider,
-    SnippetProvider,
-} from './snippets';
-import { buildTplDefinitionProvider, DefinitionProvider } from './definitions';
 import { immutable } from '@/common/functional-programming';
+import { FilesByGlobPattern } from './files';
+import { HttpRequest } from './http';
+import { buildSnippetProviders } from './snippets';
+import { buildHoverProviders } from './hover';
+import { buildDefinitionProviders } from './definitions';
 
 export function buildZ(args: {
     filesByGlobPattern: FilesByGlobPattern;
@@ -26,47 +11,19 @@ export function buildZ(args: {
     host: string;
     httpRequest: HttpRequest;
 }) {
-    const _snippetProviders: SnippetProvider[] = [buildMSnippetProvider()];
+    const { filesByGlobPattern, workspacesRoot, host, httpRequest } = args;
 
-    const _snippetProvidersFromFiles = [
-        buildModelSnippetProvider,
-        buildImageTagSnippetProvider,
-        buildTemplateTagSnippetProvider,
-    ];
-
-    _snippetProvidersFromFiles.forEach((snippetProvider) => {
-        _snippetProviders.push(
-            snippetProvider({
-                filesByGlobPattern: args.filesByGlobPattern,
-                workspacesRoot: args.workspacesRoot,
-            }),
-        );
+    const _snippetProviders = buildSnippetProviders({
+        filesByGlobPattern,
+        workspacesRoot,
     });
 
-    const _hoverProviders: HoverProvider[] = [];
-
-    const _documentationHoverProviders = [
-        buildActionHoverProvider,
-        buildBuiltInTagHoverProvider,
-        buildFilterHoverProvider,
-        buildModelHoverProvider,
-        buildModuleTagHoverProvider,
-        buildTranslationHoverProvider,
-        buildValidatorHoverProvider,
-    ];
-
-    _documentationHoverProviders.forEach((hoverProvider) => {
-        _hoverProviders.push(
-            hoverProvider({
-                host: args.host,
-                httpRequest: args.httpRequest,
-            }),
-        );
+    const _hoverProviders = buildHoverProviders({
+        host,
+        httpRequest,
     });
 
-    const _definitionProviders: DefinitionProvider[] = [
-        buildTplDefinitionProvider(),
-    ];
+    const _definitionProviders = buildDefinitionProviders();
 
     return immutable({
         get selector() {

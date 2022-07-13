@@ -4,13 +4,8 @@ import { FilesByGlobPattern } from '@/domain/files';
 import { registerSnippetProvider } from './completion-item-provider';
 import { registerHoverProvider } from './hover-provider';
 import { registerDefinitionProvider } from './definition-provider';
-import {
-    buildGetUserChoiceCommand,
-    buildInsertSnippetCommand,
-    buildMainCommand,
-    buildPopUpSnippets,
-} from './commands';
 import { registerCommand } from './command';
+import { buildCommands } from './commands';
 
 export function buildZVSCode(args: {
     z: Z;
@@ -44,17 +39,7 @@ export function buildZVSCode(args: {
                 }),
             );
 
-            const generalCommands = [
-                buildGetUserChoiceCommand(),
-                buildInsertSnippetCommand({ editor }),
-                buildPopUpSnippets(),
-            ];
-            const coreCommands = [
-                buildMainCommand({ commands: generalCommands }),
-            ];
-            const commands = [...generalCommands, ...coreCommands];
-
-            commands.forEach(registerCommand({ context }));
+            buildCommands({ editor }).forEach(registerCommand({ context }));
         },
     };
 }
