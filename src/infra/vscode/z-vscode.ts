@@ -1,16 +1,24 @@
-import { ExtensionContext } from 'vscode';
+import { ExtensionContext, TextEditor } from 'vscode';
 import { Z } from '@/domain/z';
+import { FilesByGlobPattern } from '@/domain/files';
 import { registerSnippetProvider } from './completion-item-provider';
 import { registerHoverProvider } from './hover-provider';
 import { registerDefinitionProvider } from './definition-provider';
-import { FilesByGlobPattern } from '@/domain/files';
+import {
+    buildGetUserChoiceCommand,
+    buildInsertSnippetCommand,
+    buildMainCommand,
+} from './commands';
+import { registerCommand } from './command';
 
 export function buildZVSCode(args: {
     z: Z;
     context: ExtensionContext;
     filesByGlobPattern: FilesByGlobPattern;
+    editor: TextEditor;
 }) {
-    const { z, context, filesByGlobPattern } = args;
+    const { z, context, filesByGlobPattern, editor } = args;
+
     return {
         setup() {
             z.snippetProviders.forEach(
@@ -34,6 +42,17 @@ export function buildZVSCode(args: {
                     filesByGlobPattern,
                 }),
             );
+
+            const generalCommands = [
+                buildGetUserChoiceCommand(),
+                buildInsertSnippetCommand({ editor }),
+            ];
+            const coreCommands = [
+                buildMainCommand({ commands: generalCommands }),
+            ];
+            const commands = [...generalCommands, ...coreCommands];
+
+            commands.forEach(registerCommand({ context }));
         },
     };
 }

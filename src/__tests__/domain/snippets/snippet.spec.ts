@@ -18,6 +18,7 @@ describe('domain/snippet/snippet', () => {
                 description: expectAny(String),
                 documentation: expectAny(Object),
                 triggerCharacters: expectAny(Array),
+                command: undefined,
             });
         });
     });

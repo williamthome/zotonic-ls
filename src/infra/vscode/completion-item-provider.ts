@@ -5,6 +5,7 @@ import {
     ExtensionContext,
     languages,
 } from 'vscode';
+import { zotonicCommandToVSCode } from './command';
 import { formatDoc } from './utils';
 
 export function registerSnippetProvider(args: {
@@ -46,5 +47,8 @@ function snippetToVSCode(snippet: Snippet): CompletionItem {
         insertText: snippet.body,
         detail: snippet.description,
         documentation: formatDoc(snippet.documentation),
+        command: snippet.command
+            ? zotonicCommandToVSCode(snippet.command)
+            : undefined,
     };
 }

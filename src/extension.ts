@@ -1,6 +1,6 @@
 // The module "vscode" contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import { ExtensionContext } from 'vscode';
+import { ExtensionContext, window } from 'vscode';
 import { buildZ } from './domain/z';
 import { buildHttpRequest } from './infra/http';
 import { buildZVSCode, buildFilesByGlobPattern } from './infra/vscode';
@@ -36,10 +36,16 @@ export async function activate(context: ExtensionContext) {
         httpRequest,
     });
 
+    const editor = window.activeTextEditor;
+    if (!editor) {
+        throw new Error('No editor active');
+    }
+
     const zVSCode = buildZVSCode({
         z,
         context,
         filesByGlobPattern,
+        editor,
     });
     zVSCode.setup();
 }

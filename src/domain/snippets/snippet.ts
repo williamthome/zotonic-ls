@@ -1,5 +1,6 @@
 import { immutable } from '@/common/functional-programming';
 import { joinWithBreakLine } from '@/common/utils';
+import { CommandCallback } from '../commands';
 import { buildDoc, DocArgs } from '../doc';
 
 export function buildSnippet(args: {
@@ -8,6 +9,7 @@ export function buildSnippet(args: {
     description?: string;
     documentation?: DocArgs;
     triggerCharacters?: string[];
+    command?: CommandCallback;
 }) {
     return immutable({
         label: args.label,
@@ -15,6 +17,7 @@ export function buildSnippet(args: {
         description: args.description ?? '',
         documentation: buildDoc(args.documentation ?? ''),
         triggerCharacters: args.triggerCharacters ?? [],
+        command: args.command,
     });
 }
 
