@@ -8,6 +8,7 @@ import {
     buildGetUserChoiceCommand,
     buildInsertSnippetCommand,
     buildMainCommand,
+    buildPopUpSnippets,
 } from './commands';
 import { registerCommand } from './command';
 
@@ -46,6 +47,7 @@ export function buildZVSCode(args: {
             const generalCommands = [
                 buildGetUserChoiceCommand(),
                 buildInsertSnippetCommand({ editor }),
+                buildPopUpSnippets(),
             ];
             const coreCommands = [
                 buildMainCommand({ commands: generalCommands }),
