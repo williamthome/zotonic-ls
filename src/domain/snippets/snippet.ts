@@ -13,7 +13,8 @@ export function buildSnippet(args: {
 }) {
     return immutable({
         label: args.label,
-        body: args.body ? joinWithBreakLine(args.body) : args.label,
+        body:
+            args.body !== undefined ? joinWithBreakLine(args.body) : args.label,
         description: args.description ?? '',
         documentation: buildDoc(args.documentation ?? ''),
         triggerCharacters: args.triggerCharacters ?? [],
