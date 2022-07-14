@@ -1,12 +1,12 @@
-import { Doc } from '@/domain/doc';
+import { PopUp } from '@/domain/pop-up';
 import { MarkdownString } from 'vscode';
 
-export function formatDoc(doc: Doc | undefined) {
-    switch (doc?.format) {
+export function formatPopUp(popUp: PopUp | undefined) {
+    switch (popUp?.format) {
         case 'plaintext':
-            return doc.text;
+            return popUp.text;
         case 'html':
-            return htmlToMarkdown(doc.text);
+            return htmlToMarkdown(popUp.text);
     }
 
     return '';

@@ -1,8 +1,8 @@
-import { Doc } from '../doc';
+import { PopUp } from '../pop-up';
 
 export function buildHoverProvider(args: {
     regex: RegExp;
-    getContent: (args: { regexMatch: string }) => Promise<Doc | undefined>;
+    getContent: (args: { regexMatch: string }) => Promise<PopUp | undefined>;
 }) {
     return {
         regex: args.regex,

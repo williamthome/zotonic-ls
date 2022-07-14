@@ -1,27 +1,25 @@
-// TODO: Change 'Doc' to 'Hover'
-
 import { immutable } from '@/common/functional-programming';
 import { Args } from '@/common/types';
 
-export type DocFormat = 'plaintext' | 'html';
+export type PopUpFormat = 'plaintext' | 'html';
 
-export function buildDoc(
+export function buildPopUp(
     args:
         | string
         | {
               text: string;
-              format: DocFormat;
+              format: PopUpFormat;
           },
 ) {
     return immutable(
         typeof args === 'string'
             ? {
                   text: args,
-                  format: 'plaintext' as DocFormat,
+                  format: 'plaintext' as PopUpFormat,
               }
             : args,
     );
 }
 
-export type DocArgs = Args<typeof buildDoc>;
-export type Doc = ReturnType<typeof buildDoc>;
+export type PopUpArgs = Args<typeof buildPopUp>;
+export type PopUp = ReturnType<typeof buildPopUp>;

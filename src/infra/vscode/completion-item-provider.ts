@@ -9,7 +9,7 @@ import {
 } from 'vscode';
 import { zotonicCommandToVSCode } from './command';
 import { EmbeddedSnippetProvider, isEmbeddedSnippetProvider } from './embedded';
-import { formatDoc } from './utils';
+import { formatPopUp } from './utils';
 
 type UnknownSnippetProvider = SnippetProvider | EmbeddedSnippetProvider;
 
@@ -70,7 +70,7 @@ function snippetToVSCode(snippet: Snippet): CompletionItem {
         label: snippet.label,
         insertText: snippet.body,
         detail: snippet.description,
-        documentation: formatDoc(snippet.documentation),
+        documentation: formatPopUp(snippet.documentation),
         command: snippet.command
             ? zotonicCommandToVSCode(snippet.command)
             : undefined,

@@ -5,7 +5,7 @@ import {
     HoverProvider as VSCodeHoverProvider,
     Hover,
 } from 'vscode';
-import { formatDoc } from './utils';
+import { formatPopUp } from './utils';
 
 export function registerHoverProvider(args: {
     selector: string;
@@ -33,14 +33,14 @@ function hoverProviderToVSCode(
             if (range) {
                 const regexMatch = document.getText(range);
 
-                const doc = await hoverProvider.getContent({
+                const popUp = await hoverProvider.getContent({
                     regexMatch,
                 });
-                if (!doc) {
+                if (!popUp) {
                     return undefined;
                 }
 
-                const text = formatDoc(doc);
+                const text = formatPopUp(popUp);
 
                 return new Hover(text);
             }
