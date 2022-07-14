@@ -6,18 +6,31 @@ import { registerHoverProvider } from './hover-provider';
 import { registerDefinitionProvider } from './definition-provider';
 import { registerCommand } from './command';
 import { buildCommands } from './commands';
+import { buildHtmlSnippetProvider } from './embedded';
+import { LanguageService } from 'vscode-html-languageservice';
 
 export function buildZVSCode(args: {
     z: Z;
     context: ExtensionContext;
     filesByGlobPattern: FilesByGlobPattern;
     editor: TextEditor;
+    htmlLanguageService: LanguageService;
 }) {
-    const { z, context, filesByGlobPattern, editor } = args;
+    const { z, context, filesByGlobPattern, editor, htmlLanguageService } =
+        args;
 
     return {
         setup() {
-            z.snippetProviders.forEach(
+            const embeddedSnippetProviders = [
+                buildHtmlSnippetProvider({
+                    htmlLanguageService,
+                }),
+            ];
+            const snippetProviders = [
+                ...z.snippetProviders,
+                ...embeddedSnippetProviders,
+            ];
+            snippetProviders.forEach(
                 registerSnippetProvider({
                     selector: z.selector,
                     context,

@@ -4,15 +4,20 @@ import {
     CompletionItemProvider,
     ExtensionContext,
     languages,
+    Position,
+    TextDocument,
 } from 'vscode';
 import { zotonicCommandToVSCode } from './command';
+import { EmbeddedSnippetProvider, isEmbeddedSnippetProvider } from './embedded';
 import { formatDoc } from './utils';
+
+type UnknownSnippetProvider = SnippetProvider | EmbeddedSnippetProvider;
 
 export function registerSnippetProvider(args: {
     selector: string;
     context: ExtensionContext;
 }) {
-    return function (snippetProvider: SnippetProvider) {
+    return function (snippetProvider: UnknownSnippetProvider) {
         args.context.subscriptions.push(
             languages.registerCompletionItemProvider(
                 args.selector,
@@ -24,7 +29,7 @@ export function registerSnippetProvider(args: {
 }
 
 function snippetProviderToVSCode(
-    snippetProvider: SnippetProvider,
+    snippetProvider: UnknownSnippetProvider,
 ): CompletionItemProvider {
     return {
         async provideCompletionItems(document, position) {
@@ -34,11 +39,30 @@ function snippetProviderToVSCode(
             );
 
             if (matchSnippetRegex) {
-                const snippets = await snippetProvider.getSnippets();
+                const snippets = await getSnippets({
+                    snippetProvider,
+                    document,
+                    position,
+                });
                 return snippets.map(snippetToVSCode);
             }
         },
     };
+}
+
+async function getSnippets(args: {
+    snippetProvider: UnknownSnippetProvider;
+    document: TextDocument;
+    position: Position;
+}): Promise<Snippet[]> {
+    if (isEmbeddedSnippetProvider(args.snippetProvider)) {
+        return args.snippetProvider.getSnippets({
+            document: args.document,
+            position: args.position,
+        });
+    }
+
+    return args.snippetProvider.getSnippets();
 }
 
 function snippetToVSCode(snippet: Snippet): CompletionItem {
