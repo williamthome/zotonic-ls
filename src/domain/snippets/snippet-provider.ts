@@ -1,3 +1,4 @@
+import { buildBag } from '@/common/bag';
 import { immutable } from '@/common/functional-programming';
 import { Args } from '@/common/types';
 import { Snippet } from './snippet';
@@ -9,20 +10,15 @@ export function buildSnippetProvider(args: {
     triggerCharacters?: string[];
     getSnippets: GetSnippets;
 }) {
-    let _snippets: Snippet[] | undefined = undefined;
+    const _snippetsBag = buildBag<Snippet[]>({
+        fetchContent: args.getSnippets,
+    });
 
     return immutable({
         regex: args.regex,
         triggerCharacters: args.triggerCharacters ?? ['.'],
-        async getSnippets() {
-            if (!_snippets) {
-                _snippets = await args.getSnippets();
-            }
-            return _snippets;
-        },
-        flush() {
-            _snippets = undefined;
-        },
+        getSnippets: _snippetsBag.getContent,
+        flush: _snippetsBag.flush,
     });
 }
 
