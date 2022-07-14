@@ -30,13 +30,12 @@ export default {
     coveragePathIgnorePatterns: [
         '/node_modules/',
         '/__tests__/infra',
+        '/domain/commands',
         '.+\\.d\\.ts',
+        '/*types.ts',
+        '/*protocol.ts',
         'index.ts',
-        'types.ts',
         'extension.ts',
-        // TODO: Remove dirs below
-        '/src/zotonic/',
-        '/src/zotonic-vscode/',
     ],
 
     // Indicates which provider should be used to instrument code for coverage
