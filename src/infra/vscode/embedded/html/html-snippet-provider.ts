@@ -4,6 +4,7 @@ import {
 } from 'vscode-html-languageservice';
 import { buildEmbeddedSnippetProvider } from '../embedded-snippet-provider';
 import { buildSnippet } from '@/domain/snippets';
+import { InsertSnippetCommand } from '@/domain/commands';
 
 export function buildHtmlSnippetProvider(args: {
     htmlLanguageService: LanguageService;
@@ -35,6 +36,16 @@ export function buildHtmlSnippetProvider(args: {
             return htmlCompletionList.items.map((i) => {
                 const snippet = buildSnippet({
                     label: i.label,
+                    body: '',
+                    command: async function (commands: {
+                        insertSnippet: InsertSnippetCommand;
+                    }) {
+                        return i.textEdit
+                            ? commands.insertSnippet({
+                                  snippet: i.textEdit.newText,
+                              })
+                            : undefined;
+                    },
                 });
                 return snippet;
             });
