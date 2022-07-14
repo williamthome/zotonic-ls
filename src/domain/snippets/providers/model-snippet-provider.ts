@@ -1,6 +1,7 @@
 import { transform } from '@/common/functional-programming';
 import { GetUserChoiceCommand, InsertSnippetCommand } from '@/domain/commands';
 import { FilesByGlobPattern } from '@/domain/files';
+import { mGetExpressions } from '@/domain/helpers/model-helper';
 import { buildSnippetProviderFromFiles } from '@/domain/snippets';
 
 export function buildModelSnippetProvider(args: {
@@ -14,7 +15,7 @@ export function buildModelSnippetProvider(args: {
         filenameRegexByWorkspace() {
             return /(?<=\bm_).*?(?=.erl)/;
         },
-        transformSnippet({ snippet }) {
+        transformSnippet({ snippet, file }) {
             const transformedSnippet = transform(snippet, {
                 description:
                     'A model located at "<apps|apps_user>/<module>/src/models".',
@@ -22,16 +23,31 @@ export function buildModelSnippetProvider(args: {
                     getUserChoice: GetUserChoiceCommand;
                     insertSnippet: InsertSnippetCommand;
                 }) {
-                    // TODO
-                    const modelExpressions = ['a', 'b', 'c'];
+                    const mGetResult = await mGetExpressions(
+                        file.path,
+                        file.name,
+                    );
+                    if (mGetResult instanceof Error) {
+                        // TODO: return commands.growlError(mGetResult.message);
+                        return;
+                    }
 
-                    await commands.getUserChoice({
+                    const modelExpressions = mGetResult.map(
+                        (mGet) => mGet.expression,
+                    );
+
+                    return commands.getUserChoice({
                         choices: modelExpressions,
                         onChoiceSelected: async function (choice) {
                             if (!choice) {
                                 return;
                             }
-                            await commands.insertSnippet({ snippet: choice });
+
+                            const i = mGetResult.findIndex(
+                                (mGet) => mGet.expression === choice,
+                            );
+                            const snippet = mGetResult[i].snippet;
+                            await commands.insertSnippet({ snippet });
                         },
                     });
                 },
