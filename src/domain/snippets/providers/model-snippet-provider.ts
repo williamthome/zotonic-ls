@@ -1,9 +1,5 @@
 import { transform } from '@/common/functional-programming';
-import {
-    CommandCallback,
-    GetUserChoiceCommand,
-    InsertSnippetCommand,
-} from '@/domain/commands';
+import { GetUserChoiceCommand, InsertSnippetCommand } from '@/domain/commands';
 import { FilesByGlobPattern } from '@/domain/files';
 import { buildSnippetProviderFromFiles } from '@/domain/snippets';
 
@@ -38,7 +34,7 @@ export function buildModelSnippetProvider(args: {
                             await commands.insertSnippet({ snippet: choice });
                         },
                     });
-                } as CommandCallback,
+                },
             });
             return transformedSnippet;
         },

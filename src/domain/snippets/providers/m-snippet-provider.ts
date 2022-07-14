@@ -1,4 +1,4 @@
-import { CommandCallback, PopUpSnippetsCommand } from '@/domain/commands';
+import { PopUpSnippetsCommand } from '@/domain/commands';
 import { buildSnippetProvider, buildSnippet } from '@/domain/snippets';
 
 export function buildMSnippetProvider() {
@@ -14,7 +14,7 @@ export function buildMSnippetProvider() {
                         popUpSnippets: PopUpSnippetsCommand;
                     }) {
                         return commands.popUpSnippets();
-                    } as CommandCallback,
+                    },
                 }),
             ]);
         },
