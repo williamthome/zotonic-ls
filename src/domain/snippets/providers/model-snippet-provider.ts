@@ -1,5 +1,9 @@
 import { transform } from '@/common/functional-programming';
-import { GetUserChoiceCommand, InsertSnippetCommand } from '@/domain/commands';
+import {
+    GetUserChoiceCommand,
+    GrowlErrorCommand,
+    InsertSnippetCommand,
+} from '@/domain/commands';
 import { FilesByGlobPattern } from '@/domain/files';
 import { mGetExpressions } from '@/domain/helpers/model-helper';
 import { buildSnippetProviderFromFiles } from '@/domain/snippets';
@@ -22,14 +26,14 @@ export function buildModelSnippetProvider(args: {
                 command: async function (commands: {
                     getUserChoice: GetUserChoiceCommand;
                     insertSnippet: InsertSnippetCommand;
+                    growlError: GrowlErrorCommand;
                 }) {
                     const mGetResult = await mGetExpressions(
                         file.path,
                         file.name,
                     );
                     if (mGetResult instanceof Error) {
-                        // TODO: return commands.growlError(mGetResult.message);
-                        return;
+                        return commands.growlError({ error: mGetResult });
                     }
 
                     const modelExpressions = mGetResult.map(
