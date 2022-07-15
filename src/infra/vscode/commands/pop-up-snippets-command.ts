@@ -1,4 +1,4 @@
-import { PopUpSnippetsCommand } from '@/domain/commands';
+import { PopUpSnippetsCommand } from '../../../domain/commands';
 import { commands } from 'vscode';
 
 export function buildPopUpSnippets(): PopUpSnippetsCommand {

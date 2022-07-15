@@ -1,4 +1,4 @@
-import { AnyPromiseable } from '@/common/types';
+import { AnyPromiseable } from '../../common/types';
 import { GetUserChoiceCommand } from './get-user-choice-command';
 import { GrowlErrorCommand } from './growl-error-command';
 import { InsertSnippetCommand } from './insert-snippet-command';

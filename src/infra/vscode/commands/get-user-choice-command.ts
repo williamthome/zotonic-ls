@@ -1,7 +1,7 @@
 import {
     GetUserChoiceCommand,
     OnChoiceSelectedCommand,
-} from '@/domain/commands';
+} from '../../../domain/commands';
 import { window } from 'vscode';
 
 export function buildGetUserChoiceCommand(): GetUserChoiceCommand {

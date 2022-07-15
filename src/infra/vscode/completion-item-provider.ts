@@ -1,4 +1,4 @@
-import { Snippet, SnippetProvider } from '@/domain/snippets';
+import { Snippet, SnippetProvider } from '../../domain/snippets';
 import {
     CompletionItem,
     CompletionItemProvider,

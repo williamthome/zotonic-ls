@@ -1,6 +1,6 @@
-import { immutable } from '@/common/functional-programming';
-import { AnyPromiseable } from '@/common/types';
-import { Command } from '@/domain/commands';
+import { immutable } from '../../../common/functional-programming';
+import { AnyPromiseable } from '../../../common/types';
+import { Command } from '../../../domain/commands';
 
 export function buildMainCommand(args: { commands: Array<AnyPromiseable> }) {
     const commands = immutable(

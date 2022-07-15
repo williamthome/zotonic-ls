@@ -1,6 +1,6 @@
 import { ExtensionContext, TextEditor } from 'vscode';
-import { Z } from '@/domain/z';
-import { FilesByGlobPattern } from '@/domain/files';
+import { Z } from '../../domain/z';
+import { FilesByGlobPattern } from '../../domain/files';
 import { registerSnippetProvider } from './completion-item-provider';
 import { registerHoverProvider } from './hover-provider';
 import { registerDefinitionProvider } from './definition-provider';

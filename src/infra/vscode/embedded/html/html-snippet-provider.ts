@@ -3,8 +3,8 @@ import {
     TextDocument as HtmlTextDocument,
 } from 'vscode-html-languageservice';
 import { buildEmbeddedSnippetProvider } from '../embedded-snippet-provider';
-import { buildSnippet } from '@/domain/snippets';
-import { InsertSnippetCommand } from '@/domain/commands';
+import { buildSnippet } from '../../../../domain/snippets';
+import { InsertSnippetCommand } from '../../../../domain/commands';
 
 export function buildHtmlSnippetProvider(args: {
     htmlLanguageService: LanguageService;

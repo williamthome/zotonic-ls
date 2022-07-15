@@ -1,5 +1,5 @@
-import { PopUpSnippetsCommand } from '@/domain/commands';
-import { buildSnippetProvider, buildSnippet } from '@/domain/snippets';
+import { PopUpSnippetsCommand } from '../../../domain/commands';
+import { buildSnippetProvider, buildSnippet } from '../../../domain/snippets';
 
 export function buildMSnippetProvider() {
     return buildSnippetProvider({

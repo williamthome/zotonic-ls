@@ -1,4 +1,4 @@
-import { HttpRequest } from '@/domain/http';
+import { HttpRequest } from '../../../domain/http';
 import { buildDocumentationHoverProvider } from '../documentation-hover-provider';
 
 export function buildActionHoverProvider(args: {

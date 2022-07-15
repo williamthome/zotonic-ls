@@ -1,5 +1,5 @@
-import { AnyArray, AnyPromiseable } from '@/common/types';
-import { Command } from '@/domain/commands';
+import { AnyArray, AnyPromiseable } from '../../common/types';
+import { Command } from '../../domain/commands';
 import {
     commands as vscode,
     ExtensionContext,

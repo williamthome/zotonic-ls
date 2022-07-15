@@ -1,5 +1,5 @@
-import { DefinitionProvider } from '@/domain/definitions';
-import { FilesByGlobPattern } from '@/domain/files';
+import { DefinitionProvider } from '../../domain/definitions';
+import { FilesByGlobPattern } from '../../domain/files';
 import path from 'path';
 import {
     ExtensionContext,

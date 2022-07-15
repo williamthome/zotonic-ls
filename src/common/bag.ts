@@ -1,4 +1,4 @@
-import { zObj } from '@/domain/z-obj';
+import { zObj } from '../domain/z-obj';
 import { AnyArray } from './types';
 
 export function buildBag<T, TArgs extends AnyArray = []>(args: {

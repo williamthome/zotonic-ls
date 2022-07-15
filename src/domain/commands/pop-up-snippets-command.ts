@@ -1,3 +1,3 @@
-import { AnyPromiseable } from '@/common/types';
+import { AnyPromiseable } from '../../common/types';
 
 export type PopUpSnippetsCommand = AnyPromiseable<void>;

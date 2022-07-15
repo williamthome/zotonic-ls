@@ -1,5 +1,5 @@
-import { buildBag } from '@/common/bag';
-import { Args } from '@/common/types';
+import { buildBag } from '../../common/bag';
+import { Args } from '../../common/types';
 import { ZObj, zObj } from '../z-obj';
 import { Snippet } from './snippet';
 

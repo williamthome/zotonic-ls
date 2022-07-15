@@ -3,7 +3,7 @@ import {
     HttpRequest,
     HttpRequestArgs,
     HttpRequestReturn,
-} from '@/domain/http';
+} from '../domain/http';
 import axios from 'axios';
 
 export function buildHttpRequest<T>(): HttpRequest<T> {

@@ -1,4 +1,4 @@
-import { PopUp } from '@/domain/pop-up';
+import { PopUp } from '../../domain/pop-up';
 import { MarkdownString } from 'vscode';
 
 export function formatPopUp(popUp: PopUp | undefined) {

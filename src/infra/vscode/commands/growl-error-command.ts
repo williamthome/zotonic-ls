@@ -1,4 +1,4 @@
-import { GrowlErrorCommand } from '@/domain/commands';
+import { GrowlErrorCommand } from '../../../domain/commands';
 import { window } from 'vscode';
 
 export function buildGrowlErrorCommand(): GrowlErrorCommand {

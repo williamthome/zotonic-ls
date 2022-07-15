@@ -1,4 +1,4 @@
-import { Args } from '@/common/types';
+import { Args } from '../common/types';
 import { ZObj, zObj } from './z-obj';
 
 export type PopUpFormat = 'plaintext' | 'html';

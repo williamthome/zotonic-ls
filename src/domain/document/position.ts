@@ -1,4 +1,4 @@
-import { minZero } from '@/common/utils';
+import { minZero } from '../../common/utils';
 import { ZObj, zObj } from '../z-obj';
 
 export function buildPosition(args: { line: number; column: number }) {

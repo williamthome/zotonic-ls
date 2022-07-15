@@ -1,4 +1,4 @@
-import { HoverProvider } from '@/domain/hover';
+import { HoverProvider } from '../../domain/hover';
 import {
     ExtensionContext,
     languages,

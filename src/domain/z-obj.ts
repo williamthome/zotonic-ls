@@ -1,5 +1,5 @@
-import { immutable } from '@/common/functional-programming';
-import { AnyFunction, AnyObject } from '@/common/types';
+import { immutable } from '../common/functional-programming';
+import { AnyFunction, AnyObject } from '../common/types';
 
 export function zObj<Kind, Defs extends AnyObject>(kind: Kind, defs: Defs) {
     return immutable({

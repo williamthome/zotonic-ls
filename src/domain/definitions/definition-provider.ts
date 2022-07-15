@@ -1,4 +1,4 @@
-import { formatToGlobPattern } from '@/common/utils';
+import { formatToGlobPattern } from '../../common/utils';
 import { ZObj, zObj } from '../z-obj';
 
 export function buildDefinitionProvider(args: {

@@ -135,9 +135,9 @@
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
-        "compile": "tsc && tsc-alias",
-        "watch": "concurrently --kill-others \"tsc -w\" \"tsc-alias -w\"",
-        "pretest": "tsc -p ./src/__tests__ && tsc-alias -p ./src/__tests__/tsconfig.json",
+        "compile": "tsc",
+        "watch": "tsc -w",
+        "pretest": "tsc -p ./src/__tests__",
         "lint": "eslint src --ext ts --cache --fix",
         "format": "prettier --write ./src/**/*.{ts,json}",
         "prettify": "npm run lint && npm run format",
@@ -168,7 +168,6 @@
         "@typescript-eslint/eslint-plugin": "^5.29.0",
         "@typescript-eslint/parser": "^5.29.0",
         "@vscode/test-electron": "^2.1.4",
-        "concurrently": "^7.2.2",
         "coveralls": "^3.1.1",
         "eslint": "^8.18.0",
         "eslint-config-prettier": "^8.5.0",
@@ -180,7 +179,6 @@
         "prettier": "^2.7.1",
         "ts-jest": "^28.0.5",
         "ts-node-dev": "^2.0.0",
-        "tsc-alias": "^1.6.11",
         "typescript": "^4.7.4"
     },
     "__metadata": {

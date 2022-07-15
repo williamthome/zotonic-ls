@@ -1,7 +1,7 @@
-import { transform } from '@/common/functional-programming';
-import { FilesByGlobPattern } from '@/domain/files';
-import { buildPopUp } from '@/domain/pop-up';
-import { buildSnippetProviderFromFiles } from '@/domain/snippets';
+import { transform } from '../../../../common/functional-programming';
+import { FilesByGlobPattern } from '../../../../domain/files';
+import { buildPopUp } from '../../../../domain/pop-up';
+import { buildSnippetProviderFromFiles } from '../../../../domain/snippets';
 
 export function buildTemplateTagSnippetProvider(args: {
     filesByGlobPattern: FilesByGlobPattern;

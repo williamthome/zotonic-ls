@@ -1,4 +1,4 @@
-import { joinWithBreakLine } from '@/common/utils';
+import { joinWithBreakLine } from '../../common/utils';
 import { CommandCallback } from '../commands';
 import { buildPopUp, PopUpArgs } from '../pop-up';
 import { ZObj, zObj } from '../z-obj';

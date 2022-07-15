@@ -1,12 +1,12 @@
-import { transform } from '@/common/functional-programming';
+import { transform } from '../../../common/functional-programming';
 import {
     GetUserChoiceCommand,
     GrowlErrorCommand,
     InsertSnippetCommand,
-} from '@/domain/commands';
-import { FilesByGlobPattern } from '@/domain/files';
-import { mGetExpressions } from '@/domain/snippets/helpers';
-import { buildSnippetProviderFromFiles } from '@/domain/snippets';
+} from '../../../domain/commands';
+import { FilesByGlobPattern } from '../../../domain/files';
+import { mGetExpressions } from '../../../domain/snippets/helpers';
+import { buildSnippetProviderFromFiles } from '../../../domain/snippets';
 
 export function buildModelSnippetProvider(args: {
     filesByGlobPattern: FilesByGlobPattern;

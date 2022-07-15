@@ -1,5 +1,5 @@
-import { isKindOf, ZObj, zObj } from '@/domain/z-obj';
-import { Snippet } from '@/domain/snippets';
+import { isKindOf, ZObj, zObj } from '../../../domain/z-obj';
+import { Snippet } from '../../../domain/snippets';
 import { Position, TextDocument } from 'vscode';
 
 interface GetEmbeddedSnippetsArgs {

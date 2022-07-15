@@ -1,4 +1,4 @@
-import { Any } from '@/common/types';
+import { Any } from '../common/types';
 import { zObj } from './z-obj';
 
 export type HttpMethod = 'POST' | 'GET' | 'PUT' | 'PATCH' | 'DELETE';
