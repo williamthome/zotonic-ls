@@ -1,10 +1,9 @@
 // The module "vscode" contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import { ExtensionContext, window } from 'vscode';
-import { getLanguageService as getHtmlLanguageService } from 'vscode-html-languageservice';
+import { ExtensionContext } from 'vscode';
+import { buildEnv } from './env';
 import { buildZ } from './domain/z';
-import { buildHttpRequest } from './infra/http';
-import { buildZVSCode, buildFilesByGlobPattern } from './infra/vscode';
+import { buildZVSCode } from './infra/vscode';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -17,30 +16,19 @@ export async function activate(context: ExtensionContext) {
     // Enviroment
     // -------------------------------------------------------------------------
 
-    // User
-    // TODO: Get values from user config
-    const zotonicVersion = 'master';
-
-    // Common
-    const filesByGlobPattern = buildFilesByGlobPattern();
-
-    // Domain
-    const workspacesRoot: [string, ...string[]] = ['apps', 'apps_user'];
-    const host = `https://raw.githubusercontent.com/zotonic/zotonic/${zotonicVersion}/doc`;
-    const httpRequest = buildHttpRequest();
-
-    // Infra
-    const editor = window.activeTextEditor;
-    if (!editor) {
-        throw new Error('No editor active');
-    }
-    const htmlLanguageService = getHtmlLanguageService();
+    const {
+        filesByGlobPattern,
+        workspacesRoot,
+        host,
+        httpRequest,
+        editor,
+        htmlLanguageService,
+    } = buildEnv();
 
     // -------------------------------------------------------------------------
-    // Setup
+    // Domain
     // -------------------------------------------------------------------------
 
-    // Domain
     const z = buildZ({
         filesByGlobPattern,
         workspacesRoot,
@@ -48,15 +36,17 @@ export async function activate(context: ExtensionContext) {
         httpRequest,
     });
 
+    // -------------------------------------------------------------------------
     // Infra
-    const zVSCode = buildZVSCode({
+    // -------------------------------------------------------------------------
+
+    buildZVSCode({
         z,
         context,
         filesByGlobPattern,
         editor,
         htmlLanguageService,
-    });
-    zVSCode.setup();
+    }).setup();
 }
 
 // this method is called when your extension is deactivated
