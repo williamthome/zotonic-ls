@@ -107,17 +107,25 @@ function parseExpressionToken(data: string) {
             }
         }
     }
+
     throw new Error(
         `Unexpected no match in expression token parser for data '${data}'`,
     );
 }
 
+function snippetParam(args: { index: number; default?: string }) {
+    return args.default
+        ? `\${${args.index}:${args.default}}`
+        : `\\$${args.index}`;
+}
+
 function tokensToSnippet(tokens: Array<Token>) {
     return tokens.reduce(
         (snippet, { token, editable, prefix = '', suffix = '' }, i) => {
-            const acc = `${prefix}${
-                editable ? `\${${i + 1}:${token}}` : token
-            }${suffix}`;
+            const text = editable
+                ? snippetParam({ index: i + 1, default: token })
+                : token;
+            const acc = `${prefix}${text}${suffix}`;
             return snippet + acc;
         },
         '',
