@@ -1,4 +1,4 @@
-import { buildImageTagSnippetProvider } from '@/domain/snippets';
+import { buildImageTagSnippetProvider } from '@/domain/snippets/providers/tags/image-tag-snippet-provider';
 import { filesByGlobPatternSpy } from '@/__tests__/domain/__spies__';
 import { expectNotThrowException } from '@/__tests__/__utils__';
 

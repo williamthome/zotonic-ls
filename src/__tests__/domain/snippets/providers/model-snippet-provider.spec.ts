@@ -1,4 +1,4 @@
-import { buildModelSnippetProvider } from '@/domain/snippets';
+import { buildModelSnippetProvider } from '@/domain/snippets/providers/model-snippet-provider';
 import { filesByGlobPatternSpy } from '@/__tests__/domain/__spies__';
 import { expectNotThrowException } from '@/__tests__/__utils__';
 
