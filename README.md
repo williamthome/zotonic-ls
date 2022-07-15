@@ -4,6 +4,7 @@
 ![GitHub CI Status](https://img.shields.io/github/workflow/status/williamthome/zotonic-ls/CI)
 ![Lines of code](https://img.shields.io/tokei/lines/github/williamthome/zotonic-ls)
 [![Coverage Status](https://coveralls.io/repos/github/williamthome/zotonic-ls/badge.svg?branch=main)](https://coveralls.io/github/williamthome/zotonic-ls?branch=main)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/williamthome/zotonic-ls/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/williamthome/zotonic-ls/?branch=main)
 [![Known Vulnerabilities](https://snyk.io/test/github/williamthome/zotonic-ls/badge.svg)](https://snyk.io/test/github/williamthome/zotonic-ls)
 ![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/williamthome.zotonic-ls)
 ![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/williamthome.zotonic-ls)
