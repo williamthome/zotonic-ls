@@ -1,10 +1,9 @@
+import { immutable } from '@/common/functional-programming';
 import { AnyPromiseable } from '@/common/types';
 import { Command } from '@/domain/commands';
-import { zObj } from '@/domain/z-obj';
 
 export function buildMainCommand(args: { commands: Array<AnyPromiseable> }) {
-    const commands = zObj(
-        'commands',
+    const commands = immutable(
         args.commands.reduce((acc, command) => {
             Object.defineProperty(acc, command.name, {
                 value: command,
