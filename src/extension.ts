@@ -14,22 +14,22 @@ export async function activate(context: ExtensionContext) {
     console.log("Congratulations, your extension 'zotonic' is now active!");
 
     // -------------------------------------------------------------------------
-    // Defs
+    // Enviroment
     // -------------------------------------------------------------------------
 
-    // User defs
+    // User
     // TODO: Get values from user config
     const zotonicVersion = 'master';
 
-    // Common defs
+    // Common
     const filesByGlobPattern = buildFilesByGlobPattern();
 
-    // Domain defs
+    // Domain
     const workspacesRoot: [string, ...string[]] = ['apps', 'apps_user'];
     const host = `https://raw.githubusercontent.com/zotonic/zotonic/${zotonicVersion}/doc`;
     const httpRequest = buildHttpRequest();
 
-    // Infra defs
+    // Infra
     const editor = window.activeTextEditor;
     if (!editor) {
         throw new Error('No editor active');
@@ -37,7 +37,7 @@ export async function activate(context: ExtensionContext) {
     const htmlLanguageService = getHtmlLanguageService();
 
     // -------------------------------------------------------------------------
-    // Api
+    // Setup
     // -------------------------------------------------------------------------
 
     // Domain
