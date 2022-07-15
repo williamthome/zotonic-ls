@@ -13,4 +13,8 @@ export function isKindOf<Kind extends string>(kind: Kind, x: unknown) {
     return !!x && (x as ReturnType<typeof zObj>).__kind__ === kind;
 }
 
-export type ZObj<T extends AnyFunction> = ReturnType<T>;
+export type ZObj<T extends AnyFunction> = ReturnType<T> extends ReturnType<
+    typeof zObj
+>
+    ? ReturnType<T>
+    : never;
