@@ -1,17 +1,15 @@
 import * as fs from 'fs';
+import {
+    buildSnippetToken,
+    SnippetToken,
+    snippetTokensToText,
+} from './snippet-helper';
 
 // Defs
 
-export type Token = {
-    token: string;
-    editable?: boolean;
-    prefix?: string;
-    suffix?: string;
-};
-
 export type Expression = {
     expression: string;
-    tokens: Array<Token>;
+    tokens: SnippetToken[];
     snippet: string;
 };
 
@@ -49,8 +47,10 @@ async function getFileExpressions(
 
 function parseExpression(expression: string) {
     const re = /\s*,\s*(?=(?:[^{]*{[^}]*})*[^}]*$)/;
-    const tokens = expression.split(re).flatMap<Token>(parseExpressionToken);
-    const snippet = tokensToSnippet(tokens);
+    const tokens = expression
+        .split(re)
+        .flatMap<SnippetToken>(parseExpressionToken);
+    const snippet = snippetTokensToText(tokens);
 
     return {
         expression,
@@ -65,44 +65,44 @@ function parseExpressionToken(data: string) {
 
     if (constantMatch && constantMatch.length === 1) {
         return [
-            {
+            buildSnippetToken({
                 token: constantMatch[0],
                 prefix: '.',
-            },
+            }),
         ];
     } else {
         const propsRe = /(?<=\{\s*)(\w+)(?:\s*,\s*)(\w+)(?=\s*\})/;
         const propsMatch = propsRe.exec(data);
         if (propsMatch && propsMatch.length === 3) {
             return [
-                {
+                buildSnippetToken({
                     token: propsMatch[1],
                     editable: true,
                     prefix: '[{',
-                },
-                {
+                }),
+                buildSnippetToken({
                     token: 'Prop',
                     editable: true,
                     prefix: ' ',
                     suffix: '=',
-                },
-                {
+                }),
+                buildSnippetToken({
                     token: 'Value',
                     editable: true,
                     suffix: '}]',
-                },
+                }),
             ];
         } else {
             const paramRe = /\w+/;
             const paramMatch = paramRe.exec(data);
             if (paramMatch && paramMatch.length === 1) {
                 return [
-                    {
+                    buildSnippetToken({
                         token: data,
                         editable: true,
                         prefix: '[',
                         suffix: ']',
-                    },
+                    }),
                 ];
             }
         }
@@ -110,24 +110,5 @@ function parseExpressionToken(data: string) {
 
     throw new Error(
         `Unexpected no match in expression token parser for data '${data}'`,
-    );
-}
-
-function snippetParam(args: { index: number; default?: string }) {
-    return args.default
-        ? `\${${args.index}:${args.default}}`
-        : `\\$${args.index}`;
-}
-
-function tokensToSnippet(tokens: Array<Token>) {
-    return tokens.reduce(
-        (snippet, { token, editable, prefix = '', suffix = '' }, i) => {
-            const text = editable
-                ? snippetParam({ index: i + 1, default: token })
-                : token;
-            const acc = `${prefix}${text}${suffix}`;
-            return snippet + acc;
-        },
-        '',
     );
 }
