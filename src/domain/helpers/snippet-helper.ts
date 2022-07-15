@@ -16,18 +16,18 @@ export function buildSnippetToken(args: {
 
 export type SnippetToken = ZObj<typeof buildSnippetToken>;
 
-export function snippetParam(args: { index: number; default?: string }) {
-    return args.default
-        ? `\${${args.index}:${args.default}}`
-        : `\\$${args.index}`;
-}
-
-export function snippetTokensToText(tokens: SnippetToken[]) {
+export function reduceSnippetTokens(tokens: SnippetToken[]) {
     return tokens.reduce((acc, { token, editable, prefix, suffix }, i) => {
         const mid = editable
-            ? snippetParam({ index: i + 1, default: token })
+            ? buildSnippetParam({ index: i + 1, default: token })
             : token;
         const text = `${prefix}${mid}${suffix}`;
         return acc + text;
     }, '');
+}
+
+export function buildSnippetParam(args: { index: number; default?: string }) {
+    return args.default
+        ? `\${${args.index}:${args.default}}`
+        : `\\$${args.index}`;
 }

@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import {
     buildSnippetToken,
     SnippetToken,
-    snippetTokensToText,
+    reduceSnippetTokens,
 } from './snippet-helper';
 
 // Defs
@@ -50,7 +50,7 @@ function parseExpression(expression: string) {
     const tokens = expression
         .split(re)
         .flatMap<SnippetToken>(parseExpressionToken);
-    const snippet = snippetTokensToText(tokens);
+    const snippet = reduceSnippetTokens(tokens);
 
     return {
         expression,
