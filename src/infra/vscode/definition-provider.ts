@@ -1,5 +1,6 @@
 import { DefinitionProvider } from '@/domain/definitions';
 import { FilesByGlobPattern } from '@/domain/files';
+import path from 'path';
 import {
     ExtensionContext,
     languages,
@@ -39,7 +40,8 @@ function definitionProviderToVSCode(
                 return;
             }
 
-            const fileName = document.getText(range);
+            const fileName = path.basename(document.getText(range));
+
             const fileGlobPattern = `${definitionProvider.locationPattern}${fileName}`;
 
             const files = await filesByGlobPattern({
