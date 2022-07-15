@@ -30,7 +30,8 @@ export default {
     coveragePathIgnorePatterns: [
         '/node_modules/',
         '/__tests__/infra',
-        '/domain/commands',
+        '/src/domain/commands',
+        '/src/infra',
         '.+\\.d\\.ts',
         '/*types.ts',
         '/*protocol.ts',
