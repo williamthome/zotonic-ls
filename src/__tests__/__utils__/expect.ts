@@ -39,3 +39,11 @@ export function expectInstanceOf<V, I>(value: V, instance: I) {
 export function expectAny<T>(value: T) {
     return expect.any(value);
 }
+
+export function expectZObj<A, B>(a: A, b: B) {
+    expectEqual(a, {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        __kind__: expectAny(String),
+        ...b,
+    });
+}

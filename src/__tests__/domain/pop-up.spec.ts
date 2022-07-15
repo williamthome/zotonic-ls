@@ -1,5 +1,5 @@
 import { buildPopUp } from '@/domain/pop-up';
-import { expectAny, expectEqual } from '@/__tests__/__utils__';
+import { expectAny, expectZObj } from '@/__tests__/__utils__';
 
 describe('domain/pop-up', () => {
     describe('buildPopUp', () => {
@@ -9,7 +9,7 @@ describe('domain/pop-up', () => {
                 format: 'plaintext',
             });
 
-            expectEqual(sut, {
+            expectZObj(sut, {
                 text: expectAny(String),
                 format: expectAny(String),
             });
@@ -18,7 +18,7 @@ describe('domain/pop-up', () => {
         it('should return with full props if string args', () => {
             const sut = buildPopUp('foo');
 
-            expectEqual(sut, {
+            expectZObj(sut, {
                 text: expectAny(String),
                 format: expectAny(String),
             });

@@ -1,5 +1,5 @@
 import { isKindOf, zObj } from '@/domain/z-obj';
-import { expectAny, expectEqual } from '@/__tests__/__utils__';
+import { expectAny, expectZObj } from '@/__tests__/__utils__';
 
 describe('domain/z-obj', () => {
     function makeSut() {
@@ -15,9 +15,7 @@ describe('domain/z-obj', () => {
         it('should return with full props', () => {
             const { sut } = makeSut();
 
-            expectEqual(sut, {
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                __kind__: 'foobar',
+            expectZObj(sut, {
                 foo: expectAny(String),
                 bar: expectAny(Function),
             });

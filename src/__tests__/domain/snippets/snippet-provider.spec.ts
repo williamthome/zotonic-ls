@@ -4,6 +4,7 @@ import {
     expectEqual,
     expectNotThrowException,
     expectThrowException,
+    expectZObj,
 } from '@/__tests__/__utils__';
 import { getSnippetsSpy } from '@/__tests__/domain/__spies__/';
 
@@ -27,7 +28,7 @@ describe('domain/snippet/snippet-provider', () => {
         it('should build with full props', () => {
             const { sut } = makeSut();
 
-            expectEqual(sut, {
+            expectZObj(sut, {
                 regex: expectAny(RegExp),
                 triggerCharacters: expectAny(Array),
                 getSnippets: expectAny(Function),

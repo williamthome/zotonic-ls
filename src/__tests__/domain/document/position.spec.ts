@@ -1,5 +1,5 @@
 import { buildPosition } from '@/domain/document/position';
-import { expectAny, expectEqual } from '@/__tests__/__utils__';
+import { expectAny, expectZObj } from '@/__tests__/__utils__';
 
 describe('domain/document/position', () => {
     describe('buildPosition', () => {
@@ -8,7 +8,7 @@ describe('domain/document/position', () => {
                 line: 0,
                 column: 0,
             });
-            expectEqual(position, {
+            expectZObj(position, {
                 line: expectAny(Number),
                 column: expectAny(Number),
             });

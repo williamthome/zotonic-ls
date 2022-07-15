@@ -1,5 +1,5 @@
 import { buildSnippet } from '@/domain/snippets';
-import { expectAny, expectEqual } from '@/__tests__/__utils__';
+import { expectAny, expectZObj } from '@/__tests__/__utils__';
 
 describe('domain/snippet/snippet', () => {
     function makeSut() {
@@ -12,7 +12,7 @@ describe('domain/snippet/snippet', () => {
         it('should build with full props', () => {
             const { sut } = makeSut();
 
-            expectEqual(sut, {
+            expectZObj(sut, {
                 label: expectAny(String),
                 body: expectAny(String),
                 description: expectAny(String),

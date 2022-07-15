@@ -5,6 +5,7 @@ import {
     expectBeArray,
     expectEqual,
     expectThrowException,
+    expectZObj,
 } from '@/__tests__/__utils__';
 import {
     filenameRegexByWorkspaceSpy,
@@ -49,7 +50,7 @@ describe('domain/snippet/snippet-provider-from-files', () => {
         it('should build with full props', () => {
             const { sut } = makeSut();
 
-            expectEqual(sut, {
+            expectZObj(sut, {
                 regex: expectAny(RegExp),
                 triggerCharacters: expectAny(Array),
                 getSnippets: expectAny(Function),
