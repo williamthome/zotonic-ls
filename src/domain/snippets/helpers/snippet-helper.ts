@@ -1,4 +1,4 @@
-import { ZObj, zObj } from '../z-obj';
+import { ZObj, zObj } from '../../z-obj';
 
 export function buildSnippetToken(args: {
     token: string;

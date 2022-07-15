@@ -5,7 +5,7 @@ import {
     InsertSnippetCommand,
 } from '@/domain/commands';
 import { FilesByGlobPattern } from '@/domain/files';
-import { mGetExpressions } from '@/domain/helpers/model-helper';
+import { mGetExpressions } from '@/domain/snippets/helpers';
 import { buildSnippetProviderFromFiles } from '@/domain/snippets';
 
 export function buildModelSnippetProvider(args: {
