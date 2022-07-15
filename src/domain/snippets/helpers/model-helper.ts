@@ -19,11 +19,8 @@ type Behaviour = 'm_get' | 'm_post' | 'm_delete';
 
 // API
 
-export async function mGetExpressions(args: {
-    filePath: string;
-    model: string;
-}) {
-    return await getFileExpressions({
+export function mGetExpressions(args: { filePath: string; model: string }) {
+    return getFileExpressions({
         behaviour: 'm_get',
         re: /(?<=m_get\s*\(\s*\[\s*)(\w|<|\{).*?(?=\s*(\||\]))/g,
         filePath: args.filePath,
