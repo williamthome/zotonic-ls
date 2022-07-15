@@ -9,7 +9,7 @@ export function buildDocumentationHoverProvider(args: {
 }) {
     return buildHoverProvider({
         regex: args.regex,
-        async getContent({ regexMatch }) {
+        async getPopUp({ regexMatch }) {
             const url = args.genUrl({ regexMatch });
             const content = await args.httpRequest(
                 buildHttpRequestArgs({ url }),

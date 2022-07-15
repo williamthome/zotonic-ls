@@ -33,7 +33,7 @@ function hoverProviderToVSCode(
             if (range) {
                 const regexMatch = document.getText(range);
 
-                const popUp = await hoverProvider.getContent({
+                const popUp = await hoverProvider.getPopUp({
                     regexMatch,
                 });
                 if (!popUp) {
