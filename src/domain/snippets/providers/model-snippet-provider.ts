@@ -28,10 +28,10 @@ export function buildModelSnippetProvider(args: {
                     insertSnippet: InsertSnippetCommand;
                     growlError: GrowlErrorCommand;
                 }) {
-                    const mGetResult = await mGetExpressions(
-                        file.path,
-                        file.name,
-                    );
+                    const mGetResult = await mGetExpressions({
+                        filePath: file.path,
+                        model: file.name,
+                    });
                     if (mGetResult instanceof Error) {
                         return commands.growlError({ error: mGetResult });
                     }

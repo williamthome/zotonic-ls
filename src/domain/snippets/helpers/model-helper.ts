@@ -19,26 +19,33 @@ type Behaviour = 'm_get' | 'm_post' | 'm_delete';
 
 // API
 
-export async function mGetExpressions(filePath: string, model: string) {
-    const re = /(?<=m_get\s*\(\s*\[\s*)(\w|<|\{).*?(?=\s*(\||\]))/g;
-    return await getFileExpressions('m_get', re, filePath, model);
+export async function mGetExpressions(args: {
+    filePath: string;
+    model: string;
+}) {
+    return await getFileExpressions({
+        behaviour: 'm_get',
+        re: /(?<=m_get\s*\(\s*\[\s*)(\w|<|\{).*?(?=\s*(\||\]))/g,
+        filePath: args.filePath,
+        model: args.model,
+    });
 }
 
 // Internal functions
 
-async function getFileExpressions(
-    behaviour: Behaviour,
-    re: RegExp,
-    filePath: string,
-    model: string,
-) {
-    const data = await fs.promises.readFile(filePath, {
+async function getFileExpressions(args: {
+    behaviour: Behaviour;
+    re: RegExp;
+    filePath: string;
+    model: string;
+}) {
+    const data = await fs.promises.readFile(args.filePath, {
         encoding: 'utf8',
     });
-    const matches = data.match(re);
+    const matches = data.match(args.re);
     if (!matches) {
         return new Error(
-            `No '${behaviour}' functions found in '${model}' model.`,
+            `No '${args.behaviour}' functions found in '${args.model}' model.`,
         );
     }
 
