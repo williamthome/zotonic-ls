@@ -1,5 +1,6 @@
 import {
     buildSnippetToken,
+    reduceSnippetTokens,
     snippetParam,
 } from '@/domain/snippets/helpers/snippet-helper';
 import { expectAny, expectEqual, expectZObj } from '@/__tests__/__utils__';
@@ -25,6 +26,24 @@ describe('domain/snippets/helpers/snippet-helper', () => {
                 prefix: expectAny(String),
                 suffix: expectAny(String),
             });
+        });
+    });
+
+    describe('reduceSnippetTokens', () => {
+        function makeSut() {
+            const sut = reduceSnippetTokens([
+                buildSnippetToken({ token: 'foo' }),
+            ]);
+
+            return {
+                sut,
+            };
+        }
+
+        it('should build with full props', () => {
+            const { sut } = makeSut();
+
+            expectEqual(sut, expectAny(String));
         });
     });
 
