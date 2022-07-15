@@ -1,13 +1,15 @@
 import { DefinitionProvider } from './definition-provider';
 import {
-    buildLibDefinitionProvider,
+    buildJsDefinitionProvider,
+    buildStyleDefinitionProvider,
     buildTplDefinitionProvider,
 } from './providers';
 
 export function buildDefinitionProviders() {
     const definitionProviders: DefinitionProvider[] = [
         buildTplDefinitionProvider(),
-        buildLibDefinitionProvider(),
+        buildJsDefinitionProvider(),
+        buildStyleDefinitionProvider(),
     ];
 
     return definitionProviders;
