@@ -1,5 +1,5 @@
-import { immutable } from '@/common/functional-programming';
 import { formatToGlobPattern } from '@/common/utils';
+import { ZObj, zObj } from '../z-obj';
 
 export function buildDefinitionProvider(args: {
     regex: RegExp;
@@ -7,7 +7,7 @@ export function buildDefinitionProvider(args: {
     locations: string[];
     locationsToIgnore?: string[];
 }) {
-    return immutable({
+    return zObj('definitionProvider', {
         regex: args.regex,
         extensions: args.extensions,
         locationPattern: formatToGlobPattern(args.locations),
@@ -17,4 +17,4 @@ export function buildDefinitionProvider(args: {
     });
 }
 
-export type DefinitionProvider = ReturnType<typeof buildDefinitionProvider>;
+export type DefinitionProvider = ZObj<typeof buildDefinitionProvider>;

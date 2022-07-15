@@ -1,4 +1,5 @@
 import { buildHttpRequestArgs, HttpRequest } from '../http';
+import { buildPopUp } from '../pop-up';
 import { buildHoverProvider } from './hover-provider';
 
 export function buildDocumentationHoverProvider(args: {
@@ -15,10 +16,10 @@ export function buildDocumentationHoverProvider(args: {
             );
             return content instanceof Error
                 ? undefined
-                : {
+                : buildPopUp({
                       text: content,
                       format: 'html',
-                  };
+                  });
         },
     });
 }

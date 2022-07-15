@@ -1,5 +1,5 @@
-import { immutable } from '@/common/functional-programming';
 import { Args } from '@/common/types';
+import { ZObj, zObj } from './z-obj';
 
 export type PopUpFormat = 'plaintext' | 'html';
 
@@ -11,7 +11,8 @@ export function buildPopUp(
               format: PopUpFormat;
           },
 ) {
-    return immutable(
+    return zObj(
+        'popUp',
         typeof args === 'string'
             ? {
                   text: args,
@@ -22,4 +23,4 @@ export function buildPopUp(
 }
 
 export type PopUpArgs = Args<typeof buildPopUp>;
-export type PopUp = ReturnType<typeof buildPopUp>;
+export type PopUp = ZObj<typeof buildPopUp>;

@@ -1,7 +1,7 @@
-import { immutable } from '@/common/functional-programming';
 import { joinWithBreakLine } from '@/common/utils';
 import { CommandCallback } from '../commands';
 import { buildPopUp, PopUpArgs } from '../pop-up';
+import { ZObj, zObj } from '../z-obj';
 
 export function buildSnippet(args: {
     label: string;
@@ -11,7 +11,7 @@ export function buildSnippet(args: {
     triggerCharacters?: string[];
     command?: CommandCallback;
 }) {
-    return immutable({
+    return zObj('snippet', {
         label: args.label,
         body:
             args.body !== undefined ? joinWithBreakLine(args.body) : args.label,
@@ -22,4 +22,4 @@ export function buildSnippet(args: {
     });
 }
 
-export type Snippet = ReturnType<typeof buildSnippet>;
+export type Snippet = ZObj<typeof buildSnippet>;

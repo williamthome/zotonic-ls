@@ -1,4 +1,4 @@
-import { immutable } from '@/common/functional-programming';
+import { isKindOf, ZObj, zObj } from '@/domain/z-obj';
 import { Snippet } from '@/domain/snippets';
 import { Position, TextDocument } from 'vscode';
 
@@ -16,26 +16,17 @@ export function buildEmbeddedSnippetProvider(args: {
     triggerCharacters?: string[];
     getSnippets: GetEmbeddedSnippets;
 }) {
-    return immutable({
-        // TODO: Add __kind__ to all objects
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        __kind__: 'embeddedSnippetProvider',
+    return zObj('embeddedSnippetProvider', {
         regex: args.regex,
         triggerCharacters: args.triggerCharacters ?? ['.'],
         getSnippets: args.getSnippets,
     });
 }
 
-export type EmbeddedSnippetProvider = ReturnType<
-    typeof buildEmbeddedSnippetProvider
->;
+export type EmbeddedSnippetProvider = ZObj<typeof buildEmbeddedSnippetProvider>;
 
 export function isEmbeddedSnippetProvider(
-    payload: unknown,
-): payload is EmbeddedSnippetProvider {
-    if (!payload) {
-        return false;
-    }
-    const esp = payload as EmbeddedSnippetProvider;
-    return esp.__kind__ === 'embeddedSnippetProvider';
+    x: unknown,
+): x is EmbeddedSnippetProvider {
+    return isKindOf('embeddedSnippetProvider', x);
 }

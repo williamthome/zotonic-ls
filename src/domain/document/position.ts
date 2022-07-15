@@ -1,11 +1,11 @@
-import { immutable } from '@/common/functional-programming';
 import { minZero } from '@/common/utils';
+import { ZObj, zObj } from '../z-obj';
 
 export function buildPosition(args: { line: number; column: number }) {
-    return immutable({
+    return zObj('position', {
         line: minZero(args.line),
         column: minZero(args.column),
     });
 }
 
-export type Position = ReturnType<typeof buildPosition>;
+export type Position = ZObj<typeof buildPosition>;

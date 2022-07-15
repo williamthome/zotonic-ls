@@ -1,5 +1,6 @@
 import { transform } from '@/common/functional-programming';
 import { FilesByGlobPattern } from '@/domain/files';
+import { buildPopUp } from '@/domain/pop-up';
 import { buildSnippetProviderFromFiles } from '@/domain/snippets';
 
 export function buildTemplateTagSnippetProvider(args: {
@@ -17,7 +18,7 @@ export function buildTemplateTagSnippetProvider(args: {
             return transform(snippet, {
                 description:
                     "A .tpl file located at '<apps|apps_user>/<module>/priv/templates'.",
-                documentation: {
+                documentation: buildPopUp({
                     format: 'html',
                     text: `
                         <h1>Templates</h1>
@@ -27,7 +28,7 @@ export function buildTemplateTagSnippetProvider(args: {
                         <br>
                         <a href="https://zotonic.com/search?qs=templates">@docs/search</a>
                     `,
-                },
+                }),
             });
         },
         filesByGlobPattern: args.filesByGlobPattern,

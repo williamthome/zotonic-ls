@@ -62,7 +62,8 @@ async function getSnippets(args: {
         });
     }
 
-    return args.snippetProvider.getSnippets();
+    // TODO: Check why 'snippetProvider' type is 'never'
+    return (args.snippetProvider as SnippetProvider).getSnippets();
 }
 
 function snippetToVSCode(snippet: Snippet): CompletionItem {

@@ -1,9 +1,9 @@
-import { immutable } from '@/common/functional-programming';
 import { FilesByGlobPattern } from './files';
 import { HttpRequest } from './http';
 import { buildSnippetProviders } from './snippets';
 import { buildHoverProviders } from './hover';
 import { buildDefinitionProviders } from './definitions';
+import { ZObj, zObj } from './z-obj';
 
 export function buildZ(args: {
     filesByGlobPattern: FilesByGlobPattern;
@@ -25,7 +25,7 @@ export function buildZ(args: {
 
     const _definitionProviders = buildDefinitionProviders();
 
-    return immutable({
+    return zObj('z', {
         get selector() {
             return 'tpl';
         },
@@ -41,4 +41,4 @@ export function buildZ(args: {
     });
 }
 
-export type Z = ReturnType<typeof buildZ>;
+export type Z = ZObj<typeof buildZ>;

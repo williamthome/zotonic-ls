@@ -1,6 +1,6 @@
 import { buildBag } from '@/common/bag';
-import { immutable } from '@/common/functional-programming';
 import { Args } from '@/common/types';
+import { ZObj, zObj } from '../z-obj';
 import { Snippet } from './snippet';
 
 export type GetSnippets = () => Promise<Snippet[]>;
@@ -14,7 +14,7 @@ export function buildSnippetProvider(args: {
         fetchContent: args.getSnippets,
     });
 
-    return immutable({
+    return zObj('snippetProvider', {
         regex: args.regex,
         triggerCharacters: args.triggerCharacters ?? ['.'],
         getSnippets: _snippetsBag.getContent,
@@ -23,5 +23,7 @@ export function buildSnippetProvider(args: {
 }
 
 type BuildSnippetProvider = typeof buildSnippetProvider;
+
 export type SnippetProviderArgs = Args<BuildSnippetProvider>;
-export type SnippetProvider = ReturnType<BuildSnippetProvider>;
+
+export type SnippetProvider = ZObj<BuildSnippetProvider>;
