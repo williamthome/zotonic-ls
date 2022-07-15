@@ -11,7 +11,10 @@ export function registerCommand(args: { context: ExtensionContext }) {
     return function (command: AnyPromiseable) {
         if (!command.name) {
             throw new Error(
-                'The command must not be anonymous to have a name. Build it like "function commandName() { }".',
+                'Empty command name. ' +
+                    'Probably the command is anonymous, and then you must ' +
+                    'change to implement it like "function commandName() { }" ' +
+                    'and not using arrow functions ("() => { }").',
             );
         }
 
