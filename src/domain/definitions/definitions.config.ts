@@ -2,6 +2,7 @@ import { DefinitionProvider } from './definition-provider';
 import {
     buildImageDefinitionProvider,
     buildJsDefinitionProvider,
+    buildModelDefinitionProvider,
     buildStyleDefinitionProvider,
     buildTplDefinitionProvider,
 } from './providers';
@@ -12,6 +13,7 @@ export function buildDefinitionProviders() {
         buildJsDefinitionProvider(),
         buildStyleDefinitionProvider(),
         buildImageDefinitionProvider(),
+        buildModelDefinitionProvider(),
     ];
 
     return definitionProviders;

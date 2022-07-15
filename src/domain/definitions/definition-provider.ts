@@ -6,6 +6,7 @@ export function buildDefinitionProvider(args: {
     extensions: string[];
     locations: string[];
     locationsToIgnore?: string[];
+    transformMatch?: (match: string) => string;
 }) {
     return zObj('definitionProvider', {
         regex: args.regex,
@@ -14,6 +15,7 @@ export function buildDefinitionProvider(args: {
         locationPatternToIgnore: args.locationsToIgnore
             ? formatToGlobPattern(args.locationsToIgnore)
             : undefined,
+        transformMatch: args.transformMatch,
     });
 }
 

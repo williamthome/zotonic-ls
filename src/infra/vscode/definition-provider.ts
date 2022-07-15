@@ -40,7 +40,10 @@ function definitionProviderToVSCode(
                 return;
             }
 
-            const fileName = path.basename(document.getText(range));
+            const baseName = path.basename(document.getText(range));
+            const fileName = definitionProvider.transformMatch
+                ? definitionProvider.transformMatch(baseName)
+                : baseName;
 
             const fileGlobPattern = `${definitionProvider.locationPattern}${fileName}`;
 
