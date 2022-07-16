@@ -21,7 +21,7 @@ export async function activate(context: ExtensionContext) {
         workspacesRoot,
         host,
         httpRequest,
-        editor,
+        activeEditor,
         htmlLanguageService,
     } = buildEnv();
 
@@ -44,7 +44,7 @@ export async function activate(context: ExtensionContext) {
         z,
         context,
         filesByGlobPattern,
-        editor,
+        activeEditor,
         htmlLanguageService,
     }).setup();
 }
