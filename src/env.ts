@@ -18,9 +18,8 @@ export function buildEnv() {
     const httpRequest = buildHttpRequest();
 
     // Infra
-    const editor = window.activeTextEditor;
-    if (!editor) {
-        throw new Error('No editor active');
+    function activeEditor() {
+        return window.activeTextEditor;
     }
     const htmlLanguageService = getHtmlLanguageService();
 
@@ -30,7 +29,7 @@ export function buildEnv() {
         workspacesRoot,
         host,
         httpRequest,
-        editor,
+        activeEditor,
         htmlLanguageService,
     });
 }

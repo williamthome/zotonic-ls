@@ -1,10 +1,16 @@
 import { InsertSnippetCommand } from '../../../domain/commands';
-import { SnippetString, TextEditor } from 'vscode';
+import { SnippetString } from 'vscode';
+import { GetActiveEditor } from '../protocol';
 
 export function buildInsertSnippetCommand(args: {
-    editor: TextEditor;
+    activeEditor: GetActiveEditor;
 }): InsertSnippetCommand {
     return async function insertSnippet({ snippet }) {
-        await args.editor.insertSnippet(new SnippetString(snippet));
+        const editor = args.activeEditor();
+        if (!editor) {
+            return;
+        }
+
+        await editor.insertSnippet(new SnippetString(snippet));
     };
 }
