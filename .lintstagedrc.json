@@ -1,0 +1,4 @@
+{
+    "*.ts": "npm run prettify",
+    "*.json": "npm run format"
+}

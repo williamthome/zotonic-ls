@@ -1,0 +1,81 @@
+name: CI
+
+on:
+    push:
+        branches: [main]
+
+    pull_request:
+        branches: [main]
+
+jobs:
+    build:
+        strategy:
+            matrix:
+                os: [macos-latest, ubuntu-latest, windows-latest]
+                node-version: [16.10.x, 17.x, 18.x]
+
+        runs-on: ${{ matrix.os }}
+
+        steps:
+            - uses: actions/checkout@v3
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build
+              run: npm run compile
+
+            - name: Run tests
+              uses: GabrielBB/xvfb-action@v1.0
+              with:
+                  run: npm run test:ci
+
+            - name: Coveralls
+              # TODO: Check why Coveralls fails on Windows OS
+              if: runner.os != 'Windows'
+              uses: coverallsapp/github-action@master
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  parallel: true
+                  flag-name: run-os-${{ matrix.os }}-node-${{ matrix.node-version }}
+
+    finish:
+        needs: build
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Coveralls finished
+              uses: coverallsapp/github-action@master
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  parallel-finished: true
+
+    publish:
+        if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/pre-release'
+
+        needs: build
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: ^16.10
+                  registry-url: 'https://registry.npmjs.org'
+
+            - name: Install vsce
+              run: npm i -g vsce
+
+            - name: Publish to marketplace
+              if: startsWith(github.ref, 'refs/tags/v')
+              run: vsce publish -p ${{ secrets.VSCE_PAT }}
+
+            - name: Publish pre-release to marketplace
+              if: github.ref == 'refs/heads/pre-release'
+              run: vsce publish -p ${{ secrets.VSCE_PAT }} --pre-release

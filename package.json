@@ -1,151 +1,197 @@
 {
-	"name": "zotonic-ls",
-	"displayName": "Zotonic",
-	"description": "Syntax highlight for Zotonic templates (.tpl).",
-	"version": "0.6.0",
-	"publisher": "williamthome",
-	"license": "Apache-2.0",
-	"icon": "images/z_logo.png",
-	"galleryBanner": {
-		"color": "#2DAAE1",
-		"theme": "dark"
-	},
-	"homepage": "https://github.com/williamthome/zotonic-ls",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/williamthome/zotonic-ls"
-	},
-	"bugs": {
-		"url": "https://github.com/williamthome/zotonic-ls/issues"
-	},
-	"engines": {
-		"vscode": "^1.67.0"
-	},
-	"keywords": [
-		"zotonic",
-		"tpl",
-		"erlang"
-	],
-	"categories": [
-		"Programming Languages"
-	],
-	"activationEvents": [
-		"onStartupFinished"
-	],
-	"capabilities": {
-		"definitionProvider": "true",
-		"hoverProvider": "true",
-		"completionProvider": {
-			"triggerCharacters": [
-				".",
-				"[",
-				"{",
-				"|",
-				"<"
-			]
-		}
-	},
-	"main": "./out/extension.js",
-	"contributes": {
-		"languages": [
-			{
-				"id": "tpl",
-				"aliases": [
-					"Zotonic Template Language",
-					"tpl"
-				],
-				"extensions": [
-					".tpl"
-				],
-				"configuration": "./tpl-language-configuration.json"
-			}
-		],
-		"grammars": [
-			{
-				"language": "tpl",
-				"scopeName": "source.tpl",
-				"path": "./syntaxes/tpl.tmLanguage.json"
-			},
-			{
-				"scopeName": "text.html.tpl",
-				"path": "./syntaxes/html-tpl.tmLanguage.json"
-			},
-			{
-				"scopeName": "source.js.tpl",
-				"path": "./syntaxes/js-tpl.tmLanguage.json"
-			}
-		],
-		"snippets": [
-			{
-				"language": "tpl",
-				"path": "./snippets/tpl-stuff.code-snippets"
-			},
-			{
-				"language": "tpl",
-				"path": "./snippets/tpl-tags-builtin.code-snippets"
-			},
-			{
-				"language": "tpl",
-				"path": "./snippets/tpl-tags-module.code-snippets"
-			},
-			{
-				"language": "tpl",
-				"path": "./snippets/tpl-filters.code-snippets"
-			},
-			{
-				"language": "tpl",
-				"path": "./snippets/tpl-actions.code-snippets"
-			},
-			{
-				"language": "tpl",
-				"path": "./snippets/tpl-global-vars.code-snippets"
-			},
-			{
-				"language": "tpl",
-				"path": "./snippets/tpl-validators.code-snippets"
-			},
-			{
-				"language": "erlang",
-				"path": "./snippets/erlang-stuff.code-snippets"
-			},
-			{
-				"language": "erlang",
-				"path": "./snippets/erlang-observers.code-snippets"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.2.0",
-		"@types/mocha": "^9.1.1",
-		"@types/node": "14.x",
-		"@types/vscode": "^1.67.0",
-		"@typescript-eslint/eslint-plugin": "^5.21.0",
-		"@typescript-eslint/parser": "^5.21.0",
-		"@vscode/test-electron": "^2.1.3",
-		"eslint": "^8.14.0",
-		"glob": "^8.0.1",
-		"mocha": "^9.2.2",
-		"typescript": "^4.6.4"
-	},
-	"__metadata": {
-		"id": "a5dd5826-a49c-4b0f-b445-f198f9998f3b",
-		"publisherDisplayName": "williamthome",
-		"publisherId": "c04747f3-3306-481b-be5b-0fcc99ab1e1e",
-		"isPreReleaseVersion": false,
-		"targetPlatform": "undefined",
-		"updated": false,
-		"preRelease": false
-	},
-	"dependencies": {
-		"axios": "^0.27.2",
-		"vscode-html-languageservice": "^5.0.0"
-	}
+    "name": "zotonic-ls",
+    "displayName": "Zotonic",
+    "description": "Zotonic Language Server",
+    "version": "0.7.0",
+    "author": {
+        "name": "William Fank Thomé",
+        "url": "https://github.com/williamthome/"
+    },
+    "contributors": [
+        {
+            "name": "William Fank Thomé"
+        }
+    ],
+    "funding": [
+        "https://github.com/sponsors/williamthome",
+        "https://www.buymeacoffee.com/williamthome"
+    ],
+    "publisher": "williamthome",
+    "license": "Apache-2.0",
+    "icon": "images/z_logo.png",
+    "galleryBanner": {
+        "color": "#2DAAE1",
+        "theme": "dark"
+    },
+    "homepage": "https://github.com/williamthome/zotonic-ls",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/williamthome/zotonic-ls"
+    },
+    "bugs": {
+        "url": "https://github.com/williamthome/zotonic-ls/issues"
+    },
+    "engines": {
+        "vscode": "^1.67.0"
+    },
+    "keywords": [
+        "zotonic",
+        "zotonic-library",
+        "tpl",
+        "language-server-protocol",
+        "lsp",
+        "erlang",
+        "completion",
+        "highlight",
+        "snippets"
+    ],
+    "categories": [
+        "Programming Languages"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "capabilities": {
+        "definitionProvider": "true",
+        "hoverProvider": "true",
+        "completionProvider": {
+            "triggerCharacters": [
+                ".",
+                "[",
+                "{",
+                "|",
+                "<"
+            ]
+        }
+    },
+    "main": "./out/extension.js",
+    "contributes": {
+        "languages": [
+            {
+                "id": "tpl",
+                "aliases": [
+                    "Zotonic Template Language",
+                    "tpl"
+                ],
+                "extensions": [
+                    ".tpl"
+                ],
+                "configuration": "./tpl-language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "tpl",
+                "scopeName": "source.tpl",
+                "path": "./syntaxes/tpl.tmLanguage.json"
+            },
+            {
+                "scopeName": "text.html.tpl",
+                "path": "./syntaxes/html-tpl.tmLanguage.json"
+            },
+            {
+                "scopeName": "source.js.tpl",
+                "path": "./syntaxes/js-tpl.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "tpl",
+                "path": "./snippets/tpl-stuff.code-snippets"
+            },
+            {
+                "language": "tpl",
+                "path": "./snippets/tpl-tags-builtin.code-snippets"
+            },
+            {
+                "language": "tpl",
+                "path": "./snippets/tpl-tags-module.code-snippets"
+            },
+            {
+                "language": "tpl",
+                "path": "./snippets/tpl-filters.code-snippets"
+            },
+            {
+                "language": "tpl",
+                "path": "./snippets/tpl-actions.code-snippets"
+            },
+            {
+                "language": "tpl",
+                "path": "./snippets/tpl-global-vars.code-snippets"
+            },
+            {
+                "language": "tpl",
+                "path": "./snippets/tpl-validators.code-snippets"
+            },
+            {
+                "language": "erlang",
+                "path": "./snippets/erlang-stuff.code-snippets"
+            },
+            {
+                "language": "erlang",
+                "path": "./snippets/erlang-observers.code-snippets"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc",
+        "watch": "tsc -w",
+        "pretest": "tsc -p ./src/__tests__",
+        "lint": "eslint src --ext ts --cache --fix",
+        "format": "prettier --write ./src/**/*.{ts,json}",
+        "prettify": "npm run lint && npm run format",
+        "update": "npx npm-check-updates -u && npm install",
+        "prepare": "husky install",
+        "test": "npm run test:unit && npm run test:integration",
+        "test:unit": "npm run test:jest -- \"^(.*/)*(.*\\.)*(spec)\\.ts$\"",
+        "test:unit:verbose": "npm run test:verbose -- \"^(.*/)*(.*\\.)*(spec)\\.ts$\"",
+        "test:unit:watch": "npm run test:unit -- --watch",
+        "test:unit:watch:verbose": "npm run test:unit:verbose -- --watch",
+        "test:integration": "npm run test:vscode",
+        "test:staged": "npm run test:jest -- --findRelatedTests",
+        "test:cover": "npm run test:unit -- --coverage",
+        "pretest:ci": "npm run pretest",
+        "test:ci": "npm run test:integration && npm run test:cover",
+        "test:verbose": "jest --passWithNoTests --runInBand --detectOpenHandles",
+        "test:clear": "jest --clearCache",
+        "test:jest": "jest --passWithNoTests --silent --noStackTrace --runInBand --detectOpenHandles",
+        "test:vscode": "node ./out/__tests__/infra/runTest.js",
+        "eslint:test": "eslint --fix --cache --ext .ts src/__tests__/"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.2.0",
+        "@types/jest": "^28.1.3",
+        "@types/mocha": "^9.1.1",
+        "@types/node": "18.x",
+        "@types/vscode": "^1.68.0",
+        "@typescript-eslint/eslint-plugin": "^5.29.0",
+        "@typescript-eslint/parser": "^5.29.0",
+        "@vscode/test-electron": "^2.1.4",
+        "coveralls": "^3.1.1",
+        "eslint": "^8.18.0",
+        "eslint-config-prettier": "^8.5.0",
+        "git-commit-msg-linter": "^4.1.3",
+        "glob": "^8.0.3",
+        "husky": "^8.0.1",
+        "lint-staged": "^13.0.2",
+        "mocha": "^10.0.0",
+        "prettier": "^2.7.1",
+        "ts-jest": "^28.0.5",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^4.7.4"
+    },
+    "__metadata": {
+        "id": "a5dd5826-a49c-4b0f-b445-f198f9998f3b",
+        "publisherDisplayName": "williamthome",
+        "publisherId": "c04747f3-3306-481b-be5b-0fcc99ab1e1e",
+        "isPreReleaseVersion": false,
+        "targetPlatform": "undefined",
+        "updated": false,
+        "preRelease": false
+    },
+    "dependencies": {
+        "axios": "^0.27.2",
+        "vscode-html-languageservice": "^5.0.0"
+    }
 }
