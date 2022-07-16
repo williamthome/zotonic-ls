@@ -182,6 +182,7 @@
         "prettier": "^2.7.1",
         "rimraf": "^3.0.2",
         "rollup": "^2.77.0",
+        "rollup-plugin-terser": "^7.0.2",
         "ts-jest": "^28.0.5",
         "ts-node-dev": "^2.0.0",
         "typescript": "^4.7.4"
